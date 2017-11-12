@@ -1,0 +1,55 @@
+<!--
+	Author: Michael Maxwell
+	Student #: 101006277
+-->
+
+<!doctype html>
+<html>
+	<head>
+		<title>Recipe Book</title>
+		<link rel = 'stylesheet' href = '/style.css'>
+		<link rel = 'icon' href = '/icon.png'>
+		<meta charset = 'utf-8'>
+		<script src = 'recipe.js'></script>
+	</head>
+	<body>
+		<header>
+			
+			<h1>
+				<img src = 'icon.png'>
+				Recipe Book
+				<img src = 'icon.png'>
+			</h1>
+			<div>
+				<label>
+					Recipe:
+					<select id = 'recipe' name = 'recipe'></select>
+					<span id = 'check'>&#x2713;</span>
+				</label>
+				
+				<div id = 'buttons'>
+					<button id = 'view' onclick = 'view()'>View</button>
+					<button id = 'submit' onclick = 'submit()'>Submit</button>
+				</div>
+			</div>
+		</header>
+		<form>
+			<label>
+				Duration:
+				<input id = 'duration' name = 'duration' type = 'number'>
+			</label>
+			<label>
+				Ingredients:
+				<textarea id = 'ingredients' name = 'ingredients'></textarea>
+			</label>
+			<label>
+				Steps:
+				<textarea id = 'steps' name = 'steps'></textarea>
+			</label>
+			<label>
+				Notes:
+				<textarea id = 'notes' name = 'notes'></textarea>
+			</label>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose:
+	Make changes to an existing inventory management system.
+
+Source Files:
+	CustArray.cc
+	Customer.cc
+	InvControl.cc
+	ProdArray.cc
+	Product.cc
+	PurchArray.cc
+	Purchase.cc
+	Store.cc
+	UI.cc
+	main.cc
+Header Files:
+	CustArray.h
+	Customer.h
+	InvControl.h
+	ProdArray.h
+	Product.h
+	PurchArray.h
+	Purchase.h
+	Store.h
+	UI.h
+	defs.h
+Data Files:
+	None
+
+Compilation Command: make
+Launching & Operating Instructions: ./cushop

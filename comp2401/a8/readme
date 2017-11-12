@@ -1,0 +1,18 @@
+Author: Michael Maxwell, Brady Jessup
+Student #: 101006277
+
+Purpose:
+	 Provide a chat utility between two users on separate hosts.
+
+Source Files:
+	chat.c util.c
+Header Files:
+	a8Defs.h
+Data Files:
+	None
+
+Compilation Command: make
+Launching & Operating Instructions: make run
+
+Notes:
+	127.0.0.1 is the default IP address if none is given by the user.

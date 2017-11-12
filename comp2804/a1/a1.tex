@@ -1,0 +1,164 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+
+\title{COMP 2804 - Assignment 1}
+\author{Michael Maxwell - 101006277}
+\date{February 1\textsuperscript{st}, 2017}
+
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\pagenumbering{arabic}
+
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item
+			Determine the number of awesome passwords. \\
+			Awesome password requirements.
+			\begin{itemize}
+				\item String of 10 characters
+				\begin{itemize}
+					\item a b c d e f g h i j k l m n o p q r s t u v w x y z
+					\item 0 1 2 3 4 5 6 7 8 9
+					\item ! @ \# \$ \% \& ( )
+				\end{itemize}
+				\item Must contain at least one digit or special character.
+			\end{itemize}
+			First, count the total number of passwords. The character set we're working with is of length 44. \\
+			Then we will subtract all the password without any digits or special characters by the Complement Rule. \\
+			\\
+			$U = 44^{10}$ ``all 10 character passwords'' - by the Product Rule. \\
+			$A = 26^{10}$ ``all non-awesome passwords'' - by the Product Rule.
+			\begin{align*}
+				P &= U - A \\
+				P &= 44^{10} - 26^{10}
+			\end{align*}
+		\item
+			Determine the number of functions. \\
+			$f: \{1, 2, 3, 4\} \rightarrow \{a, b, c, \ldots, z\}$ such that $A: f(1) = f(2)$, or $B: f(3) = f(4)$, or $C: f(1) \neq f(3)$
+			\begin{align*}
+				\left|A\right| &= 17576&\text{ every function has 26 choices except }&f(2)\text{ has 1.} \\
+				\left|B\right| &= 17576&&f(4)\text{ has 1.} \\
+				\left|C\right| &= 439400&&f(3)\text{ has 25.} \\
+				\left|A \cap B\right| &= 676&&f(2), f(4)\text{ have 1.} \\
+				\left|B \cap C\right| &= 16900&&f(3)\text{ has 25, }f(4)\text{ has 1.} \\
+				\left|C \cap A\right| &= 16900&&f(3)\text{ has 25, }f(2)\text{ has 1.} \\
+				\left|A \cap B \cap C\right| &= 650&&f(3)\text{ has 25, }f(2), f(4)\text{ have 1.}
+			\end{align*}
+			\begin{align*}
+				\left| A \cup B \cup C\right| &= \left|A\right| + \left|B\right| + \left|C\right| - \left|A \cap B\right| - \left|B \cap C\right| - \left|C \cap A\right| + \left|A \cap B \cap C\right| \text{by Inclusion-Exclusion} \\
+				\left|A \cup B \cup C\right| &= 17576 + 17576 + 439400 - 676 - 16900 - 16900 + 650 \\
+				&= 440726
+			\end{align*}
+		\item
+			Let $n \geq 1$ be an integer. \\
+			\begin{itemize}
+
+			\item
+				Assume that $n$ is odd. \\
+				Determine the number of bit strings of length $n$ that contain more 0's than 1's. \\
+				There's no chance that the number of 1's = number of 0's since $n$ is odd. \\
+				The total number of bit strings of length $n$ that can be created is $2^n$ by the Product Rule. \\
+				The number of bit strings that have more 0’s than 1’s and vice versa will be equal. \\
+				Therefore, the number of bit strings of length $n$ that contain more 0's than 1's equals\\
+				\begin{equation*}
+					2^n \div 2 = 2^{n - 1}
+				\end{equation*}
+			\item
+				Assume that $n$ is even. \\
+				So there must be $n \div 2$ many 0's and 1's in the bit string. Meaning it can be solved with a binomial coefficient. Choose $n \div 2$ places in a bit string of length $n$ to place 0's. The other spots will be filled with 1's. \\
+				\begin{equation*}
+					{n \choose n \div 2}
+				\end{equation*}
+				This is a binomial coefficient summation. Since binomial coefficients are symmetric the sum can be taken from $[1, n \div 2 - 1]$.
+				Choose $k$ positions to put 1's and put 0's in the other remaining positions.
+				The number of bit strings of length $n$ that contain more 0's than 1's equals
+				\begin{equation*}
+					\sum_{k = 1}^{n \div 2 - 1} {n \choose k}
+				\end{equation*}
+				Argue that the following binomial coefficient is an even integer.
+				\begin{equation*}
+					{n \choose n \div 2}
+				\end{equation*}
+				$n \geq 2$ now since $n$ is an even integer $\geq 1$. \\
+				Breaking down the binomial coefficient to it's expression in terms of factorials will help prove ${n \choose n \div 2}$ is an even integer.
+				\begin{equation*}
+					{n \choose n \div 2} = \frac{n!} {\frac{n}{2}! \times (n - \frac{n}{2})!} = \frac{n!}{(\frac{n}{2}!)^2}
+				\end{equation*}
+				$n$ is even because $n \geq 2$, therefore it must be a multiple of 2. \\
+				$n \div 2$ is even because an even number divided by an equal or smaller even number returns an even number. \\
+				Proceeding to square and divide only even numbers will remain even.
+			\end{itemize}
+		\item
+			Let m, n, k, l be integers such that $m \geq 1$, $n \geq 1$, and $1 \leq l \leq k \leq n$. \\
+			\begin{itemize}
+				\item $m$ types of beer
+				\item $n$ types of cider
+				\item $k$ pints total
+				\item $l$ pints of cider
+			\end{itemize}
+			Elisa has to choose $k - l$ beers from the $m$ types on tap and choose $l$ ciders from the $n$ types available. A binomial coefficient can be used to calculate those, then because the order matters it will be multiplied by $k!$. 
+			\begin{equation*}
+				{m \choose k - l} \times {n \choose l} \times k!
+			\end{equation*}
+		\item
+			A store sells $n$ different types of IPA and $n$ different types of wheat beer. \\
+			Where $n \geq 2$ is an integer. \\
+			Prove that
+			\begin{equation*}
+				{2n \choose 2} = 2{n \choose 2} + n^2
+			\end{equation*}
+			Starting with the LHS, there is 3 different ways to choose 2 objects from 2 set of n things.
+			\begin{enumerate}
+				\item Buy 2 IPA's
+				${n \choose 2}$
+				\item Buy 2 wheat beers
+				${n \choose 2}$
+				\item Buy 1 IPA and 1 wheat beer
+				${n \choose 1} \times {n \choose 1} = n^2$
+			\end{enumerate}
+			The left side is equal to $2 \times {n \choose 2} + n^2$ \\
+			Therefore the equation is true, since the LHS = RHS. \\
+		\item
+			A string consisting of characters is called \emph{cool} if exactly one character in the string is equal to $x$ and each other character is a digit. \\
+			Let $n \geq 1$ be an integer. \\
+			\begin{itemize}
+				\item Determine the number of cool strings of length $n$ \\
+				\begin{equation*}
+					n \times 10^{n - 1}\text{ : by choosing a location for $x$ then the remaining n - 1 positions have 10 choices each.}
+				\end{equation*}
+				\item Let $k$ be an integer with $1 \leq k \leq n$. Determine the number of cool strings of length $n$ that contain exactly $n - k$ many 0's. \\
+				\begin{equation*}
+					{n - 1 \choose n - k} \times 9^{k - 1}
+				\end{equation*}
+				\item Use the above two results to prove that
+				\begin{equation*}
+					\sum_{k = 1}^{n} k {n \choose k} \times 9^{k - 1} = n \times 10^{n-1}
+				\end{equation*}
+				The number of cool strings of length $n$ that contain exactly $n - k$ many 0's can be used to calculate all cool strings. Since the sum of the cool strings with $[0, n - 1]$ ($n - 1$ because one character still needs to be $x$) zeros is equal to the total number of cool strings.
+			\end{itemize}
+		\item
+			Determine the number of elements $x$ in the set $\{1, 2, 3, \ldots, 99999\}$ for which the sum of the digits in the decimal representation of $x$ is equal to 8. \\
+			The numbers in the set will be encoded into bit strings of length $n + k - 1 = 12$. \\
+			Where $n = 8$ corresponding to the sum of the digits required, $k = 5$ corresponding to how many digits. \\
+			\begin{equation*}
+				{12 \choose 4} = 495
+			\end{equation*}
+		\item
+			Let $n \geq 2$ be an integer. \\
+			Let $G = (V, E)$ be a graph whose vertex set $V$ has size $n$ and whose edge set $E$ is non-empty. \\
+			The degree of any vertex $u$ is defined to be the number of edges in $E$ that contain $u$ as a vertex. \\
+			Prove that there exists at least two vertices in $G$ that have the same degree. \\
+			\\
+			When $G$ is a connected graph, each vertex will have a degree between $[1, n - 1]$ because a connected graph's vertices need to have degree at least 1 and the most vertices it connect to is every vertex but itself, so $n - 1$. \\
+			Where $G$ is a disconnected graph, each vertex will have a degree between $[0, n - 2]$ because for it is okay for a vertex to have degree 0 in disconnected graphs and the most edges it can have is $n - 2$ because if it were $n - 1$ then it would be connected to every other vertex, making it connected. \\
+			Now, we have $n$ vertices in the vertex set $V$ and $n - 1$ options for vertex $u$'s degree. Therefore there must be 2 vertices with the same degree by the Pigeonhole principle.
+	\end{enumerate}	
+\end{document}

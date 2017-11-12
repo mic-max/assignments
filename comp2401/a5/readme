@@ -1,0 +1,18 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose:
+	Read data from input to create arrays of students, which all have their own
+	array of courses.
+
+Source Files:
+	studentReader.c
+Header Files:
+	None
+Data Files:
+	None
+
+Compilation Command: gcc studentReader.c -o studentReader -Wall -std=c99
+Launching & Operating Instructions: ./studentReader
+
+Notes:

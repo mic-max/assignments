@@ -1,0 +1,17 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose:
+	Collect cat information from the user and print it to the screen.
+
+Source Files:
+	dynocat.c
+Header Files:
+	a6Defs.h
+Data Files:
+	None
+
+Compilation Command: gcc dynocat.c -o dynocat -Wall -std=c99
+Launching & Operating Instructions: ./dynocat
+
+Notes:

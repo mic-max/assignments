@@ -1,0 +1,41 @@
+//
+	Author: Michael Maxwell
+	Student #: 101006277
+doctype
+html
+	head
+		title Recipe Book
+		link(rel = 'stylesheet', href = '/css/style.css')
+		link(rel = 'icon', href = '/img/icon.png')
+		meta(charset = 'utf-8')
+		script(src = 'js/jquery-3.1.1.min.js')
+		script(src = 'js/recipe.js')
+	body
+		header
+			h1
+				img(src = '/img/icon.png')
+				|  
+				= header 
+				| 
+				img(src = 'img/icon.png')
+			div
+				label
+					| Recipe:
+					select#recipe(name = 'recipe')
+					span#check ✓
+				#buttons
+					button#view View
+					button#submit Submit
+		form
+			label
+				| Duration:
+				input#duration(name = 'duration', type = 'number')
+			label
+				| Ingredients:
+				textarea#ingredients(name = 'ingredients')
+			label
+				| Steps:
+				textarea#steps(name = 'steps')
+			label
+				| Notes:
+				textarea#notes(name = 'notes')

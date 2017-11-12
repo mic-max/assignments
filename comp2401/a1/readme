@@ -1,0 +1,14 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose: Add, remove, and print integers from an array in ascending order.
+
+Source Files:
+	ascArr.c
+Header Files:
+	None
+Data Files:
+	None
+
+Compilation Command: gcc ascArr.c -o ascArr -Wall -std=c99
+Launching & Operating Instructions: ./ascArr

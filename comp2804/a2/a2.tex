@@ -1,0 +1,242 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancybox}
+
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\newcommand{\IN}{\mathbb{N}}
+\newcommand{\EGTTP}{\textsf{\sc ElisaGoesToThePub}}
+
+\title{COMP 2804 -- Assignment 2}
+\author{Michael Maxwell - 101006277}
+\date{February 15\textsuperscript{th}, 2017}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\pagenumbering{arabic}
+
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item %2
+			The function $f : \IN \rightarrow \IN$ is defined by 
+			\begin{align*}
+				f(0) &= 0, \\
+				f(1) &= 0, \\
+				f(n) &= f(n - 2) + 2^{n - 1} & \mbox{if $n \geq 2$}
+			\end{align*}
+		
+			\begin{itemize}
+				\item
+					Prove that for every even integer $n \geq 0$, \\
+					\[
+						f(n) = \frac{2^{n + 1} - 2}{3}
+					\]
+					Proof by Induction. \\
+					\begin{itemize}
+						\item Base case: $n = 0, f(0) =\frac{2^{n + 1} - 2}{3} = \frac{2^1 - 2}{3} = 0$
+						\item Assume $f(n) = \frac{2^{n + 1} - 2}{3}$ for even integer $n \geq 0$
+						\item Show true for $n$
+					\end{itemize}
+					\begin{align*}
+						f(n) &= f(n - 2) + 2^{n - 1} \\
+						&= \frac{2^{n - 1} - 2}{3} + 2^{n - 1} \\
+						&= \frac{4 \times 2^{n - 1} - 2}{3} \\
+						&= \frac{2^{n + 1} - 2}{3}
+					\end{align*}
+				\item
+					Prove that for every odd integer $n \geq 1$, \\
+					\[
+						f(n) = \frac{2^{n + 1} - 4}{3}
+					\]
+					Proof by Induction. \\
+					\begin{itemize}
+						\item Base case: $n = 1$, $f(1) =  \frac{2^{n + 1} - 4}{3} = \frac{2^2 - 4}{3} = 0$
+						\item Assume $f(n) - \frac{2^{n + 1} - 4}{3}$ for odd integer $n \geq 1$
+						\item Show true for $n$
+					\end{itemize}
+					\begin{align*}
+						f(n) &= f(n - 2) + 2^{n - 1} \\
+						&=\frac{2^{n - 1} - 4}{3} + 2^{n - 1} \\
+						&=\frac{4 \times 2^{n - 1} - 4}{3} \\
+						&=\frac{2^{n + 1} - 4}{3}
+					\end{align*}
+			\end{itemize}
+			
+		\item %3
+			The function $f : \IN^2 \rightarrow \IN$ is defined by 
+			\[ \begin{array}{lcll} 
+				f(0, n) & = & 2n & \mbox{if $n \geq 0$,} \\ 
+				f(m, 0) & = & 0 & \mbox{if $m \geq 1$,} \\ 
+				f(m, 1) & = & 2 & \mbox{if $m \geq 1$,} \\ 
+				f(m, n) & = & f(m-1,f(m,n-1)) & \mbox{if $m \geq 1$ and $n \geq 2$.}
+			\end{array} \] 
+			\begin{itemize}
+				\item
+					Determine $f(2,2)$. \\
+					\begin{align*}
+						f(2, 2) &= f(2 - 1, f(2, 2 - 1))& \\
+						&= f(1, f(2, 1))&\text{ use }f(m, 1) = 2 \\
+						&= f(1, 2)& \\
+						&&\text{now solve }f(1, 2)\text{ using }f(m, n)\\
+						f(1, 2) &= f(1 - 1, f(1, 2 - 1))& \\
+						&= f(0, f(1, 1))&\text{ use }f(m, 1) = 2 \\
+						&= f(0, 2)&\text{ use }f(0, n) = 2n \\
+						&= 4 &\\
+						\therefore f(2, 2) &= 4& 
+					\end{align*}
+				\item
+					Determine $f(1,n)$ for $n \geq 1$. \\
+					\begin{align*}
+						f(1, n) &= f(1 - 1, f(1, n - 1))& \\
+						&= f(0, f(1, n - 1))&\text{ let } f(1, n - 1) = j \\
+						&= f(0, j)&\text{ use }f(0, n) = 2n \\
+						&= 2j&\text{ sub }j\text{ back into the equation} \\
+						&= 2 \times f(1, n - 1)& \\
+						&= 2 \times 2\times f(1, n - 2)&\text{ until you reach  } f(m, 1) = 2\\
+						&= 2 \times 2 \times 2 \times \ldots&\text{ of }n\text{ length }\\
+						\therefore f(1, n) &= 2^n
+					\end{align*}
+				\item
+					Determine $f(3,3)$. \\
+					\begin{align*}
+						f(3, 3) &= f(3 - 1, f(3, 3 - 1))&\text{ using }f(m - 1, f(m, n - 1)) \\
+						&= f(2, f(3, 2))& \\
+						\\
+						f(3, 2) &= f(3 - 1, f(3, 2 - 1)))&\text{ using }f(m - 1, f(m, n - 1)) \\
+						&= f(2, f(3, 1))& \\
+						&= f(2, 2)&\text{ using }f(m, 1) = 2 \\
+						&= 4&\text{ using }f(2, 2)\text{ from 3.1} \\
+						\\
+						f(2, 4) &= f(2 - 1, f(2, 4 - 1))&\text{ using }f(m - 1, f(m, n - 1)) \\
+						&= f(1, f(2, 3))& \\
+						\\
+						f(2, 3) &= f(2 - 1, f(2 , 3 - 1))& \
+						&= f(1, f(2, 2))& \\
+						&= f(1, 4)& \\
+						&= 2^4 & \\
+						\\
+						f(1, 16) &= 2^{16} &\\
+						\therefore f(3, 3) &= 2^{16} &
+					\end{align*}
+			\end{itemize}
+			
+		\item %4
+			For any integer $n \geq 1$, let $A_n$ denote the number of awesome bit-strings of length $n$. 
+			\begin{itemize} 
+				\item
+					Determine $A_1$, $A_2$, $A_3$, and $A_4$. \\
+					\[
+						A_1 = 1, A_2 = 2, A_3 = 3, A_4 = 5 	
+					\]
+				\item
+					Determine the value of $A_n$ \\
+					$A_n$ consists of the same numbers in the Fibonacci sequence. I can derive a recurrence relation between them:
+					\[
+						A_n = f_{n + 1}
+					\]
+			\end{itemize}
+		\item %5
+			The Fibonacci numbers are defined as follows: $f_0 = 0$, $f_1 = 1$, and $f_n = f_{n-1} + f_{n-2}$ for $n \geq 2$. \\
+			In class, we have seen that for any $m \geq 1$, the number of $00$-free bit-strings of length $m$ is equal to $f_{m+2}$. \\
+			\begin{itemize}
+				\item
+					Let $n \geq 2$ be an integer. What is the number of $00$-free bit-strings of length $2n - 1$ for which the bit in the middle position is equal to $1$? \\
+					The form in which a bit-string of length $2n - 1$ will appear is: $\underbrace{\text{ 00-free }}_{n - 1} 1 \underbrace{\text{ 00-free }}_{n - 1}$ \\
+					\\
+					So the number of 00-free bit-strings of length $2n - 1$ with a 1 in the middle position is $f_{n + 1}^2$ using the relation between 00-free bitstrings of length $m$ and the Fibonacci sequence. \\
+				\item
+					Let $n \geq 3$ be an integer. What is the number of $00$-free bit-strings of length $2n - 1$ for which the bit in the middle position is equal to $0$? \\
+					The form in which a bit-string of length $2n - 1$ will appear is: $\underbrace{\text{ 00-free }}_{n - 2} 101 \underbrace{\text{ 00-free }}_{n - 2}$ \\
+					\\
+					So the number of 00-free bit-strings of length $2n - 1$ with a 0 in the middle position is $f_{n}^2$ using the relation between 00-free bit-strings of length $m$ and the Fibonacci sequence. \\
+				\item
+					Use the previous results to prove that for any integer $n \geq 3$,
+					\[
+						f_{2n+1} = f_n^2 + f_{n+1}^2 
+					\]
+					The previous questions calculate the number of 00-free bit-strings of length $2n - 1$ where the middle bit is 0 and 1. That means both of them combined simply counts all 00-free bit-strings of length $2n - 1$. \\
+					\begin{align*}
+						 f_{m + 2}&= \text{\#00-free}&\text{ let }m = 2n - 1 \\
+						f_{(2n - 1) + 2} &= f_{2n + 1}&
+					\end{align*}
+			\end{itemize}
+		\item %6
+			Elisa Kazan loves to drink cider. During the weekend, Elisa goes to the pub and runs the following recursive algorithm, which takes as input an integer $n \geq 0$:
+			
+			For $n \geq 0$, let $C(n)$ be the number of bottles of cider that Elisa drinks when running algorithm $\EGTTP(n)$. Determine the value of $C(n)$. \\
+			\\
+			The recursive equations of $C(n)$ for each case from \EGTTP. \\
+			\textbf{Even}: $C(n) = 2 \times C(\frac{n}{2}) + \frac{n^2}{2}$ \\
+			\textbf{Odd}: $C(n) = 4 \times C(\frac{n - 1}{2}) + 2n - 1$ \\
+			The \EGTTP\text{ }algorithm follows the pattern $n^2$. I will prove this using induction. \\
+			\begin{itemize}
+				\item Odd
+					\begin{itemize}
+						\item Base case: $C(0) = 0^2 = 0.$
+						\item Assume: $C(\frac{n - 1}{2}) = \left[\frac{n - 1}{2}\right]^2$
+						\item Show true for $n$
+					\end{itemize}
+
+					\begin{align*}
+						C(n) &= 4 \times C\left(\frac{n - 1}{2}\right) + 2n - 1 \\
+						&= 4 \times \left[\frac{n - 1}{2}\right]^2 + 2n - 1 \\
+						&= 4 \times \left[\frac{n^2 - 2n + 1}{4}\right] + 2n - 1 \\
+						&= n^2 
+					\end{align*}
+					
+				\item Even
+					\begin{itemize}
+						\item Base case: $C(0) = 0^2 = 0.$
+						\item Assume: $C(\frac{n - 1}{2}) = \left[\frac{n - 1}{2}\right]^2$
+						\item Show true for $n$
+					\end{itemize}
+
+					\begin{align*}
+						C(n) &=  2 \times C\left(\frac{n}{2}\right) + \frac{n^2}{2} \\
+						&=  2 \times \left(\frac{n}{2}\right)^2 + \frac{n^2}{2} \\
+						&=  2 \times \left(\frac{n^2}{4}\right) + \frac{n^2}{2} \\
+						&=  \frac{n^2}{2} + \frac{n^2}{2} \\
+						&= n^2
+					\end{align*}
+			\end{itemize}
+		\item %7
+			In the fall term of 2015, Nick took COMP 2804. Nick was always sitting in the back of the classroom and spent most of his time eating bananas. Nick uses the following banana-buying-scheme: 
+			\begin{itemize} 
+				\item
+					At the start of week $0$, there are $2$ bananas in Nick's fridge. 
+				\item
+					For any integer $n \geq 0$, Nick does the following during week $n$: 
+					\begin{itemize} 
+						\item
+							At the start of week $n$, Nick determines the number of bananas in his fridge and stores this number in a variable $x$. 
+						\item
+							Nick goes to Jim's Banana Empire, buys $x$ bananas, and puts them in his fridge. 
+						\item
+							Nick takes $n+1$ bananas out of his fridge and eats them during week $n$.  
+				\end{itemize}
+			\end{itemize}
+			For any integer $n \geq 0$, let $B(n)$ be the number of bananas in Nick's fridge at the start of week $n$. Determine the value of $B(n)$. \\
+			\[
+				B(0) = 2, B(1) = 3, B(2) = 4, B(3) = 5
+			\]
+			\begin{itemize}
+				\item Base case: $n = 0$, $B(0) = 2$
+				\item Assume $B(n - 1) = n + 1$
+				\item Show true for n
+			\end{itemize}
+			\begin{align*}
+				B(n) &= 2 \times B(n - 1) - n \\
+				&= 2 \times [n + 1] - n \\
+				&= 2n + 2 - n \\
+				&= n + 2
+			\end{align*}
+	\end{enumerate}	
+\end{document}

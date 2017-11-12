@@ -1,0 +1,140 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\title{COMP 2804 -- Assignment 4}
+\author{Michael Maxwell - 101006277}
+\date{April 6\textsuperscript{th}, 2017}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\pagenumbering{arabic}
+
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item %2
+		Every time a player flips the coin, starting with flip \# 2, there is a 0.5 chance to win the game. \\
+		So the probability of P1 winning could be represented like this:
+		\begin{align*}
+			Pr(\text{P1 Wins}) &= Pr(\text{Flip 3 wins}) + Pr(\text{Flip 5 wins}) + Pr(\text{Flip 7 wins}) + \ldots \\
+			Pr(\text{Flip 3 wins})&= \frac{1}{2} \cdot \frac{1}{2} = \left[\frac{1}{2}\right]^2 = \frac{1}{4} \\
+			Pr(\text{Flip 5 wins})&= \left[\frac{1}{2}\right]^4 = \frac{1}{16} \\
+			Pr(\text{Flip 7 wins})&= \left[\frac{1}{2}\right]^6 = \frac{1}{64} \\
+			Pr(\text{Flip n wins}) &= \left[\frac{1}{2}\right]^{n - 1} \qquad \qquad  \qquad \text{ for all } n > 1 \\
+			Pr(\text{P1 Wins}) &= \sum_{i = 0}^{n} \left[\frac{1}{2}\right]^{2i + 2} \\
+			&= \frac{1}{3} \qquad \text{ as seen in a similar summation in class}
+		\end{align*}
+		\item %3
+			\begin{align*}
+			S &= \{HH, HT, TH, TT\} && \text{ set of all possible outcomes}
+			\\
+			H_n &= \{2, 1, 1, 0\} && \text{ number of heads }
+			\\
+			T_n &= \{0, 1, 1, 2\} && \text{ number of tails }
+			\\
+			Z_n &= \{0, 1, 1, 0\} && \text{ product of heads and tails }
+			\end{align*}
+			\begin{align*}
+				Ex(X) &= \sum \frac{1}{4} H_n  && Ex(Y) &&= \sum \frac{1}{4} T_n  && Ex(Z) &&= \sum \frac{1}{4} Z_n \\
+				&= \frac{1}{4} \times (2 + 1 + 1 + 0) &&&&= \frac{1}{4} \times (0 + 1 + 1 + 2) &&&&= \frac{1}{4} \times (0 + 1 + 1 + 0) \\
+				&= 1 &&&&= 1 &&&&= 0.5
+			\end{align*}
+			\begin{align*}
+				Pr(X = 0 \cap Y = 0) &= Pr(X = 0) \cdot Pr(Y = 0) \\
+				0 &\ne \frac{1}{4} \cdot \frac{1}{4} = \frac{1}{16}
+			\end{align*}
+			$\therefore X$ and $Y$ are not independent random variables.
+			\begin{align*}
+				Pr(X = 0 \cap Z = 0) &= Pr(X = 0) \cdot Pr(Z = 0) \\
+				\frac{1}{4} &\ne \frac{1}{4} \cdot \frac{1}{2} = \frac{1}{8}
+			\end{align*}
+			$\therefore X$ and $Z$ are not independent random variables.
+			\begin{align*}
+				Pr(Y = 0 \cap Z = 0) &= Pr(Y = 0) \cdot Pr(Z = 0) \\
+				\frac{1}{4} &\ne \frac{1}{4} \cdot \frac{1}{2} = \frac{1}{8}
+			\end{align*}
+			$\therefore Y$ and $Z$ are not independent random variables.
+		\item %4
+			\begin{align*}
+				Pr(X = 0 \cap Y = 0) &= Pr(X = 0) \cdot Pr(Y = 0) \\
+				\{2\}: \frac{1}{10} &= \frac{2}{10} \cdot \frac{5}{10} \\
+				Pr(X = 0 \cap Y = 1) &= Pr(X = 0) \cdot Pr(Y = 1) \\
+				\{1\}: \frac{1}{10} &= \frac{2}{10} \cdot \frac{5}{10} \\
+				Pr(X = 1 \cap Y = 0) &= Pr(X = 1) \cdot Pr(Y = 0) \\
+				\{4, 6\}: \frac{2}{10} &= \frac{4}{10} \cdot \frac{5}{10} \\
+				Pr(X = 1 \cap Y = 1) &= Pr(X = 1) \cdot Pr(Y = 1) \\
+				\{3, 5\}: \frac{2}{10} &= \frac{4}{10} \cdot \frac{5}{10} \\
+				Pr(X = 2 \cap Y = 0) &= Pr(X = 2) \cdot Pr(Y = 0) \\
+				\{8, 10\}: \frac{2}{10} &= \frac{4}{10} \cdot \frac{5}{10} \\
+				Pr(X = 2 \cap Y = 1) &= Pr(X = 2) \cdot Pr(Y = 1) \\
+				\{7, 9\}: \frac{2}{10} &= \frac{4}{10} \cdot \frac{5}{10}
+			\end{align*}
+			$\therefore X$ and $Y$ are independent random variables because for all possible values of $X$ and $Y$ the probability of the union equals the product of the individual probabilities.
+		\item %5
+			\begin{align*}
+				Ex(X) &= \frac{1}{2} \cdot (30 + \frac{1}{3} \cdot 60) - 26 \\
+				&= -1
+			\end{align*}
+			\begin{align*}
+				Ex(Y) &= \frac{1}{3} \cdot (60 + \frac{1}{2} \cdot 30) - 26 \\
+				&= -1
+			\end{align*}
+			Since you're expected to lose money while playing this game no matter which order you answer, the house always wins. If you win an money I'd recommend quitting while you're ahead.
+		\item %6
+		\[ X_{i, j} = \begin{cases} 
+			1 & a_i = j \cap a_j = i \\          0 & \text{ otherwise } 
+		\end{cases} \]
+		\begin{align*}
+			Ex(X) &= Ex(\sum_{i = 1}^{n - 1} \sum_{j = i + 1}^{n} X_{i, j})  \\ &= \sum_{i = 1}^{n - 1} \sum_{j = i + 1}^{n} Ex(X_{i, j}) \\
+			Ex(X_{i, j}) &= 0 \cdot Pr(X_{i,j} = 0) + 1 \cdot Pr(X_{i,j} = 1) \\
+			&= Pr(X_{i,j} = 1) \\
+			Ex(X) &= \sum_{i = 1}^{n - 1}\sum_{j = i + 1}^{n} Pr(X_{i, j} = 1) \\
+		\end{align*}
+		Find $Pr(X_{i, j})$
+		\[ a_i = j \qquad a_j = i \qquad Pr(X_{i, j} = \frac{(n - 2)!}{n!}\]
+		\begin{align*}
+			Pr(X_{i, j}) &= \frac{(n - 2)!}{n!}
+		\end{align*}
+		\[\therefore E(X) = \sum_{i = 0}^{n - 1} \sum_{j = i + 1}^{n}\frac{(n - 2)!}{n!}\]
+		$(n - 2)!$ represents selecting positions for i and j while $n!$ is the total number of permutations possible.
+		This can be simplified since we know there are $\binom{n}{2}$ combinations of i and j.
+		\[
+			Ex(X) = \binom{n}{2} \frac{(n - 2)!}{n!} = \frac{1}{2} \qquad \text{ after expanding and simplifying }
+		\]
+		\item %7
+			\[ X_i = \begin{cases} 
+			1 & S_i \text{ says they cheated } \\          0 & \text{ otherwise } 
+		\end{cases} \]
+		\begin{align*}
+			Ex(X_i | S_i\ cheats) & = 0.5(1) + 0.25(1) + 0.25(0) = 0.75 \\
+			Ex(X_i | S_i \text{ didn't cheat}) &= 0.5(0) + 0.25(1) + 0.25(0) = 0.25
+		\end{align*}
+		\begin{align*}
+			Ex(X) &= Ex(\text{ Cheater says they cheated}) + Ex(\text{Non-Cheater says they cheated}) \\
+			&= 0 \cdot Pr(X = 0) + 1 \cdot Pr(X = 1) \qquad \text{ summation of all students} \\
+			&= Pr(X = 1) \\
+			&= \sum_{i = 0}^{k} 0.75 + \sum_{i = 0}^{n - k} 0.25 \\
+			&= 0.75 k + 0.25(n - k) \\
+			&= \frac{3k + n - k}{4} \\
+			&= \frac{n + 2k}{4}
+		\end{align*}
+		\begin{align*}
+			Y &= 2X - \frac{n}{2} \\
+			Ex(Y) &= Ex(2X - \frac{n}{2}) \\
+			&= 2(E(X)) - \frac{n}{2} \\
+			&= 2(\frac{n + 2k}{4}) - \frac{n}{2} \\
+			&= \frac{n + 2k}{2} - \frac{n}{2} \\
+			&= \frac{2k}{2} \\
+			&= k \therefore true
+		\end{align*}
+	\end{enumerate}	
+\end{document}

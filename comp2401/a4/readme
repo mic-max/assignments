@@ -1,0 +1,15 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose:
+	To collect movie information from the user and print this information to the screen.
+
+Source Files:
+	movies.c
+Header Files:
+	None
+Data Files:
+	None
+
+Compilation Command: gcc movies.c -o movies -Wall -std=c99
+Launching & Operating Instructions: ./movies

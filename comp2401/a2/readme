@@ -1,0 +1,14 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose: Compute a final grade from an evaluation scheme and a set of grades.
+
+Source Files:
+	grades.c
+Header Files:
+	None
+Data Files:
+	None
+
+Compilation Command: gcc grades.c -o grades -Wall -std=c99
+Launching & Operating Instructions: ./grades

@@ -1,0 +1,59 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose:
+	Make changes to an existing inventory management system.
+
+Source Files:
+	Bakery.cc
+	CoffeeTea.cc
+	Customer.cc
+	Dairy.cc
+	Date.cc
+	InvControl.cc
+	Meat.cc
+	MiscGoods.cc
+	NonPerishable.cc
+	NonTaxable.cc
+	Order.cc
+	OrderArray.cc
+	OrderServer.cc
+	Perishable.cc
+	ProdList.cc
+	Product.cc
+	PurchArray.cc
+	Purchase.cc
+	Store.cc
+	Taxable.cc
+	UI.cc
+	main.cc
+Header Files:
+	Bakery.h
+	CoffeeTea.h	
+	Customer.h
+	Dairy.h
+	Date.h
+	ExpirationBehaviour.h
+	InvControl.h
+	Meat.h
+	MiscGoods.h
+	NonPerishable.h
+	NonTaxable.h
+	Order.h
+	OrderArray.h
+	OrderServer.h
+	Perishable.h
+	ProdList.h
+	Product.h
+	PurchArray.h
+	Purchase.h
+	Store.h
+	Taxable.h
+	TaxationBehaviour.h
+	UI.h
+	defs.h
+Data Files:
+	None
+
+Compilation Command: make
+Launching & Operating Instructions: ./cushop [-a, -c]

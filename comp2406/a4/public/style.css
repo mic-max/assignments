@@ -1,0 +1,59 @@
+/*
+	Author: Michael Maxwell
+	Student #: 101006277
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: 'Courier New', monospace;
+	font-size: 12px;
+}
+
+body {
+	margin: 10px;
+	width: 600px;
+	height: 400px;
+	color: #ecf0f1;
+	background: #2c3e50;
+}
+
+#log, #users, #input {
+	margin: 5px;
+	float: left;
+	color: #ecf0f1;
+	background: #000;
+	border: 1px solid #0ff;
+}
+
+#log, #users {
+	height: 200px;
+	padding: 5px;
+}
+
+#log {
+	width: 420px;
+	resize: none;
+}
+
+#input {
+	width: 580px;
+	height: 30px;
+	padding-left: 8px;
+}
+
+#users {
+	width: 136px;
+	overflow-y: auto;
+}
+
+#users li {
+	margin-left: 16px;
+	-moz-user-select: none;
+	cursor: pointer;
+}
+
+.blocked {
+	color: #c0392b;
+}

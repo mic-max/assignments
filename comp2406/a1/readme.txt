@@ -1,0 +1,1 @@
+the treeMap function is suppose to apply a function to each node, however the example was performing the function to each node's data variable, so I changed the function to work properly with the specification of the assignment.

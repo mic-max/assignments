@@ -1,0 +1,60 @@
+Author: Michael Maxwell
+Student #: 101006277
+
+Purpose:
+	Make changes to an existing inventory management system.
+
+Source Files:
+	CustArray.cc
+	Customer.cc
+	InvControl.cc
+	Order.cc
+	OrderArray.cc
+	OrderServer.cc
+	ProdList.cc
+	Product.cc
+	PurchArray.cc
+	Purchase.cc
+	Store.cc
+	UI.cc
+	main.cc
+	NonPerishable.cc
+	Perishable.cc
+	Taxable.cc
+	NonTaxable.cc
+	Dairy.cc
+	Meat.cc
+	CoffeeTea.cc
+	MiscGoods.cc
+	Bakery.cc
+Header Files:
+	CustArray.h
+	Customer.h
+	InvControl.h
+	Order.h
+	OrderArray.h
+	OrderServer.h
+	ProdList.h
+	Product.h
+	PurchArray.h
+	Purchase.h
+	Store.h
+	UI.h
+	defs.h
+	NonPerishable.h
+	Perishable.h
+	Taxable.h
+	NonTaxable.h
+	Dairy.h
+	Meat.h
+	CoffeeTea.h
+	MiscGoods.h
+	Bakery.h
+Data Files:
+	None
+
+Compilation Command: make
+Launching & Operating Instructions: ./cushop [-a, -c]
+
+Notes:
+	I got a linker error and I have no idea what's causing it after hours of looking. I tried to implement everything else correctly but since I couldn't get passed the linking I don't know if it worked or not. If you are able to find the error and get my program running while marking it I'd really like to hear what the problem was in the feedback section. Thanks :)

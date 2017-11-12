@@ -1,0 +1,164 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\title{COMP 2804 -- Assignment 3}
+\author{Michael Maxwell - 101006277}
+\date{March 22\textsuperscript{nd}, 2017}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\pagenumbering{arabic}
+
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item %2
+			\[
+				S = \{[1,1], [1,2], [2,1], [2,2]\} \text{ each pair has equal probability if using fair coins} \\
+			\]
+			\begin{align*}
+				Pr(A) = Pr([1,1]) && Pr(B) = Pr([1,2], [2,1]) && Pr(C) = Pr([2,2])\\
+				= 1 \div 4 && = 2 \div 4 && = 1 \div 4\\
+				= 0.25 && = 0.5 && = 0.25
+			\end{align*}
+			The sum of $Pr(A) = Pr(B) = Pr(C)$ must equal 1 since these events cover the entire sample space. Therefore, the probability of each must be one third.
+			\begin{align*}
+				Pr(A) = p \cdot q && Pr(B) = p(1 - q) + q(1 - p) && Pr(C) = (1 - p) (1 - q)
+			\end{align*}
+			\begin{align*}
+				Pr(A) &= Pr(C)\\
+				p \cdot q &= (1 - p) (1 - q) \\
+				0 &= 1 - q - p \\
+				p &= 1 - q
+			\end{align*}
+				
+			\begin{align}
+				p &= 1 - q \\
+				p \cdot q &=1 \div 3
+			\end{align}
+			 Now I will solve equation 2 using the p value calculated above.
+			\begin{align*}
+				p \cdot q &= 1 \div 3 \\
+				(1 - q) \cdot q &= 1 \div 3 \\
+				q^2 - q + 1 \div 3 &= 0 \\
+			\end{align*}
+			Trying to solve this using the quadratic formula, results in imaginary numbers. So the probabilities of events A, B, and C cannot be equal.
+		\item %3
+			\begin{itemize}
+			\item
+			\begin{align*}
+				Pr(E | E \cup N) &= \frac{Pr(E \cap (E \cup N))}{Pr(E \cup N)}
+				&= \frac{Pr(E)}{Pr(E \cup N)} \\
+				&= \frac{p}{p + q - p \cdot q}
+				&= \frac{p}{p(1 - q) + q}
+			\end{align*}
+			\item
+			\begin{align*}
+				Pr(E \cap N | E \cup N) &= \frac{Pr((E \cap N) \cap (E \cup N))}{Pr(E \cup N)} \\
+				&= \frac{Pr(E \cap N)}{Pr(E \cup N)} \\
+				&= \frac{p \cdot q}{p + q - p \cdot q}
+			\end{align*}
+			\end{itemize}
+		\item %4
+			\begin{align*}
+				Pr(A_1) = \frac{N(A_1)}{N(All)} && Pr(A_2) = \frac{N(A_2)}{N(All)} && Pr(A_1 \cap A_2) = \frac{\binom{n - 2}{n - 2}}{\binom{n}{n}} \\
+				= \frac{(n - 1)!}{n!} && = \frac{(n - 1)!}{n!} && = \frac{(n - 2)!}{n!}
+			\end{align*}
+			\begin{align*}
+				Pr(A) &= Pr(A_1 \cup A_2) \\
+				&= P(A_1) + Pr(A_2) - Pr(A_1 \cap A_2) \\
+				&= \frac{(n - 1)!}{n!} + \frac{(n - 1)!}{n!} - \frac{(n - 2)!}{n!}\\
+				&= \frac{2[(n - 1)!] - (n - 2)!}{n!}
+			\end{align*}
+			
+			\begin{align*}
+				Pr(B_1) = \frac{N(B_1)}{N(All)} && Pr(B_2) = \frac{N(B_2)}{N(All)} && Pr(B_1 \cap B_2) = \frac{\binom{n - 2}{n - 2}}{\binom{n}{n}} \\
+				= \frac{(n - 1)!}{n!} && = \frac{(n - 1)!}{n!} && = \frac{(n - 1)!}{n!}
+			\end{align*}
+			\begin{align*}
+				Pr(B) &= Pr(B_1 \cup B_2) \\
+				&= P(B_1) + Pr(B_2) - Pr(B_1 \cap A_2) \\
+				&= \frac{(n - 1)!}{n!} + \frac{(n - 1)!}{n!} - \frac{(n - 1)!}{n!}\\
+				&= \frac{(n - 1)!}{n!}
+			\end{align*}
+		\item %5
+			 Independent means it is not reliant on the outcome of the other, that means Pr(A) = 0 or Pr(A) = 1
+		\item %6
+			\[S = \{RRR, RRB, RBR, RBB, BRR, BRB, BBR, BBB\} \]
+			\begin{align*}
+				Pr(A) &= \{RRR, RRB, RBR, RBB\} \qquad \text{ if $P_1$ guesses Red, similar for Blue}\\
+				&= 4 \div 8 \\
+				&= 0.5
+			\end{align*}
+			I will explain what happens in each possible event using the algorithm, and state whether the game was a success.
+			R means the player said their hat was red, B means blue and P means they passed their turn.
+			\begin{align*}
+				E_1 = RRR && E_2 = RRB && E_3 = RBR && E_4 = RBB \\
+				BBB = Loss && PPB = Win && PBP = Win && RPP = Win\\
+				\\
+				E_5 = BRR && E_6 = BRB && E_7 = BBR && E_8 = BBB \\
+				BPP = Win && PRP = Win && PPR = Win && RRR = Loss
+			\end{align*}
+			$Pr(B) = 6 \div 8 = 0.75$
+		\item %7
+			\[
+				Pr(A_0) = 1 \div 2^{n + 1}
+			\]
+			This is the inverse of the total number of subsets because only 1 out of all subsets is the empty set, the one where you have decided not to include each person $2^m$ ways of doing this.
+			\\ \\
+			All $A_i$ events have the same probabilities because every student has an equal amount of chances to be selected in a subset.
+			Then if they're selected for the subset $X$ they have another uniformly random chance of winning the six-pack of cider.
+			\\
+			Prove that:
+			\[Pr(A_1) = \frac{1 - \frac{1}{2^{n+1}}}{n + 1}\]
+			This equation can be separated into numerator and denominator and what the equation comes from becomes clear. $\frac{1}{n + 1}$ is the chance of being selected to win. The $1 - \frac{1}{2^{n + 1}}$ is the person's chance of being in the subset. These have to be multiplied to get the total chance of winning.
+			\[
+			A_1 = B_0 \cup B_1 \cup \ldots \cup B_n
+			\]
+		\item %8
+			\[
+			S = \{1, 2, 3, 4, 5, 6\}
+			\qquad
+			A = \{2, 4 , 6\}
+			\qquad
+			B = \{1, 3, 5\}
+			\qquad
+			C = \{1, 2, 3, 4\}
+			\]
+			To check if a two events are independent of each other, the probability of their intersection must equal the product of their individual probabilities.
+			\[
+				P(A \cap B) = 0
+				\qquad
+				P(A) \cdot P(B) = 0.5 \cdot 0.5 = 1 / 4
+			\]
+			Events A and B are not independent.
+			\[
+				P(A \cap C) = 1 / 3
+				\qquad
+				P(A) \cdot P(C) = 0.5 \cdot 4 / 6 = 1 / 3 
+			\]
+			Events A and C are independent.
+			\[
+				P(B \cap C) = 1 / 3
+				\qquad
+				P(B) \cdot P(C) = 0.5 \cdot 4 / 6 = 1 / 3
+			\]
+			Events B and C are independent.
+		\item %9
+			Let $k = 2 log n$
+			\begin{align*}
+			2 \div n &\ge \frac{n - [2 log n] + 1}{2^{[2 log n] - 1}} \\
+			2 log n &\ge log n \\
+			2 &\ge 1
+			\end{align*}
+	\end{enumerate}	
+\end{document}
