@@ -1,40 +1,34 @@
-/*
-	Author: Michael Maxwell
-	Student #: 101006277
-*/
+const http = require('http').createServer(handler)
+const fs = require('fs')
+const url = require('url')
 
-var http = require('http').createServer(handler)
-var fs = require('fs')
-var url = require('url')
+const io = require('socket.io')(http)
 
-var io = require('socket.io')(http)
-
-const PORT = 2406
+const PORT = 9001
 const ROOT = './public'
-var clients = []
+let clients = []
 
 http.listen(PORT, () => {
 	console.log('Chat server listening on port', PORT)
 })
 
-// make this serve all files not just index.html
 function handler(req, res) {
-	var urlObj = url.parse(req.url, true)
-	var filename = ROOT + urlObj.pathname
+	const urlObj = url.parse(req.url, true)
+	let filename = ROOT + urlObj.pathname
 
 	console.log(req.method, 'request for:', req.url)
 
 	fs.stat(filename, (err, stats) => {
 		if(err) {
 			res.writeHead(500)
-			return res.end('Error loading ' + urlObj.pathname)
+			res.end('Error loading ' + urlObj.pathname)
 		} else {
 			if(stats.isDirectory())
 				filename = ROOT + '/index.html'
 			fs.readFile(filename, (err, data) => {
 				if(err) {
 					res.writeHead(500)
-					return res.end('Error loading ' + urlObj.pathname)
+					res.end('Error loading ' + urlObj.pathname)
 				} else {
 					res.writeHead(200)
 					res.end(data)
@@ -50,21 +44,40 @@ io.on('connection', (socket) => {
 		socket.username = data
 		socket.blocked = []
 		clients.push(socket)
-		socket.broadcast.emit('message', timestamp() + ': ' + socket.username + ' has entered the chatroom.')
-		socket.emit('message', 'Welcome, ' + socket.username + '.')
+		socket.broadcast.emit('connected', socket.username)
+		socket.emit('message', {
+			username: 'SERVER', 
+			message: 'Welcome, ' + socket.username
+		})
 		io.emit('userList', getUserList())
 	})
 
 	// when a user types a message in the chat
 	socket.on('message', (data) => {
 		console.log('MESSAGE:', data)
+		// set typing to false for this socket
+		// socket.typing = false
 		// only emit to people that haven't blocked the sender
-		for(var i = 0; i < clients.length; i++) {
-			var client = clients[i];
+		for(let client of clients) {
 			if(!client.blocked.includes(socket.username) && client != socket)
-				client.emit('message', timestamp() + ', ' + socket.username + ': ' + data)
+				client.emit('message', {
+					username: data.username, // socket.username or data.username
+					message: data.message
+				})
 		}
 		// socket.broadcast.emit('message', timestamp() + ', ' + socket.username + ': ' + data)
+	})
+
+	socket.on('typing', () => {
+		// socket.typing
+		console.log('TYPING:', socket.username)
+		// TODO only broadcast to people who haven't blocked this user
+		socket.broadcast.emit('typing', socket.username)
+	})
+
+	socket.on('deleted', () => {
+		console.log('DELETED:', socket.username)
+		socket.broadcast.emit('deleted', socket.username)
 	})
 
 	// when a user disconnects
@@ -73,7 +86,10 @@ io.on('connection', (socket) => {
 		clients = clients.filter((ele) => {
 			return ele !== socket
 		})
-		io.emit('message', timestamp() + ': ' + socket.username + ' disconnected.')
+		io.emit('message', {
+			username: 'SERVER',
+			message: socket.username + ' disconnected.'
+		})
 		socket.broadcast.emit('userList', getUserList())
 	})
 

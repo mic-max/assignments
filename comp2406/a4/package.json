@@ -1,0 +1,14 @@
+{
+  "name": "sock-chat",
+  "version": "1.0.0",
+  "description": "A chat application that uses web sockets.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Maxwell",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^2.0.4"
+  }
+}
