@@ -8,36 +8,29 @@ $(() => {
 	})
 	
 	// what to do when the user presses a key with the input element selected
-	$('#input').keypress((ev) => {
-		// console.log('TYPED:', ev.which)
-		$this = $('#input');
-		let value = $this.val()
-		// add typing events here
-		// only send this once.
-		// SEND TYPING MESSAGE: if text input was empty and added text
-		if(value === '' && !typing && ev.which !== 8) {
-			// console.log('typing message')
+	// change this event type so it fires when the input is changed, not just by keypress but by cut, paste etc.
+	$('#input').keypress(function (ev) {
+		// console.log('KEYCODE:', ev.which)
+		const value = $(this).val()
+		if(value === '' && !typing && ev.which !== 8 && ev.which !== 13) {
 			typing = true
 			socket.emit('typing')
 		}
 
 		if(value.length === 1 && typing && ev.which === 8) {
-			// console.log('deleted message')
 			typing = false
 			socket.emit('deleted')
 		}
 
-		// if they press enter, emit the message
-		if(ev.which === 13) {
-			// using $(this).val() wasn't working
+		if(ev.which === 13 && value !== '') {
 			socket.emit('message', {
 				username: userName,
-				message: $this.val()
+				message: value
 			})
-			ev.preventDefault()
-			$('#log').append((new Date()).toLocaleTimeString() + ', '+ userName + ': ' + $this.val() + '\n')
+			$('#log').append(`${(new Date()).toLocaleTimeString()}, ${userName}: ${value}\n`)
 			typing = false
-			$this.val('')
+			$(this).val('')
+			scrollChat()
 		}
 	})
 	
@@ -45,12 +38,16 @@ $(() => {
 	socket.on('message', (data) => {
 		deleteTypingIndicator(data.username)
 		$('#log').append(timestamp() + ', ' + data.username + ': ' + data.message + '\n')
-		$('#log')[0].scrollTop = $('#log')[0].scrollHeight
+		scrollChat()
+	})
+
+	socket.on('serverMessage', (data) => {
+		// TODO instead of sending server status as a regular message
 	})
 
 	socket.on('connected', (data) => {
 		$('#log').append(timestamp() + ', SERVER: ' + data + ' has joined the chatroom\n')
-		$('#log')[0].scrollTop = $('#log')[0].scrollHeight
+		scrollChat()
 	})
 
 	socket.on('typing', (data) => {
@@ -89,9 +86,7 @@ $(() => {
 	function clickUser(ev) {
 		var $target = $(ev.target)
 		if(ev.ctrlKey) {
-			socket.emit('blockUser', {
-				username: $target.text()
-			})
+			socket.emit('blockUser', $target.text())
 			$target.toggleClass('blocked')
 		} else {
 			var msg = prompt('Send ' + $target.text() + ' a private message')
@@ -122,6 +117,10 @@ function deleteTypingIndicator(username) {
 			$(this).removeClass('typing')
 		}
 	})
+}
+
+function scrollChat() {
+	$('#log')[0].scrollTop = $('#log')[0].scrollHeight
 }
 
 function timestamp(){
