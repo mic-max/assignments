@@ -4,7 +4,7 @@ $(() => {
 	let socket = io()
 
 	socket.on('connect', () => {
-		socket.emit('intro', userName)
+		socket.emit('join', userName)
 	})
 	
 	// what to do when the user presses a key with the input element selected
