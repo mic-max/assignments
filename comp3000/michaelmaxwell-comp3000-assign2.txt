@@ -1,0 +1,58 @@
+COMP 3000 Assignment 2
+Michael Maxwell
+101006277
+2017-10-26
+
+1. lstat() exists so you can get information about the link itself, rather than the file it points to. A hard link
+   references the inode of the file it's pointed at. Therefore the stat() call will be called with the same inode
+   leaving its functionality unchanged.
+   Resource: man lstat
+
+2. The producer will stop producing when the queue is filled if you change the function queue_word() to finish
+   on the 1st instance that another word entry is found (e->word[0] != '\0') as this would mean that the queue
+   loop has filled every possible entry of the word queue.
+
+3. It calls fill_rand_buffer when the buffer is empty and needs to be filled with random data.
+   fill_rand_buffer is called with a file descriptor set to open /dev/urandom in read only mode.
+   fill_rand_buffer is called when the program starts to initialize a random buffer, then
+   inside system_rand, only when the buffer has been depleted.
+
+4. Yes, we could combine the two signal handlers, but we wouldn't know if the SIGUSR1 was being 
+   received by the producer or consumer. You cannot pass variables to signal handlers.
+   You'd need to make a global variable with the process id's to retain functionality. 
+
+5. The program would need another cli argument and a second statbuf. After reading both files with stat into their
+   buffer, we can then check whether they have the same inode. If they have the same inode, the device files will
+   be considered equal. The underlying device can also be checked for equality using st_rdev in the stat struct.
+   Resource: man stat
+
+6. No, because the file is being opened in read-only mode. When using map_shared the changes made to the mmap's memory
+   will affect the file, using private will not. So even if it's opened in map_shared mode the file will not be
+   overwritten because its in read-only mode.
+
+7. The contents of the file are loaded to the disk when the program accesses the memory. It doesn't load the entire
+   file into ram at once, it only loads the page needed (lazy loading). I verified this by putting a print statement 
+   before the for loop and monitoring the ram usage which only spiked when the file started being read from.
+   Resource: man mmap
+
+8. #define QUEUESIZE 1, this would force the producer to fill the queue with 1 word and the consumer to consume it.
+   Then it would go producer, consumer, producer, etc. Each time the consumer read from the queue, the producer would 
+   have to immediately fill it.
+
+9. /dev/urandom is faster because it uses the kernal's entropy pool, which is non-blocking. When random numbers are
+   generated using /dev/random it depletes the entropy pool so if the entropy pool is empty, /dev/random will have to
+   block until it fills. /dev/random is good at providing quality randomness, but is slower and susceptible to blocking.
+   Resource: man random, stackoverflow.com/questions/19981189/
+
+10. Well, it crashed my VM. Removing the if statement calls kill with a value of -1, this sends a signal to each process.
+    Kill is being called each time wakeup_consumer is called regardless if the consumer is asleep.
+    
+
+11. It stops printing words after word 32. This is because the producer no longer wakes up after initially filling
+    the queue with words. After filling the queue, the producer goes to sleep and is never woken with a signal because
+    the line of code that does that is deleted. The program remains running though since the pid is never killed.
+
+12. Having a QUEUESIZE of 8 means the producer needs to fill the word entries more often. Similarly with 128 it
+    would require refilling less often since it is added 128 words to the queue all together. 
+
+I worked on this assignment with Brady Jessup, Tim Noah, Logan Tyrrell.

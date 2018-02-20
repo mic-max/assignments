@@ -1,0 +1,28 @@
+COMP 3000 Assignment 3
+Michael Maxwell
+101006277
+2017-11-26
+
+1. There are redundent superblocks stored at given intervals throughout the file system.
+
+2. 
+
+3. 
+
+4. 
+
+5. 
+
+6. 
+
+7. 
+
+8. 
+
+9. 
+
+10. 
+
+11. 
+
+I worked on this assignment with Brady Jessup.

@@ -1,0 +1,68 @@
+COMP 3000 Assignment 1
+Michael Maxwell
+101006277
+2017-10-09
+
+1. The 'kill' system call can send specified signals to processes.
+   Resource: man kill
+
+2. The 'fork' call creates a new process from the current program, 'execve' can execute a program on the computer
+   They are both necessary for 3000shell to run programs because:
+   - Without fork the execve call will take over the shell until that program is finished.
+   - Without execve you wouldn't be able to initiate any external programs.
+
+3. Statically linked programs should use more memory when running because it has to load a larger 
+   program because all of the libraries are copied into the executable. Dynamically linked programs only load the
+   necessary files when needed, all dynamically linked programs can also access the same library, which would only need
+   to be loaded into memory once.
+
+4. A SIGCHLD signal is sent to the parent process when a process terminates. It's required for applications that wait
+   for their child to return, or else they wouldn't work properly. Similarly to what the 3000shell does when running
+   a foreground program. Zombie processes will be created as well.
+
+5. Environment variables are stored as a character pointer array. They can be accessed from the program
+   by including char *envp[] as an argument to main. They can also be accessed in a virtual file stored at
+   /proc/$pid/environ. The format of each variable is KEY=VALUE seperated by the null character.
+   Command line arguments are stored as a character pointer array.
+   The command line argument array also has a known length given by int argc.
+   Resource: https://stackoverflow.com/questions/532155
+
+6. No system calls are made because the environment variables can be accessed as normal arguments to the main function,
+   as long as they are specified.
+
+7. Yes, they are C function calls, but fork is a wrapper for the actual system call, also named fork..
+
+8. parse_args fills the args array with each argument seperated at either a space, tab or newline character.
+   So "gcc 3000shell.c -o shell" would result in an args array of ["gcc", "300shell.c", "-o", "shell"]
+   The buffer argument is an input variable that has what the user typed in after the prompt $. args is the 
+   character pointer array in which the seperated arguments are stored. The amount of arguments in args
+   is stored in the size_t variable nargs.
+
+9. The 3000shell messes up running programs in the background because the input is being blocked. I did an strace
+   and saw the program was calling clone and wait. It would however get stuck on the wait4() function after opening
+   xclock in the background. This wait was blocking the input from being handled correctly until xclock had terminated.
+   After xclock was closed the input was received by the terminal and I received the expected results.
+
+10. The system calls used by the ls program are openat() and getdents(). Without any arguments ls will open the current
+    directory, which is indicated by the AT_FDCWD and "." arguments to openat(). To get the contents of the direcory
+    getdents is called filling it's buffer with the data until it returns zero.
+    Normally, the opendir(), readdir() and closedir() library calls would be used to invoke these system calls.
+    Resource: https://stackoverflow.com/questions/12920976
+
+11. Without that line our program will not wait for the child process to finish execution. That means there will be a
+    zombie process since the parent process isn't waiting for the exit status of the child after being executed.
+
+12. Firstly it depends on what signal is sent. A SIGKILL will terminate the program immediately and cannot be caught
+    or ignored. The system call will have to be re-run after the signal is handled. The user can define their own signal
+    handler for signals that allow user-mode code to run. Different system calls behave differently when interrupted by a signal.
+    You can restart a program where you stopped it by sending it a SIGSTOP with 'restart_syscall'. The 'restart-syscall'
+    will restart the system call, and it will adjust their time-related parameters like nanosleep.
+    For example, nanosleep will return the number of ns left to sleep if it's interrupted by a signal. 
+    Resource: http://www.linuxprogrammingblog.com/all-about-linux-signals?page=5
+
+13. To add input redirection to be able to run '$ ls > ls.txt' from the 3000shell I would open 2 file descriptors, 
+    one for input and the other for output. Then I would replace the input and output from the standard to those
+    files if an argument was supplied. There would need to also be some more syntax handling handle > and <.
+    Resource: https://stackoverflow.com/questions/11515399
+
+I worked on this assignment with Brady Jessup.
