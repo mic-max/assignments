@@ -2,119 +2,170 @@
 ; Student #: 10106277
 
 ; Question 1
-; purpose: 
-; input: 
-; output: 
-(define (make-interval) 5)
+; purpose: creates an interval with a start and end (2 element list)
+; input: start and end must be numbers, end should be the greater value
+; output: 2 element list (start end)
+(define (make-interval start end)
+  (cons start end))
 
-; purpose: 
-; input: 
-; output: 
-(define (lower-bound interval) 0)
+; purpose: gets the lower bound of an interval
+; input: an interval
+; output: a number
+(define (lower-bound interval)
+  (car interval))
 
-; purpose: 
-; input: 
-; output: 
-(define (upper-bound interval) 100)
+; purpose: gets the upper bound of an interval
+; input: an interval
+; output: a numbers
+(define (upper-bound interval)
+  (cdr interval))
 
-; purpose: 
-; input: 
-; output: 
-(define (display-interval interval) 0)
+; purpose: displays the [start, end]
+; input: an interval
+; output: writes it to the console
+(define (display-interval interval)
+  (display "[")
+  (display (lower-bound interval))
+  (display ", ")
+  (display (upper-bound interval))
+  (display "]"))
 
-; purpose: 
-; input: 
-; output: 
-(define (add-interval) 5)
+; purpose: adds 2 intervals 
+; input: x and y are intervals
+; output: a new interval: [a+c,b+d]
+(define (add-interval x y)
+  (let ((a (lower-bound x))
+        (b (upper-bound x))
+        (c (lower-bound y))
+        (d (upper-bound y)))
+    (make-interval (+ a c) (+ b d))))
+  
+; purpose: subtracts 2 intervals
+; input: x and y are intervals
+; output: a new interval: [a-d,b-c]
+(define (subtract-interval x y)
+  (let ((a (lower-bound x))
+        (b (upper-bound x))
+        (c (lower-bound y))
+        (d (upper-bound y)))
+    (make-interval (- a d) (- b c))))
 
-; purpose: 
-; input: 
-; output: 
-(define (subtract-interval) 5)
+; purpose: multiplies 2 intervals
+; input: x and y are intervals
+; output: a new interval: [min(ac,ad,bc,bd), max(ac,ad,bc,bd)]
+(define (multiply-interval x y)
+  (let ((ac (* (lower-bound x) (lower-bound y)))
+        (ad (* (lower-bound x) (upper-bound y)))
+        (bc (* (upper-bound x) (lower-bound y)))
+        (bd (* (upper-bound x) (upper-bound y))))
+    (make-interval (min ac ad bc bd) (max ac ad bc bd))))
 
-; purpose: 
-; input: 
-; output: 
-(define (multiply-interval) 5)
-
-; purpose: 
-; input: 
-; output: 
-(define (divide-interval) 5) ; can error when 
+; purpose: divides 2 intervals
+; input: x and y are intervals
+; output: [a,b] * [1/d,1/c] if [c,d] does not contain 0, otherwise error
+(define (divide-interval x y)
+  (let ((c (lower-bound y))
+        (d (upper-bound y)))
+    (if (and (< c 0) (> d 0))
+      #f
+      (multiply-interval x (make-interval (/ 1 d) (/ 1 c))))))
 
 ; Question 2
+; RESOURCE: https://stackoverflow.com/questions/21769348/use-of-lambda-for-cons-car-cdr-definition-in-sicp
+; *******************************************************
 (define (special-cons x y)
   (lambda (m) (m x y)))
 
 ; 2a
-; purpose: 
-; input: 
-; output: 
-(define (special-car) 1)
+; purpose: custom function to get the first element of a list
+; input: a list
+; output: the first element
+(define (special-car z)
+  (z (lambda (p q) p)))
 
-; purpose: 
-; input: 
-; output: 
-(define (special-cdr) 1)
+; purpose: custom function to get the list after the first element
+; input: a list
+; output: the elements [1..n] of that list (not including the car)
+(define (special-cdr z)
+  (z (lambda (p q) q)))
 
 ; 2b
-; purpose: 
-; input: 
-; output: 
-(define (triple x y z) 1)
+; purpose: generates a triple (3 element list) without using built-in functions
+; input: 3 values
+; output: a list of the 3 arguments
+(define (triple x y z)
+  (special-cons x (special-cons y z)))
 
-; purpose: 
-; input: 
-; output: 
-(define (first i) 1)
+; purpose: returns the first value of a triple
+; input: a triple
+; output: the first element
+(define (first i)
+  (special-car i))
 
-; purpose: 
-; input: 
-; output: 
-(define (second i) 1)
+; purpose: returns the second value of a triple
+; input: a triple
+; output: the second element
+(define (second i)
+  (special-car (special-cdr i)))
 
-; purpose: 
-; input: 
-; output: 
-(define (third i) 1)
+; purpose: returns the third value of a triple
+; input: a triple
+; output: the third/last element
+(define (third i)
+  (special-car (special-cdr (special-cdr i))))
 
 ; Question 3
 ; 3a
 
-; purpose: 
-; input: 
-; output: 
-(define (count x L) 1)
+; purpose: counts how many occurences of x there are in L
+; input: a list and a value to count
+; output: the number of occurences
+(define (count x L)
+  (if (null? L)
+    0
+    (+ (if (eq? (car L) x) 1 0) (count x (cdr L)))))
+#|
+  (define (help cur L)
+    (if (null? L)
+      cur
+      (help (+ cur (if (eq? (car L) x) 1 0)) (cdr L))))
+  (help 0 L))
+|#
 
 ; 3b
-; purpose: 
-; input: 
-; output: 
+; purpose: returns the most common element in L
+; input: a list
+; output: a value from the list or #f for an empty list
+;         on a tie ****************
 (define (mode L) 1)
 
 ; 3c
-; purpose: 
-; input: 
-; output: 
-(define (after L n) 1)
+; purpose: returns a list that contains all but the first n items of L
+; input: a list and the index to exclude upto
+; output: the last |L| - n elements of L
+(define (after L n)
+  (if (= n 0)
+    L
+    (after (cdr L) (- n 1))))
 
 ; 3d
-; purpose: 
-; input: 
-; output: 
+; purpose: splices the list A into L at index i
+; input: a list L, the index to put A, a list A
+; output: the resulting list, L[0..i] + A + L[i...]
 (define (splice L i A) 1)
+; could probably use (after L i)
 
 ; 3e
-; purpose: 
-; input: 
-; output: 
+; purpose: splices the list A into L at index i, also removing n elements from L starting at i
+; input: a list L, the index to put A, how many elements to delete from L, a list A
+; output: the resulting list, L[0..i-n] + A + L[i...]
 (define (splice2 L i n A) 1)
 
 ; Question 4
 ; 4a
-; purpose: 
-; input: 
-; output: 
+; purpose: returns the maximum depth of a list
+; input: a list, with nested sublists
+; output: an integer
 (define (height L) 1)
 
 ; 4b
@@ -240,17 +291,17 @@
 ;(test special-car (special-cons 1 2) 2)
 
 ; 2b
-(define a (triple 1 2 3))
-(test first a 1)
-(test second a 2)
-(test third a 3)
+;(define a (triple 1 2 3))
+;(test first a 1)
+;(test second a 2)
+;(test third a 3)
 
 ; 3a
 (test2 count 3 '(1 4 3 6 2 3 3 1 4 3 5 7) 4)
 (test2 count 'b '(4 b a 3 2 c b 1 b 2 d a) 3)
 
 ; 3b
-(test mode '(a b a c a d d a b c a b) a)
+(test mode '(a b a c a d d a b c a b) 'a)
 (test mode '(2 b a 3 2 c b 1 b 2 d a) 2)
 
 ; 3c
@@ -291,7 +342,12 @@
 
 
 
-
+#|(define (make-interval start end)
+  (define (help cur L)
+    (if (> cur end)
+        L
+        (help (+ cur 1) (cons L cur))))
+  (help start '()))|#
 
 
 
