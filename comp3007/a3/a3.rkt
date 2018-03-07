@@ -98,16 +98,16 @@
 
 ; 2a
 ; purpose: custom function to get the first element of a list
-; input: a list
+; input: the result of a special-cons ('list')
 ; output: the first element
 (define (special-car z)
-  (z (lambda (p q) p)))
+  (z (lambda (a b) a)))
 
 ; purpose: custom function to get the list after the first element
-; input: a list
+; input: the result of a special-cons ('list')
 ; output: the elements [1..n] of that list (not including the car)
 (define (special-cdr z)
-  (z (lambda (p q) q)))
+  (z (lambda (a b) b)))
 
 ; 2b
 ; purpose: generates a triple (3 element list) without using built-in functions
@@ -160,18 +160,15 @@
 ; input: a list
 ; output: a value from the list or #f for an empty list
 ;         on a tie the element that appeared first in the list is returned
-; ******** MODIFY **********
-; https://stackoverflow.com/questions/23209582/scheme-modelist-function
 (define (mode L)
-  (let loop ((lst L)
-             (max-counter 0)
-             (max-current #f))
-    (if (null? lst)
-        max-current
-        (let ((n (count (car lst) L)))
-          (if (> n max-counter)
-              (loop (cdr lst) n (car lst))
-              (loop (cdr lst) max-counter max-current))))))
+  (define (help list max-count max-val)
+    (if (null? list)
+      max-val
+      (let ((n (count (car list) L)))
+        (if (> n max-count)
+          (help (cdr list) n (car list))
+          (help (cdr list) max-count max-val)))))
+  (help L 0 #f))
 
 ; 3c
 ; purpose: returns a list that contains all but the first n items of L
@@ -205,16 +202,20 @@
 ; input: a list, with nested sublists
 ; output: an integer
 (define (height L)
-  (if (pair? L)
-    (max (+ 1 (height (car L))) (height (cdr L)))
-    0))
+  (if (not (pair? L))
+    0
+    (max (+ 1 (height (car L))) (height (cdr L)))))
 
 ; 4b
 ; purpose: removes elements from the tree that don't satisfy the predicate
 ; input: a tree and a boolean function (predicate)
 ; output: a tree without the failing elements
 (define (tree-filter pred L)
-  1) ; TODO
+  (cond ((null? L) '())
+        ((pair? L) #f) ; what to do here
+        ((pred (car L)) (cons (car L) (tree-filter pred (cdr L))))
+        (else (tree-filter pred (cdr L)))))
+; TODO
 
 ; 4c
 ; purpose: returns the leaf values of a tree
@@ -231,7 +232,8 @@
 ; output: a list with elements from T with depth i
 (define (level i T)
   (define (help t L cur)
-    (cond ((= cur i) (append (car t) L))))
+    (cond ((= cur i) (append (car t) L))
+          ))
   (help T '() 0)) ; TODO
 
 ; -------------------------------------------------------------------------------------
@@ -381,6 +383,8 @@
 (define int5 (make-interval -5 5))
 (define int6 (make-interval -66 0))
 
+;; DISPLAY INTERVAL
+(display "--------------------------------- DISPLAY INTERVAL ----------------------------------\n")
 (display "interval 1: ")
 (display-interval int1)
 (newline)
@@ -406,15 +410,28 @@
 (newline)
 
 ;; ADD INTERVAL
-(test-val "add-interval int1 int2" (stringify-interval (add-interval int1 int2)) "....") ; [-1, 15]
+(display "--------------------------------- ADD INTERVAL --------------------------------------\n")
+(test-val "add-interval int1 int2" (stringify-interval (add-interval int1 int2)) "[-1, 15]")
+(test-val "add-interval int3 int4" (stringify-interval (add-interval int3 int4)) "[-3.4, 4.6]")
+(test-val "add-interval int5 int6" (stringify-interval (add-interval int5 int6)) "[-71, 5]")
+(test-val "add-interval int4 int3" (stringify-interval (add-interval int4 int3)) "[-3.4, 4.6]")
 
 ;; SUBTRACT INTERVAL
-(test-val "subtract-interval int1 int2" (stringify-interval (subtract-interval int1 int2)) "....") ; [-11, 5]
+(display "--------------------------------- SUBTRACT INTERVAL ---------------------------------\n")
+(test-val "subtract-interval int1 int2" (stringify-interval (subtract-interval int1 int2)) "[-11, 5]")
+(test-val "subtract-interval int3 int4" (stringify-interval (subtract-interval int3 int4)) "[2, 10]")
+(test-val "subtract-interval int5 int6" (stringify-interval (subtract-interval int5 int6)) "[-5, 71]")
+(test-val "subtract-interval int6 int5" (stringify-interval (subtract-interval int6 int5)) "[-71, 5]")
 
 ;; MULTIPLY INTERVAL
-(test-val "multiply-interval int1 int2" (stringify-interval (multiply-interval int1 int2)) "....") ; [-10, 50]
+(display "--------------------------------- MULTIPLY INTERVAL ---------------------------------\n")
+(test-val "multiply-interval int1 int2" (stringify-interval (multiply-interval int1 int2)) "[-10, 50]")
+(test-val "multiply-interval int4 int3" (stringify-interval (multiply-interval int4 int3)) "[-25, -0.64]")
+(test-val "multiply-interval int6 int5" (stringify-interval (multiply-interval int6 int5)) "[-330, 330]")
+(test-val "multiply-interval int3 int1" (stringify-interval (multiply-interval int3 int1)) "[-5, 25]")
 
 ;; DIVIDE INTERVAL
+(display "--------------------------------- DIVIDE INTERVAL -----------------------------------\n")
 (test-val "divide-interval int1 int2" (stringify-interval (divide-interval int1 int2)) "#f")
 (test-val "divide-interval int2 int1" (stringify-interval (divide-interval int2 int1)) "#f")
 (test-val "divide-interval int2 int3" (stringify-interval (divide-interval int2 int3)) "[0, 6.25]")
@@ -427,16 +444,20 @@
 ;                                    Question 2 Tests
 ; -------------------------------------------------------------------------------------
 ; 2a
+(display "--------------------------------- CAR AND CDR ---------------------------------------\n")
 (test special-car (special-cons 1 2) 1)
 (test special-cdr (special-cons 1 2) 2)
 
 ; 2b
+(display "--------------------------------- TRIPLE --------------------------------------------\n")
 (define a (triple 1 2 3))
+(display "triple a = (1 2 3)\n")
 (test first a 1)
 (test second a 2)
 (test third a 3)
 
 (define b (triple 99 + "hello"))
+(display "triple b = (99 #<procedure:+> \"hello\")\n")
 (test first b 99)
 (test second b +)
 (test third b "hello")
@@ -445,71 +466,97 @@
 ;                                    Question 3 Tests
 ; -------------------------------------------------------------------------------------
 ; 3a
+(display "--------------------------------- COUNT ---------------------------------------------\n")
 (test2 count 3 '(1 4 3 6 2 3 3 1 4 3 5 7) 4)
 (test2 count 'b '(4 b a 3 2 c b 1 b 2 d a) 3)
 
 ; 3b
+(display "--------------------------------- MODE ----------------------------------------------\n")
 (test mode '(a b a c a d d a b c a b) 'a)
 (test mode '(2 b a 3 2 c b 1 b 2 d a) 2)
-(test mode '(2 1 1 2) 2)
+(test mode '(6 1 1 6) 6)
 
 ; 3c
+(display "--------------------------------- AFTER ---------------------------------------------\n")
 (test2 after '(a b c d e f g h) 3 '(d e f g h))
 (test2 after '(a b c d e f g h) 0 '(a b c d e f g h))
 (test2 after '(a b c d e f g h) 8 '())
 (test2 after '(1 2 3 4 5 6) 3 '(4 5 6))
 
 ; 3d
+(display "--------------------------------- SPLICE --------------------------------------------\n")
 (test3 splice '(1 2 3 4 5) 2 '(a b c) '(1 2 a b c 3 4 5))
 (test3 splice '(1 2 3 4 5) 0 '(a b c) '(a b c 1 2 3 4 5))
 
 ; 3e
+(display "--------------------------------- SPLICE 2 ------------------------------------------\n")
 (test4 splice2 '(1 2 3 4 5) 2 1 '(a b c) '(1 2 a b c 4 5))
 (test4 splice2 '(1 2 3 4 5) 2 0 '(a b c) '(1 2 a b c 3 4 5))
 (test4 splice2 '(1 2 3 4 5) 3 4 '(a b c) '(1 2 3 a b c))
-
 
 ; -------------------------------------------------------------------------------------
 ;                                    Question 4 Tests
 ; -------------------------------------------------------------------------------------
 ; 4a
+(display "--------------------------------- HEIGHT --------------------------------------------\n")
 (test height 'a 0)
 (test height '(a) 1)
 (test height '(a (b) c) 2)
 (test height '(((((a(((b)))))))) 8)
 
 ; 4b
+(display "--------------------------------- TREE FILTER ---------------------------------------\n")
 (test2 tree-filter even? '(1 (2 3) ((4 5) (6 7)) (((8 (9))))) '((2) ((4) (6)) (((8 ())))))
+(test2 tree-filter odd? '(1 (2 3) ((4 5) (6 7)) (((8 (9))))) '(1 (3) ((5) (7)) ((((9))))))
+(test2 tree-filter (lambda (x) (> x 2)) '(1 ((3 (4 (5 ((((9)))) 5) 4)) 2) 1) '(((3 (4 (5 ((((9)))) 5) 4)))))
 
 ; 4c
+(display "--------------------------------- FLATTEN LIST --------------------------------------\n")
 (test flatten-list '(1 (2 3) ((4 5 6 (7)))(((8 (9))))) '(1 2 3 4 5 6 7 8 9))
+(test flatten-list '(((((((((666))))))))) '(666))
+(test flatten-list '(1 ((3 (4 (5 ((((9)))) 5) 4)) 2) 1) '(1 3 4 5 9 5 4 2 1))
 
 ; 4d
+(display "--------------------------------- LEVEL ---------------------------------------------\n")
 (test2 level 1 '(1 (2 3 4) 5 (6 (7 8) 9)) '(1 5))
 (test2 level 2 '(1 (2 3 4) 5 (6 (7 8) 9)) '(2 3 4 6 9))
 (test2 level 3 '(1 (2 3 4) 5 (6 (7 8) 9)) '(7 8))
+(test2 level 6 '(1 (2 3 4) 5 (6 (7 8) 9)) '())
+(test2 level 1 '(1 9 2 8 3 7 4 6 5) '(1 9 2 8 3 7 4 6 5))
 
 ; -------------------------------------------------------------------------------------
 ;                                    Question 5 Tests
 ; -------------------------------------------------------------------------------------
 ; 5a
+(display "--------------------------------- 1's STREAM -----------------------------------------\n")
+(display "(stream-first 12 (1s-stream)): ")
 (define ones (stream-first 12 (1s-stream)))
 (stream->list ones)
 
+(display "--------------------------------- ODDs STREAM ---------------------------------------\n")
+(display "(stream-first 12 (odd-stream)): ")
 (define odds (stream-first 12 (odd-stream)))
 (stream->list odds)
 
+(display "--------------------------------- FUNCTION STREAM -----------------------------------\n")
+(display "(stream-first 12 (f-stream)): ")
 (define fs (stream-first 12 (f-stream)))
 (stream->list fs)
 
+(display "--------------------------------- LIST -> STREAM ------------------------------------\n")
+(display "(list->stream '(7 8 9 x y z)): ")
 (define strum (list->stream '(7 8 9 x y z)))
 (stream->list strum)
 
+(display "--------------------------------- STREAM -> LIST ------------------------------------\n")
+(display "(stream->list (list->stream '(7 8 9 x y z))): ")
 (stream->list strum)
 
+(display "--------------------------------- COMBINE STREAM ------------------------------------\n")
+(display "(stream-first 7 (combine + ones odds)): ")
 (define combo1 (stream-first 7 (combine + ones odds)))
 (stream->list combo1)
 
+(display "(stream-first 7 (combine (lambda (x y) (+ x y 10)) ones odds)): ")
 (define combo2 (stream-first 7 (combine (lambda (x y) (+ x y 10)) ones odds)))
 (stream->list combo2)
-
