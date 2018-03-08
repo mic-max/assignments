@@ -212,10 +212,9 @@
 ; output: a tree without the failing elements
 (define (tree-filter pred L)
   (cond ((null? L) '())
-        ((pair? L) #f) ; what to do here
+        ((list? (car L)) (cons (tree-filter pred (car L)) (tree-filter pred (cdr L))))
         ((pred (car L)) (cons (car L) (tree-filter pred (cdr L))))
         (else (tree-filter pred (cdr L)))))
-; TODO
 
 ; 4c
 ; purpose: returns the leaf values of a tree
@@ -231,10 +230,12 @@
 ; input: the level i, and the tree T
 ; output: a list with elements from T with depth i
 (define (level i T)
-  (define (help t L cur)
-    (cond ((= cur i) (append (car t) L))
-          ))
-  (help T '() 0)) ; TODO
+  (flatten-list ; copped out and used flatten :)
+  (cond ((null? T) '())
+        ((list? (car T)) (cons (level (- i 1) (car T)) (level i (cdr T)))) ; the element is a list
+        ((= i 1) (cons (car T) (level i (cdr T)))) ; correct depth, add it to the front
+        (else (level i (cdr T))))) ; element but wrong depth
+  )
 
 ; -------------------------------------------------------------------------------------
 ;                                      Question 5
