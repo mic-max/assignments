@@ -61,36 +61,77 @@
 ; input: N/A
 ; output: a list object
 (define (make-list)
+  (let ((L '(1 2 3 4 5))
+        (sz 5)) ; TODO: back to default values
+
+  ; returns true or false if i is a proper index into the list
+  (define (index? i)
+    (and (>= i 0) (< i sz) (integer? i)))
+    
   ; returns an integer equal to the number of items in the list
-  (define (size) 0)
+  (define (size) sz)
 
   ; returns the item stored at index i in the list
-  (define (get i) 1)
+  (define (get i)
+    (define (get-help ls n)
+      (if (zero? n)
+        (car ls)
+        (get-help (cdr ls) (- n 1))))
+    
+    (if (index? i) (get-help L i) #f))
 
   ; modifies index i in the list to hold item x
-  (define (set i x) 2)
+  (define (set i x)
+    (define (set-help ls n)
+      (if (zero? n)
+          1 2)) ;; more complicated..
+    
+    (if (index? i) (set-help L i) #f))
 
   ; adds item x at index i in the list
-  (define (add i x) 3)
+  (define (add i x)
+    (define (add-help ls n)
+      (set! sz (+ sz 1))
+      (if (zero? n)
+        1
+        (add-help (cdr ls) (- n 1))))
+    
+    (if (index? i) (add-help L i) #f))
 
   ; removes and returns the item at index i from the list
-  (define (remove i) 4)
+  (define (remove i)
+    (define (remove-help ls n)
+      (set! sz (- sz 1))
+      (if (zero? n)
+        1
+        (remove-help (cdr ls) (- n 1))))
+    
+    (if (index? i) (remove-help L i) #f))
 
   ; displays the list in the standard scheme form
-  (define (print) 5)
+  (define (print)
+    (define (print-help ls)
+      (if (pair? ls)
+        (begin
+          (display (car ls))
+          (display " ") ; only if not the last element
+          (print-help (cdr ls)))))
+    (display "(")
+    (print-help L)
+    (display ")"))
 
-  (define (dispatch method)
-    (cond ((eq? method 'size) size)
-          ((eq? method 'get) get)
-          ((eq? method 'set) set)
-          ((eq? method 'add) add)
-          ((eq? method 'remove) remove)
-          ((eq? method 'print) print)
-          (else (lambda()
-            (display "Unknown Request: ")
-            (display method)
-            (newline)))))
-  dispatch)
+  (lambda (method)
+    (case method
+      ('size size)
+      ('get get)
+      ('set set)
+      ('add add)
+      ('remove remove)
+      ('print print)
+      (else (lambda()
+        (display "Unknown Request: ")
+        (display method)
+        (newline)))))))
 ; TODO invalid indices should be checked
 ; return #f for any operation that should return a value but fails
 
@@ -158,10 +199,16 @@
 (define L2 (make-list))
 (display "L1: ")((L1 'print)) ; prints => L1: ()
 (display "L2: ")((L2 'print)) ; prints => L2: ()
+((L1 'get) 0)
+((L1 'get) 1)
+((L1 'get) 2)
+((L1 'get) 3)
+((L1 'get) 4)
 ((L1 'add) 0 'a)
 ((L1 'add) 1 'b)
 ((L1 'add) 2 'c)
 ((L1 'add) 3 'd)
+((L1 'ad))
 (display "L1: ")((L1 'print))	; prints => L1: (a b c d)
-((L2 'add) 0 ((L1 'get) 2))
+;((L2 'add) 0 ((L1 'get) 2))
 (display "L2: ")((L2 'print))	; prints => L2: (c)
