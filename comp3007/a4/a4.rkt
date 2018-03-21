@@ -47,7 +47,10 @@
 
 ; 2c
 ; would this code work using dynamic scope, provide output or explain why not.
-; TODO
+; Yes, the output would be 220. in1 is defining a new z variable with a starting
+; value of 20 + x, which at that point equals 22. Then because in2 is called after this
+; using dynamic scoping, in2 will set the z variable of the in1 frame to itself * 10.
+; That's then the last statement of in2 returns the z value which is 22 * 10 = 220.
 
 ; -------------------------------------------------------------------------------------
 ;                                      Question 3

@@ -7,6 +7,34 @@
 
 ;;; SECTION 4.1.1
 
+; MY LET IMPLEMENTATION
+; All the defined let procedures below take the same input:
+; input: a let expression, list of form (let '() statement)
+
+; determines if an expression is of the let variety
+; ex. (let () 1)
+(define (let? exp) (tagged-list? exp 'let))
+
+; gets the variable list part of the let
+; ex: ((a 5) (b 3) (c 0) (d 1))
+(define (let-variable-list exp) (cadr exp))
+
+; get the statement from a let expression
+; ex: (+ a b c d)
+(define (let-statement exp) (cddr exp))
+
+; gets a list of all the variable names from the variable list
+; ex: (a b c d)
+(define (let-name exp)
+  (map car (let-variable-list exp)))
+
+; get a list of all the values from the variable list
+; ex: (5 3 0 1)
+(define (let-value exp)
+  (map cadr (let-variable-list exp)))
+
+; END OF LET PROCEDURES
+
 ;classifies the type of expression
 ;determines the value of an expression
 (define (eval exp env)
@@ -23,6 +51,12 @@
         ((begin? exp)
          (eval-sequence (begin-actions exp) env))
         ((cond? exp) (eval (cond->if exp) env))
+        ; ADDED THE FOLLOWING STATEMENT
+        ((let? exp)
+         (eval (cons
+                (make-lambda (let-name exp)
+                             (let-statement exp))
+                (let-value exp)) env))
         ((application? exp)
          (apply (eval (operator exp) env)
                 (list-of-values (operands exp) env)))
