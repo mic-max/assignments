@@ -38,8 +38,8 @@ is_mother(X):- mother(X,_).
 is_father(X):- father(X,_).
 aunt(X,Y):- sister(X,P), parent(P,Y).
 uncle(X,Y):- brother(X,P), parent(P,Y).
-sister(X,Y):- female(X), parent(P,X), parent(P,Y).
-brother(X,Y):- male(X), parent(P,X), parent(P,Y).
+sister(X,Y):- female(X), parent(P,X), parent(P,Y), different(X,Y).
+brother(X,Y):- male(X), parent(P,X), parent(P,Y), different(X,Y).
 grandfather(X,Y):- father(X,P), parent(P,Y).
 grandmother(X,Y):- mother(X,P), parent(P,Y).
 ancestor(X,Y):- parent(X,Y).
