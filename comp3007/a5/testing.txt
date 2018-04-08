@@ -1,0 +1,159 @@
+------------------- family.pl -------------------
+
+?- run_tests().
+% PL-Unit: family .
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:125:
+        PL-Unit: Test parent: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:164:
+        PL-Unit: Test is_mother: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:172:
+        PL-Unit: Test is_father: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:180:
+        PL-Unit: Test sister: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:195:
+        PL-Unit: Test brother: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:210:
+        PL-Unit: Test aunt: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:236:
+        PL-Unit: Test uncle: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:268:
+        PL-Unit: Test grandfather: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:284:
+        PL-Unit: Test grandmother: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:300:
+        PL-Unit: Test ancestor: Test succeeded with choicepoint
+ done
+% All 11 tests passed
+true.
+
+------------------- movies.pl -------------------
+
+a) What movies were released before 2012?
+  ?- movie(year(Year), Title, _), Year < 2012.
+  Year = 2003,
+  Title = title([pirates, of, the, carribean]) ;
+  Year = 1988,
+  Title = title([die, hard]) ;
+  Year = 2001,
+  Title = title([lord, of, the, rings]) ;
+  Year = 1995,
+  Title = title([jumanji]) ;
+  Year = 2003,
+  Title = title([spider, man]) ;
+  false.
+
+b) What are the names of the female actors?
+  ?- actor(First, Last, gender(female)).
+  First = glenn,
+  Last = close ;
+  First = jennifer,
+  Last = lawrence ;
+  First = angelina,
+  Last = jolie ;
+  First = keira,
+  Last = knightley ;
+  First = emilia,
+  Last = clarke ;
+  First = robin,
+  Last = wright ;
+  First = karen,
+  Last = gillan ;
+  First = kirsten,
+  Last = dunst ;
+  false.
+
+c) in what movies is jennifer lawrence a member of the cast
+  ?- movie(_, Title, cast(Cast)), member(actor(jennifer, lawrence), Cast).
+  Title = title([xmen, apocalypse]),
+  Cast = [actor(jennifer, lawrence), actor(james, mcavoy)] ;
+  Title = title([the, hunger, games]),
+  Cast = [actor(jennifer, lawrence)] ;
+  false.
+
+d) What movies contain both the words "of" and "the" in the title (in no particular order)
+  ?- movie(_, title(Title), _), member(of, Title), member(the, Title).
+  Title = [pirates, of, the, carribean] ;
+  Title = [guardians, of, the, galaxy] ;
+  Title = [lord, of, the, rings] ;
+  false.
+
+e) What movies star an actor with the first name "Robin"?
+  ?- movie(_, Title, cast(Cast)), member(actor(robin, _), Cast).
+  Title = title([jumanji]),
+  Cast = [actor(robin, williams), actor(kirsten, dunst)] ;
+  Title = title([blade, runner, 2049]),
+  Cast = [actor(ryan, gosling), actor(robin, wright)].
+
+f) What movies share one or more common actor?
+  ?- movie(_, Title1, cast(Cast1)), movie(_, Title2, cast(Cast2)), Title1 \= Title2, Actor = actor(orlando, bloom), member(Actor, Cast1), member(Actor, Cast2).
+  Title1 = title([pirates, of, the, carribean]),
+  Cast1 = [actor(jonny, depp), actor(keira, knightley), actor(orlando, bloom)],
+  Title2 = title([lord, of, the, rings]),
+  Cast2 = [actor(orlando, bloom), actor(sean, bean)],
+  Actor = actor(orlando, bloom) ;
+  Title1 = title([lord, of, the, rings]),
+  Cast1 = [actor(orlando, bloom), actor(sean, bean)],
+  Title2 = title([pirates, of, the, carribean]),
+  Cast2 = [actor(jonny, depp), actor(keira, knightley), actor(orlando, bloom)],
+  Actor = actor(orlando, bloom) ;
+  false.
+
+g) Who has worked with Orlando Bloom in a movie?
+  ?- movie(_, Title, cast(Cast)), Bloom = actor(orlando, bloom), member(Bloom, Cast), member(Actor, Cast), Actor \= Bloom.
+  Title = title([pirates, of, the, carribean]),
+  Cast = [actor(jonny, depp), actor(keira, knightley), actor(orlando, bloom)],
+  Bloom = actor(orlando, bloom),
+  Actor = actor(jonny, depp) ;
+  Title = title([pirates, of, the, carribean]),
+  Cast = [actor(jonny, depp), actor(keira, knightley), actor(orlando, bloom)],
+  Bloom = actor(orlando, bloom),
+  Actor = actor(keira, knightley) ;
+  Title = title([lord, of, the, rings]),
+  Cast = [actor(orlando, bloom), actor(sean, bean)],
+  Bloom = actor(orlando, bloom),
+  Actor = actor(sean, bean) ;
+  false.
+
+h) What is the title of the oldest movie?
+  ?- movie(year(Year1), Title1, _), \+ (movie(year(Year2), Title2, _), Title1 \= Title2, Year1 > Year2).
+  Year1 = 1988,
+  Title1 = title([die, hard]) ;
+  false.
+
+i) What actors are not in the cast of any movie?
+  ?- actor(First, Last, _), not(in_cast(First, Last)).
+  First = glenn,
+  Last = close ;
+  First = angelina,
+  Last = jolie ;
+  First = emilia,
+  Last = clarke ;
+  First = keanu,
+  Last = reeves.
+
+------------------- lists.pl -------------------
+
+?- run_tests().
+% PL-Unit: lists
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:80:
+        PL-Unit: Test lastEle: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:87:
+        PL-Unit: Test gradeMap: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:94:
+        PL-Unit: Test split: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:100:
+        PL-Unit: Test myNextto: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:107:
+        PL-Unit: Test myAppend: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:114:
+        PL-Unit: Test myLast: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:121:
+        PL-Unit: Test myNextto2: Test succeeded with choicepoint
+...
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:144:
+        PL-Unit: Test treeSum: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:152:
+        PL-Unit: Test treeMerge: Test succeeded with choicepoint
+ done
+% All 12 tests passed
+true.
