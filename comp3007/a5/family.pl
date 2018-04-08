@@ -120,7 +120,8 @@ chris   andrew     taylor   abby   shawn     heather   mike      jennifer     sa
 
 test(different) :-
   different(mike, jennifer),
-  different(1, 2).
+  different(1, 2),
+  not(different(1, 1)).
 
 test(parent) :-
   parent(maxwellM, jim),
@@ -159,7 +160,20 @@ test(parent) :-
   parent(dave,sarah),
   parent(dave,alex),
   parent(sandraB,sarah),
-  parent(sandraB,alex).
+  parent(sandraB,alex),
+
+% Non-Parent Tests
+  not(parent(chris,_)),
+  not(parent(andrew,_)),
+  not(parent(heather,_)),
+  not(parent(mike,_)),
+  not(parent(jennifer,_)),
+  not(parent(taylor,_)),
+  not(parent(abby,_)),
+  not(parent(shawn,_)),
+  not(parent(sarah,_)),
+  not(parent(alex,_)),
+  not(parent(glen,_)).
 
 test(is_mother) :-
   is_mother(maxwellF),
@@ -167,7 +181,15 @@ test(is_mother) :-
   is_mother(darlene),
   is_mother(pamela),
   is_mother(sandraM),
-  is_mother(sandraB).
+  is_mother(sandraB),
+
+% Non-Mother Tests
+  not(is_mother(john)),
+  not(is_mother(mike)),
+  not(is_mother(dave)),
+  not(is_mother(heather)),
+  not(is_mother(taylor)),
+  not(is_mother(jennifer)).
 
 test(is_father) :-
   is_father(maxwellM),
@@ -175,22 +197,38 @@ test(is_father) :-
   is_father(jim),
   is_father(john),
   is_father(rob),
-  is_father(dave).
+  is_father(dave),
+
+% Non-Father Tests
+  not(is_father(mike)),
+  not(is_father(glen)),
+  not(is_father(alex)),
+  not(is_father(shawn)),
+  not(is_father(pamela)),
+  not(is_father(chris)).
 
 test(sister) :-
-  sister(sandraB, pamela),
-  sister(sandraB, glen),
-  sister(pamela, sandraB),
-  sister(pamela, glen),
-  sister(heather, mike),
-  sister(heather, jennifer),
-  sister(jennifer, heather),
-  sister(jennifer, mike),
-  sister(taylor, abby),
-  sister(taylor, shawn),
-  sister(abby, taylor),
-  sister(abby, shawn),
-  sister(sarah, alex).
+  sister(sandraB,pamela),
+  sister(sandraB,glen),
+  sister(pamela,sandraB),
+  sister(pamela,glen),
+  sister(heather,mike),
+  sister(heather,jennifer),
+  sister(jennifer,heather),
+  sister(jennifer,mike),
+  sister(taylor,abby),
+  sister(taylor,shawn),
+  sister(abby,taylor),
+  sister(abby,shawn),
+  sister(sarah,alex),
+
+% Non-Sister Tests
+  not(sister(mike,jennifer)),
+  not(sister(mike,heather)),
+  not(sister(pamela,john)),
+  not(sister(chris,andrew)),
+  not(sister(shawn,taylor)),
+  not(sister(maxwellF,smithM)).
 
 test(brother) :-
   brother(jim,john),
@@ -201,11 +239,19 @@ test(brother) :-
   brother(glen,pamela),
   brother(chris,andrew),
   brother(andrew,chris),
-  % brother(mike,heather),
-  % brother(mike,jennifer),
+  brother(mike,heather),
+  brother(mike,jennifer),
   brother(shawn,taylor),
   brother(shawn,abby),
-  brother(alex,sarah).
+  brother(alex,sarah),
+
+% Non-Brother Tests
+  not(brother(heather,mike)),
+  not(brother(john,dave)),
+  not(brother(dave,glen)),
+  not(brother(chris,shawn)),
+  not(brother(dave,pamela)),
+  not(brother(john,pamela)).
 
 test(aunt) :-
   aunt(darlene,heather),
@@ -231,7 +277,15 @@ test(aunt) :-
 
   aunt(sandraB,heather),
   aunt(sandraB,mike),
-  aunt(sandraB,jennifer).
+  aunt(sandraB,jennifer),
+
+% Non-Aunt Tests
+  not(aunt(mike,taylor)),
+  not(aunt(glen,jennifer)),
+  not(aunt(jim,mike)).
+  % not(aunt(pamela,glen)),
+  % not(aunt(sandraB,andrew)),
+  % not(aunt(sandraM,alex)).
 
 test(uncle) :-
   uncle(jim,heather),
@@ -263,7 +317,15 @@ test(uncle) :-
   uncle(glen,mike),
   uncle(glen,jennifer),
   uncle(glen,sarah),
-  uncle(glen,alex).
+  uncle(glen,alex),
+
+% Non-Uncle Tests
+  not(uncle(mike,shawn)),
+  not(uncle(glen,chris)),
+  not(uncle(sandraB,heather)),
+  not(uncle(chris,alex)).
+  % not(uncle(maxwellM,mike)),
+  % not(uncle(john,glen)).
 
 test(grandfather) :-
   grandfather(maxwellM,chris),
@@ -279,7 +341,13 @@ test(grandfather) :-
   grandfather(smithM,mike),
   grandfather(smithM,jennifer),
   grandfather(smithM,sarah),
-  grandfather(smithM,alex).
+  grandfather(smithM,alex),
+
+% Non-Grandfather Tests
+  not(grandfather(smithM,andrew)),
+  not(grandfather(smithF,alex)),
+  not(grandfather(mike,john)),
+  not(grandfather(jim,chris)).
 
 test(grandmother) :-
   grandmother(maxwellF,chris),
@@ -295,7 +363,13 @@ test(grandmother) :-
   grandmother(smithF,mike),
   grandmother(smithF,jennifer),
   grandmother(smithF,sarah),
-  grandmother(smithF,alex).
+  grandmother(smithF,alex),
+
+% Non-grandmother Tests
+  not(grandmother(smithF,andrew)),
+  not(grandmother(maxwellF,alex)),
+  not(grandmother(pamela,mike)),
+  not(grandmother(darlene,chris)).
 
 test(ancestor) :-
 
@@ -368,6 +442,14 @@ test(ancestor) :-
   ancestor(smithF,mike),
   ancestor(smithF,jennifer),
   ancestor(smithF,sarah),
-  ancestor(smithF,alex).
+  ancestor(smithF,alex),
+
+% Non-Ancestor Tests
+  not(ancestor(mike,sarah)),
+  not(ancestor(chris,andrew)),
+  not(ancestor(chris,jim)),
+  not(ancestor(jennifer,maxwellM)),
+  not(ancestor(maxwellM,alex)),
+  not(ancestor(pamela,maxwellF)).
 
 :- end_tests(family).

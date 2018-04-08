@@ -31,6 +31,9 @@ myAppend([], [], []).
 myAppend([], [H2|T2], [H2|T3]) :- myAppend([], T2, T3).
 myAppend([H1|T1], L2, [H1|T3]) :- myAppend(T1, L2, T3).
 
+% myFirst(X, L): true if X is the first item in L, using myAppend
+myFirst(X, L) :- myAppend([X], _, L).
+
 % myLast(X, L): true if X is the last item in L, using append
 myLast(X, L) :- append(_, [X], L).
 
@@ -56,33 +59,36 @@ treeFlat(T, [T|C], C).
 
 % treeSum(T, S): succeeds if the sum of all elements in T equals S
 treeSum([], 0).
-treeSum(L, S) :- treeFlat(L, [Num|T]), treeSum(T, Total), S is Num + Total.
+treeSum(L, S) :- treeFlat(L, [Val|T]), treeSum(T, Total), S is Val + Total.
 
 % treeMerge(T1, T2, R): succeeds when R is the result of merging the trees T1 and T2
-treeMerge([], [], []).
-treeMerge(Num, [], []) :- not(list(Num)).
-treeMerge([], Num, []) :- not(list(Num)).
-treeMerge([Subtree], [], [Subtree]).
+% base cases
+treeMerge([], [], []). % 2 empty lists
+treeMerge(Val, [], []) :- not(list(Val)). % leaf
+treeMerge([], Val, []) :- not(list(Val)).
+treeMerge([Subtree], [], [Subtree]). % subtree with empty list
 treeMerge([], [Subtree], [Subtree]).
+
+% merges first subtree or leafs of the input trees into the result tree
 treeMerge([H1|T1], [H2|T2], [HR|TR]) :- treeMerge(H1, H2, HR), treeMerge(T1, T2, TR).
 treeMerge([H1|T1], [H2|T2], [HR|TR]) :- not(list(H1)), not(list(H2)), HR is H1 * H2, treeMerge(T1, T2, TR).
-treeMerge(Num, [H2|T2], [HR|TR]) :- not(list(Num)), not(list(H2)), HR is Num * H2, treeMerge(Num, T2, TR).
-treeMerge([H1|T1], Num, [HR|TR]) :- not(list(Num)), not(list(H1)), HR is Num * H1, treeMerge(T1, Num, TR).
-treeMerge(Num, [H2|T2], [HR|TR]) :- not(list(Num)), treeMerge(Num, H2, HR), treeMerge(Num, T2, TR).
-treeMerge([H1|T1], Num, [HR|TR]) :- not(list(Num)), treeMerge(H1, Num, HR), treeMerge(T1, Num, TR).
-% TODO finish this function
+treeMerge(Val, [H2|T2], [HR|TR]) :- not(list(Val)), not(list(H2)), HR is Val * H2, treeMerge(Val, T2, TR).
+treeMerge([H1|T1], Val, [HR|TR]) :- not(list(Val)), not(list(H1)), HR is Val * H1, treeMerge(T1, Val, TR).
+treeMerge(Val, [H2|T2], [HR|TR]) :- not(list(Val)), treeMerge(Val, H2, HR), treeMerge(Val, T2, TR).
+treeMerge([H1|T1], Val, [HR|TR]) :- not(list(Val)), treeMerge(H1, Val, HR), treeMerge(T1, Val, TR).
 
 % Testing
 :- begin_tests(lists).
 :- use_module(library(lists)).
-% TODO add fail tests by not(testFunc(...))
+
+% ------------------- Question 3 -------------------
 
 test(lastEle) :-
   lastEle(0, [0]),
   lastEle(today, [how, are, you, today]),
   lastEle(5, [1, 2, 3, 4, 5]),
   lastEle([9, 7], [[1, 9], [9, 7]]),
-  not(lastEle(X, [])).
+  not(lastEle(_, [])).
 
 test(gradeMap) :-
   gradeMap([], []),
@@ -104,6 +110,8 @@ test(myNextto) :-
   myNextto(1, 2, [1, 2]),
   myNextto([a], [b], [5, [a], [b], 7]).
 
+% ------------------- Question 4 -------------------
+
 test(myAppend) :-
   myAppend([], [], []),
   myAppend([a, b], [], [a, b]),
@@ -111,12 +119,18 @@ test(myAppend) :-
   myAppend([a, b], [c, d], [a, b, c, d]),
   myAppend([9, 8, 7], [1, 2, 3], [9, 8, 7, 1, 2, 3]).
 
+test(myFirst) :-
+  myFirst(0, [0]),
+  myFirst(how, [how, are, you, today]),
+  myFirst(1, [1, 2, 3, 4, 5]),
+  myFirst([1, 9], [[1, 9], [9, 7]]),
+  not(myFirst(_, [])).
+
 test(myLast) :-
   myLast(0, [0]),
   myLast(today, [how, are, you, today]),
   myLast(5, [1, 2, 3, 4, 5]),
-  myLast([9, 7], [[1, 9], [9, 7]]),
-  not(myLast(X, [])).
+  myLast([9, 7], [[1, 9], [9, 7]]).
 
 test(myNextto2) :-
   myNextto2(a, b, [c, a, b, d]),
@@ -132,9 +146,11 @@ test(myReverse) :-
   myReverse([60, [50, 45], 14], [14, [50, 45], 60]),
   myReverse([1, 2, 3], [3, 2, 1]).
 
+% ------------------- Question 5 -------------------
+
 test(list) :-
   list([]),
-  list([X]),
+  list([_]),
   list([a, b, c]),
   list([1, 2, 3]).
 
@@ -151,6 +167,8 @@ test(treeSum) :-
 
 test(treeMerge) :-
   treeMerge([], [], []),
+  treeMerge(5, [], []),
+  treeMerge([], 5, []),
   treeMerge([1], [], [1]),
   treeMerge([], [2], [2]),
   treeMerge([2, [2, 3], [4, 5, [5, 6, 7]]], [[5, [4, 3], [2, 1]], 6, [7, 8]], [[10, [8, 6], [4, 2]], [12, 18], [28, 40, [5, 6, 7]]]).

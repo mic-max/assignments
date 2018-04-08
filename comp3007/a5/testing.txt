@@ -2,25 +2,25 @@
 
 ?- run_tests().
 % PL-Unit: family .
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:125:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:126:
         PL-Unit: Test parent: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:164:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:178:
         PL-Unit: Test is_mother: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:172:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:194:
         PL-Unit: Test is_father: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:180:
-        PL-Unit: Test sister: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:195:
-        PL-Unit: Test brother: Test succeeded with choicepoint
 Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:210:
+        PL-Unit: Test sister: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:233:
+        PL-Unit: Test brother: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:256:
         PL-Unit: Test aunt: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:236:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:290:
         PL-Unit: Test uncle: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:268:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:330:
         PL-Unit: Test grandfather: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:284:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:352:
         PL-Unit: Test grandmother: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:300:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/family.pl:374:
         PL-Unit: Test ancestor: Test succeeded with choicepoint
  done
 % All 11 tests passed
@@ -135,25 +135,27 @@ i) What actors are not in the cast of any movie?
 
 ?- run_tests().
 % PL-Unit: lists
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:80:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:86:
         PL-Unit: Test lastEle: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:87:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:93:
         PL-Unit: Test gradeMap: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:94:
-        PL-Unit: Test split: Test succeeded with choicepoint
 Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:100:
+        PL-Unit: Test split: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:106:
         PL-Unit: Test myNextto: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:107:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:115:
         PL-Unit: Test myAppend: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:114:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:122:
+        PL-Unit: Test myFirst: Test succeeded with choicepoint
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:129:
         PL-Unit: Test myLast: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:121:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:135:
         PL-Unit: Test myNextto2: Test succeeded with choicepoint
 ...
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:144:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:160:
         PL-Unit: Test treeSum: Test succeeded with choicepoint
-Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:152:
+Warning: c:/users/michael/desktop/assignments/comp3007/a5/lists.pl:168:
         PL-Unit: Test treeMerge: Test succeeded with choicepoint
  done
-% All 12 tests passed
+% All 13 tests passed
 true.
