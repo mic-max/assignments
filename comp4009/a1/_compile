@@ -1,0 +1,4 @@
+#!/bin/sh
+
+g++ main.cpp -O3 -fcilkplus -o main
+
