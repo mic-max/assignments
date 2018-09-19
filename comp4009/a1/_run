@@ -1,4 +1,4 @@
 #!/bin/sh
 
-./main 30
+./median-filter data/input1.txt output.txt
 

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-g++ main.cpp -O3 -fcilkplus -o main
+g++ main.cpp -O3 -fcilkplus -o median-filter
 
