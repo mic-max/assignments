@@ -1,4 +1,13 @@
 #!/bin/sh
 
-./median-filter data/input1.txt output.txt
+./median_filter data/input1.txt runs/output1.txt
+./median_filter data/input2.txt runs/output2.txt
+./median_filter data/input3.txt runs/output3.txt
+./median_filter data/input4.txt runs/output4.txt
+./median_filter data/input5.txt runs/output5.txt
 
+diff data/output1.txt runs/output1.txt -q
+diff data/output2.txt runs/output2.txt -q
+diff data/output3.txt runs/output3.txt -q
+diff data/output4.txt runs/output4.txt -q
+diff data/output5.txt runs/output5.txt -q
