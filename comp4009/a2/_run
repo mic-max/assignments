@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# echo "Base case 1x1"
+# ./matrix_mult runs/output_256.txt 256 1
+# ./matrix_mult runs/output_512.txt 512 1
+# ./matrix_mult runs/output_1024.txt 1024 1
+# ./matrix_mult runs/output_2048.txt 2048 1
+# ./matrix_mult runs/output_4096.txt 4096 1
+
+# echo "Base case 2x2"
+# ./matrix_mult runs/output_256.txt 256 2
+# ./matrix_mult runs/output_512.txt 512 2
+# ./matrix_mult runs/output_1024.txt 1024 2
+# ./matrix_mult runs/output_2048.txt 2048 2
+# ./matrix_mult runs/output_4096.txt 4096 2
+
+# echo "Base case 4x4"
+# ./matrix_mult runs/output_256.txt 256 4
+# ./matrix_mult runs/output_512.txt 512 4
+# ./matrix_mult runs/output_1024.txt 1024 4
+# ./matrix_mult runs/output_2048.txt 2048 4
+# ./matrix_mult runs/output_4096.txt 4096 4
+
+# echo "Base case 8x8"
+# ./matrix_mult runs/output_256.txt 256 8
+# ./matrix_mult runs/output_512.txt 512 8
+# ./matrix_mult runs/output_1024.txt 1024 8
+# ./matrix_mult runs/output_2048.txt 2048 8
+# ./matrix_mult runs/output_4096.txt 4096 8
+
+echo "Base case 16x16"
+./matrix_mult runs/output_256.txt 256 16
+./matrix_mult runs/output_512.txt 512 16
+./matrix_mult runs/output_1024.txt 1024 16
+./matrix_mult runs/output_2048.txt 2048 16
+./matrix_mult runs/output_4096.txt 4096 16
+./matrix_mult runs/output_8192.txt 8192 16
+./matrix_mult runs/output_16384.txt 16384 16
+
+# echo "Base case 16x16 - SEQUENTIAL"
+# ./matrix_mult_seq runs/output_256.txt 256 1
+# ./matrix_mult_seq runs/output_512.txt 512 1
+# ./matrix_mult_seq runs/output_1024.txt 1024 1
+# ./matrix_mult_seq runs/output_2048.txt 2048 1
+# ./matrix_mult_seq runs/output_4096.txt 4096 1
