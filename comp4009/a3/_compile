@@ -1,4 +1,4 @@
 #!/bin/sh
 
 mpiCC main.cpp -o life -std=c++11
-
+# g++ test.cpp -std=c++11 -Wall -o test
