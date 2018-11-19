@@ -1,4 +1,6 @@
 #!/bin/sh
 
-mpiexec -np 4 --hostfile _hostfile life
-
+mpiexec -np 4 --hostfile _hostfile life data/input1.txt 10 2 2 1 1
+# mpiexec -np 4 --hostfile _hostfile life data/input2.txt 20 2 2 1 1
+# mpiexec -np 4 --hostfile _hostfile life data/input3.txt 20 2 2 1 1
+# mpiexec -np 4 --hostfile _hostfile life data/input4.txt 4 2 2 1 1

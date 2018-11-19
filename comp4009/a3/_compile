@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mpiCC main.cpp -o life
+mpiCC main.cpp -o life -std=c++11
 
