@@ -88,4 +88,24 @@ TEST_CASE( "Edges of a rectangle", "[get_edges]" ) {
 	for (int i = 0; i < 6; i++) {
 		REQUIRE( c[i] == exp2[i] );	
 	}
+
+	// TODO add test for 2x2, because sides would have nothing
+}
+
+TEST_CASE( "Edges and corners", "[xx_edge, yy_zz_corner]" ) {
+	// TODO add tests for rects smaller or equal to 2x2
+	bool a[] = {
+		1,0,1,1,
+		1,1,1,0,
+		0,1,
+		0,0
+	};
+	bool b[] = {
+		0,1,
+		1,1,
+		0,
+		0,
+	};
+
+	REQUIRE (  );
 }
