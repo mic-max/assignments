@@ -36,11 +36,6 @@ bool import(char *file, int N2) {
 	return false;
 }
 
-// given an array with its width and height
-// return all the values that form the perimeter
-// starting at top-left and going clockwise.
-void get_edges() {}
-
 // fill Yt with segments base data values
 // ie. Y[1,1]..Y[NW-1, NH-1]
 void remove_pad(bool *Y, bool *Yt, int PW, int PH) {
@@ -103,9 +98,6 @@ int main(int argc, char **argv) {
 	bool *Xt;
 	bool *Yt = (bool*) malloc(NP * sizeof(bool));
 
-	bool *sbuf;
-	bool *rbuf;
-
 	if (id == MASTER) {
 		X = (bool*) calloc(N2*N2, sizeof(bool));
 		// TODO handle file read error
@@ -158,6 +150,15 @@ int main(int argc, char **argv) {
 	// cout << "Processor " << id << " received: ";
 	// display(Y, PW2, PH2, cout, 0);
 
+	const int PRMT = perimeter(PW, PH);
+	// + 4 to send the corners
+	bool *sbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
+	bool *rbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
+	int scounts[p];
+	int rcounts[p];
+	int sdispls[p];
+	int rdispls[p];
+
 	for (int i = 0; i < k; i++) {
 		for (int y = 0; y < PH; y++) {
 			for (int x = 0; x < PW; x++) {
@@ -165,6 +166,16 @@ int main(int argc, char **argv) {
 				evolve(curPtr, setPtr, offset, PW2);
 			}
 		}
+
+		// curPtr or setPtr which should now contain the new values
+		get_edges(curPtr, sbuf, PW2, PW, PH);
+		// specify send&receive counts, displacements
+		if (id == 0) {
+		} else if (id == 1) {
+		} else if (id == 2) {
+		} else if (id == 3) {
+		}
+
 		// share borders with neighbours
 		// MPI::COMM_WORLD.Alltoallv(
 		// 	sbuf, scounts, sdispls, MPI::BOOL,
@@ -172,8 +183,6 @@ int main(int argc, char **argv) {
 		// );
 
 		if (m && i % m == 0) {
-			// send everything to p0
-
 			remove_pad(setPtr, Yt, PW, PH);
 			// display(Yt, PW, PH, cout, 0);
 			MPI::COMM_WORLD.Gather(Yt, NP, MPI::BOOL, Xt, NP, MPI::BOOL, MASTER);
