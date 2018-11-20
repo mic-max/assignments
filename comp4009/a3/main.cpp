@@ -1,5 +1,6 @@
 #include <fstream>
 #include "mpi.h"
+// #include "cxxopts.hpp"
 #include "util.cpp"
 
 #define MASTER 0
@@ -71,8 +72,8 @@ int main(int argc, char **argv) {
 	ofstream output;
 
 	MPI::Init(argc, argv);
-	int p = MPI::COMM_WORLD.Get_size();
-	int id = MPI::COMM_WORLD.Get_rank();
+	const int p = MPI::COMM_WORLD.Get_size();
+	const int id = MPI::COMM_WORLD.Get_rank();
 
 	if (argc != 7) {
 		cout << "Usage: life <input> <N> <p1> <p2> <k> <m>" << endl;
@@ -154,10 +155,9 @@ int main(int argc, char **argv) {
 	// + 4 to send the corners
 	bool *sbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
 	bool *rbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
-	int scounts[p];
-	int rcounts[p];
-	int sdispls[p];
-	int rdispls[p];
+	int counts[p];
+	int displs[p];
+	make_counts(counts, displs, id, p1, p2, N);
 
 	for (int i = 0; i < k; i++) {
 		for (int y = 0; y < PH; y++) {
@@ -168,19 +168,18 @@ int main(int argc, char **argv) {
 		}
 
 		// curPtr or setPtr which should now contain the new values
-		get_edges(curPtr, sbuf, PW2, PW, PH);
-		// specify send&receive counts, displacements
-		if (id == 0) {
-		} else if (id == 1) {
-		} else if (id == 2) {
-		} else if (id == 3) {
-		}
+		bool edge[PRMT-4];
+		get_edges(curPtr, edge, PW2, PW, PH);
+		create_halo(edge, sbuf, PW, PH);
 
+		// specify send&receive counts, displacements
+
+		cout << "id: " << id << endl;
 		// share borders with neighbours
-		// MPI::COMM_WORLD.Alltoallv(
-		// 	sbuf, scounts, sdispls, MPI::BOOL,
-		// 	rbuf, rcounts, rdispls, MPI::BOOL
-		// );
+		MPI::COMM_WORLD.Alltoallv(
+			sbuf, counts, displs, MPI::BOOL,
+			rbuf, counts, displs, MPI::BOOL
+		);
 
 		if (m && i % m == 0) {
 			remove_pad(setPtr, Yt, PW, PH);

@@ -21,7 +21,7 @@ unsigned int perimeter(int w, int h) {
 // given an array with its width and height
 // return all the values that form the perimeter
 // starting at top-left and going clockwise.
-void get_edges(bool *X, bool *E, int N, int W, int H) {
+void get_edges(const bool *X, bool *E, int N, int W, int H) {
 	int cur = 0;
 	for (int i = 0; i < W; i++) // top
 		E[cur++] = X[i];
@@ -36,33 +36,74 @@ void get_edges(bool *X, bool *E, int N, int W, int H) {
 		E[cur++] = X[i*N + W-1];
 }
 
-void top_edge(bool *X, bool *E, int W) {
-	for (int i = 0; i < W; i++)
-		E[i] = X[i];
-}
-void bottom_edge(bool *X, bool *E, int W) {
-	for (int i = 0; i < W; i++)
-		E[i] = X[W+i];
-}
-void left_edge(bool *X, int W, int H) {
-	// TODO
-}
-void right_edge(bool *X, int W, int H) {
-	// TODO
-}
-
-bool top_left_corner(bool *X) {
+bool top_left_corner(const bool *X) {
 	return X[0];
 }
-bool top_right_corner(bool *X, int W) {
+bool top_right_corner(const bool *X, int W) {
 	return X[W-1];
 }
-bool bottom_left_corner(bool *X, int W) {
+bool bottom_left_corner(const bool *X, int W) {
 	return X[W];
 }
-bool bottom_right_corner(bool *X, int W) {
+bool bottom_right_corner(const bool *X, int W) {
 	return X[2*W - 1];
 }
 
-// TODO helpers
-// get specific corners and sides from the resulting above array.s
+void top_edge(const bool *X, bool *E, int W) {
+	for (int i = 0; i < W; i++)
+		E[i] = X[i];
+}
+void bottom_edge(const bool *X, bool *E, int W) {
+	for (int i = 0; i < W; i++)
+		E[i] = X[W+i];
+}
+void left_edge(const bool *X, bool *E, int W, int H) {
+	E[0] = top_left_corner(X);
+	for (int i = 0; i < H-2; i++)
+		E[i+1] = X[W*2 + i];
+	E[H-1] = bottom_left_corner(X, W);
+}
+void right_edge(const bool *X, bool *E, int W, int H) {
+	E[0] = top_right_corner(X, W);
+	for (int i = 0; i < H-2; i++)
+		E[i+1] = X[W*2 + (H-2) + i];
+	E[H-1] = bottom_right_corner(X, W);
+}
+
+void create_halo(const bool *edge, bool *buf, int W, int H) {
+	int cur = 0;
+	buf[cur++] = top_left_corner(edge);
+	top_edge(edge, &buf[cur], W);
+	cur += W;
+	buf[cur++] = top_right_corner(edge, W);
+	left_edge(edge, &buf[cur], W, H);
+	cur += H;
+	right_edge(edge, &buf[cur], W, H);
+	cur += H;
+	buf[cur++] = bottom_left_corner(edge, W);
+	bottom_edge(edge, &buf[cur], W); // causes error!
+	cur += W;
+	buf[cur++] = bottom_right_corner(edge, W);
+}
+
+void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
+	int x = id % p1;
+	int y = id / p1;
+	int cur = 0;
+	for (int pi = 0; pi < p1; pi++) {
+ 		for (int pj = 0; pj < p2; pj++) {
+			int val = 0;
+			if (abs(x-pj) == 1 && abs(y-pi) == 1)
+				val = 1;
+			else if (abs(x-pj) == 1)
+				val = N/p1;
+			else if (abs(y-pi) == 1)
+				val = N/p2;
+
+			int i = pi*p2 + pj;
+			counts[i] = val;
+			displ[i] = cur;
+			cur += val;
+		}
+	}
+}
