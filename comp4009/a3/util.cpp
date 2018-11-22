@@ -110,8 +110,19 @@ void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
 	}
 }
 
-void recv_displs(int *displs, int id, int p1, int p2, int N) {
-	
+void recv_displs(int *displs, const int *offs, int id, int p1, int p2) {
+	int x = id % p1;
+	int y = id / p1;
+	displs[id-p1-1] = offs[0];
+	displs[id-p1] = offs[1];
+
+	int cur = 0;
+	for (int pi = y-1; pi <= y+1; pi++) {
+		for (int pj = x-1; pj <= x+1; pj++) {
+			int i = pi*p2 + pj;
+			displs[i] = offs[cur++];
+		}
+	}
 }
 
 /*

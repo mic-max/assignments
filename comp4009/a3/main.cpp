@@ -160,8 +160,15 @@ int main(int argc, char **argv) {
 	bool *sbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
 	bool *rbuf = (bool*) malloc((PRMT2) * sizeof(bool));
 	int counts[p];
-	int displs[p];
-	make_counts(counts, displs, id, p1, p2, N);
+	int sdispls[p];
+	int rdispls[] = { 0 };
+	make_counts(counts, sdispls, id, p1, p2, N);
+	const int offsets[] = {
+		0        , 1        , PW+1,
+		PW+2     , 0        , PW+2+PH,
+		2*PH+PW+2, 2*PH+PW+3, 2*PH+2*PW+3
+	};
+	recv_displs(rdispls, offsets, id, p1, p2);
 
 	for (int i = 0; i < k; i++) {
 		for (int y = 0; y < PH; y++) {
@@ -185,8 +192,8 @@ int main(int argc, char **argv) {
 
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
-			sbuf, counts, displs, MPI::BOOL,
-			rbuf, counts, displs, MPI::BOOL
+			sbuf, counts, sdispls, MPI::BOOL,
+			rbuf, counts, rdispls, MPI::BOOL
 		);
 
 		// Prints the processor's received buffer
