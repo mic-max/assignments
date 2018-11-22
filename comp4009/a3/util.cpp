@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 unsigned int neighbours(bool *spot, int N) {
 	unsigned int nb = 0;
 	for (int i = -1; i <= 1; i++) {
@@ -11,7 +13,7 @@ unsigned int neighbours(bool *spot, int N) {
 
 void evolve(bool *spot, bool *next, int offset, int N) {
 	unsigned int nb = neighbours(spot+offset, N);
-	next[offset] = nb == 3 || nb == 2 && spot[offset];
+	next[offset] = (nb == 3) || (nb == 2 && spot[offset]);
 }
 
 unsigned int perimeter(int w, int h) {
@@ -73,15 +75,15 @@ void right_edge(const bool *X, bool *E, int W, int H) {
 void create_halo(const bool *edge, bool *buf, int W, int H) {
 	int cur = 0;
 	buf[cur++] = top_left_corner(edge);
-	top_edge(edge, &buf[cur], W);
+	top_edge(edge, buf + cur, W);
 	cur += W;
 	buf[cur++] = top_right_corner(edge, W);
-	left_edge(edge, &buf[cur], W, H);
+	left_edge(edge, buf + cur, W, H);
 	cur += H;
-	right_edge(edge, &buf[cur], W, H);
+	right_edge(edge, buf + cur, W, H);
 	cur += H;
 	buf[cur++] = bottom_left_corner(edge, W);
-	bottom_edge(edge, &buf[cur], W); // causes error!
+	bottom_edge(edge, buf + cur, W); // causes error!
 	cur += W;
 	buf[cur++] = bottom_right_corner(edge, W);
 }
@@ -96,9 +98,9 @@ void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
 			if (abs(x-pj) == 1 && abs(y-pi) == 1)
 				val = 1;
 			else if (abs(x-pj) == 1)
-				val = N/p1;
-			else if (abs(y-pi) == 1)
 				val = N/p2;
+			else if (abs(y-pi) == 1)
+				val = N/p1;
 
 			int i = pi*p2 + pj;
 			counts[i] = val;
@@ -107,3 +109,44 @@ void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
 		}
 	}
 }
+
+void recv_displs(int *displs, int id, int p1, int p2, int N) {
+	
+}
+
+/*
+void recv_counts(int *rcounts, int id, int p1, int p2, int N) {
+	int x = id % p1;
+	int y = id / p1;
+
+	bool is_top   = y == 0;
+	bool is_bot   = y == p2-1;
+	bool is_left  = x == 0;
+	bool is_right = x == p1-1;
+
+	const int W = N/p1;
+	const int H = N/p2;
+	
+	// special cases: tl, top, tr, left, right, bl, bot, br
+	// make sure these cases are covered
+	// i.e.
+	// 	x == 0 || x == p1-1
+	// 	[AND -> corner], [OR -> edge]
+	// 	y == 0 || y == p2-1
+
+	// set values to zero by using calloc.
+	// memset(rcounts, 0, p1*p2); // initialize with all zeroes
+
+	for (int pi = y-1; pi < y+1; pi++) {
+		for (int pj = x-1; pj < x+1; pj++) {
+			int i = pi*p2 + pj;
+			int val = 1;
+			if (!is_top && pi == y-1 || !is_bot && pi == y+1) // above OR below
+				val = W;
+			else if(!is_left && pj == x-1 || !is_right && pj == x+1) // left OR right
+				val = H;
+			rcounts[i] = val;
+		}
+	}
+}
+*/

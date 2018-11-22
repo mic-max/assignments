@@ -1,4 +1,5 @@
-#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_FAST_COMPILE
+
 #include "catch.hpp"
 #include "util.cpp"
 
@@ -166,7 +167,8 @@ TEST_CASE( "Edges and corners", "[xx_edge, yy_zz_corner]" ) {
 }
 
 TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
-	bool buf[20];
+	bool abuf[20];
+	bool bbuf[24];
 	const bool aedge[] = {
 		1,0,1,1,
 		1,1,1,0,
@@ -174,49 +176,87 @@ TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
 		0,0
 	};
 
-	const bool exp[] = {
+	const bool expa[] = {
 		1, 1,0,1,1, 1,
 		1,0,1,1,
 		1,0,0,0,
 		1, 1,1,1,0, 0
 	};
 
-	create_halo(aedge, buf, 4, 4);
+	const bool bedge[] = {
+		0,0,0,0,0,
+		0,0,0,1,0,
+		0,0,0,
+		0,0,1
+	};
+
+	const bool expb[] = {
+		0, 0,0,0,0,0, 0,
+		0,0,0,0,0,
+		0,0,0,1,0,
+		0, 0,0,0,1,0, 0
+	};
+
+	create_halo(aedge, abuf, 4, 4);
 	for (int i = 0; i < 20; i++) {
-		REQUIRE ( buf[i] == exp[i] );
+		REQUIRE ( abuf[i] == expa[i] );
+	}
+
+	create_halo(bedge, bbuf, 5, 5);
+	for (int i = 0; i < 24; i++) {
+		REQUIRE ( bbuf[i] == expb[i] );
 	}
 }
 
-TEST_CASE ( "Counts to send other processors", "[make_counts]" ) {
-	int count0[4], count1[4], count2[4], count3[4];
-	int displ0[4], displ1[4], displ2[4], displ3[4];
-	int expc0[] = { 0, 2, 2, 1 };
-	int expd0[] = { 0, 0, 2, 4 };
-	int expc1[] = { 0, 2, 2, 1 };
-	int expd1[] = { 0, 0, 2, 4 };
-	int expc2[] = { 0, 2, 2, 1 };
-	int expd2[] = { 0, 0, 2, 4 };
-	int expc3[] = { 0, 2, 2, 1 };
-	int expd3[] = { 0, 0, 2, 4 };
-	make_counts(count0, displ0, 0, 2, 2, 4);
-	make_counts(count1, displ1, 1, 2, 2, 4);
-	make_counts(count2, displ2, 2, 2, 2, 4);
-	make_counts(count3, displ3, 3, 2, 2, 4);
+TEST_CASE ( "Counts to send/receive", "make_counts" ) {
+	const int P = 4;
+	const int p1 = 2;
+	const int p2 = 2;
+	int count[P][P];
+	int displ[P][P];
+	int expc[P][P] = {
+		{ 0, 2, 2, 1 },
+		{ 2, 0, 1, 2 },
+		{ 2, 1, 0, 2 },
+		{ 1, 2, 2, 0 }
+	};
+	int expd[P][P] = {
+		{ 0, 0, 2, 4 },
+		{ 0, 2, 2, 3 },
+		{ 0, 2, 3, 3 },
+		{ 0, 1, 3, 5 },
+	};
 
-	for (int i = 0; i < 4; i++) {
-		REQUIRE ( count0[i] == expc0[i] );
-		REQUIRE ( displ0[i] == expd0[i] );
+	for (int i = 0; i < P; i++)
+		make_counts(count[i], displ[i], i, p1, p2, 4);
+
+	for (int i = 0; i < P; i++) {
+		for (int j = 0; j < P; j++) {
+			REQUIRE ( count[i][j] == expc[i][j] );
+			REQUIRE ( displ[i][j] == expd[i][j] );
+		}
 	}
-	for (int i = 0; i < 4; i++) {
-		REQUIRE ( count1[i] == expc1[i] );
-		REQUIRE ( displ1[i] == expd1[i] );
+}
+
+TEST_CASE ( "Receive buffer displacements" "[]" ) {
+	const int P = 4;
+	const int p1 = 2;
+	const int p2 = 2;
+	int displ[P][P];
+	int expd[P][P] = {
+		{ 0, 0, 2, 4 },
+		{ 0, 2, 2, 3 },
+		{ 0, 2, 3, 3 },
+		{ 0, 1, 3, 5 },
+	};
+
+	for (int i = 0; i < P; i++)
+		recv_displs(displ[i], i, p1, p2, 4);
+
+	for (int i = 0; i < P; i++) {
+		for (int j = 0; j < P; j++) {
+			REQUIRE ( count[i][j] == expc[i][j] );
+			REQUIRE ( displ[i][j] == expd[i][j] );
+		}
 	}
-	for (int i = 0; i < 4; i++) {
-		REQUIRE ( count2[i] == expc2[i] );
-		REQUIRE ( displ2[i] == expd2[i] );
-	}
-	for (int i = 0; i < 4; i++) {
-		REQUIRE ( count3[i] == expc3[i] );
-		REQUIRE ( displ3[i] == expd3[i] );
-	}	
 }

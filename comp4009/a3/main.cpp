@@ -103,6 +103,9 @@ int main(int argc, char **argv) {
 		X = (bool*) calloc(N2*N2, sizeof(bool));
 		// TODO handle file read error
 		bool err = import(argv[1], N2);
+		if (err) {
+			// TODO kill all other mpi processes
+		}
 
 		if (m) {
 			output.open("output.txt");
@@ -152,9 +155,10 @@ int main(int argc, char **argv) {
 	// display(Y, PW2, PH2, cout, 0);
 
 	const int PRMT = perimeter(PW, PH);
+	const int PRMT2 = perimeter(PW2, PH2);
 	// + 4 to send the corners
 	bool *sbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
-	bool *rbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
+	bool *rbuf = (bool*) malloc((PRMT2) * sizeof(bool));
 	int counts[p];
 	int displs[p];
 	make_counts(counts, displs, id, p1, p2, N);
@@ -169,17 +173,28 @@ int main(int argc, char **argv) {
 
 		// curPtr or setPtr which should now contain the new values
 		bool edge[PRMT-4];
-		get_edges(curPtr, edge, PW2, PW, PH);
+		get_edges(curPtr+PW2+1, edge, PW2, PW, PH);
 		create_halo(edge, sbuf, PW, PH);
 
-		// specify send&receive counts, displacements
+		// Prints the processor's sent buffer
+		cout << "p" << id << " sbuf = ";
+		for (int q = 0; q < PRMT+4; q++) {
+			cout << sbuf[q];
+		}
+		cout << endl;
 
-		cout << "id: " << id << endl;
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
 			sbuf, counts, displs, MPI::BOOL,
 			rbuf, counts, displs, MPI::BOOL
 		);
+
+		// Prints the processor's received buffer
+		// cout << "p" << id << " rbuf = ";
+		// for (int q = 0; q < PRMT2; q++) {
+		// 	cout << rbuf[q];
+		// }
+		// cout << endl;
 
 		if (m && i % m == 0) {
 			remove_pad(setPtr, Yt, PW, PH);
