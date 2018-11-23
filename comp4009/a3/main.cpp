@@ -1,4 +1,6 @@
+#include <iostream>
 #include <fstream>
+#include <iomanip>
 #include "mpi.h"
 // #include "cxxopts.hpp"
 #include "util.cpp"
@@ -161,7 +163,8 @@ int main(int argc, char **argv) {
 	bool *rbuf = (bool*) malloc((PRMT2) * sizeof(bool));
 	int counts[p];
 	int sdispls[p];
-	int rdispls[] = { 0 };
+	int rdispls[p] = { 0 };
+	MPI::COMM_WORLD.Barrier();
 	make_counts(counts, sdispls, id, p1, p2, N);
 	const int offsets[] = {
 		0        , 1        , PW+1,
@@ -169,6 +172,11 @@ int main(int argc, char **argv) {
 		2*PH+PW+2, 2*PH+PW+3, 2*PH+2*PW+3
 	};
 	recv_displs(rdispls, offsets, id, p1, p2);
+	// cout << "p" << id << " rdispls = ";
+	// for (int q = 0; q < p; q++) {
+	// 	cout << rdispls[q] << ' ';
+	// }
+	// cout << endl;
 
 	for (int i = 0; i < k; i++) {
 		for (int y = 0; y < PH; y++) {
@@ -184,11 +192,11 @@ int main(int argc, char **argv) {
 		create_halo(edge, sbuf, PW, PH);
 
 		// Prints the processor's sent buffer
-		cout << "p" << id << " sbuf = ";
-		for (int q = 0; q < PRMT+4; q++) {
-			cout << sbuf[q];
-		}
-		cout << endl;
+		// cout << "p" << id << " sbuf = ";
+		// for (int q = 0; q < PRMT+4; q++) {
+		// 	cout << sbuf[q];
+		// }
+		// cout << endl;
 
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
@@ -197,11 +205,11 @@ int main(int argc, char **argv) {
 		);
 
 		// Prints the processor's received buffer
-		// cout << "p" << id << " rbuf = ";
-		// for (int q = 0; q < PRMT2; q++) {
-		// 	cout << rbuf[q];
-		// }
-		// cout << endl;
+		cout << "p" << id << " rbuf = " << setw(3);
+		for (int q = 0; q < PRMT2; q++) {
+			cout << rbuf[q] << ',';
+		}
+		cout << endl;
 
 		if (m && i % m == 0) {
 			remove_pad(setPtr, Yt, PW, PH);

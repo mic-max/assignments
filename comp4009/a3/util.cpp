@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned int neighbours(bool *spot, int N) {
 	unsigned int nb = 0;
@@ -113,16 +114,29 @@ void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
 void recv_displs(int *displs, const int *offs, int id, int p1, int p2) {
 	int x = id % p1;
 	int y = id / p1;
-	displs[id-p1-1] = offs[0];
-	displs[id-p1] = offs[1];
 
-	int cur = 0;
+	int cur = 9;
 	for (int pi = y-1; pi <= y+1; pi++) {
 		for (int pj = x-1; pj <= x+1; pj++) {
 			int i = pi*p2 + pj;
-			displs[i] = offs[cur++];
+			cur--;
+			if (pi < 0 || pi >= p2 || pj < 0 || pj >= p1)
+				continue;
+			displs[i] = offs[cur];
 		}
 	}
+}
+
+void get_offsets(int *offs, int W, int H) {
+	offs[0] = 0;
+	offs[1] = 1;
+	offs[2] = W+1;
+	offs[3] = W+2;
+	offs[4] = 0;
+	offs[5] = W+2+H;
+	offs[6] = 2*H+W+2;
+	offs[7] = 2*H+W+3;
+	offs[8] = 2*H+2*W+3;
 }
 
 /*

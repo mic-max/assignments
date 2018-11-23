@@ -243,24 +243,19 @@ TEST_CASE ( "Receive buffer displacements" "[]" ) {
 	const int p1 = 2;
 	const int p2 = 2;
 	int displ[P][P] = { 0 };
-	const int W = 4;
-	const int H = 4;
-	const int offsets[] = {
-		0        , 1        , W+1,
-		W+2     , 0        , W+2+H,
-		2*H+W+2, 2*H+W+3, 2*H+2*W+3
-	};
+	const int W = 5;
+	const int H = 5;
+	int offsets[9];
+	get_offsets(offsets, W, H);
 	int exp[P][P] = {
-		{ 0        , W+2    , 1    , 0   },
-		{ W+2+H    , 0      , W+1  , 1   },
-		{ 2*H+W+3  , 2*H+W+2, 0    , W+2 },
-		{ 2*H+2*W+3, 2*H+W+3, W+2+H, 0   },
+		{ 0,  7 , 1 , 0 },
+		{ 12, 0 , 6 , 1 },
+		{ 18, 17, 0 , 7 },
+		{ 23, 18, 12, 0 },
 	};
-
-	for (int i = 0; i < P; i++)
-		recv_displs(displ[i], offsets, i, p1, p2);
 
 	for (int i = 0; i < P; i++) {
+		recv_displs(displ[i], offsets, i, p1, p2);
 		for (int j = 0; j < P; j++) {
 			REQUIRE ( displ[i][j] == exp[i][j] );
 		}
