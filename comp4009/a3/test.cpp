@@ -47,40 +47,6 @@ TEST_CASE( "Evolving life cells", "[evolve]" ) {
 	}
 }
 
-TEST_CASE( "Perimeter of rectangle", "[perimeter]" ) {
-	REQUIRE ( perimeter(1, 1) == 4 );
-	REQUIRE ( perimeter(2, 2) == 8 );
-	REQUIRE ( perimeter(3, 3) == 12 );
-	REQUIRE ( perimeter(4, 4) == 16 );
-	REQUIRE ( perimeter(5, 5) == 20 );
-	REQUIRE ( perimeter(7, 9) == 32 );
-	REQUIRE ( perimeter(1, 12) == 26 );
-}
-
-TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
-	bool abuf[14];
-	const bool a[] = {
-		0,0,0,0,0,0,
-		0,1,0,1,1,0,
-		0,1,1,1,0,0,
-		0,0,1,0,1,0,
-		0,0,0,0,1,0,
-		0,0,0,0,0,0
-	};
-
-	const bool expa[] = {
-		1,0,1,1,
-		0,1,1,
-		1,1,0,0,
-		0,0,1
-	};
-
-	create_halo(a+7, abuf, 6, 4, 4);
-	for (int i = 0; i < 14; i++) {
-		REQUIRE ( abuf[i] == expa[i] );
-	}
-}
-
 TEST_CASE ( "Counts to send/receive", "[make_counts]" ) {
 	const int P = 4;
 	const int p1 = 2;

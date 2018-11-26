@@ -101,17 +101,16 @@ int main(int argc, char **argv) {
 
 	if (id == MASTER) {
 		X = (bool*) calloc(N2*N2, sizeof(bool));
-		// TODO handle file read error
 		bool err = import(argv[1], X, N2);
 		if (err) {
 			// TODO kill all other mpi processes
 		}
 
-		if (m) {
+		// Only opens the file handle when a non-zero `m` is given
+		if (m)
 			output.open("output.txt");
-		}
-		display(X, N, N, cout, 1);
-		// display(X, N2, N2, cout, 0);
+		// display(X, N, N, cout, 1);
+		display(X, N2, N2, cout, 0);
 
 		cout << "--- The number of processes is " << p << endl;
 		wtime = MPI::Wtime();
@@ -148,9 +147,6 @@ int main(int argc, char **argv) {
 		Xt = (bool*) realloc(Xt, N*N * sizeof(bool));
 	}
 
-	// const int PRMT = perimeter(PW, PH);
-	// bool *sbuf = (bool*) malloc((PRMT-2) * sizeof(bool));
-	// bool *rbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
 	int counts[p];
 	int sdispls[p];
 	int rdispls[p] = { 0 };
@@ -183,30 +179,11 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		// create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
-
-		// Prints the processor's sent buffer
-		// cout << "p" << id << " sbuf = ";
-		// for (int q = 0; q < PRMT-2; q++) {
-		// 	cout << sbuf[q];
-		// }
-		// cout << endl;
-
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
 			curPtr, counts, sdispls, MPI::BOOL,
 			setPtr, counts, rdispls, MPI::BOOL
 		);
-
-		// Prints the processor's received buffer
-		// cout << "p" << id << " rbuf = ";
-		// for (int q = 0; q < PRMT+4; q++) {
-		// 	cout << rbuf[q] << ',';
-		// }
-		// cout << endl;
-
-		// blast the new rbuf into the border values of setPtr?
-		// overwrite_halo(curPtr, rbuf);
 
 		if (m && i % m == 0) {
 			remove_pad(setPtr, Yt, PW, PH);
