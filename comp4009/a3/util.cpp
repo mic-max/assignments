@@ -73,20 +73,17 @@ void right_edge(const bool *X, bool *E, int W, int H) {
 	E[H-1] = bottom_right_corner(X, W);
 }
 
-void create_halo(const bool *edge, bool *buf, int W, int H) {
+void create_halo(const bool *X, bool *buf, int N, int W, int H) {
+	// top -shared trc- right - left -shared blc- bottom
 	int cur = 0;
-	buf[cur++] = top_left_corner(edge);
-	top_edge(edge, buf + cur, W);
-	cur += W;
-	buf[cur++] = top_right_corner(edge, W);
-	left_edge(edge, buf + cur, W, H);
-	cur += H;
-	right_edge(edge, buf + cur, W, H);
-	cur += H;
-	buf[cur++] = bottom_left_corner(edge, W);
-	bottom_edge(edge, buf + cur, W); // causes error!
-	cur += W;
-	buf[cur++] = bottom_right_corner(edge, W);
+	for (int i = 0; i < W; i++) // top
+		buf[cur++] = X[i];
+	for (int i = 1; i < H; i++) // right
+		buf[cur++] = X[i*N + W-1];
+	for (int i = 0; i < H; i++) // left
+		buf[cur++] = X[i*N];
+	for (int i = 1; i < W; i++) // bottom
+		buf[cur++] = X[i + N*(H-1)];
 }
 
 void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {

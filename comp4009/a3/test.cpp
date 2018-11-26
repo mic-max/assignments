@@ -177,10 +177,10 @@ TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
 	};
 
 	const bool expa[] = {
-		1, 1,0,1,1, 1,
+		1,0,1,1,
 		1,0,1,1,
 		1,0,0,0,
-		1, 1,1,1,0, 0
+		1,1,1,0
 	};
 
 	const bool bedge[] = {
@@ -191,19 +191,19 @@ TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
 	};
 
 	const bool expb[] = {
-		0, 0,0,0,0,0, 0,
+		0,0,0,0,0,
 		0,0,0,0,0,
 		0,0,0,1,0,
-		0, 0,0,0,1,0, 0
+		0,0,0,1,0
 	};
 
 	create_halo(aedge, abuf, 4, 4);
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 16; i++) {
 		REQUIRE ( abuf[i] == expa[i] );
 	}
 
 	create_halo(bedge, bbuf, 5, 5);
-	for (int i = 0; i < 24; i++) {
+	for (int i = 0; i < 20; i++) {
 		REQUIRE ( bbuf[i] == expb[i] );
 	}
 }

@@ -119,10 +119,6 @@ int main(int argc, char **argv) {
 		wtime = MPI::Wtime();
 	}
 
-	// int dims[] = {p1, p2};
-	// bool periods[] = {false, false};
-	// MPI::COMM_WORLD.Create_cart(2, dims, periods, true);
-
 	if (id == MASTER) {
 		Xt = (bool*) malloc(NP2*p * sizeof(bool));
 
@@ -158,13 +154,12 @@ int main(int argc, char **argv) {
 
 	const int PRMT = perimeter(PW, PH);
 	const int PRMT2 = perimeter(PW2, PH2);
-	// + 4 to send the corners
-	bool *sbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
-	bool *rbuf = (bool*) malloc((PRMT2) * sizeof(bool));
+	bool *sbuf = (bool*) malloc((PRMT-2) * sizeof(bool));
+	bool *rbuf = (bool*) malloc(PRMT2 * sizeof(bool));
 	int counts[p];
 	int sdispls[p];
 	int rdispls[p] = { 0 };
-	MPI::COMM_WORLD.Barrier();
+
 	make_counts(counts, sdispls, id, p1, p2, N);
 	const int offsets[] = {
 		0        , 1        , PW+1,
@@ -187,16 +182,16 @@ int main(int argc, char **argv) {
 		}
 
 		// curPtr or setPtr which should now contain the new values
-		bool edge[PRMT-4];
-		get_edges(curPtr+PW2+1, edge, PW2, PW, PH);
-		create_halo(edge, sbuf, PW, PH);
+		// bool edge[PRMT-4];
+		// get_edges(, edge, PW2, PW, PH);
+		create_halo(curPtr, sbuf, PW, PH, N);
 
 		// Prints the processor's sent buffer
-		// cout << "p" << id << " sbuf = ";
-		// for (int q = 0; q < PRMT+4; q++) {
-		// 	cout << sbuf[q];
-		// }
-		// cout << endl;
+		cout << "p" << id << " sbuf = ";
+		for (int q = 0; q < PRMT+4; q++) {
+			cout << sbuf[q];
+		}
+		cout << endl;
 
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
@@ -205,11 +200,13 @@ int main(int argc, char **argv) {
 		);
 
 		// Prints the processor's received buffer
-		cout << "p" << id << " rbuf = " << setw(3);
-		for (int q = 0; q < PRMT2; q++) {
-			cout << rbuf[q] << ',';
-		}
-		cout << endl;
+		// cout << "p" << id << " rbuf = ";
+		// for (int q = 0; q < PRMT2; q++) {
+		// 	cout << rbuf[q] << ',';
+		// }
+		// cout << endl;
+
+		// blast the new rbuf into the border values of setPtr?
 
 		if (m && i % m == 0) {
 			remove_pad(setPtr, Yt, PW, PH);
