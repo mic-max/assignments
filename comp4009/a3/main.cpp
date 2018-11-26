@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <iomanip>
 #include "mpi.h"
 // #include "cxxopts.hpp"
 #include "util.cpp"
@@ -21,7 +20,7 @@ void display(bool *X, int W, int H, ostream &os, int pad) {
 	}
 }
 
-bool import(char *file, int N2) {
+bool import(char *file, bool *X, int N2) {
 	ifstream input(file);
 	if (!input.is_open()) {
 		cout << "Input file: '" << file << "' could not be opened." << endl;
@@ -89,7 +88,6 @@ int main(int argc, char **argv) {
 	int k = stoi(argv[5]);
 	int m = stoi(argv[6]);
 
-	// Y and Z are the sections for working on the cells
 	const int N2 = N+2; // side length of original grid + 2 for padding
 	const int PW = N/p1; // number of processors that divide the data vertically
 	const int PH = N/p2; // ^^ horizontally
@@ -104,7 +102,7 @@ int main(int argc, char **argv) {
 	if (id == MASTER) {
 		X = (bool*) calloc(N2*N2, sizeof(bool));
 		// TODO handle file read error
-		bool err = import(argv[1], N2);
+		bool err = import(argv[1], X, N2);
 		if (err) {
 			// TODO kill all other mpi processes
 		}
@@ -138,6 +136,7 @@ int main(int argc, char **argv) {
 		// display(Xt, NP2, p, cout, MASTER); // data to give each processor
 	}
 
+	// Y and Z are the sections for working on the cells
 	bool Y[NP2], Z[NP2];
 	bool *curPtr = Y;
 	bool *setPtr = Z;
@@ -149,27 +148,30 @@ int main(int argc, char **argv) {
 		Xt = (bool*) realloc(Xt, N*N * sizeof(bool));
 	}
 
-	// cout << "Processor " << id << " received: ";
-	// display(Y, PW2, PH2, cout, 0);
-
-	const int PRMT = perimeter(PW, PH);
-	const int PRMT2 = perimeter(PW2, PH2);
-	bool *sbuf = (bool*) malloc((PRMT-2) * sizeof(bool));
-	bool *rbuf = (bool*) malloc(PRMT2 * sizeof(bool));
+	// const int PRMT = perimeter(PW, PH);
+	// bool *sbuf = (bool*) malloc((PRMT-2) * sizeof(bool));
+	// bool *rbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
 	int counts[p];
 	int sdispls[p];
 	int rdispls[p] = { 0 };
 
-	make_counts(counts, sdispls, id, p1, p2, N);
-	const int offsets[] = {
-		0        , 1        , PW+1,
-		PW+2     , 0        , PW+2+PH,
-		2*PH+PW+2, 2*PH+PW+3, 2*PH+2*PW+3
-	};
-	recv_displs(rdispls, offsets, id, p1, p2);
-	// cout << "p" << id << " rdispls = ";
+	make_counts(counts, rdispls, id, p1, p2, N);
+	int offsets[9];
+	get_offsets(offsets, PW, PH);
+	recv_displs(sdispls, offsets, id, p1, p2); // TODO change func
+	// cout << "p" << id << " sdispls = ";
 	// for (int q = 0; q < p; q++) {
-	// 	cout << rdispls[q] << ' ';
+	// 	cout << sdispls[q] << ' ';
+	// }
+	// cout << endl;
+	cout << "p" << id << " rdispls = ";
+	for (int q = 0; q < p; q++) {
+		cout << rdispls[q] << ' ';
+	}
+	cout << endl;
+	// cout << "p" << id << " counts = ";
+	// for (int q = 0; q < p; q++) {
+	// 	cout << counts[q] << ' ';
 	// }
 	// cout << endl;
 
@@ -181,32 +183,30 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		// curPtr or setPtr which should now contain the new values
-		// bool edge[PRMT-4];
-		// get_edges(, edge, PW2, PW, PH);
-		create_halo(curPtr, sbuf, PW, PH, N);
+		// create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
 
 		// Prints the processor's sent buffer
-		cout << "p" << id << " sbuf = ";
-		for (int q = 0; q < PRMT+4; q++) {
-			cout << sbuf[q];
-		}
-		cout << endl;
+		// cout << "p" << id << " sbuf = ";
+		// for (int q = 0; q < PRMT-2; q++) {
+		// 	cout << sbuf[q];
+		// }
+		// cout << endl;
 
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
-			sbuf, counts, sdispls, MPI::BOOL,
-			rbuf, counts, rdispls, MPI::BOOL
+			curPtr, counts, sdispls, MPI::BOOL,
+			setPtr, counts, rdispls, MPI::BOOL
 		);
 
 		// Prints the processor's received buffer
 		// cout << "p" << id << " rbuf = ";
-		// for (int q = 0; q < PRMT2; q++) {
+		// for (int q = 0; q < PRMT+4; q++) {
 		// 	cout << rbuf[q] << ',';
 		// }
 		// cout << endl;
 
 		// blast the new rbuf into the border values of setPtr?
+		// overwrite_halo(curPtr, rbuf);
 
 		if (m && i % m == 0) {
 			remove_pad(setPtr, Yt, PW, PH);
