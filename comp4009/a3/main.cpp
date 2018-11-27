@@ -37,18 +37,6 @@ bool import(char *file, int N2) {
 	return false;
 }
 
-// fill Yt with segments base data values
-// ie. Y[1,1]..Y[NW-1, NH-1]
-void remove_pad(bool *Y, bool *Yt, int PW, int PH) {
-	const int PW2 = PW + 2;
-	for (int i = 0; i < PH; i++) {
-		for (int j = 0; j < PW; j++) {
-			// cout << i*PW + j << " --> " << (i+1)*PW2 + j+1 << endl;
-			Yt[i*PW + j] = Y[(i+1)*PW2 + j+1];
-		}
-	}
-}
-
 void convert(bool *X, bool *Xt, int N, int p1, int p2) {
 	int NP = (N*N) / (p1*p2);
 	int PW = N/p1;
@@ -134,6 +122,7 @@ int main(int argc, char **argv) {
 	bool *curPtr = Y;
 	bool *setPtr = Z;
 	// p0 send entire segment and its padding to respective processor
+	// TODO make this not send the padding
 	MPI::COMM_WORLD.Scatter(Xt, NP2, MPI::BOOL, Y, NP2, MPI::BOOL, MASTER);
 
 	if (id == MASTER) {
@@ -156,13 +145,6 @@ int main(int argc, char **argv) {
 	send_displs(rdispls, offsets, id, p1, p2);
 
 	for (int i = 0; i < k; i++) {
-		// for (int y = 0; y < PH; y++) {
-		// 	for (int x = 0; x < PW; x++) {
-		// 		int offset = (y+1)*PW2 + (x+1);
-		// 		evolve(curPtr, setPtr, offset, PW2);
-		// 	}
-		// }
-
 		create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
 
 		// share borders with neighbours
@@ -171,12 +153,14 @@ int main(int argc, char **argv) {
 			rbuf, counts, rdispls, MPI::BOOL
 		);
 
-		MPI::COMM_WORLD.Barrier();
-
 		overwrite_halo(curPtr, rbuf, counts, rdispls, id, p1, p2, PW2, PH2);
-		cout << "curptr: " << id << endl;
-		display(curPtr, PW2, PH2, cout, 0);
-		cout << endl;
+
+		for (int y = 0; y < PH; y++) {
+			for (int x = 0; x < PW; x++) {
+				int offset = (y+1)*PW2 + (x+1);
+				evolve(curPtr, setPtr, offset, PW2);
+			}
+		}
 
 		// if (m && i % m == 0) {
 			remove_pad(curPtr, Yt, PW, PH);
@@ -185,7 +169,7 @@ int main(int argc, char **argv) {
 				cout << "---------------" << endl;
 				cout << "Generation: " << i + 1 << endl;
 				convert(X, Xt, N, p1, p2);
-				display(X, N, N, output, 0);
+				display(X, N, N, cout, 0);
 			}
 		// }
 

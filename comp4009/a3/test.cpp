@@ -81,6 +81,30 @@ TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
 	}
 }
 
+TEST_CASE ( "Remove padding" , "[remove_pad]" ) {
+	bool abuf[16];
+	const bool a[] = {
+		0,0,0,0,0,0,
+		0,1,0,1,1,0,
+		0,0,0,1,0,0,
+		0,1,0,0,0,0,
+		0,1,1,1,0,0,
+		0,0,0,0,0,0
+	};
+
+	const bool exp[] = {
+		1,0,1,1,
+		0,0,1,0,
+		1,0,0,0,
+		1,1,1,0
+	};
+
+	remove_pad(a, abuf, 4, 4);
+	for (int i = 0; i < 16; i++) {
+		REQUIRE ( abuf[i] == exp[i] );
+	}
+}
+
 TEST_CASE ( "Counts to send/receive", "[make_counts]" ) {
 	const int P = 4;
 	const int p1 = 2;
@@ -111,8 +135,8 @@ TEST_CASE ( "Send buffer displacements" "[]" ) {
 	int exp[P][P] = {
 		{ 0, 4, 13, 18 },
 		{ 9, 0, 13, 13 },
-		{ 0, 4,  0, 4  },
-		{ 0, 0,  9, 0  },
+		{ 0, 4,  0,  4 },
+		{ 0, 0,  9,  0 },
 	};
 
 	for (int i = 0; i < P; i++) {
@@ -133,8 +157,8 @@ TEST_CASE ( "Receive buffer displacements" "[]" ) {
 	int exp[P][P] = {
 		{ 0, 12, 18, 23 },
 		{ 7,  0, 17, 18 },
-		{ 1,  6, 0 , 12 },
-		{ 0,  1, 7 , 0  },
+		{ 1,  6,  0, 12 },
+		{ 0,  1,  7,  0 },
 	};
 
 	for (int i = 0; i < P; i++) {

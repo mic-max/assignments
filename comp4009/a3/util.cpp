@@ -21,6 +21,16 @@ unsigned int perimeter(int w, int h) {
 	return (w+h) * 2;
 }
 
+// fill Yt with segments base data values
+// ie. Y[1,1]..Y[NW-1, NH-1]
+void remove_pad(const bool *X, bool *Xt, int W, int H) {
+	const int W2 = W+2;
+	for (int i = 0; i < H; i++) {
+		for (int j = 0; j < W; j++)
+			Xt[i*W + j] = X[(i+1)*W2 + j+1];
+	}
+}
+
 void create_halo(const bool *X, bool *buf, int N, int W, int H) {
 	int cur = 0;
 	for (int i = 0; i < W; i++) // top
@@ -70,7 +80,7 @@ void send_displs(int *displs, const int *offs, int id, int p1, int p2) {
 
 void get_offsets(int *offs, int W, int H) {
 	offs[0] = 0;
-	offs[1] = 0; // +1
+	offs[1] = 0;
 	offs[2] = W-1;
 	offs[3] = W+H-1;
 	offs[4] = 0;
