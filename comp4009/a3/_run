@@ -11,3 +11,11 @@ mpiexec -np 4 --hostfile _hostfile life data/input1.txt 10 2 2 1 1
 # for dest in $(_hostfile); do
 #   scp ourfile.txt "$dest:remote/path/"
 # done
+
+#!/bin/bash
+# for i in `seq 1 10`; do
+# 	for j in `seq 1 10`; do
+# 		echo -n $((RANDOM % 2))
+# 	done
+# 	echo
+# done
