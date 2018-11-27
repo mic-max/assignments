@@ -72,7 +72,7 @@ void send_displs(int *displs, const int *offs, int id, int p1, int p2) {
 
 void get_offsets(int *offs, int W, int H) {
 	offs[0] = 0;
-	offs[1] = 0;
+	offs[1] = 0; // +1
 	offs[2] = W-1;
 	offs[3] = W+H-1;
 	offs[4] = 0;
@@ -80,6 +80,18 @@ void get_offsets(int *offs, int W, int H) {
 	offs[6] = 2*H+W-2;
 	offs[7] = 2*H+W-2;
 	offs[8] = 2*H+2*W-2;
+}
+
+void get_offsets_r(int *offs, int W, int H) {
+	offs[0] = 0;
+	offs[1] = 1;
+	offs[2] = W-1;
+	offs[3] = W;
+	offs[4] = 0;
+	offs[5] = W+H-2;
+	offs[6] = 2*H+W-4;
+	offs[7] = 2*H+W-3;
+	offs[8] = 2*H+2*W-5;
 }
 
 /*

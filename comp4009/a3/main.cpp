@@ -156,16 +156,18 @@ int main(int argc, char **argv) {
 	int offsets[9];
 	get_offsets(offsets, PW, PH);
 	send_displs(sdispls, offsets, id, p1, p2);
-	// cout << "p" << id << " rdispls = ";
-	// for (int q = 0; q < p; q++) {
-	// 	cout << rdispls[q] << ' ';
-	// }
-	// cout << endl;
-	cout << "p" << id << " sdispls = ";
+	get_offsets_r(offsets, PW2, PH2);
+	send_displs(rdispls, offsets, id, p1, p2);
+	cout << "p" << id << " rdispls = ";
 	for (int q = 0; q < p; q++) {
-		cout << sdispls[q] << ' ';
+		cout << rdispls[q] << ' ';
 	}
 	cout << endl;
+	// cout << "p" << id << " sdispls = ";
+	// for (int q = 0; q < p; q++) {
+	// 	cout << sdispls[q] << ' ';
+	// }
+	// cout << endl;
 
 	for (int i = 0; i < k; i++) {
 		for (int y = 0; y < PH; y++) {
