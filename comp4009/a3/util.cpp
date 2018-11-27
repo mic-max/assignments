@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 unsigned int neighbours(const bool *spot, int N) {
 	unsigned int nb = 0;
@@ -21,8 +20,6 @@ unsigned int perimeter(int w, int h) {
 	return (w+h) * 2;
 }
 
-// fill Yt with segments base data values
-// ie. Y[1,1]..Y[NW-1, NH-1]
 void remove_pad(const bool *X, bool *Xt, int W, int H) {
 	const int W2 = W+2;
 	for (int i = 0; i < H; i++) {
@@ -62,7 +59,7 @@ void make_counts(int *counts, int id, int p1, int p2, int N) {
 	}
 }
 
-void send_displs(int *displs, const int *offs, int id, int p1, int p2) {
+void make_displs(int *displs, const int *offs, int id, int p1, int p2) {
 	int x = id % p1;
 	int y = id / p1;
 

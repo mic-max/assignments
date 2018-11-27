@@ -37,7 +37,8 @@ bool import(char *file, int N2) {
 	return false;
 }
 
-void convert(bool *X, bool *Xt, int N, int p1, int p2) {
+// converts 
+void convert(bool *X, const bool *Xt, int N, int p1, int p2) {
 	int NP = (N*N) / (p1*p2);
 	int PW = N/p1;
 	int PH = N/p2;
@@ -123,7 +124,7 @@ int main(int argc, char **argv) {
 	bool *setPtr = Z;
 	// p0 send entire segment and its padding to respective processor
 	// TODO make this not send the padding
-	MPI::COMM_WORLD.Scatter(Xt, NP2, MPI::BOOL, Y, NP2, MPI::BOOL, MASTER);
+	MPI::COMM_WORLD.Scatter(Xt, NP, MPI::BOOL, Y, NP, MPI::BOOL, MASTER);
 
 	if (id == MASTER) {
 		X = (bool*) realloc(X, N*N * sizeof(bool));
@@ -140,12 +141,35 @@ int main(int argc, char **argv) {
 	make_counts(counts, id, p1, p2, N);
 	int offsets[9];
 	get_offsets(offsets, PW, PH);
-	send_displs(sdispls, offsets, id, p1, p2);
+	make_displs(sdispls, offsets, id, p1, p2);
 	get_offsets_r(offsets, PW2, PH2);
-	send_displs(rdispls, offsets, id, p1, p2);
+	make_displs(rdispls, offsets, id, p1, p2);
+
+	// cout << "p" << id << " sdispls = ";
+	// for (int i = 0; i < p; i++)
+	// 	cout << sdispls[i] << ".";
+	// cout << endl;
+	// cout << "p" << id << " rdispls = ";
+	// for (int i = 0; i < p; i++)
+	// 	cout << rdispls[i] << ".";
+	// cout << endl;
+	// cout << "p" << id << " counts = ";
+	// for (int i = 0; i < p; i++)
+	// 	cout << counts[i] << ".";
+	// cout << endl;
 
 	for (int i = 0; i < k; i++) {
+		// for (int y = 0; y < PH; y++) {
+		// 	for (int x = 0; x < PW; x++) {
+		// 		int offset = (y+1)*PW2 + (x+1);
+		// 		evolve(curPtr, setPtr, offset, PW2);
+		// 	}
+		// }
 		create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
+		cout << "p" << id << " sbuf = ";
+		for (int i = 0; i < PRMT-2; i++)
+			cout << sbuf[i] << ".";
+		cout << endl;
 
 		// share borders with neighbours
 		MPI::COMM_WORLD.Alltoallv(
@@ -153,14 +177,14 @@ int main(int argc, char **argv) {
 			rbuf, counts, rdispls, MPI::BOOL
 		);
 
+		MPI::COMM_WORLD.Barrier();
+		cout << "p" << id << " rbuf = ";
+		for (int i = 0; i < PRMT+4; i++)
+			cout << rbuf[i] << ".";
+		cout << endl;
+
 		overwrite_halo(curPtr, rbuf, counts, rdispls, id, p1, p2, PW2, PH2);
 
-		for (int y = 0; y < PH; y++) {
-			for (int x = 0; x < PW; x++) {
-				int offset = (y+1)*PW2 + (x+1);
-				evolve(curPtr, setPtr, offset, PW2);
-			}
-		}
 
 		// if (m && i % m == 0) {
 			remove_pad(curPtr, Yt, PW, PH);

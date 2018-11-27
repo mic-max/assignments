@@ -64,14 +64,14 @@ TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
 		0,1,0,1,1,0,
 		0,0,0,1,0,0,
 		0,1,0,0,0,0,
-		0,1,1,1,0,0,
+		0,0,1,1,0,0,
 		0,0,0,0,0,0
 	};
 
 	const bool exp[] = {
 		1,0,1,1, // top
 		0,0,0,   // right
-		1,0,1,1, // left
+		1,0,1,0, // left
 		1,1,0    // bottom
 	};
 
@@ -140,7 +140,7 @@ TEST_CASE ( "Send buffer displacements" "[]" ) {
 	};
 
 	for (int i = 0; i < P; i++) {
-		send_displs(displ[i], offsets, i, p1, p2);
+		make_displs(displ[i], offsets, i, p1, p2);
 		for (int j = 0; j < P; j++) {
 			REQUIRE ( displ[i][j] == exp[i][j] );
 		}
@@ -162,7 +162,7 @@ TEST_CASE ( "Receive buffer displacements" "[]" ) {
 	};
 
 	for (int i = 0; i < P; i++) {
-		send_displs(displ[i], offsets, i, p1, p2);
+		make_displs(displ[i], offsets, i, p1, p2);
 		for (int j = 0; j < P; j++) {
 			REQUIRE ( displ[i][j] == exp[i][j] );
 		}
