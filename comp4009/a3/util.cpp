@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned int neighbours(const bool *spot, int N) {
 	unsigned int nb = 0;
@@ -32,10 +33,9 @@ void create_halo(const bool *X, bool *buf, int N, int W, int H) {
 		buf[cur++] = X[i + N*(H-1)];
 }
 
-void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
+void make_counts(int *counts, int id, int p1, int p2, int N) {
 	int x = id % p1;
 	int y = id / p1;
-	int cur = 0;
 	for (int pi = 0; pi < p1; pi++) {
  		for (int pj = 0; pj < p2; pj++) {
 			int val = 0;
@@ -48,8 +48,6 @@ void make_counts(int *counts, int *displ, int id, int p1, int p2, int N) {
 
 			int i = pi*p2 + pj;
 			counts[i] = val;
-			displ[i] = cur;
-			cur += val;
 		}
 	}
 }
@@ -94,39 +92,21 @@ void get_offsets_r(int *offs, int W, int H) {
 	offs[8] = 2*H+2*W-5;
 }
 
-/*
-void recv_counts(int *rcounts, int id, int p1, int p2, int N) {
+void overwrite_halo(bool *X, const bool *rbuf, int *counts, int *rdispls, int id, int p1, int p2, int W, int H) {
 	int x = id % p1;
 	int y = id / p1;
 
-	bool is_top   = y == 0;
-	bool is_bot   = y == p2-1;
-	bool is_left  = x == 0;
-	bool is_right = x == p1-1;
-
-	const int W = N/p1;
-	const int H = N/p2;
-	
-	// special cases: tl, top, tr, left, right, bl, bot, br
-	// make sure these cases are covered
-	// i.e.
-	// 	x == 0 || x == p1-1
-	// 	[AND -> corner], [OR -> edge]
-	// 	y == 0 || y == p2-1
-
-	// set values to zero by using calloc.
-	// memset(rcounts, 0, p1*p2); // initialize with all zeroes
-
-	for (int pi = y-1; pi < y+1; pi++) {
-		for (int pj = x-1; pj < x+1; pj++) {
+	int cur = -1;
+	const int offsets[9] = { 0, 1, W-1, W, 0, 2*W-1, W*(H-1), W*(H-1)+1, W*H-1 };
+	const int inks[9] = {0, 1, 0, H, 0, H, 0, 1, 0};
+	for (int pi = y-1; pi <= y+1; pi++) {
+		for (int pj = x-1; pj <= x+1; pj++) {
 			int i = pi*p2 + pj;
-			int val = 1;
-			if (!is_top && pi == y-1 || !is_bot && pi == y+1) // above OR below
-				val = W;
-			else if(!is_left && pj == x-1 || !is_right && pj == x+1) // left OR right
-				val = H;
-			rcounts[i] = val;
+			cur++;
+			if (pi < 0 || pi >= p2 || pj < 0 || pj >= p1 || counts[i] == 0)
+				continue;
+			for (int z = 0; z < counts[i]; z++)
+				X[offsets[cur] + z*inks[cur]] = rbuf[rdispls[i] + z];
 		}
 	}
 }
-*/

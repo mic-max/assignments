@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include "mpi.h"
-// #include "cxxopts.hpp"
 #include "util.cpp"
 
 #define MASTER 0
@@ -109,7 +108,6 @@ int main(int argc, char **argv) {
 
 		if (m) output.open("output.txt");
 		display(X, N, N, cout, 1);
-		// display(X, N2, N2, cout, 0);
 
 		cout << "--- The number of processes is " << p << endl;
 		wtime = MPI::Wtime();
@@ -126,12 +124,10 @@ int main(int argc, char **argv) {
 					int Xt_p = NP2 * (pi * p2 + pj) + i;
 					int X_p = (y * N2 + x) + (pj * PW) + (pi * PH * N2);
 					Xt[Xt_p] = X[X_p];
-					// cout << Xt_p << " --> " << X_p << endl;
 				}
 			}
 		}
 		// convert(Xt, X, N2, p1, p2); // try to reuse this function
-		// display(Xt, NP2, p, cout, MASTER); // data to give each processor
 	}
 
 	bool Y[NP2], Z[NP2];
@@ -146,72 +142,52 @@ int main(int argc, char **argv) {
 	}
 
 	const int PRMT = perimeter(PW, PH);
-	bool *sbuf = (bool*) malloc((PRMT-2) * sizeof(bool));
-	bool *rbuf = (bool*) malloc((PRMT+4) * sizeof(bool));
-	int counts[p];
+	bool *sbuf = (bool*) calloc(PRMT-2, sizeof(bool));
+	bool *rbuf = (bool*) calloc(PRMT+4, sizeof(bool));
+	int counts[p] = { 0 }; // TODO improve make counts func
 	int sdispls[p] = { 0 };
 	int rdispls[p] = { 0 };
 
-	make_counts(counts, rdispls, id, p1, p2, N);
+	make_counts(counts, id, p1, p2, N);
 	int offsets[9];
 	get_offsets(offsets, PW, PH);
 	send_displs(sdispls, offsets, id, p1, p2);
 	get_offsets_r(offsets, PW2, PH2);
 	send_displs(rdispls, offsets, id, p1, p2);
-	cout << "p" << id << " rdispls = ";
-	for (int q = 0; q < p; q++) {
-		cout << rdispls[q] << ' ';
-	}
-	cout << endl;
-	// cout << "p" << id << " sdispls = ";
-	// for (int q = 0; q < p; q++) {
-	// 	cout << sdispls[q] << ' ';
-	// }
-	// cout << endl;
 
 	for (int i = 0; i < k; i++) {
-		for (int y = 0; y < PH; y++) {
-			for (int x = 0; x < PW; x++) {
-				int offset = (y+1)*PW2 + (x+1);
-				evolve(curPtr, setPtr, offset, PW2);
-			}
-		}
+		// for (int y = 0; y < PH; y++) {
+		// 	for (int x = 0; x < PW; x++) {
+		// 		int offset = (y+1)*PW2 + (x+1);
+		// 		evolve(curPtr, setPtr, offset, PW2);
+		// 	}
+		// }
 
 		create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
 
-		// Prints the processor's sent buffer
-		cout << "p" << id << " sbuf = ";
-		for (int q = 0; q < PRMT-2; q++) {
-			cout << sbuf[q];
-		}
+		// share borders with neighbours
+		MPI::COMM_WORLD.Alltoallv(
+			sbuf, counts, sdispls, MPI::BOOL,
+			rbuf, counts, rdispls, MPI::BOOL
+		);
+
+		MPI::COMM_WORLD.Barrier();
+
+		overwrite_halo(curPtr, rbuf, counts, rdispls, id, p1, p2, PW2, PH2);
+		cout << "curptr: " << id << endl;
+		display(curPtr, PW2, PH2, cout, 0);
 		cout << endl;
 
-		// share borders with neighbours
-		// MPI::COMM_WORLD.Alltoallv(
-		// 	sbuf, counts, sdispls, MPI::BOOL,
-		// 	rbuf, counts, rdispls, MPI::BOOL
-		// );
-
-		// Prints the processor's received buffer
-		// cout << "p" << id << " rbuf = ";
-		// for (int q = 0; q < PRMT2; q++) {
-		// 	cout << rbuf[q] << ',';
-		// }
-		// cout << endl;
-
-		// blast the new rbuf into the border values of setPtr?
-
-		if (m && i % m == 0) {
-			remove_pad(setPtr, Yt, PW, PH);
-			// display(Yt, PW, PH, cout, 0);
+		// if (m && i % m == 0) {
+			remove_pad(curPtr, Yt, PW, PH);
 			MPI::COMM_WORLD.Gather(Yt, NP, MPI::BOOL, Xt, NP, MPI::BOOL, MASTER);
 			if (id == MASTER) {
 				cout << "---------------" << endl;
 				cout << "Generation: " << i + 1 << endl;
 				convert(X, Xt, N, p1, p2);
-				display(X, N, N, cout, 0);
+				display(X, N, N, output, 0);
 			}
-		}
+		// }
 
 		swap(curPtr, setPtr);
 	}
