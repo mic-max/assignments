@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -e output.txt ] && rm output.txt
+rm -rf output.txt
 mpiexec -np 4 --hostfile _hostfile life data/input1.txt 10 2 2 1 1
 # diff output.txt data/output1.txt
 # mpiexec -np 4 --hostfile _hostfile life data/input2.txt 20 2 2 1 1
