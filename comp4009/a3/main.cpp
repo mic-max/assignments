@@ -19,7 +19,7 @@ void display(const bool *X, int W, int H, ostream &os, int pad) {
 	}
 }
 
-bool import(char *file, bool *X, int N2) {
+bool import(char *file, int N2) {
 	ifstream input(file);
 	if (!input.is_open()) {
 		cout << "Input file: '" << file << "' could not be opened." << endl;
