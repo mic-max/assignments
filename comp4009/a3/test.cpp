@@ -212,7 +212,7 @@ TEST_CASE ( "Send buffer displacements" "[make_displs]" ) {
 	int offsets[9];
 	get_offsets(offsets, 5, 5);
 	int exp[P][P] = {
-		{ 0, 4, 13, 18 },
+		{ 0, 4, 13, 17 },
 		{ 9, 0, 13, 13 },
 		{ 0, 4,  0,  4 },
 		{ 0, 0,  9,  0 },

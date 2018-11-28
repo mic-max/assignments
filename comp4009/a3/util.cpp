@@ -115,7 +115,7 @@ void get_offsets(int *offs, int W, int H) {
 	offs[5] = W-1;
 	offs[6] = 2*H+W-2;
 	offs[7] = 2*H+W-2;
-	offs[8] = 2*H+2*W-2;
+	offs[8] = 2*H+2*W-3;
 }
 
 void get_offsets_r(int *offs, int W, int H) {
