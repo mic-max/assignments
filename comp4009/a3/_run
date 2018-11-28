@@ -1,13 +1,25 @@
 #!/bin/sh
 
-[ -e output.txt ] && rm output.txt
-mpiexec -np 4 --hostfile _hostfile life data/input1.txt 10 2 2 1 1
-# diff output.txt data/output1.txt
-# mpiexec -np 4 --hostfile _hostfile life data/input2.txt 20 2 2 1 1
-# mpiexec -np 4 --hostfile _hostfile life data/input3.txt 20 2 2 1 1
+rm -rf output.txt
+mpiexec -np 1 --hostfile _hostfile life data/input1.txt 10 1 1 10 1
+# diff output.txt data/output1.txt -q
 
-# gdb --args life data/input1.txt 10 2 2 1 1
+# rm -rf output.txt
+# mpiexec -np 4 --hostfile _hostfile life data/input2.txt 20 2 2 10 1
+# diff output.txt data/output2.txt -q
+
+# rm -rf output.txt
+# mpiexec -np 4 --hostfile _hostfile life data/input3.txt 20 2 2 10 1
+# diff output.txt data/output3.txt -q
 
 # for dest in $(_hostfile); do
 #   scp ourfile.txt "$dest:remote/path/"
+# done
+
+#!/bin/bash
+# for i in `seq 1 10`; do
+# 	for j in `seq 1 10`; do
+# 		echo -n $((RANDOM % 2))
+# 	done
+# 	echo
 # done
