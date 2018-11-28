@@ -204,7 +204,7 @@ TEST_CASE ( "Counts to send/receive", "[make_counts]" ) {
 	}
 }
 
-TEST_CASE ( "Send buffer displacements" "[]" ) {
+TEST_CASE ( "Send buffer displacements" "[make_displs]" ) {
 	const int P = 4;
 	const int p1 = 2;
 	const int p2 = 2;
@@ -226,7 +226,7 @@ TEST_CASE ( "Send buffer displacements" "[]" ) {
 	}
 }
 
-TEST_CASE ( "Receive buffer displacements", "[recv_displs]" ) {
+TEST_CASE ( "Receive buffer displacements", "[make_displs]" ) {
 	const int P = 4;
 	const int p1 = 2;
 	const int p2 = 2;

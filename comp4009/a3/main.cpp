@@ -121,8 +121,8 @@ int main(int argc, char **argv) {
 	for (int gen = 1; gen <= k; gen++) {
 		create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
 		MPI::COMM_WORLD.Alltoallv(
-			curPtr, counts, sdispls, MPI::BOOL,
-			setPtr, counts, rdispls, MPI::BOOL
+			sbuf, counts, sdispls, MPI::BOOL,
+			rbuf, counts, rdispls, MPI::BOOL
 		);
 		overwrite_halo(curPtr, rbuf, counts, rdispls, id, p1, p2, PW2, PH2);
 
