@@ -1,25 +1,28 @@
 #!/bin/sh
 
+echo "--------------------------------------------"
 rm -rf output.txt
 mpiexec -np 4 --hostfile _hostfile life data/input1.txt 10 2 2 10 10
 diff output.txt data/output1.txt -q
 
-# rm -rf output.txt
-# mpiexec -np 4 --hostfile _hostfile life data/input2.txt 20 2 2 10 1
-# diff output.txt data/output2.txt -q
+echo "--------------------------------------------"
+rm -rf output.txt
+mpiexec -np 4 --hostfile _hostfile life data/input2.txt 20 2 2 10 10
+diff output.txt data/output2.txt -q
 
-# rm -rf output.txt
-# mpiexec -np 4 --hostfile _hostfile life data/input3.txt 20 2 2 10 1
-# diff output.txt data/output3.txt -q
+echo "--------------------------------------------"
+rm -rf output.txt
+mpiexec -np 4 --hostfile _hostfile life data/input3.txt 20 2 2 10 10
+diff output.txt data/output3.txt -q
+
+echo "--------------------------------------------"
+mpiexec -np 4 --hostfile _hostfile life data/input4.txt 1000 2 2 100 0
+
+echo "--------------------------------------------"
 
 # for dest in $(_hostfile); do
 #   scp ourfile.txt "$dest:remote/path/"
 # done
 
-#!/bin/bash
-# for i in `seq 1 10`; do
-# 	for j in `seq 1 10`; do
-# 		echo -n $((RANDOM % 2))
-# 	done
-# 	echo
-# done
+# To create a 1000x1000 file of 0s and 1s randomly.
+# ./gen.sh 1000 > data/input4.txt

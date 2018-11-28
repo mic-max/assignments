@@ -1,6 +1,7 @@
 MPI=mpiCC
 CC=g++
 CFLAGS=-Wall -std=c++11
+# -DDEBUG -g
 
 life: main.cpp util.o
 	$(MPI) main.cpp -o $@ $(CFLAGS)

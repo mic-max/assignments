@@ -80,9 +80,12 @@ int main(int argc, char **argv) {
 		if (err) MPI::COMM_WORLD.Abort(1);
 		if (m) output.open("output.txt");
 
-		cout << "--- The number of processes is " << p << endl;
+		cout << "MPI Settings: p = " << p << ", p1 = " << p1 << ", p2 = " << p2 << endl;
+		cout << "Game of Life: N = " << N << ", k = " << k << ", m = " << m << endl;
+		#ifdef DEBUG
 		cout << "Generation: 0" << endl;
 		display(X, N, N, cout, 1);
+		#endif
 
 		wtime = MPI::Wtime();
 
@@ -138,10 +141,13 @@ int main(int argc, char **argv) {
 				Xt, NP, MPI::BOOL, MASTER
 			);
 			if (id == MASTER) {
+				convert(X, Xt, N, p1, p2, false);
+				#ifdef DEBUG
 				cout << "---------------" << endl;
 				cout << "Generation: " << gen << endl;
-				convert(X, Xt, N, p1, p2, false);
 				display(X, N, N, cout, 0);
+				#endif
+				display(X, N, N, output, 0);
 			}
 		}
 
