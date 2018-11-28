@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned int neighbours(const bool *spot, int N) {
 	unsigned int nb = 0;
@@ -25,6 +26,15 @@ void remove_pad(const bool *X, bool *Xt, int W, int H) {
 	for (int i = 0; i < H; i++) {
 		for (int j = 0; j < W; j++)
 			Xt[i*W + j] = X[(i+1)*W2 + j+1];
+	}
+}
+
+void add_pad(bool *X, int W, int H) {
+	for (int i = H-1; i >= 0; i--) {
+		for (int j = W-1; j >= 0; j--) {
+			X[(i+1)*(W+2) + (j+1)] = X[i*W + j];
+			X[i*W + j] = 0;
+		}
 	}
 }
 
@@ -55,6 +65,28 @@ void make_counts(int *counts, int id, int p1, int p2, int N) {
 
 			int i = pi*p2 + pj;
 			counts[i] = val;
+		}
+	}
+}
+
+// Xt will have all quadrants of X sequentially
+void convert(bool *X, bool *Xt, int N, int p1, int p2, bool to) {
+	int NP = (N*N) / (p1*p2);
+	int PW = N/p1;
+	int PH = N/p2;
+	for (int pi = 0; pi < p1; pi++) {
+		for (int pj = 0; pj < p2; pj++) {
+			int offset = pi*p1*NP + pj*NP;
+			for (int y = 0; y < PH; y++) {
+				for (int x = 0; x < PW; x++) {
+					int Xt_p = offset + y * PW + x;
+					int X_p = (y * N + x) + (pj * PW) + (pi * PH * N);
+					if (to)
+						Xt[Xt_p] = X[X_p];
+					else
+						X[X_p] = Xt[Xt_p];
+				}
+			}
 		}
 	}
 }

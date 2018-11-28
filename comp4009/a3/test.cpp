@@ -81,6 +81,61 @@ TEST_CASE( "Halo of a rectangle", "[create_halo]" ) {
 	}
 }
 
+TEST_CASE ( "Convert quadrants sequentially", "[convert]" ) {
+	bool abuf[16];
+	bool a[] = {
+		1,0,1,1,
+		0,0,1,0,
+		1,0,0,0,
+		1,1,1,0
+	};
+	const bool exp[] = {
+		1,0,0,0,
+		1,1,1,0,
+		1,0,1,1,
+		0,0,1,0
+	};
+	convert(a, abuf, 4, 2, 2, true);
+
+	for (int i = 0; i < 16; i++) {
+		REQUIRE ( abuf[i] == exp[i] );
+	}
+}
+
+TEST_CASE ( "Convert sequential to quadrants", "[convert]" ) {
+	bool abuf[100];
+	bool a[] = {
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,1,0,0,0,1,0,
+		0,0,1,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,
+		1,0,0,0,0,0,1,0,0,0,
+		0,0,0,1,0,0,0,0,0,1,
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,1,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0
+	};
+	const bool exp[] = {
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,1,0,0,0,0,0,
+		0,0,0,1,0,1,0,0,0,0,
+		0,0,1,0,0,0,1,0,0,0,
+		0,0,0,1,0,1,0,0,0,0,
+		0,0,0,0,1,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0
+	};
+	convert(abuf, a, 10, 2, 2, false);
+
+	for (int i = 0; i < 100; i++) {
+		REQUIRE ( abuf[i] == exp[i] );
+	}
+}
+
+
 TEST_CASE ( "Remove padding" , "[remove_pad]" ) {
 	bool abuf[16];
 	const bool a[] = {
@@ -102,6 +157,30 @@ TEST_CASE ( "Remove padding" , "[remove_pad]" ) {
 	remove_pad(a, abuf, 4, 4);
 	for (int i = 0; i < 16; i++) {
 		REQUIRE ( abuf[i] == exp[i] );
+	}
+}
+
+TEST_CASE ( "Add padding" , "[add_pad]" ) {
+	bool a[36] = {
+		1,0,1,1,
+		0,0,1,0,
+		1,0,0,0,
+		1,1,1,0
+	};
+	const bool exp[] = {
+		0,0,0,0,0,0,
+		0,1,0,1,1,0,
+		0,0,0,1,0,0,
+		0,1,0,0,0,0,
+		0,1,1,1,0,0,
+		0,0,0,0,0,0
+	};
+
+	// does not care about border values
+	add_pad(a, 4, 4);
+	for (int i = 1; i <= 4; i++) {
+		for (int j = 1; j <= 4; j++)
+			REQUIRE ( a[i*6 + j] == exp[i*6 + j] );
 	}
 }
 
