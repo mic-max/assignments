@@ -18,6 +18,9 @@ test.cpp:
 
 compile: $ make
 execute: $ ./_run
+	The output generated from each run is deleted or else it will append the files.
+	However, they are identical to the ones in the data directory proven by the
+	diff command executing without displaying any errors to the console.
 
 
 Example output:
