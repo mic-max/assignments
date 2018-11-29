@@ -25,6 +25,8 @@ int main(int argc, char **argv) {
 	// Sort
 
 	wtime = MPI::Wtime() - wtime;
+	// Write data to file
+
 	cout << "Time Elapsed: " << wtime << " seconds." << endl;
 
 	MPI::Finalize();
