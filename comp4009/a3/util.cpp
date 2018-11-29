@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+// Returns the number of neighbours spot has
+// N is the total width, including padding of the "2D" array
 unsigned int neighbours(const bool *spot, int N) {
 	unsigned int nb = 0;
 	for (int i = -1; i <= 1; i++) {
@@ -11,15 +13,18 @@ unsigned int neighbours(const bool *spot, int N) {
 	return nb;
 }
 
+// Sets next equal to the next evolution of what spot should become
 void evolve(const bool *spot, bool *next, int offset, int N) {
 	unsigned int nb = neighbours(spot+offset, N);
 	next[offset] = (nb == 3) || (nb == 2 && spot[offset]);
 }
 
+// Calculates perimeter of a rectangle
 unsigned int perimeter(int w, int h) {
 	return (w+h) * 2;
 }
 
+// Writes X to Xt except the bordering 1 cell
 void remove_pad(const bool *X, bool *Xt, int W, int H) {
 	const int W2 = W+2;
 	for (int i = 0; i < H; i++) {
@@ -28,6 +33,9 @@ void remove_pad(const bool *X, bool *Xt, int W, int H) {
 	}
 }
 
+// Opposite of remove pad
+// Values originally in X will be set to 0
+// Values that were not specified will remain unchanged!
 void add_pad(bool *X, int W, int H) {
 	for (int i = H-1; i >= 0; i--) {
 		for (int j = W-1; j >= 0; j--) {
@@ -37,6 +45,10 @@ void add_pad(bool *X, int W, int H) {
 	}
 }
 
+// Writes the outside edge of a rectangle to a buffer
+// The order of edges is important: top - right - left - bottom
+// This order was used because the processor -1,-1 from the current will 
+// be given the top left value, and it follows that pattern.
 void create_halo(const bool *X, bool *buf, int N, int W, int H) {
 	int cur = 0;
 	for (int i = 0; i < W; i++) // top
@@ -49,6 +61,9 @@ void create_halo(const bool *X, bool *buf, int N, int W, int H) {
 		buf[cur++] = X[i + N*(H-1)];
 }
 
+// Determines how many to send or receive to each processor
+// Essentially if the processor we're looking at is on the corner give 1
+// On the left or right, give it height and top or bottom, give it width
 void make_counts(int *counts, int id, int p1, int p2, int N) {
 	int x = id % p1;
 	int y = id / p1;
@@ -90,6 +105,8 @@ void convert(bool *X, bool *Xt, int N, int p1, int p2, bool to) {
 	}
 }
 
+// Creates displacements from the given offsets array
+// Having a proper offsets array is key here
 void make_displs(int *displs, const int *offs, int id, int p1, int p2) {
 	int x = id % p1;
 	int y = id / p1;
@@ -106,6 +123,7 @@ void make_displs(int *displs, const int *offs, int id, int p1, int p2) {
 	}
 }
 
+// Send offsets
 void get_offsets(int *offs, int W, int H) {
 	offs[0] = 0;
 	offs[1] = 0;
@@ -118,6 +136,8 @@ void get_offsets(int *offs, int W, int H) {
 	offs[8] = 2*H+2*W-3;
 }
 
+// Receive offsets, could switch send offsets to be the same but would
+// add extra unnecessary data transfer or memory
 void get_offsets_r(int *offs, int W, int H) {
 	offs[0] = 0;
 	offs[1] = 1;
@@ -130,6 +150,8 @@ void get_offsets_r(int *offs, int W, int H) {
 	offs[8] = 2*H+2*W-5;
 }
 
+// Overwrite the outside edge of a "2D" array with the received buffer
+// Wish that MPI had taken care of this in their implementation
 void overwrite_halo(bool *X, const bool *rbuf, int *counts, int *rdispls, int id, int p1, int p2, int W, int H) {
 	int x = id % p1;
 	int y = id / p1;

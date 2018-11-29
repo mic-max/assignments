@@ -10,6 +10,8 @@ using namespace std;
 int N;
 bool *X; // used by p0 only for storing the entire game board
 
+// Will display X in a 2D view using the given width and height
+// If a padding of 1 is used it will ignore the outside border
 void display(const bool *X, int W, int H, ostream &os, int pad) {
 	for (int i = 0; i < H; i++) {
 		for (int j = 0; j < W; j++) {
@@ -19,6 +21,7 @@ void display(const bool *X, int W, int H, ostream &os, int pad) {
 	}
 }
 
+// Reads input file into X, stores true if the character is not a '0'
 bool import(char *file, int N2) {
 	ifstream input(file);
 	if (!input.is_open()) {
@@ -74,6 +77,9 @@ int main(int argc, char **argv) {
 	bool *Xt;
 	bool Yt[NP];
 
+	// Master processor reads input file into an array
+	// Prints information about the run to standard out
+	// Prepares the data into quadrants for the other processors.
 	if (id == MASTER) {
 		X = (bool*) calloc(N2*N2, sizeof(bool));
 		bool err = import(argv[1], N2);
@@ -102,9 +108,12 @@ int main(int argc, char **argv) {
 	bool *curPtr = Y;
 	bool *setPtr = Z;
 
+	// Sends quandrant to their respective processor
 	MPI::COMM_WORLD.Scatter(Xt, NP, MPI::BOOL, curPtr, NP, MPI::BOOL, MASTER);
+	// Moves received data within its array so it has a 1 cell border
 	add_pad(curPtr, PW, PH);
 
+	// Create send and receive buffers, whose sizes depend on the perimeter
 	const int PRMT = perimeter(PW, PH);
 	bool *sbuf = (bool*) calloc(PRMT-2, sizeof(bool));
 	bool *rbuf = (bool*) calloc(PRMT+4, sizeof(bool));
@@ -113,6 +122,8 @@ int main(int argc, char **argv) {
 	int sdispls[p] = { 0 };
 	int rdispls[p] = { 0 };
 
+	// Function calls to set values of counts which are the same for sending and receiving
+	// and the displacements of the alltoallv
 	make_counts(counts, id, p1, p2, N);
 	
 	get_offsets(offs, PW, PH);
@@ -121,20 +132,28 @@ int main(int argc, char **argv) {
 	get_offsets_r(offs, PW2, PH2);
 	make_displs(rdispls, offs, id, p1, p2);
 
+	// The generation loop
 	for (int gen = 1; gen <= k; gen++) {
+		// Fills the send buffer with the processors local border
 		create_halo(curPtr+PW2+1, sbuf, PW2, PW, PH);
 		MPI::COMM_WORLD.Alltoallv(
 			sbuf, counts, sdispls, MPI::BOOL,
 			rbuf, counts, rdispls, MPI::BOOL
 		);
+		// Takes the received data from the other processors and writes it to the local array
+		// on the very outside edges, needed to perform the evolution
 		overwrite_halo(curPtr, rbuf, counts, rdispls, id, p1, p2, PW2, PH2);
 
+		// Evolve all of the local cells, (ones that have neighbours on all sides)
 		for (int i = 1; i <= PH; i++) {
 			for (int j = 1; j <= PW; j++)
 				evolve(curPtr, setPtr, i*PW2 + j, PW2);
 		}
 
+		// If the current generation is an m-th, Master processor will gather data quadrants
+		// from all the processors and write it out to a file
 		if (m && gen % m == 0) {
+			// Need to remove the padding, so we only the send the local data
 			remove_pad(setPtr, Yt, PW, PH);
 			MPI::COMM_WORLD.Gather(
 				Yt, NP, MPI::BOOL,
@@ -151,9 +170,11 @@ int main(int argc, char **argv) {
 			}
 		}
 
+		// Switch cur and set pointers so in the next generation we can evolve without conflict
 		swap(curPtr, setPtr);
 	}
 
+	// Deallocate memory and close file handles
 	free(sbuf);
 	free(rbuf);
 	if (id == MASTER) {
