@@ -1,5 +1,3 @@
 #!/bin/sh
 
-echo "--------------------------------------------"
-mpiexec -np 4 --hostfile _hostfile sort 1000
-echo "--------------------------------------------"
+mpiexec -np 2 --hostfile _hostfile distsort

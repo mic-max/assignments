@@ -3,8 +3,8 @@ CC=g++
 CFLAGS=-Wall -std=c++11
 # -DDEBUG -g
 
-sort: main.cpp
+distsort: main.cpp
 	$(MPI) main.cpp -o $@ $(CFLAGS)
 
 clean:
-	rm -f *.o sort
+	rm -f *.o distsort data/output-*.txt 
