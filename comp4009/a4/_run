@@ -10,3 +10,9 @@ for p in {1..8}; do
 done;
 
 echo "-------------------------------------------"
+
+# Commands for creating test input/output for n=1000 and p=4
+# rm data/*.txt
+# ./_gen 1000 4
+# make
+# mpiexec -np 4 --hostfile _hostfile distsort
