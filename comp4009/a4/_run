@@ -1,3 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-mpiexec -np 2 --hostfile _hostfile distsort
+echo "-------------------------------------------"
+echo "| p  | Comp Time | Comm Time | Total Time |"
+echo "|----|-----------|-----------|------------|"
+
+for p in {1..8}; do
+	./_gen $1 $p
+	mpiexec -np $p --hostfile _hostfile distsort
+done;
+
+echo "-------------------------------------------"
