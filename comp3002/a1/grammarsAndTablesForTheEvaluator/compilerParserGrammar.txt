@@ -1,0 +1,21 @@
+parser
+
+    keywords "where" .
+
+    Grammar {EndOfFile}
+        -> Expression 
+	-> (Identifier [node] '=' Expression ';')+ => '<-'.
+
+    Expression
+        -> Expression '+' Term => '+'
+	-> Term .
+
+    Term
+        -> Term '*' Primary => '*'
+	-> Primary.
+
+    Primary
+	-> Integer [node] 
+	-> Identifier [node]
+        -> '(' Expression ')' 
+        -> Identifier [node] '(' (Expression (',' Expression)*)? ')' => 'send'.
