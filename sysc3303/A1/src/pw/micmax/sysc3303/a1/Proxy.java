@@ -11,11 +11,11 @@ public class Proxy {
 	private DatagramSocket socketIn, socketOut;
 	private SocketAddress serverAddress;
 
-	public Proxy() throws SocketException {
+	public Proxy(String hostname) throws SocketException {
 		socketIn = new DatagramSocket(PORT);
 		socketOut = new DatagramSocket();
 		socketOut.setSoTimeout(1000);
-		serverAddress = new InetSocketAddress("localhost", Server.PORT);
+		serverAddress = new InetSocketAddress(hostname, Server.PORT);
 	}
 
 	private void run() {
@@ -47,6 +47,10 @@ public class Proxy {
 	}
 
 	public static void main(String[] args) throws SocketException {
-		new Proxy().run();
+		if (args.length != 1) {
+			System.out.println("Usage: java Proxy <hostname>");
+			System.exit(3);
+		}
+		new Proxy(args[0]).run();
 	}
 }

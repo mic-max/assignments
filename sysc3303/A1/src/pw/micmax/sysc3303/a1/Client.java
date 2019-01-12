@@ -11,9 +11,10 @@ public class Client {
 
 	private DatagramSocket socket;
 
-	public Client() throws SocketException {
+	public Client(String hostname) throws SocketException, UnknownHostException {
 		socket = new DatagramSocket();
-		socket.connect(new InetSocketAddress("localhost", Proxy.PORT));
+		socket.connect(new InetSocketAddress(hostname, Proxy.PORT));
+//		socket.connect(InetAddress.getByName("192.168.56.1"), Proxy.PORT); // Receives a timeout.
 		socket.setSoTimeout(1000);
 	}
 
@@ -53,7 +54,11 @@ public class Client {
 		}
 	}
 
-	public static void main(String[] args) throws SocketException {
-		new Client().run();
+	public static void main(String[] args) throws SocketException, UnknownHostException {
+		if (args.length != 1) {
+			System.out.println("Usage: java Client <hostname>");
+			System.exit(3);
+		}
+		new Client(args[0]).run();
 	}
 }
