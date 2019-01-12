@@ -14,7 +14,6 @@ public class Proxy {
 	public Proxy() throws SocketException {
 		socketIn = new DatagramSocket(PORT);
 		socketOut = new DatagramSocket();
-//			socketOut.connect();
 		socketOut.setSoTimeout(1000);
 		serverAddress = new InetSocketAddress("localhost", Server.PORT);
 	}
@@ -25,20 +24,20 @@ public class Proxy {
 			byte[] data = new byte[Client.MAX_SIZE];
 			DatagramPacket packet = new DatagramPacket(data, data.length);
 			try {
-				socketIn.receive(packet);
+				socketIn.receive(packet); // Receive from client.
+				// Save the address of the client to send the next response to.
 				SocketAddress clientAddress = packet.getSocketAddress();
 				data = Arrays.copyOf(packet.getData(), packet.getLength());
 				TFTPPacket.received(packet.getSocketAddress(), data);
 				packet.setSocketAddress(serverAddress);
-				socketOut.send(packet); // sends to server
+				socketOut.send(packet); // Send to server.
 				TFTPPacket.sent(packet.getSocketAddress(), data);
 
-				// use socketOut below if server responds on same socket, port 69
-				socketOut.receive(packet);
+				socketOut.receive(packet); // Receive from server.
 				data = Arrays.copyOf(packet.getData(), packet.getLength());
 				TFTPPacket.received(packet.getSocketAddress(), data);
 				packet.setSocketAddress(clientAddress);
-				socketIn.send(packet);
+				socketIn.send(packet); // Send to client.
 				TFTPPacket.sent(packet.getSocketAddress(), data);
 			} catch (IOException e) {
 				e.printStackTrace();

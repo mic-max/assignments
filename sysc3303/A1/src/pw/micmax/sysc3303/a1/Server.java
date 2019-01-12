@@ -20,19 +20,20 @@ public class Server {
 			byte[] data = new byte[Client.MAX_SIZE];
 			DatagramPacket packet = new DatagramPacket(data, data.length);
 			try {
-				socket.receive(packet);
+				socket.receive(packet); // Receive from proxy.
 				data = Arrays.copyOf(packet.getData(), packet.getLength());
 				SocketAddress address = packet.getSocketAddress();
 				TFTPPacket.received(address, data);
 
+				// If the packet is invalid, the server throws an exception and quits.
 				if (!TFTPPacket.isValid(data))
 					throw new Exception("Malformed TFTP Packet");
 
-				// TODO create a new socket to send the packet back to the client/proxy
 				DatagramSocket socketOut = new DatagramSocket();
+				// Setting response message to 0301 for RRQs & 0400 for WRQs using math.
 				packet.setData(new byte[] { 0, (byte) (data[1] + 2), 0, (byte) (-data[1] + 2) });
 				packet.setSocketAddress(address);
-				socketOut.send(packet);
+				socketOut.send(packet); // Send to proxy.
 				TFTPPacket.sent(packet.getSocketAddress(), packet.getData());
 				socketOut.close();
 			} catch (IOException e) {

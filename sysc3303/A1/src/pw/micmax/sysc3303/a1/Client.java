@@ -22,7 +22,6 @@ public class Client {
 		if (SIZE > MAX_SIZE)
 			throw new IllegalArgumentException();
 
-		// Instead of put 0, could potentially just advance buffer position
 		final byte ZERO = 0;
 		ByteBuffer buffer = ByteBuffer.allocate(SIZE);
 		buffer.put(ZERO).put((byte) reqType);
@@ -35,6 +34,7 @@ public class Client {
 
 	private void run() {
 		for (int i = 0; i < 11; i++) {
+			// Creates alternating read and write requests.
 			byte[] data = buildRequest((i & 1) + 1, "test.txt", "netASCII");
 			if (i == 10)
 				data[0] = (byte) 0x4d; // Corrupt data of packet #11.
