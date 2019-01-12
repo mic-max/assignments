@@ -4,19 +4,22 @@ import java.net.DatagramPacket;
 import java.util.regex.Pattern;
 
 public class TFTPPacket {
-	private static final int BUF_SIZE = 1024;
-	
+
 	public static final short RRQ = 1;
 	public static final short WRQ = 2;
-	
+
 	private DatagramPacket packet;
 	private byte[] buffer;
-	
+
 	public TFTPPacket() {
-		buffer = new byte[BUF_SIZE];
-//		packet = new DatagramPacket(buffer, 0);
+		buffer = new byte[Client.MAX_SIZE];
+		packet = new DatagramPacket(buffer, buffer.length);
 	}
-	
+
+	public void build(short reqType, String filename, String mode) {
+
+	}
+
 	private static String toHexString(byte[] data, int length) {
 		StringBuilder sb = new StringBuilder(length * 3);
 		for (int i = 0; i < length; i++)
@@ -27,7 +30,7 @@ public class TFTPPacket {
 	public static String str(byte[] data, int length) {
 		// print first 2 bytes as numbers
 		// print string as ascii
-		return String.format("Packet:\nByte: %s", toHexString(data, length));
+		return String.format("Byte: %s", toHexString(data, length));
 	}
 
 	public static boolean isValid(DatagramPacket packet) {

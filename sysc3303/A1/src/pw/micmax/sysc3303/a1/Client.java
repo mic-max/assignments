@@ -9,8 +9,7 @@ import java.nio.ByteBuffer;
 
 public class Client {
 
-	private static final int PORT = 23;
-	private static final int BUF_SIZE = 32;
+	public static final int MAX_SIZE = 32;
 
 	private DatagramSocket socket;
 	private ByteBuffer buffer;
@@ -18,11 +17,11 @@ public class Client {
 	public Client() {
 		try {
 			socket = new DatagramSocket();
-			socket.connect(new InetSocketAddress("localhost", PORT));
+			socket.connect(new InetSocketAddress("localhost", Server.PORT));
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
-		buffer = ByteBuffer.allocate(BUF_SIZE);
+		buffer = ByteBuffer.allocate(MAX_SIZE);
 	}
 
 	private void buildRequest(short reqType) {
@@ -39,11 +38,13 @@ public class Client {
 			if (i == 10)
 				buffer.put(0, (byte) 0xff); // corrupt data of packet #11
 			DatagramPacket packet = new DatagramPacket(buffer.array(), buffer.limit());
+			System.out.println("Sending:");
 			System.out.println(TFTPPacket.str(packet.getData(), buffer.position()));
 			try {
 				socket.send(packet);
 				buffer.clear();
 				socket.receive(packet);
+				System.out.println("Received:");
 				System.out.println(TFTPPacket.str(packet.getData(), packet.getLength()));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -52,6 +53,8 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-		new Client().run();
+		// pass ip and port as args
+		Client client = new Client();
+		client.run();
 	}
 }
