@@ -21,8 +21,6 @@ UML class diagram file named `class.html` shows the parts of the system and how 
 
 
 ## TODO
-- javadoc commenting
-- test by running on multiple PCs, will have to change localhost in code
-- test on lab PCs
+- test on lab PCs, using IP addresses
 - complete UMLs
-- clean code more, make use of threads, common interface Listener, onReceive ...
+- make use of threads, common interface Listener, onReceive ...
