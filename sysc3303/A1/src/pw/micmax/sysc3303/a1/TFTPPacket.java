@@ -1,42 +1,40 @@
 package pw.micmax.sysc3303.a1;
 
-import java.net.DatagramPacket;
-import java.util.regex.Pattern;
+import java.net.*;
+import java.util.regex.*;
 
 public class TFTPPacket {
 
-	public static final short RRQ = 1;
-	public static final short WRQ = 2;
+	private static final Pattern VALID_PACKET = Pattern.compile("^00 0[12] ([0-9a-f]{2} )+00 ([0-9a-f]{2} )+00 $");
 
-	private DatagramPacket packet;
-	private byte[] buffer;
-
-	public TFTPPacket() {
-		buffer = new byte[Client.MAX_SIZE];
-		packet = new DatagramPacket(buffer, buffer.length);
+	public static boolean isValid(byte[] data) {
+		String str = bytes(data);
+		return VALID_PACKET.matcher(str).matches();
 	}
 
-	public void build(short reqType, String filename, String mode) {
-
+	public static String received() {
+		return "";
 	}
 
-	private static String toHexString(byte[] data, int length) {
-		StringBuilder sb = new StringBuilder(length * 3);
-		for (int i = 0; i < length; i++)
-			sb.append(String.format("%02x ", data[i]));
+	public static String sent() {
+		return "";
+	}
+
+	private static String bytes(byte[] data) {
+		StringBuilder sb = new StringBuilder();
+		for (byte b : data)
+			sb.append(String.format("%02x ", b));
 		return sb.toString();
 	}
 
-	public static String str(byte[] data, int length) {
-		// print first 2 bytes as numbers
-		// print string as ascii
-		return String.format("Byte: %s", toHexString(data, length));
+	private static String asString(byte[] data) {
+		StringBuilder sb = new StringBuilder();
+		for (byte b : data)
+			sb.append(String.format(b < 10 ? "%d" : "%c", b));
+		return sb.toString();
 	}
 
-	public static boolean isValid(DatagramPacket packet) {
-//		return true;
-		String s = toHexString(packet.getData(), packet.getLength());
-		System.out.println(s);
-		return Pattern.matches("00 0[12] ([0-9a-f]{2} )+00 ([0-9a-f]{2} )+(00 )+", s);
+	public static String toString(byte[] data) {
+		return String.format(" String: %s\n Bytes:  %s", asString(data), bytes(data));
 	}
 }

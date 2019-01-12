@@ -1,61 +1,60 @@
 package pw.micmax.sysc3303.a1;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.io.*;
+import java.net.*;
+import java.util.Arrays;
 
 public class Server {
-	
-	public static final int PORT = 69;
 
-	private DatagramSocket socket;
+   public static final int PORT = 69;
 
-	public Server() {
-		try {
-			socket = new DatagramSocket(PORT);
-		} catch (SocketException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void receiveData(DatagramPacket packet) {
-		byte[] data = packet.getData();
+   private DatagramSocket socket;
+   private DatagramPacket packet;
 
-		// print received packet info
-//		if (!TFTPPacket.isValid(packet))
-//			throw new IOException("Malformed TFTP Request");
-		if (data[1] == TFTPPacket.RRQ)
-			packet.setData(new byte[] { 0, 3, 0, 1 });
-		else if (data[1] == TFTPPacket.WRQ)
-			packet.setData(new byte[] { 0, 4, 0, 0 });
-		// print response packet info
+   public Server() {
+      try {
+         socket = new DatagramSocket(PORT);
+      } catch (SocketException se) {
+         se.printStackTrace();
+         System.exit(1);
+      }
+   }
 
-		try {
-			socket.send(packet);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+   private void run() throws Exception {
+      System.out.printf("TFTP Server waiting on port %d ...\n", socket.getLocalPort());
+      while (true) {
+         byte[] data = new byte[Client.MAX_SIZE];
+         packet = new DatagramPacket(data, data.length);
+         try {
+            socket.receive(packet);
+            data = Arrays.copyOf(packet.getData(), packet.getLength());
+            System.out.println("\nPacket received from: " + packet.getSocketAddress());
+            System.out.println(TFTPPacket.toString(data));
 
-	public void run() {
-		System.out.printf("TFTP Server started on port %d ...", socket.getLocalPort());
-		while (true) {
-			byte[] data = new byte[Client.MAX_SIZE];
-			DatagramPacket packet = new DatagramPacket(data, data.length);
-			try {
-				socket.receive(packet);
-				new Thread(() -> receiveData(packet)).start();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+            if (!TFTPPacket.isValid(data))
+               throw new Exception("Malformed TFTP Packet");
 
-	public static void main(String[] args) throws Exception {
-		Server server = new Server();
-		server.run();
-		server.socket.close();
-	}
+            // TODO create a new socket to send the packet back to the client/proxy
+            // DatagramSocket socketOut = new DatagramSocket();
+            // socketOut.connect(packet.getSocketAddress());
+            packet.setData(new byte[] {0, (byte) (data[1] + 2), 0, (byte) (-data[1] + 2)}); // RRQ -> 0301, WRQ -> 0400
+            System.out.println("Packet sent to: " + packet.getSocketAddress());
+            System.out.println(TFTPPacket.toString(packet.getData()));
+            socket.send(packet);
+            // socketOut.close();
+         } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+         }
+      }
+   }
+
+   public static void main(String[] args) {
+      Server server = new Server();
+      try {
+         server.run();
+      } catch (Exception e) {
+         System.out.printf("\nTFTP Server shutting down - %s\n", e.getMessage());
+      }
+   }
 }

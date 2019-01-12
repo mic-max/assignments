@@ -1,60 +1,69 @@
 package pw.micmax.sysc3303.a1;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
-import java.net.SocketException;
+import java.io.*;
+import java.net.*;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public class Client {
 
-	public static final int MAX_SIZE = 32;
+   public static final int MAX_SIZE = 32;
 
-	private DatagramSocket socket;
-	private ByteBuffer buffer;
+   private DatagramSocket socket;
+   private DatagramPacket packet;
 
-	public Client() {
-		try {
-			socket = new DatagramSocket();
-			socket.connect(new InetSocketAddress("localhost", Server.PORT));
-		} catch (SocketException e) {
-			e.printStackTrace();
-		}
-		buffer = ByteBuffer.allocate(MAX_SIZE);
-	}
+   public Client() {
+      try {
+         socket = new DatagramSocket();
+         socket.connect(new InetSocketAddress("localhost", Proxy.PORT));
+         socket.setSoTimeout(1000);
+      } catch (SocketException se) {
+         se.printStackTrace();
+         System.exit(1);
+      }
+   }
 
-	private void buildRequest(short reqType) {
-		buffer.putShort(reqType);
-		buffer.put("test.txt".getBytes());
-		buffer.put((byte) 0);
-		buffer.put("netascii".getBytes()); // convert to upper or lower..
-		buffer.put((byte) 0);
-	}
+   private byte[] buildRequest(int reqType, String file, String mode) {
+   	  final int SIZE = 4 + file.length() + mode.length();
+   	  if (SIZE > MAX_SIZE)
+   	  	throw new IllegalArgumentException();
 
-	public void run() {
-		for (int i = 0; i < 11; i++) {
-			buildRequest(i % 2 == 0 ? TFTPPacket.RRQ : TFTPPacket.WRQ);
-			if (i == 10)
-				buffer.put(0, (byte) 0xff); // corrupt data of packet #11
-			DatagramPacket packet = new DatagramPacket(buffer.array(), buffer.limit());
-			System.out.println("Sending:");
-			System.out.println(TFTPPacket.str(packet.getData(), buffer.position()));
-			try {
-				socket.send(packet);
-				buffer.clear();
-				socket.receive(packet);
-				System.out.println("Received:");
-				System.out.println(TFTPPacket.str(packet.getData(), packet.getLength()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+   	  ByteBuffer buffer = ByteBuffer.allocate(SIZE);
+      buffer.put((byte) 0).put((byte)reqType);
+      buffer.put(file.getBytes());
+      buffer.put((byte) 0);
+      buffer.put(mode.getBytes());
+      buffer.put((byte) 0);
+      return buffer.array();
+   }
 
-	public static void main(String[] args) {
-		// pass ip and port as args
-		Client client = new Client();
-		client.run();
-	}
+   private void run() {
+      for (int i = 0; i < 11; i++) {
+         byte[] data = buildRequest((i & 1) + 1, "test.txt", "netASCII");
+         if (i == 10)
+            data[0] = (byte) 0x4d; // Corrupt data of packet #11.
+
+        System.out.printf("\n%d %s\n", i + 1, "-".repeat(70));
+         DatagramPacket packet = new DatagramPacket(data, data.length);
+         try {
+            socket.send(packet);
+            System.out.println("Packet sent to: " + socket.getRemoteSocketAddress());
+            System.out.println(TFTPPacket.toString(data));
+
+            socket.receive(packet);
+            data = Arrays.copyOf(packet.getData(), packet.getLength());
+            System.out.println("Packet received from: " + packet.getSocketAddress());
+            System.out.println(TFTPPacket.toString(data));
+         } catch (IOException e) {
+            e.printStackTrace();
+         }
+      }
+      socket.close();
+   }
+
+   public static void main(String[] args) {
+   	// TODO pass ip:port as args
+      Client c = new Client();
+      c.run();
+   }
 }
