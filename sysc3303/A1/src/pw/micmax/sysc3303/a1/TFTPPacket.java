@@ -2,22 +2,43 @@ package pw.micmax.sysc3303.a1;
 
 import java.net.*;
 import java.util.regex.*;
+import java.math.BigInteger;
 
 public class TFTPPacket {
 
-	private static final Pattern VALID_PACKET = Pattern.compile("^00 0[12] ([0-9a-f]{2} )+00 ([0-9a-f]{2} )+00 $");
+	private static final Pattern VALID_PACKET = Pattern.compile("^00 0[12] (([0-9a-f]{2} )+)00 (([0-9a-f]{2} )+)00 $");
 
 	public static boolean isValid(byte[] data) {
 		String str = bytes(data);
-		return VALID_PACKET.matcher(str).matches();
+		Matcher m = VALID_PACKET.matcher(str);
+		if (!m.matches())
+			return false;
+		String file = asString(bytes(m.group(1)));
+		String mode = asString(bytes(m.group(3)));
+		return "netascii".compareToIgnoreCase(mode) == 0 || "octet".compareToIgnoreCase(mode) == 0;
 	}
 
-	public static String received() {
-		return "";
+	public static void received(SocketAddress addr, byte[] data) {
+		msg("received from", addr, data);
 	}
 
-	public static String sent() {
-		return "";
+	public static void sent(SocketAddress addr, byte[] data) {
+		msg("sent to", addr, data);
+	}
+
+	private static void msg(String mode, SocketAddress addr, byte[] data) {
+		System.out.printf("Packet %s : %s\n", mode, addr);
+		System.out.println(toString(data));
+	}
+
+	private static byte[] bytes(String str) {
+		byte[] res = new byte[str.length() / 3];
+
+		for (int i = 0; i < res.length; i++) {
+			String hex = str.substring(i * 3, i * 3 + 2);
+			res[i] = new BigInteger(hex, 16).byteValue();
+		}
+		return res;
 	}
 
 	private static String bytes(byte[] data) {
@@ -34,7 +55,7 @@ public class TFTPPacket {
 		return sb.toString();
 	}
 
-	public static String toString(byte[] data) {
+	private static String toString(byte[] data) {
 		return String.format(" String: %s\n Bytes:  %s", asString(data), bytes(data));
 	}
 }

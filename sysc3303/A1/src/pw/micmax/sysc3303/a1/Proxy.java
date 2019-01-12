@@ -9,40 +9,37 @@ public class Proxy {
 	public static final int PORT = 23;
 
 	private DatagramSocket socketIn, socketOut;
+	private SocketAddress serverAddress;
 
-	public Proxy() {
-		try {
-			socketIn = new DatagramSocket(PORT);
-			socketOut = new DatagramSocket();
-			socketOut.connect(new InetSocketAddress("localhost", Server.PORT));
-			socketOut.setSoTimeout(1000);
-		} catch (SocketException se) {
-			se.printStackTrace();
-			System.exit(1);
-		}
+	public Proxy() throws SocketException {
+		socketIn = new DatagramSocket(PORT);
+		socketOut = new DatagramSocket();
+//			socketOut.connect();
+		socketOut.setSoTimeout(1000);
+		serverAddress = new InetSocketAddress("localhost", Server.PORT);
 	}
 
 	private void run() {
 		System.out.printf("Proxy waiting on port %d ...\n", socketIn.getLocalPort());
 		while (true) {
 			byte[] data = new byte[Client.MAX_SIZE];
-			DatagramPacket packetIn = new DatagramPacket(data, data.length);
+			DatagramPacket packet = new DatagramPacket(data, data.length);
 			try {
-				socketIn.receive(packetIn);
-				SocketAddress address = packetIn.getSocketAddress();
-				data = Arrays.copyOf(packetIn.getData(), packetIn.getLength());
-				System.out.println("\nPacket received from: " + packetIn.getSocketAddress());
-				System.out.println(TFTPPacket.toString(data));
-				packetIn.setSocketAddress(socketOut.getRemoteSocketAddress());
-				socketOut.send(packetIn); // sends to server
+				socketIn.receive(packet);
+				SocketAddress clientAddress = packet.getSocketAddress();
+				data = Arrays.copyOf(packet.getData(), packet.getLength());
+				TFTPPacket.received(packet.getSocketAddress(), data);
+				packet.setSocketAddress(serverAddress);
+				socketOut.send(packet); // sends to server
+				TFTPPacket.sent(packet.getSocketAddress(), data);
 
-				DatagramPacket packetOut = new DatagramPacket(data, data.length);
-				socketOut.receive(packetOut);
-				data = Arrays.copyOf(packetOut.getData(), packetOut.getLength());
-				packetOut.setSocketAddress(address);
-				System.out.println("Packet sent to: " + packetOut.getSocketAddress());
-            	System.out.println(TFTPPacket.toString(data));
-				socketIn.send(packetOut);
+				// use socketOut below if server responds on same socket, port 69
+				socketOut.receive(packet);
+				data = Arrays.copyOf(packet.getData(), packet.getLength());
+				TFTPPacket.received(packet.getSocketAddress(), data);
+				packet.setSocketAddress(clientAddress);
+				socketIn.send(packet);
+				TFTPPacket.sent(packet.getSocketAddress(), data);
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(2);
@@ -50,8 +47,7 @@ public class Proxy {
 		}
 	}
 
-	public static void main(String[] args) {
-		Proxy proxy = new Proxy();
-		proxy.run();
+	public static void main(String[] args) throws SocketException {
+		new Proxy().run();
 	}
 }
