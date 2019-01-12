@@ -1,0 +1,50 @@
+scanner
+
+    //Note: scanners don't use stack and node, just read/look and keep/noKeep.
+    //Note: Space = 32; Tab = 9; Cr = 13; Lf = 10; Ff = 12.
+
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+    lowercase = "abcdefghijklmnopqrstuvwxyz".
+    letter = uppercase | lowercase | "_".
+    digit = "0123456789".
+    operator = "+*=".
+
+    tab = 9 [noKeep].
+    carriageReturn = 13 [noKeep].
+    lineFeed = 10 [noKeep].
+    formFeed = 12 [noKeep].
+    blank = 32 [noKeep]. 
+
+    lineEnd = carriageReturn | lineFeed  | formFeed.
+    space = blank | tab | lineEnd.
+    others = "[]{}()^;#:.$_" | singleQuote | doubleQuote | space.
+
+    printable = letter | digit | operator | others .
+    endOfFileCharacter = 256.
+    all = printable | endOfFileCharacter.
+
+    EndOfFile {endOfFileCharacter}
+        -> => EndOfFile.
+
+    WhiteSpace {all - space}
+       -> space+.
+
+    Identifier {all - (letter | digit | $_)}
+        -> letter (letter | digit | $_ )* => Identifier .
+
+    Operator {all}
+        -> $+ => '+' 
+        -> $* => '*' 
+	-> $= => '='.
+
+    Punctuation {all}
+	-> $, => ',' 
+	-> $; => ';' .
+
+    Brackets {all}
+        -> $( => '(' 
+        -> $) => ')' .
+
+
+    Number {all - digit}
+        -> digit+ => Integer .

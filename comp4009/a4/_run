@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "-------------------------------------------"
+echo "| p  | Comp Time | Comm Time | Total Time |"
+echo "|----|-----------|-----------|------------|"
+
+for p in {1..8}; do
+	./_gen $1 $p
+	mpiexec -np $p --hostfile _hostfile distsort
+done;
+
+echo "-------------------------------------------"
+
+# Commands for creating test input/output for n=1000 and p=4
+# rm data/*.txt
+# ./_gen 1000 4
+# make
+# mpiexec -np 4 --hostfile _hostfile distsort
