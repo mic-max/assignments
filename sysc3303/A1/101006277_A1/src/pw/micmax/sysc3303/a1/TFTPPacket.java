@@ -25,11 +25,10 @@ public class TFTPPacket {
 
 	// Undoes bytes(byte[]) -> String.
 	// Converts a hex string, with spaces between each byte to ASCII.
-	private static byte[] bytes(String str) {
-		byte[] res = new byte[str.length() / 3];
-
+	private static byte[] bytes(String hexStr) {
+		byte[] res = new byte[hexStr.length() / 3];
 		for (int i = 0; i < res.length; i++) {
-			String hex = str.substring(i * 3, i * 3 + 2);
+			String hex = hexStr.substring(i * 3, i * 3 + 2);
 			res[i] = new BigInteger(hex, 16).byteValue();
 		}
 		return res;
