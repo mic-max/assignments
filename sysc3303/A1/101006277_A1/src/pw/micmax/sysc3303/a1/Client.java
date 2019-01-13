@@ -11,10 +11,11 @@ public class Client {
 	public static final int TIMEOUT  = 1000;
 
 	private DatagramSocket socket;
+	private SocketAddress  proxyAddress;
 
 	public Client(String hostname) throws SocketException {
 		socket = new DatagramSocket();
-		socket.connect(new InetSocketAddress(hostname, Proxy.PORT));
+		proxyAddress = new InetSocketAddress(hostname, Proxy.PORT);
 		socket.setSoTimeout(TIMEOUT);
 	}
 
@@ -36,15 +37,15 @@ public class Client {
 	private void run() {
 		for (int i = 0; i < 11; i++) {
 			// Creates alternating read and write requests.
-			byte[] data = buildRequest((i & 1) + 1, "test.txt", "netASCII");
+			byte[] data = buildRequest((i & 1) + 1, "test" + i + ".txt", "netASCII");
 			if (i == 10)
 				data[0] = (byte) 0x4d; // Corrupt data of packet #11.
 
 			System.out.printf("\n%d %s\n", i + 1, "-".repeat(70));
-			DatagramPacket packet = new DatagramPacket(data, data.length);
+			DatagramPacket packet = new DatagramPacket(data, data.length, proxyAddress);
 			try {
 				socket.send(packet);
-				TFTPPacket.sent(socket.getRemoteSocketAddress(), data);
+				TFTPPacket.sent(packet.getSocketAddress(), data);
 				socket.receive(packet);
 				data = Arrays.copyOf(packet.getData(), packet.getLength());
 				TFTPPacket.received(packet.getSocketAddress(), data);
