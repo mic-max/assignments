@@ -10,13 +10,11 @@ public class Client {
 	public static final int MAX_SIZE = 32;
 
 	private DatagramSocket socket;
-	private InetSocketAddress proxyAddress;
 
-	public Client(String hostname) throws SocketException, UnknownHostException {
+	public Client() throws SocketException {
 		socket = new DatagramSocket();
+		socket.connect(new InetSocketAddress("localhost", Proxy.PORT));
 		socket.setSoTimeout(1000);
-		proxyAddress = new InetSocketAddress(hostname, Proxy.PORT);
-		socket.connect(proxyAddress);
 	}
 
 	private byte[] buildRequest(int reqType, String file, String mode) {
@@ -42,7 +40,7 @@ public class Client {
 				data[0] = (byte) 0x4d; // Corrupt data of packet #11.
 
 			System.out.printf("\n%d %s\n", i + 1, "-".repeat(70));
-			DatagramPacket packet = new DatagramPacket(data, data.length, proxyAddress);
+			DatagramPacket packet = new DatagramPacket(data, data.length);
 			try {
 				socket.send(packet);
 				TFTPPacket.sent(socket.getRemoteSocketAddress(), data);
@@ -55,11 +53,7 @@ public class Client {
 		}
 	}
 
-	public static void main(String[] args) throws SocketException, UnknownHostException {
-		if (args.length != 1) {
-			System.out.println("Usage: java Client <hostname>");
-			System.exit(3);
-		}
-		new Client(args[0]).run();
+	public static void main(String[] args) throws SocketException {
+		new Client().run();
 	}
 }

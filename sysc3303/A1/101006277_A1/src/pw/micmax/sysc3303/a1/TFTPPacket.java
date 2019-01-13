@@ -15,6 +15,7 @@ public class TFTPPacket {
 		if (!m.matches())
 			return false;
 		// Extract the hex strings from the matches and convert to ASCII.
+		@SuppressWarnings("unused")
 		String file = asString(bytes(m.group(1)));
 		String mode = asString(bytes(m.group(3)));
 		// If it follows the packet guide and uses a valid case-insensitive transfer mode.
@@ -45,11 +46,11 @@ public class TFTPPacket {
 		System.out.printf("Packet %s : %s\n", mode, addr);
 		System.out.println(toString(data));
 	}
-	
+
 	private static String toString(byte[] data) {
 		return String.format(" String: %s\n Bytes:  %s", asString(data), bytes(data));
 	}
-	
+
 	// Given a byte array, build a string with either ASCII values or digits for control codes.
 	private static String asString(byte[] data) {
 		StringBuilder sb = new StringBuilder();

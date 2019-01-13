@@ -9,17 +9,17 @@ public class Proxy {
 	public static final int PORT = 23;
 
 	private DatagramSocket socketIn, socketOut;
-	private SocketAddress serverAddress;
+	private SocketAddress  serverAddress;
 
-	public Proxy(String hostname) throws SocketException {
+	public Proxy() throws SocketException {
 		socketIn = new DatagramSocket(PORT);
 		socketOut = new DatagramSocket();
 		socketOut.setSoTimeout(1000);
-		serverAddress = new InetSocketAddress(hostname, Server.PORT);
+		serverAddress = new InetSocketAddress("localhost", Server.PORT);
 	}
 
-	private void run() {
-		System.out.printf("Proxy waiting on port %d ...\n", socketIn.getLocalPort());
+	private void run() throws Exception {
+		System.out.printf("Proxy waiting at %s:%d ...\n", InetAddress.getLocalHost(), socketIn.getLocalPort());
 		while (true) {
 			byte[] data = new byte[Client.MAX_SIZE];
 			DatagramPacket packet = new DatagramPacket(data, data.length);
@@ -46,11 +46,7 @@ public class Proxy {
 		}
 	}
 
-	public static void main(String[] args) throws SocketException {
-		if (args.length != 1) {
-			System.out.println("Usage: java Proxy <hostname>");
-			System.exit(3);
-		}
-		new Proxy(args[0]).run();
+	public static void main(String[] args) throws Exception {
+		new Proxy().run();
 	}
 }
