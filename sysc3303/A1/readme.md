@@ -1,5 +1,6 @@
 # Assignment 1 - Mini "TFTP" System
 
+This project implements a three-process client-server architecture with the addition of proxies. It makes the use of DatagramSockets and DatagramPackets to transfer byte arrays between seperate machines over UDP/IP.
 
 ## Files
 - Server.java: Replies to any valid TFTP requests with either 0301 or 0400 
@@ -9,9 +10,9 @@
 
 ## Setup Instructions
 1. Import from archive file
-2. Run Server
-3. Run Proxy
-4. Run Client
+2. Run Server: `java pw.micmax.sysc3303.a1.Server`
+3. Run Proxy: `java pw.micmax.sysc3303.a1.Proxy <hostname>`
+4. Run Client: `java pw.micmax.sysc3303.a1.Client <hostname>`
 
 
 ## UML Diagrams
