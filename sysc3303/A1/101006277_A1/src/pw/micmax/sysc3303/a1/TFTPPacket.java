@@ -1,6 +1,7 @@
 package pw.micmax.sysc3303.a1;
 
 import java.net.*;
+import java.time.LocalTime;
 import java.util.regex.*;
 import java.math.BigInteger;
 
@@ -43,7 +44,7 @@ public class TFTPPacket {
 	}
 
 	private static void msg(String mode, SocketAddress addr, byte[] data) {
-		System.out.printf("Packet %s : %s\n", mode, addr);
+		System.out.printf("\n[%s] Packet %s : %s\n", LocalTime.now(), mode, addr);
 		System.out.println(toString(data));
 	}
 

@@ -8,13 +8,14 @@ import java.util.Arrays;
 public class Client {
 
 	public static final int MAX_SIZE = 32;
+	public static final int TIMEOUT  = 1000;
 
 	private DatagramSocket socket;
 
-	public Client() throws SocketException {
+	public Client(String hostname) throws SocketException {
 		socket = new DatagramSocket();
-		socket.connect(new InetSocketAddress("localhost", Proxy.PORT));
-		socket.setSoTimeout(1000);
+		socket.connect(new InetSocketAddress(hostname, Proxy.PORT));
+		socket.setSoTimeout(TIMEOUT);
 	}
 
 	private byte[] buildRequest(int reqType, String file, String mode) {
@@ -54,6 +55,11 @@ public class Client {
 	}
 
 	public static void main(String[] args) throws SocketException {
-		new Client().run();
+		if (args.length < 1) {
+			System.out.println("Usage: java Client <hostname>");
+			System.exit(1);
+		}
+
+		new Client(args[0]).run();
 	}
 }

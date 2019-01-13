@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.Arrays;
 import java.util.concurrent.*;
 
-public class Server implements Callable<Integer> {
+public class Server implements Callable<Void> {
 
 	public static final int PORT = 69;
 
@@ -22,7 +22,7 @@ public class Server implements Callable<Integer> {
 	}
 
 	@Override
-	public Integer call() throws IOException {
+	public Void call() throws IOException {
 		byte[] data = Arrays.copyOf(packet.getData(), packet.getLength());
 		SocketAddress address = packet.getSocketAddress();
 		TFTPPacket.received(address, data);
@@ -53,15 +53,17 @@ public class Server implements Callable<Integer> {
 			byte[] data = new byte[Client.MAX_SIZE];
 			DatagramPacket packet = new DatagramPacket(data, data.length);
 			socketIn.receive(packet); // Receive from proxy.
-			Future<Integer> future = executor.submit(new Server(packet));
+			Future<Void> future = executor.submit(new Server(packet));
 			try {
 				future.get();
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("TFTP Server shutting down ...");
 				break;
 			}
 		}
 
+		executor.shutdown();
 		socketIn.close();
 	}
 }
