@@ -13,10 +13,10 @@ public class Proxy implements Callable<Void> {
 	private DatagramPacket packet;
 	private SocketAddress  serverAddress;
 
-	public Proxy(String hostname, DatagramPacket packet) throws SocketException {
+	public Proxy(String host, DatagramPacket packet) throws IOException {
 		socket = new DatagramSocket();
 		socket.setSoTimeout(Client.TIMEOUT);
-		serverAddress = new InetSocketAddress(hostname, Server.PORT);
+		serverAddress = new InetSocketAddress(InetAddress.getByName(host), Server.PORT);
 		this.packet = packet;
 	}
 
@@ -39,9 +39,9 @@ public class Proxy implements Callable<Void> {
 		return null;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		if (args.length < 1) {
-			System.out.println("Usage: java Proxy <hostname>");
+			System.out.println("Usage: java Proxy <host>");
 			System.exit(1);
 		}
 

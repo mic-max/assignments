@@ -57,8 +57,8 @@ public class Server implements Callable<Void> {
 			try {
 				future.get();
 			} catch (Exception e) {
-				e.printStackTrace();
 				System.out.println("TFTP Server shutting down ...");
+				e.printStackTrace();
 				break;
 			}
 		}

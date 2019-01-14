@@ -13,9 +13,9 @@ public class Client {
 	private DatagramSocket socket;
 	private SocketAddress  proxyAddress;
 
-	public Client(String hostname) throws SocketException {
+	public Client(String host) throws IOException {
 		socket = new DatagramSocket();
-		proxyAddress = new InetSocketAddress(hostname, Proxy.PORT);
+		proxyAddress = new InetSocketAddress(InetAddress.getByName(host), Proxy.PORT);
 		socket.setSoTimeout(TIMEOUT);
 	}
 
@@ -55,9 +55,9 @@ public class Client {
 		}
 	}
 
-	public static void main(String[] args) throws SocketException {
+	public static void main(String[] args) throws IOException {
 		if (args.length < 1) {
-			System.out.println("Usage: java Client <hostname>");
+			System.out.println("Usage: java Client <host>");
 			System.exit(1);
 		}
 
