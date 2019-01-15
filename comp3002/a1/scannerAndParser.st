@@ -180,10 +180,10 @@ rawParserTables
    (ShiftbackTable 32 3 23)
    (ShiftbackTable 33 1 22)
    (ShiftbackTable 34 3 22)
-   (ReduceTable 35 Expression ((1 'RSN' 2)(5 'RSN' 10)(8 'RSN' 13)(9 'RSN' 14)(15 'RSN' 17)))
-   (ReduceTable 36 Grammar ((1 'RSN' 43)))
-   (ReduceTable 37 Term ((1 'RSN' 3)(5 'RSN' 3)(6 'RSN' 12)(8 'RSN' 3)(9 'RSN' 3)(15 'RSN' 3)))
-   (ReduceTable 38 Primary ((1 'RSN' 26)(5 'RSN' 26)(6 'RSN' 26)(7 'RSN' 30)(8 'RSN' 26)(9 'RSN' 26)(15 'RSN' 26)))
+   (ReduceTable 35 Expression (1 'RSN' 2)(5 'RSN' 10)(8 'RSN' 13)(9 'RSN' 14)(15 'RSN' 17))
+   (ReduceTable 36 Grammar (1 'RSN' 43))
+   (ReduceTable 37 Term (1 'RSN' 3)(5 'RSN' 3)(6 'RSN' 12)(8 'RSN' 3)(9 'RSN' 3)(15 'RSN' 3))
+   (ReduceTable 38 Primary (1 'RSN' 26)(5 'RSN' 26)(6 'RSN' 26)(7 'RSN' 30)(8 'RSN' 26)(9 'RSN' 26)(15 'RSN' 26))
    (SemanticTable 39 buildTree: '+' 35)
    (SemanticTable 40 buildTree: '*' 37)
    (SemanticTable 41 buildTree: send 38)
@@ -276,9 +276,7 @@ setupSponsorAndTables
     "Give the entire set of scanner tables to the scanner..."
     "<CODE HERE>"! !
 
-!SampleCompiler methodsFor: 'semantic actions'!
-
-! !
+!SampleCompiler methodsFor: 'semantic actions'! !
 
 !SampleCompiler methodsFor: 'get/set'!
    
@@ -582,7 +580,7 @@ nonterminal
   
 table: anArray
     "Store the data; namely a nonterminal and a bunch of transition information; triples
-    with a 'from table number', attributes, and a 'to table number'.
+    with a 'from table number', attributes, and a 'to table number'."
     self halt: 'TO DO: Reduce table: needs implementation'! !
 
 !ReduceTable methodsFor: 'running'!
@@ -590,6 +588,7 @@ table: anArray
 run
     "This is a 'Reduce to A' table where A is the nonterminal to reduce to. Pick up the new tree
 	and simulate a readahead of A where the new tree is associated with A"
+    | tree stack children |
 
     self halt: 'TO DO: Reduce run needs implementation'
 
@@ -962,7 +961,7 @@ buildToken: label
 Scanner comment: ''!
 
 
-!Screener class methodsFor: 'default keywords'!
+!Screener class methodsFor: 'default keywords'! !
 
 !Screener methodsFor: 'get/set'!
   
