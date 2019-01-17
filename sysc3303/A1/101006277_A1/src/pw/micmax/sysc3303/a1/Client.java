@@ -41,7 +41,8 @@ public class Client {
 			if (i == 10)
 				data[0] = (byte) 0x4d; // Corrupt data of packet #11.
 
-			System.out.printf("\n%d %s\n", i + 1, "-".repeat(70));
+			System.out.printf("\n%d %s\n", i + 1,
+					"----------------------------------------------------------------------");
 			DatagramPacket packet = new DatagramPacket(data, data.length, proxyAddress);
 			try {
 				socket.send(packet);
@@ -53,6 +54,7 @@ public class Client {
 				e.printStackTrace();
 			}
 		}
+		socket.close();
 	}
 
 	public static void main(String[] args) throws IOException {
