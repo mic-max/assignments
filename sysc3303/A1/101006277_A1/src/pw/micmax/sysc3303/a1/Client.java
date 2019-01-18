@@ -8,13 +8,15 @@ import java.util.Arrays;
 public class Client {
 
 	public static final int MAX_SIZE = 32;
+	public static final int TIMEOUT  = 1000;
 
 	private DatagramSocket socket;
+	private SocketAddress  proxyAddress;
 
-	public Client() throws SocketException {
+	public Client(String host) throws IOException {
 		socket = new DatagramSocket();
-		socket.connect(new InetSocketAddress("localhost", Proxy.PORT));
-		socket.setSoTimeout(1000);
+		proxyAddress = new InetSocketAddress(InetAddress.getByName(host), Proxy.PORT);
+		socket.setSoTimeout(TIMEOUT);
 	}
 
 	private byte[] buildRequest(int reqType, String file, String mode) {
@@ -35,15 +37,16 @@ public class Client {
 	private void run() {
 		for (int i = 0; i < 11; i++) {
 			// Creates alternating read and write requests.
-			byte[] data = buildRequest((i & 1) + 1, "test.txt", "netASCII");
+			byte[] data = buildRequest((i & 1) + 1, "test" + i + ".txt", "netASCII");
 			if (i == 10)
 				data[0] = (byte) 0x4d; // Corrupt data of packet #11.
 
-			System.out.printf("\n%d %s\n", i + 1, "-".repeat(70));
-			DatagramPacket packet = new DatagramPacket(data, data.length);
+			System.out.printf("\n%d %s\n", i + 1,
+					"----------------------------------------------------------------------");
+			DatagramPacket packet = new DatagramPacket(data, data.length, proxyAddress);
 			try {
 				socket.send(packet);
-				TFTPPacket.sent(socket.getRemoteSocketAddress(), data);
+				TFTPPacket.sent(packet.getSocketAddress(), data);
 				socket.receive(packet);
 				data = Arrays.copyOf(packet.getData(), packet.getLength());
 				TFTPPacket.received(packet.getSocketAddress(), data);
@@ -51,9 +54,15 @@ public class Client {
 				e.printStackTrace();
 			}
 		}
+		socket.close();
 	}
 
-	public static void main(String[] args) throws SocketException {
-		new Client().run();
+	public static void main(String[] args) throws IOException {
+		if (args.length < 1) {
+			System.out.println("Usage: java Client <host>");
+			System.exit(1);
+		}
+
+		new Client(args[0]).run();
 	}
 }
