@@ -1,8 +1,6 @@
 package pw.micmax.sysc3303.a2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Producer implements Runnable {
@@ -17,10 +15,11 @@ public class Producer implements Runnable {
 
 	@Override
 	public void run() {
+		// Places all but one ingredient on the table, 20 times.
 		for (int i = 0; i < N; i++) {
 			List<Ingredient> items = new ArrayList<>();
 			Collections.addAll(items, Ingredient.values());
-			items.remove(ThreadLocalRandom.current().nextInt(3));
+			items.remove(ThreadLocalRandom.current().nextInt(items.size()));
 
 			table.add(items);
 			System.out.println(" << " + items);

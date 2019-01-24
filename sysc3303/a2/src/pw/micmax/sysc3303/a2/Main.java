@@ -3,13 +3,15 @@ package pw.micmax.sysc3303.a2;
 public class Main {
 
 	public static void main(String[] args) {
+		// Create the shared data structure where the Agent will add ingredients and
+		// Chefs will remove.
 		Table table = new Table();
 
 		Thread producer = new Thread(new Producer(table), "Agent");
 		producer.start();
-		
-		new Thread(new Consumer(producer, table, Ingredient.Bread), "Bread Chef").start();
-		new Thread(new Consumer(producer, table, Ingredient.PeanutButter), "PeanutButter Chef").start();
-		new Thread(new Consumer(producer, table, Ingredient.Jam), "Jam Chef").start();
+
+		// Creates and starts Chef threads, one for each ingredient.
+		for (Ingredient ingredient : Ingredient.values())
+			new Thread(new Consumer(producer, table, ingredient), ingredient.toString() + " Chef").start();
 	}
 }
