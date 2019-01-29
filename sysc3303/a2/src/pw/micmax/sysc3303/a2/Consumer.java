@@ -22,7 +22,7 @@ public class Consumer implements Runnable {
 		// ingredients to consume.
 		while (producer.isAlive() || !table.isEmpty()) {
 			// Only removes table ingredients when the chef needs those exact ones.
-			if (!table.isEmpty() && !table.contains(ingredient)) {
+			if (table.hasMyIngedients(ingredient)) {
 				List<Ingredient> items = table.removeAll();
 				System.out.println(Thread.currentThread().getName() + " takes " + items);
 				try {

@@ -44,4 +44,8 @@ public class Table extends ArrayBlockingQueue<Ingredient> {
 		notifyAll();
 		return items;
 	}
+
+	public synchronized boolean hasMyIngedients(Ingredient ingredient) {
+		return !isEmpty() && !contains(ingredient);
+	}
 }
