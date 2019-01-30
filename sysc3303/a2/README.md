@@ -14,71 +14,69 @@ The output from the console is expected to be somewhat out of order due to each 
 2. Right-click Main.java > Run As > Java Application.
 
 ## Output
-TODO - Around 10% of the time the chef takes the wrong ingredients from the table...  
-This can result in the program not exiting.  
 
 ```
- << [PeanutButter, Jam]
-Bread Chef takes [PeanutButter, Jam]
- << [PeanutButter, Jam]
-Bread Chef ate their sandwich.
-Bread Chef takes [PeanutButter, Jam]
- << [Bread, PeanutButter]
- << [Bread, PeanutButter]
-Jam Chef takes [Bread, PeanutButter]
-Bread Chef ate their sandwich.
-Jam Chef ate their sandwich.
-Jam Chef takes [Bread, PeanutButter]
- << [Bread, PeanutButter]
- << [Bread, Jam]
-PeanutButter Chef takes [Bread, PeanutButter] ---------- ERROR
-Jam Chef ate their sandwich.
-PeanutButter Chef ate their sandwich.
-PeanutButter Chef takes [Bread, Jam]
- << [PeanutButter, Jam]
-Bread Chef takes [PeanutButter, Jam]
- << [PeanutButter, Jam]
-PeanutButter Chef ate their sandwich.
-Bread Chef ate their sandwich.
-Bread Chef takes [PeanutButter, Jam]
  << [Bread, Jam]
 PeanutButter Chef takes [Bread, Jam]
- << [Bread, Jam]
-Bread Chef ate their sandwich.
-PeanutButter Chef ate their sandwich.
-PeanutButter Chef takes [Bread, Jam]
-Jam Chef takes [PeanutButter, Jam] --------------------- ERROR
  << [PeanutButter, Jam]
- << [PeanutButter, Jam]
- << [PeanutButter, Jam]
-Bread Chef takes [PeanutButter, Jam]
-PeanutButter Chef ate their sandwich.
-Jam Chef ate their sandwich.
-Bread Chef ate their sandwich.
 Bread Chef takes [PeanutButter, Jam]
  << [Bread, PeanutButter]
 Jam Chef takes [Bread, PeanutButter]
-PeanutButter Chef takes [Bread, Jam]
- << [Bread, Jam]
- << [Bread, Jam]
-Bread Chef ate their sandwich.
-Jam Chef ate their sandwich.
-PeanutButter Chef ate their sandwich.
-PeanutButter Chef takes [Bread, Jam]
- << [PeanutButter, Jam]
-Bread Chef takes [PeanutButter, Jam]
- << [Bread, Jam]
-Jam Chef takes [Bread, Jam] ---------------------------- ERROR
  << [PeanutButter, Jam]
 PeanutButter Chef ate their sandwich.
 Bread Chef ate their sandwich.
 Jam Chef ate their sandwich.
 Bread Chef takes [PeanutButter, Jam]
- << [PeanutButter, Jam]
+ << [Bread, Jam]
+PeanutButter Chef takes [Bread, Jam]
+Jam Chef takes [Bread, PeanutButter]
+ << [Bread, PeanutButter]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+Jam Chef ate their sandwich.
 Bread Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [Bread, PeanutButter]
+Jam Chef takes [Bread, PeanutButter]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+Jam Chef ate their sandwich.
+ << [Bread, Jam]
+PeanutButter Chef takes [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [PeanutButter, Jam]
 Bread Chef takes [PeanutButter, Jam]
-PeanutButter Chef is full.
+ << [Bread, Jam]
+Bread Chef ate their sandwich.
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+ << [Bread, PeanutButter]
+ << [PeanutButter, Jam]
+Bread Chef takes [PeanutButter, Jam]
+Jam Chef takes [Bread, PeanutButter]
+ << [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+Jam Chef ate their sandwich.
+ << [Bread, Jam]
+Bread Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef takes [Bread, Jam]
 Jam Chef is full.
-Bread Chef ate their sandwich.
 Bread Chef is full.
+PeanutButter Chef ate their sandwich.
+PeanutButter Chef is full.
 ```
