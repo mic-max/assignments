@@ -1,0 +1,3791 @@
+
+
+***********************************************************************
+	Library Name: WB31DPW
+		Source separate
+	Description: WB31DPW
+WB Dev Parts
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Dev Parts'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBPartEventsModule
+		WBPartEventsTriggeredModule
+		WBPartMessagesModule
+		WBPARTSInterfaceEditor
+		WBPartsModule
+
+	Added dynamic Classes
+		WBPartEventsModule
+		WBPartEventsTriggeredModule
+		WBPartMessagesModule
+		WBPARTSInterfaceEditor
+		WBPartsModule
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		ApplicationCoordinator>>partEditDirect
+		CompositePane>>partEditDirect
+		CompositePane>>partEditProperties
+		Object>>isExecutable
+		ViewManager>>partEditDirect
+		ViewManager>>partEditProperties
+		WBPartEvent>>fullCopy
+		WBPartEvent>>updatePaneNames:
+		WBPartEvent>>updatePanes:
+		WBPartEvent>>updateReceiver:
+		WBPartMessage>>fullCopy
+		WBPartMessage>>updatePaneNames:
+		WBPartMessage>>updatePanes:
+		WBPartMessage>>updateSource:
+		WBPARTSEventList>>updateReceiver:
+		WBPARTSInterfaceList>>fullCopy
+		WBPARTSInterfaceList>>updatePaneNames:
+		WBPARTSInterfaceList>>updatePanes:
+		WBPARTSMessageList>>updateSource:
+		WBToolBar>>currentDragSession:
+		WBToolBar>>doDragDropAt:button:
+		WBToolBar>>dragSourceCutDefault:
+		WBToolBar>>dropLocation
+		WindowBuilder class>>defaultPartsIcon
+		WindowBuilder class>>defaultWBPartsIcon
+		WindowBuilder class>>wbPartsIcon
+		WindowBuilder>>dragPart:
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationCoordinator
+			WindowBuilder>>dragPart:
+			ApplicationCoordinator>>partEditDirect
+		Button
+			WBPARTSInterfaceEditor>>createViews
+		Color
+			WBPARTSInterfaceEditor>>drawSelector:
+		CompositePane
+		DialogTopPane
+			WBPARTSInterfaceEditor>>itemClassSelected
+		DragDropSession
+			WBToolBar>>doDragDropAt:button:
+		EntryField
+			WBPARTSInterfaceEditor>>createViews
+		LayoutFrame
+			WBPARTSInterfaceEditor>>createViews
+		ListBox
+			WBPARTSInterfaceEditor>>createViews
+		MessageBox
+			WindowBuilder>>dragPart:
+		PARTSApplication
+			nil
+		PARTSIcon
+			nil
+		PARTSMirrorCopyDictionary
+			nil
+		PARTSWrapper
+			WindowBuilder>>dragPart:
+		RadioButton
+			WBPARTSInterfaceEditor>>createViews
+		StaticText
+			WBPARTSInterfaceEditor>>createViews
+		SysFont
+			WBPARTSInterfaceEditor>>createViews
+		TopPane
+			WBPARTSInterfaceEditor>>itemClassSelected
+		ViewManager
+		WBAbstractCodeModule
+		WBAttributeWindow
+			WBPARTSInterfaceEditor
+		WBCodeGenBase
+		WBCodeModule
+			WBPartsModule
+		WBComboBox
+			WBPARTSInterfaceEditor>>createViews
+		WBDevelopmentObject
+		WBDevelopmentWindow
+		WBDisplayContext
+		WBObject
+		WBPartEvent
+			WBPARTSInterfaceEditor>>eventTargetFor:pane:put:
+			WBPartEvent>>updateReceiver:
+		WBPartMessage
+			WBPartMessagesModule>>wbItemClass
+			WBPartMessage>>updatePaneNames:
+		WBPARTSEventList
+			WBPartEventsModule>>definitionClass
+			WBPARTSEventList>>updateReceiver:
+		WBPARTSInterfaceList
+		WBPARTSMessageList
+			WBPartMessagesModule>>definitionClass
+			WBPARTSMessageList>>updateSource:
+		WBToolBar
+		WindowBuilder
+			ViewManager>>partEditProperties
+			nil
+			WindowBuilder>>dragPart:
+		WindowFrameObject
+
+***********************************************************************
+
+    Imported library file names:
+        PWCRBS31
+        PWWRBX31
+        vgui31w.sll
+        WB31DEVW
+        WB31RBW
+        WB31RCPW
+        WB31RPW
+        WB31RTBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31DEVW
+		Source separate
+	Description: WB31DEVW
+WB Dev
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Dev'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		BitEditor
+		ButtonEditor
+		CompositeFrameObject
+		FrameObject
+		PActionButton
+		PAnimationPane
+		PButton
+		PButtonListBox
+		PCheckBox
+		PCheckBoxGroup
+		PColumnListBox
+		PComboBox
+		PCompositePane
+		PDrawnButton
+		PDropDownList
+		PEnhancedEntryField
+		PEntryField
+		PEntryFieldGroup
+		PFormattedEntryField
+		PGenericSubpane
+		PGraphPane
+		PGroupBox
+		PGroupbox
+		PLinkButton
+		PListBox
+		PListPane
+		PMultipleSelectListBox
+		PRadioButton
+		PRadioButtonGroup
+		PRealWidgetControl
+		PScrollBar
+		PStaticBox
+		PStaticGraphic
+		PStaticText
+		PStatusPane
+		PTextEdit
+		PTextPane
+		PThreeStateButton
+		PToggle
+		PVideoPane
+		PWBHorizontalScrollBar
+		PWBInvisibleGroupPane
+		PWBStaticGraphic
+		PWBToolBar
+		PWBVerticalScrollBar
+		WBAboutDialog
+		WBAbstractAddInModule
+		WBAbstractCodeModule
+		WBAbstractCreateViewsModule
+		WBAbstractPrompter
+		WBActionEditor
+		WBActionLinkAddInModule
+		WBAddInManager
+		WBApplicationCoordinatorMenuModule
+		WBApplicationCoordinatorModule
+		WBAttributeEditor
+		WBAttributeWindow
+		WBBasicCodeModule
+		WBBitmapEditorCompositePane
+		WBBitmapManagerWindow
+		WBCallOutEditor
+		WBCallOutModule
+		WBChooseClassDialog
+		WBChoosePaneDialog
+		WBClassDefinition
+		WBCodeGenBase
+		WBCodeGenerator
+		WBCodeModule
+		WBCodePolicy
+		WBCodeStream
+		WBColorDialog
+		WBCompositeMenuModule
+		WBCompositePaneModule
+		WBCompositePaneScratchWindow
+		WBCompositePaneTester
+		WBCreateBitmap
+		WBCreateButton
+		WBCreateClassDialog
+		WBCreateMenuModule
+		WBCreatePowerMenuModule
+		WBCreatePowerViewModule
+		WBCreatePowerViewsModule
+		WBCreateViewModule
+		WBCreateViewsModule
+		WBCreateViewsStubModule
+		WBDefaultCompositePaneScratchWindow
+		WBDefaultDialogScratchWindow
+		WBDefaultScratchWindow
+		WBDescriptor
+		WBDevelopmentCompositePane
+		WBDevelopmentDialog
+		WBDevelopmentObject
+		WBDevelopmentSubPane
+		WBDevelopmentWindow
+		WBDialogEditor
+		WBDialogScratchWindow
+		WBDrawnButton
+		WBEditClassDialog
+		WBEnhancedAttributeEditor
+		WBEnhancedEntryFieldEditor
+		WBEntryListPrompter
+		WBENVYCodePolicy
+		WBEventArgumentDescription
+		WBEventDescription
+		WBEventHandlerStubModule
+		WBEventManagerWindow
+		WBEventMessage
+		WBFileSelectorEditor
+		WBFontEditorCompositePane
+		WBFontManagerWindow
+		WBFontSelectionWindow
+		WBFramerExample
+		WBFramingEditor
+		WBGeometryManager
+		WBGraphicObject
+		WBGroupBox
+		WBHandle
+		WBHorizontalScrollBar
+		WBInstVarGetModule
+		WBInstVarObject
+		WBInstVarSetModule
+		WBInterfaceObject
+		WBKeyAccel
+		WBKeyEntryField
+		WBLayoutCodeModule
+		WBLayoutForm
+		WBLayoutFrameEditor
+		WBLayoutWizard
+		WBLinkEditor
+		WBListChooser
+		WBListEditor
+		WBListEntryField
+		WBLocator
+		WBLookPolicy
+		WBLookPolicyOS2
+		WBLookPolicyWin31
+		WBLookPolicyWin95
+		WBManagedPFont
+		WBManagedPNLSString
+		WBManagedPValue
+		WBMenu
+		WBMenubarEditor
+		WBMenuEditor
+		WBMenuItem
+		WBMenuItemStub
+		WBMenuTester
+		WBMethodStubModule
+		WBModelBasicSetModule
+		WBModelCodeModule
+		WBModelDefinitionEditor
+		WBModelEventsTriggeredModule
+		WBModelGetModule
+		WBModelInitializeModule
+		WBModelInstVar
+		WBModelObjectEditor
+		WBModelSetModule
+		WBModelTriggerEventModule
+		WBMultiListChooser
+		WBMultiToolPalette
+		WBMultiViewAddInModule
+		WBNLSEditorCompositePane
+		WBNLSManagerWindow
+		WBOldEventHandlerStubModule
+		WBOpenMethodModule
+		WBOutboardAttributeWindow
+		WBOutboardWindow
+		WBPlaceHolderObject
+		WBPMenu
+		WBPMenubar
+		WBPMenuItem
+		WBPoolEditorCompositePane
+		WBPoolManagerWindow
+		WBPowerViewAddInModule
+		WBPrimaryModelInitializeModule
+		WBPrimaryModelModule
+		WBPrimaryModelOpenOnModule
+		WBPropertyDescriptor
+		WBPropertyEditor
+		WBPropertyManager
+		WBPrototype
+		WBResizeBitmap
+		WBResourceDescriptor
+		WBRGBColorDialog
+		WBScrapbookRetrieve
+		WBScrapbookStore
+		WBScratchWindow
+		WBScrollBarEditor
+		WBScrollingPane
+		WBStandardCodePolicy
+		WBStaticTextEditor
+		WBStatusPaneEditor
+		WBStyleEditor
+		WBSystemBitmapViewer
+		WBTabOrderEditor
+		WBTabOrderLayoutForm
+		WBTabPosition
+		WBTargetObject
+		WBTeamVCodePolicy
+		WBTemplateEditor
+		WBTextEditWindow
+		WBTimerEditor
+		WBToolBarEditor
+		WBToolMenuAddInModule
+		WBTopPane
+		WBTreeListBox
+		WBTreeNode
+		WBUndoAction
+		WBUndoManager
+		WBUndoRedoDialog
+		WBUserInfoDialog
+		WBVersionCodeModule
+		WBVerticalScrollBar
+		WBWindowEditor
+		WBXoteryXCodePolicy
+		WindowBuilder
+		WindowFrameObject
+
+	Added dynamic Classes
+		BitEditor
+		ButtonEditor
+		CompositeFrameObject
+		FrameObject
+		PActionButton
+		PAnimationPane
+		PButton
+		PButtonListBox
+		PCheckBox
+		PCheckBoxGroup
+		PColumnListBox
+		PComboBox
+		PCompositePane
+		PDrawnButton
+		PDropDownList
+		PEnhancedEntryField
+		PEntryField
+		PEntryFieldGroup
+		PFormattedEntryField
+		PGenericSubpane
+		PGraphPane
+		PGroupBox
+		PGroupbox
+		PLinkButton
+		PListBox
+		PListPane
+		PMultipleSelectListBox
+		PRadioButton
+		PRadioButtonGroup
+		PRealWidgetControl
+		PScrollBar
+		PStaticBox
+		PStaticGraphic
+		PStaticText
+		PStatusPane
+		PTextEdit
+		PTextPane
+		PThreeStateButton
+		PToggle
+		PVideoPane
+		PWBHorizontalScrollBar
+		PWBInvisibleGroupPane
+		PWBStaticGraphic
+		PWBToolBar
+		PWBVerticalScrollBar
+		WBAboutDialog
+		WBAbstractAddInModule
+		WBAbstractCodeModule
+		WBAbstractCreateViewsModule
+		WBAbstractPrompter
+		WBActionEditor
+		WBActionLinkAddInModule
+		WBAddInManager
+		WBApplicationCoordinatorMenuModule
+		WBApplicationCoordinatorModule
+		WBAttributeEditor
+		WBAttributeWindow
+		WBBasicCodeModule
+		WBBitmapEditorCompositePane
+		WBBitmapManagerWindow
+		WBCallOutEditor
+		WBCallOutModule
+		WBChooseClassDialog
+		WBChoosePaneDialog
+		WBClassDefinition
+		WBCodeGenBase
+		WBCodeGenerator
+		WBCodeModule
+		WBCodePolicy
+		WBCodeStream
+		WBColorDialog
+		WBCompositeMenuModule
+		WBCompositePaneModule
+		WBCompositePaneScratchWindow
+		WBCompositePaneTester
+		WBCreateBitmap
+		WBCreateButton
+		WBCreateClassDialog
+		WBCreateMenuModule
+		WBCreatePowerMenuModule
+		WBCreatePowerViewModule
+		WBCreatePowerViewsModule
+		WBCreateViewModule
+		WBCreateViewsModule
+		WBCreateViewsStubModule
+		WBDefaultCompositePaneScratchWindow
+		WBDefaultDialogScratchWindow
+		WBDefaultScratchWindow
+		WBDescriptor
+		WBDevelopmentCompositePane
+		WBDevelopmentDialog
+		WBDevelopmentObject
+		WBDevelopmentSubPane
+		WBDevelopmentWindow
+		WBDialogEditor
+		WBDialogScratchWindow
+		WBDrawnButton
+		WBEditClassDialog
+		WBEnhancedAttributeEditor
+		WBEnhancedEntryFieldEditor
+		WBEntryListPrompter
+		WBENVYCodePolicy
+		WBEventArgumentDescription
+		WBEventDescription
+		WBEventHandlerStubModule
+		WBEventManagerWindow
+		WBEventMessage
+		WBFileSelectorEditor
+		WBFontEditorCompositePane
+		WBFontManagerWindow
+		WBFontSelectionWindow
+		WBFramerExample
+		WBFramingEditor
+		WBGeometryManager
+		WBGraphicObject
+		WBGroupBox
+		WBHandle
+		WBHorizontalScrollBar
+		WBInstVarGetModule
+		WBInstVarObject
+		WBInstVarSetModule
+		WBInterfaceObject
+		WBKeyAccel
+		WBKeyEntryField
+		WBLayoutCodeModule
+		WBLayoutForm
+		WBLayoutFrameEditor
+		WBLayoutWizard
+		WBLinkEditor
+		WBListChooser
+		WBListEditor
+		WBListEntryField
+		WBLocator
+		WBLookPolicy
+		WBLookPolicyOS2
+		WBLookPolicyWin31
+		WBLookPolicyWin95
+		WBManagedPFont
+		WBManagedPNLSString
+		WBManagedPValue
+		WBMenu
+		WBMenubarEditor
+		WBMenuEditor
+		WBMenuItem
+		WBMenuItemStub
+		WBMenuTester
+		WBMethodStubModule
+		WBModelBasicSetModule
+		WBModelCodeModule
+		WBModelDefinitionEditor
+		WBModelEventsTriggeredModule
+		WBModelGetModule
+		WBModelInitializeModule
+		WBModelInstVar
+		WBModelObjectEditor
+		WBModelSetModule
+		WBModelTriggerEventModule
+		WBMultiListChooser
+		WBMultiToolPalette
+		WBMultiViewAddInModule
+		WBNLSEditorCompositePane
+		WBNLSManagerWindow
+		WBOldEventHandlerStubModule
+		WBOpenMethodModule
+		WBOutboardAttributeWindow
+		WBOutboardWindow
+		WBPlaceHolderObject
+		WBPMenu
+		WBPMenubar
+		WBPMenuItem
+		WBPoolEditorCompositePane
+		WBPoolManagerWindow
+		WBPowerViewAddInModule
+		WBPrimaryModelInitializeModule
+		WBPrimaryModelModule
+		WBPrimaryModelOpenOnModule
+		WBPropertyDescriptor
+		WBPropertyEditor
+		WBPropertyManager
+		WBPrototype
+		WBResizeBitmap
+		WBResourceDescriptor
+		WBRGBColorDialog
+		WBScrapbookRetrieve
+		WBScrapbookStore
+		WBScratchWindow
+		WBScrollBarEditor
+		WBScrollingPane
+		WBStandardCodePolicy
+		WBStaticTextEditor
+		WBStatusPaneEditor
+		WBStyleEditor
+		WBSystemBitmapViewer
+		WBTabOrderEditor
+		WBTabOrderLayoutForm
+		WBTabPosition
+		WBTargetObject
+		WBTeamVCodePolicy
+		WBTemplateEditor
+		WBTextEditWindow
+		WBTimerEditor
+		WBToolBarEditor
+		WBToolMenuAddInModule
+		WBTopPane
+		WBTreeListBox
+		WBTreeNode
+		WBUndoAction
+		WBUndoManager
+		WBUndoRedoDialog
+		WBUserInfoDialog
+		WBVersionCodeModule
+		WBVerticalScrollBar
+		WBWindowEditor
+		WBXoteryXCodePolicy
+		WindowBuilder
+		WindowFrameObject
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+		WBDevelopmentBitmaps
+
+	Added Methods
+		ApplicationCoordinator class>>defaultCodeModuleClass
+		ApplicationCoordinator class>>isScratchWindow
+		ApplicationCoordinator class>>wbGenerateInstVars
+		ApplicationCoordinator class>>wbReservedInstVarNames
+		ApplicationCoordinator>>isWBModel
+		ApplicationCoordinator>>modelObjects
+		ApplicationWindow>>clearDependents
+		Array>>asOrderedCollectionRecursively
+		Array>>wbStoreOn:
+		Behavior>>wbFullCopyReal:
+		Behavior>>wbPseudoClass
+		Bitmap class>>buttonWidth:height:
+		Bitmap class>>buttonWidth:height:contents:
+		Bitmap class>>buttonWidth4:height:
+		Bitmap class>>buttonWidth8:height:
+		Bitmap class>>screenWidth4:height:
+		Bitmap class>>screenWidth8:height:
+		Bitmap class>>wbSysModuleName
+		Bitmap>>cpCopy
+		Bitmap>>displayLeftTopAt:with:
+		Bitmap>>fromSysID:
+		Bitmap>>isOperatingSystemBitmap
+		Bitmap>>screenWidth4:height:
+		Bitmap>>screenWidth8:height:
+		Bitmap>>wbButtonDown:
+		Bitmap>>wbButtonDownBox
+		Bitmap>>wbButtonUp:
+		Bitmap>>wbButtonUpBox
+		Bitmap>>wbCopy
+		Bitmap>>wbCopy4
+		Bitmap>>wbCopy8
+		Bitmap>>wbInitButton
+		Bitmap>>wbInitButton:
+		Bitmap>>wbOutputToFile:
+		Bitmap>>wbOutputToFileStream:
+		Bitmap>>wbResize:
+		Bitmap>>wbResizeButton:
+		Bitmap>>wbScale:
+		Bitmap>>wbScaleButton:
+		BlockClosure>>asLayout
+		Boolean>>wbFullCopyReal:
+		Button class>>wbConstructPropertyManager
+		ButtonListBox class>>wbConstructPropertyManager
+		ButtonListBox>>wbContents
+		ByteArray>>wbStoreOn:
+		Character>>wbFullCopyReal:
+		CheckBox class>>wbConstructPropertyManager
+		CheckBoxGroup class>>wbConstructPropertyManager
+		Class>>wbEdit
+		Class>>wbNameAndClass
+		Class>>wbTranslate
+		ClassHierarchyBrowser>>isWBClassBrowser
+		ClassHierarchyBrowser>>wbFindClass:
+		Color>>basicStoreColorOn:
+		Color>>storeColorOn:
+		ComboBox class>>wbConstructPropertyManager
+		ComboEntryField class>>wbConstructPropertyManager
+		CompositePane class>>defaultCodeModuleClass
+		CompositePane class>>wbReservedInstVarNames
+		CompositePane class>>wbTestOpenIn:
+		CompositePane>>modelObjects
+		ControlPane>>isATabStopPrim
+		CursorManager class>>initializeWBCursors
+		DialogTopPane class>>wbConstructPropertyManager
+		Dictionary>>isValidNLSDictionary
+		DoubleByteSymbol>>wbFullCopyReal:
+		DrawnButton class>>wbConstructPropertyManager
+		DrawnButton>>drawSelector
+		DropDownList class>>wbConstructPropertyManager
+		EnhancedEntryField class>>okCharacterMethods
+		EnhancedEntryField class>>okFieldMethods
+		EntryField class>>wbConstructPropertyManager
+		EntryFieldGroup class>>wbConstructPropertyManager
+		Font>>logicalBytes
+		Font>>nonPortableStoreOn:indentString:
+		Font>>portableStoreOn:indentString:
+		Font>>storeOn:indentString:
+		Font>>wbEquals:
+		Font>>wbFontDescription
+		Font>>wbFontLongDescription
+		Font>>wbManagedValueFor:
+		Font>>wbSuggestedName
+		Fraction>>wbStoreOn:
+		GraphicsTool>>resetColorMode
+		GraphicsTool>>rgbColorMode
+		GraphicsTool>>wbLineFrom:to:
+		GraphPane class>>wbConstructPropertyManager
+		GroupBox class>>wbConstructPropertyManager
+		IndexedColor>>basicStoreColorOn:
+		Integer>>storeColorOn:
+		LayoutFrame>>asFramingBlockForDialogSubPaneFromWindow
+		LayoutFrame>>asFramingBlockForDialogTopPaneFromWindow
+		LayoutFrame>>asFramingBlockForWindowFromDialogSubPane
+		LayoutFrame>>asFramingBlockForWindowFromDialogTopPane
+		LayoutFrame>>indent:
+		LayoutFrame>>newFramerFromNewRect:parentRect:
+		LayoutFrame>>printOn:
+		LayoutFrame>>storeForDialogSubPaneOn:indentString:
+		LayoutFrame>>storeForDialogTopPaneOn:indentString:
+		LayoutFrame>>storeOn:indentString:
+		LayoutFrame>>wbBottomAttachedToTop
+		LayoutFrame>>wbBottomAttachedToTop:
+		LayoutFrame>>wbBottomProportional
+		LayoutFrame>>wbBottomProportional:
+		LayoutFrame>>wbCopyTo:
+		LayoutFrame>>wbFramingEditor
+		LayoutFrame>>wbLeftProportional
+		LayoutFrame>>wbLeftProportional:
+		LayoutFrame>>wbRightAttachedToLeft
+		LayoutFrame>>wbRightAttachedToLeft:
+		LayoutFrame>>wbRightProportional
+		LayoutFrame>>wbRightProportional:
+		LayoutFrame>>wbTopProportional
+		LayoutFrame>>wbTopProportional:
+		ListBox class>>wbConstructPropertyManager
+		ListPane class>>wbConstructPropertyManager
+		Menu>>asPMenuItem
+		Menu>>asWBPMenu
+		MenuWindow class>>wbConstructPropertyManager
+		MenuWindow>>asWBPMenu
+		MenuWindow>>asWBPMenuBar
+		Message>>asEventMessage
+		Message>>asMessage
+		Message>>wbCollectArguments:
+		Message>>wbEvaluateWithReceiver:
+		Message>>wbEvaluateWithReceiver:arguments:
+		MetaClass>>isScratchWindow
+		MultipleSelectListBox class>>wbConstructPropertyManager
+		Number>>wbFullCopyReal:
+		Object class>>defaultCodeModuleClass
+		Object class>>supportedEvents
+		Object class>>wbConstructPropertyManager
+		Object class>>wbCreatedClasses
+		Object class>>wbGenerateInstVars
+		Object class>>wbModelClass
+		Object class>>wbPropertyManager
+		Object class>>wbReservedInstVarNames
+		Object class>>wbTestOpenIn:
+		Object>>addedByOSI
+		Object>>attributeEditor
+		Object>>creationMethodSelector
+		Object>>creationMethodSelector:
+		Object>>definedIn:
+		Object>>eventHandlerSelectorAt:
+		Object>>eventHandlerSelectorAt:put:prototype:
+		Object>>eventHandlerTargetAt:
+		Object>>eventHandlerTargetAt:put:prototype:
+		Object>>isInstVar
+		Object>>isInstVar:
+		Object>>isScratchWindow
+		Object>>isWBAction
+		Object>>isWBClassBrowser
+		Object>>isWBInstVarObject
+		Object>>isWBInterfaceObject
+		Object>>isWBInternalClass
+		Object>>isWBModel
+		Object>>isWBPrimaryModel
+		Object>>modifiedByOSI
+		Object>>osiHack
+		Object>>owner:
+		Object>>paneName
+		Object>>pt
+		Object>>realClass
+		Object>>setName:
+		Object>>storeOn:indentString:
+		Object>>styles
+		Object>>wbBecome:
+		Object>>wbConvertEventTable:
+		Object>>wbCopy
+		Object>>wbCopyTo:
+		Object>>wbDuplicate
+		Object>>wbDuplicateTo:
+		Object>>wbEditorClass
+		Object>>wbEventsTriggered
+		Object>>wbEventTable:
+		Object>>wbFontsUsed
+		Object>>wbFramingEditor
+		Object>>wbFullCopy
+		Object>>wbFullCopy:
+		Object>>wbFullCopyObject:
+		Object>>wbFullCopyProperties:
+		Object>>wbFullCopyReal:
+		Object>>wbHalt
+		Object>>wbIgnore:
+		Object>>wbInstVarMap
+		Object>>wbIsPValueManager
+		Object>>wbManagedValue
+		Object>>wbManagedValueFor:
+		Object>>wbMutateTo:
+		Object>>wbMutateToInstanceOf:
+		Object>>wbNameAndClass
+		Object>>wbPropertyManager
+		Object>>wbRealClass
+		Object>>wbRealWidget
+		Object>>wbReservedInstVarNames
+		Object>>wbStoreOn:
+		Object>>wbStorePropertiesOn:
+		Object>>wbSuggestedTempName
+		Object>>wbWrapper
+		OrderedCollection>>wbStoreOn:
+		PagedRangeControl class>>wbConstructPropertyManager
+		Pattern>>wbTranslate:using:
+		Point>>extentFromCenter:
+		Point>>extentFromCenterTop:
+		Point>>extentFromRightTop:
+		PropertyAccessor>>wbAddStyle:
+		PropertyAccessor>>wbAddStyleAction
+		PropertyAccessor>>wbCopyFrom:to:using:
+		PropertyAccessor>>wbDefault
+		PropertyAccessor>>wbDefault:
+		PropertyAccessor>>wbDefaultAddStyleAction
+		PropertyAccessor>>wbDefaultPoolKey
+		PropertyAccessor>>wbDefaultPoolName
+		PropertyAccessor>>wbDefaultRemoveStyleAction
+		PropertyAccessor>>wbDefaultStoreAction
+		PropertyAccessor>>wbDuplicateFrom:to:using:
+		PropertyAccessor>>wbDuplicateValue:for:
+		PropertyAccessor>>wbFullCopy:from:to:
+		PropertyAccessor>>wbGetValueFor:
+		PropertyAccessor>>wbInitializeDefaultFrom:
+		PropertyAccessor>>wbMutateFrom:to:using:
+		PropertyAccessor>>wbMutateValue:for:
+		PropertyAccessor>>wbNLSAccessor
+		PropertyAccessor>>wbNLSAccessor:
+		PropertyAccessor>>wbPoolKey
+		PropertyAccessor>>wbPoolKey:
+		PropertyAccessor>>wbPoolName
+		PropertyAccessor>>wbPoolName:
+		PropertyAccessor>>wbRemoveStyle:
+		PropertyAccessor>>wbRemoveStyleAction
+		PropertyAccessor>>wbSetValue:for:
+		PropertyAccessor>>wbStore:
+		PropertyAccessor>>wbStore:on:
+		PropertyAccessor>>wbStoreAction
+		PropertyAccessor>>wbUserDefault
+		PropertyAccessor>>wbUserDefault:
+		PropertyManager>>wbAddEvent:
+		PropertyManager>>wbCopyFrom:to:
+		PropertyManager>>wbDuplicateFrom:to:
+		PropertyManager>>wbEventNamed:
+		PropertyManager>>wbEventNamed:ifAbsent:
+		PropertyManager>>wbEvents
+		PropertyManager>>wbEventsForEdit
+		PropertyManager>>wbFullCopy:from:to:
+		PropertyManager>>wbInitializeDefaultFrom:
+		PropertyManager>>wbMutateFrom:to:
+		PropertyManager>>wbNLSAccessorsDo:
+		PropertyManager>>wbRemoveEventNamed:
+		PropertyManager>>wbStore:on:
+		RadioButton class>>wbConstructPropertyManager
+		RadioButtonGroup class>>wbConstructPropertyManager
+		RangeControl class>>wbConstructPropertyManager
+		ReadWriteStream>>nextFourBytes
+		ReadWriteStream>>nextTwoBytes
+		Rectangle>>centerTop
+		Rectangle>>localizeRect:
+		Rectangle>>moveToLeftTop:
+		Rectangle>>offsetFromLeftTop:
+		Rectangle>>unLocalizeRect:
+		RGBColor>>basicStoreColorOn:
+		Screen>>wbPointFromUser:offset:
+		Screen>>wbPointFromUser:offset:executing:
+		ScrollBar class>>wbConstructPropertyManager
+		SelectorPropertyAccessor>>wbDefaultStoreAction
+		SelectorPropertyAccessor>>wbDuplicate:
+		SelectorPropertyAccessor>>wbDuplicateAction
+		SelectorPropertyAccessor>>wbDuplicateValue:for:
+		SelectorPropertyAccessor>>wbGetValueFor:
+		SelectorPropertyAccessor>>wbMutate:
+		SelectorPropertyAccessor>>wbMutateAction
+		SelectorPropertyAccessor>>wbMutateValue:for:
+		SelectorPropertyAccessor>>wbSetValue:for:
+		SexPane class>>wbConstructPropertyManager
+		SmalltalkWindowPolicy>>addStandardLeftMenus
+		SpinButton class>>wbConstructPropertyManager
+		StandardWindowPolicy>>addWindowBuilderMenu
+		StaticPane class>>wbConstructPropertyManager
+		StaticText class>>wbConstructPropertyManager
+		StaticText>>showHelp:
+		StaticText>>wbGrayDisable
+		StaticText>>wbGrayEnable
+		StatusWindow class>>wbConstructPropertyManager
+		Stream>>nextString:
+		Stream>>skipToWhitespace
+		Stream>>skipWhitespace
+		Stream>>upToWhitespace
+		String>>asBasicToken
+		String>>asColor
+		String>>asInstVarToken
+		String>>asLowerCaseFirstCaps
+		String>>asMessage
+		String>>asQuotedString
+		String>>asSelectorToken
+		String>>asSelectorTokenWithArgCount:
+		String>>asSuggestedTempVarToken
+		String>>asSuggestedUnarySelectorToken
+		String>>asTempVarToken
+		String>>asToken
+		String>>asUnarySelectorToken
+		String>>hasContent
+		String>>storeColorOn:
+		String>>wbManagedValueFor:
+		String>>wbNameAndClass
+		String>>wbValidTriggeredSelectorFor:
+		StylePropertyAccessor>>getValueFor:
+		StylePropertyAccessor>>setValue:for:
+		StylePropertyAccessor>>wbAlwaysGenerate
+		StylePropertyAccessor>>wbDefaultAddStyleAction
+		StylePropertyAccessor>>wbDefaultPoolKey
+		StylePropertyAccessor>>wbDefaultPoolName
+		StylePropertyAccessor>>wbDefaultRemoveStyleAction
+		StylePropertyAccessor>>wbDefaultStoreAction
+		StylePropertyAccessor>>wbFrameStyle
+		StylePropertyAccessor>>wbFrameStyle:
+		SubPane class>>wbConstructPropertyManager
+		SubPane>>isATabStopPrim
+		Symbol>>asCUAPresentableString
+		Symbol>>asPresentableString
+		Symbol>>wbEvaluateWithReceiver:
+		Symbol>>wbEvaluateWithReceiver:arguments:
+		Symbol>>wbFullCopyReal:
+		SystemDictionary>>allNLSDictionaries
+		TextEdit class>>wbConstructPropertyManager
+		TextPane class>>wbConstructPropertyManager
+		TextPaneControl class>>wbConstructPropertyManager
+		ThreeStateButton class>>wbConstructPropertyManager
+		Timer>>attributeEditor
+		Timer>>storeOn:indentString:
+		Toggle class>>wbConstructPropertyManager
+		ToolPane class>>wbConstructPropertyManager
+		TopPane class>>wbConstructPropertyManager
+		TopPane>>modelObjects
+		TopPane>>wbStorePropertiesOn:
+		UndefinedObject>>wbCopyUsing:
+		UndefinedObject>>wbFullCopyReal:
+		ViewManager class>>defaultCodeModuleClass
+		ViewManager class>>isScratchWindow
+		ViewManager class>>wbReservedInstVarNames
+		ViewManager>>isWBModel
+		ViewManager>>menuWindow
+		ViewManager>>modelNamed:
+		ViewManager>>modelObjects
+		WBBitmapManager class>>convertBitmapsFromModuleToImage
+		WBBitmapManager class>>loadStandardWBBitmaps
+		WBBitmapManager class>>standardWBBitmapIDMap
+		WBBitmapManager>>codeKeyClass
+		WBBitmapManager>>convertBitmapsFromModuleToImage
+		WBBitmapManager>>editorClass
+		WBBitmapManager>>updateSourceFor:in:value:
+		WBBitmapPool>>convertBitmapsFromModuleToImage
+		WBBitmapPool>>fileOutBDTKeys:categories:on:
+		WBBitmapPool>>fileOutBPL:keys:categories:ids:on:
+		WBBitmapPool>>fileOutFooterOn:
+		WBBitmapPool>>fileOutHeaderOn:
+		WBBitmapSubPool>>convertBitmapsFromModuleToImage
+		WBBitmapSubPool>>fileOut:on:
+		WBBitmapSubPool>>fileOutBDTKeys:on:
+		WBBitmapSubPool>>fileOutBPL:keys:ids:on:
+		WBBitmapSubPool>>fileOutFooterOn:
+		WBBitmapSubPool>>fileOutHeaderOn:
+		WBBitmapSubPool>>fileOutRef:fileName:ids:on:
+		WBFontManager>>codeKeyClass
+		WBFontManager>>editorClass
+		WBFontPool>>fileOutFooterOn:
+		WBFontPool>>fileOutHeaderOn:
+		WBFontSubPool>>fileOut:on:
+		WBFontSubPool>>fileOutHeaderOn:
+		WBNLSDictionaryReader class>>commentEndString
+		WBNLSDictionaryReader class>>commentStartString
+		WBNLSDictionaryReader class>>fileOutCategoryBeginOn:
+		WBNLSDictionaryReader class>>fileOutCategoryEndOn:
+		WBNLSDictionaryReader class>>fileOutCategoryFileName:on:
+		WBNLSDictionaryReader class>>fileOutCategoryName:on:
+		WBNLSDictionaryReader class>>fileOutComment:on:
+		WBNLSDictionaryReader class>>fileOutInclude:on:
+		WBNLSDictionaryReader class>>fileOutPoolFileName:on:
+		WBNLSDictionaryReader class>>fileOutPoolName:on:
+		WBNLSDictionaryReader class>>fileOutPoolTableBeginOn:
+		WBNLSDictionaryReader class>>fileOutPoolTableEndOn:
+		WBNLSDictionaryReader class>>fileOutToken:inCommentOn:
+		WBNLSDictionaryReader class>>fileOutToken:on:
+		WBNLSDictionaryReader class>>fileOutToken:value:inCommentOn:
+		WBNLSDictionaryReader class>>fileOutToken:value:indent:on:
+		WBNLSDictionaryReader class>>fileOutToken:value:on:
+		WBNLSManager>>codeKeyClass
+		WBNLSManager>>defaultCodeGenerationStyle
+		WBNLSManager>>defaultIndirectCodeGenerationStyle
+		WBNLSManager>>editorClass
+		WBNLSPool>>fileOutFooterOn:
+		WBNLSPool>>fileOutHeaderOn:
+		WBNLSSubPool>>fileOut:on:
+		WBNLSSubPool>>fileOutFooterOn:
+		WBNLSSubPool>>fileOutHeaderOn:
+		WBNLSSubPool>>fileOutIncludeOn:
+		WBPool>>fileOutCategories:on:
+		WBPool>>fileOutCategoryFileNames:on:
+		WBPool>>fileOutFooterOn:
+		WBPool>>fileOutHeaderOn:
+		WBPool>>fileOutOn:
+		WBPoolManager>>codeGenerationStyle
+		WBPoolManager>>codeGenerationStyle:
+		WBPoolManager>>codeKeyClass
+		WBPoolManager>>codeKeySelector
+		WBPoolManager>>codeSelector
+		WBPoolManager>>defaultCodeGenerationStyle
+		WBPoolManager>>defaultIndirectCodeGenerationStyle
+		WBPoolManager>>edit
+		WBPoolManager>>editorClass
+		WBPoolManager>>fileOutRefOn:
+		WBPoolManager>>isIndirectCodeGenerationStyle
+		WBPoolManager>>isIndirectCodeGenerationStyle:
+		WBSubPool>>fileOut:on:
+		WBSubPool>>fileOutFooterOn:
+		WBSubPool>>fileOutHeaderOn:
+		WBSubPool>>fileOutIncludeOn:
+		WBSubPool>>fileOutKeys:on:
+		WBSubPool>>fileOutOn:
+		WBToolBar class>>wbConstructPropertyManager
+		WBToolPalette class>>wbConstructPropertyManager
+		WildPattern>>wbTranslate:using:
+		WinDialogInfo>>extent
+		WinDialogInfo>>items
+		WinDialogInfo>>numberOfItems
+		WinDialogInfo>>origin
+		WinDialogInfo>>readFrom:
+		WinDialogInfo>>style
+		WinDialogInfo>>text
+		Window class>>wbConstructPropertyManager
+		Window>>extent:
+		Window>>getId
+		Window>>hasClipsiblingsStyle
+		Window>>isWBModel
+		Window>>nameForInstVar:
+		Window>>tabPosition:
+		Window>>wbCopyTo:
+		Window>>wbDuplicateTo:
+		Window>>wbFramingBlock
+		Window>>wbFullCopyReal:
+		Window>>wbMutateTo:
+		Window>>wbOldEventTable:
+		Window>>wbWrapper
+		Window>>wbWrapper:
+		WindowPolicy>>addWindowBuilderMenu
+
+	Added Initialization Expressions
+		Initializer: "bindAction:
+
+set bindAction: Message(MethodExecutor class>>execute:for:)
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationCoordinator
+			WBPrototype>>convertClass:
+			ApplicationCoordinator>>isWBModel
+			nil
+		ApplicationWindow
+			ApplicationWindow>>clearDependents
+		Bitmap
+			WBBitmapEditorCompositePane>>updateValue
+			Bitmap>>isOperatingSystemBitmap
+			nil
+		Browser
+		Button
+			WBUndoRedoDialog>>createViews
+			nil
+		ButtonFont
+			WindowBuilder>>setDefaultFonts
+		ButtonListBox
+			WBLayoutWizard>>createViews
+			ButtonListBox>>wbContents
+		CharacterConstants
+			WindowBuilder>>menuToolsInspectCharacterConstants
+		CheckBox
+			WBDialogEditor>>createViews
+			nil
+		CheckBoxGroup
+			nil
+		ClassHierarchyBrowser
+			WindowBuilder>>menuEditBrowseClass
+		ClassReader
+			WBActionEditor>>fileOut
+		Clipboard
+			WBBitmapManagerWindow>>menuBitmapPasteIntoButton
+		Color
+			WBLookPolicyOS2>>drawComboBox:with:clipRect:
+			Color>>basicStoreColorOn:
+		ColorConstants
+			WindowBuilder>>menuToolsInspectColorConstants
+		ColorDialog
+			WBRGBColorDialog>>chooseRGBColor
+		ComboBox
+			PComboBox>>styles
+			nil
+		ComboEntryField
+			nil
+		CompilerInterface
+			WBActionEditor>>add
+			WBDevelopmentWindow>>compilerEvaluate:
+		CompositePane
+			nil
+			WBCompositePaneScratchWindow
+			nil
+		ControlPane
+			ControlPane>>isATabStopPrim
+		Cursor
+			WBScrollingPane>>sizingWindow:
+		CursorConstants
+			WindowBuilder>>menuToolsInspectCursorConstants
+		CursorManager
+			WBCreateClassDialog>>envyApplicationChoices
+			nil
+		DialogCoordinator
+			WindowFrameObject>>isDialog
+		DialogTopPane
+			WBPrototype>>convertWindow:inClass:
+			nil
+		Display
+			ButtonEditor>>openOn:clipRect:
+		DragDropSession
+			WBLayoutForm>>doDragDropAt:button:
+		DrawnButton
+			WBTemplateEditor>>createViews
+			WBDrawnButton
+		DropDownList
+			nil
+		EnhancedEntryField
+			nil
+		EntryField
+			WBUndoRedoDialog>>createViews
+			WBListEntryField
+		EntryFieldGroup
+			nil
+		FileDialog
+			WBBitmapManagerWindow>>menuKeyFileOutRCFile:
+		Font
+			Font>>wbFontDescription
+			WBLookPolicyWin95>>menuFont
+		FontDialog
+			WBFontEditorCompositePane>>selectFont
+		GDILibrary
+			Bitmap>>screenWidth4:height:
+		GraphicsConstants
+			WindowBuilder>>menuToolsInspectGraphicsConstants
+		GraphicsTool
+			GraphicsTool>>resetColorMode
+		GraphPane
+			ButtonEditor>>openOn:clipRect:
+			nil
+		GroupBox
+			WBFontSelectionWindow>>createViews
+			WBGroupBox
+		GroupPane
+			ButtonEditor>>openOn:clipRect:
+			WBLayoutForm
+		Icon
+			nil
+		IndexedColor
+			WBInterfaceObject>>backColor:
+			IndexedColor>>basicStoreColorOn:
+		LayoutFrame
+			PWBToolBar>>style:
+		ListBox
+			WBFontSelectionWindow>>createViews
+			WBTreeListBox
+			nil
+		ListFont
+			WindowBuilder>>setDefaultFonts
+		ListPane
+			nil
+		Menu
+			WBModelObjectEditor>>popupTargetMenu:
+			Menu>>asWBPMenu
+		MenuItem
+			WBMenuItem
+		MenuWindow
+			WBMenuTester>>preInitWindow
+			MenuWindow>>asWBPMenu
+			nil
+		MessageBox
+			nil
+		MethodBrowser
+			WBPoolManagerWindow>>menuKeyBrowseReferences:
+		MultipleSelectListBox
+			WBUndoRedoDialog>>createViews
+			nil
+		Notifier
+			WBEditClassDialog>>removeFilter
+		OperatingSystemConstants
+			WindowBuilder>>menuToolsInspectOperatingSystemConstants
+		PagedRangeControl
+			nil
+		Pool SystemColorConstants>SystemColorDesktop
+			PStaticBox>>displayWith:clipRect:
+		Pool VirtualKeyConstants>AfAlt
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>AfChar
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>AfControl
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>AfShift
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>AfVirtualkey
+			WBKeyAccel>>accelArray:
+		Pool VirtualKeyConstants>AltKey
+			WBKeyEntryField>>keyboardInput:
+		Pool VirtualKeyConstants>BackspaceKey
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>ControlKey
+			WBKeyEntryField>>keyboardInput:
+		Pool VirtualKeyConstants>DeleteKey
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>DownKey
+			WBListEntryField>>keyboardInput:
+		Pool VirtualKeyConstants>InsertKey
+			WindowBuilder>>preInitWindow
+		Pool VirtualKeyConstants>LeftKey
+			WBListEntryField>>keyboardInput:
+		Pool VirtualKeyConstants>ReturnKey
+			WBListEntryField>>wmChar:with:
+		Pool VirtualKeyConstants>RightKey
+			WBListEntryField>>keyboardInput:
+		Pool VirtualKeyConstants>ShiftKey
+			WBKeyEntryField>>keyboardInput:
+		Pool VirtualKeyConstants>UpKey
+			WBListEntryField>>keyboardInput:
+		Prompter
+			WBBitmapManagerWindow>>menuKeyFromScreen
+		PropertyAccessor
+		PropertyManager
+			SelectorPropertyAccessor>>wbMutateValue:for:
+			PropertyManager>>wbRemoveEventNamed:
+		RadioButton
+			WBLayoutWizard>>createViews
+			nil
+		RadioButtonGroup
+			nil
+		RangeControl
+			nil
+		RGBColor
+			WBRGBColorDialog>>rgbChanged:
+			RGBColor>>basicStoreColorOn:
+		Screen
+			Screen>>wbPointFromUser:offset:
+		ScrollBar
+			PScrollBar>>realClass
+			WBVerticalScrollBar
+			nil
+		SelectorPropertyAccessor
+			nil
+			SelectorPropertyAccessor>>wbMutateValue:for:
+		SexPane
+			nil
+		SmalltalkToolInterface
+			WBEventManagerWindow>>createViews
+		SmalltalkWindowPolicy
+			SmalltalkWindowPolicy>>addStandardLeftMenus
+		SourceManager
+			WBStandardCodePolicy>>basicLogMethodFor:
+		SpinButton
+		StandardWindowPolicy
+			StandardWindowPolicy>>addWindowBuilderMenu
+		StaticBox
+			WBDialogEditor>>createViews
+		StaticGraphic
+			nil
+		StaticPane
+			nil
+		StaticText
+			WBUndoRedoDialog>>createViews
+			StaticText>>showHelp:
+			nil
+		StatusBox
+			WBTabOrderEditor>>createViews
+		StatusPane
+			WBTabOrderEditor>>createViews
+		StatusWindow
+		StylePropertyAccessor
+			nil
+			StylePropertyAccessor>>setValue:for:
+		SubPane
+			WBLayoutWizard>>otherType
+			WBDevelopmentSubPane
+		SysFont
+			WBFontManagerWindow>>addEditorCompositePaneTo:
+		SystemColorConstants
+			WindowBuilder>>menuToolsInspectSystemColorConstants
+		Terminal
+			WBTabOrderLayoutForm>>buttonReleaseMovingTabPosition:
+		TextEdit
+			WBFontSelectionWindow>>createViews
+			nil
+		TextFont
+			WBTextEditWindow>>openOn:
+		TextPane
+			WBTextEditWindow>>openOn:
+			nil
+		TextPaneControl
+			nil
+		TextWindow
+			WBTextEditWindow
+		ThreeStateButton
+			nil
+			nil
+		Timer
+			Timer>>attributeEditor
+		Toggle
+			nil
+		ToolPane
+		TopPane
+			WBEventManagerWindow>>widgetFilterNeedsContents:
+			WBTopPane
+			nil
+		Transcript
+			WindowBuilder>>close:
+		TranscriptWindow
+			SmalltalkWindowPolicy>>addStandardLeftMenus
+		ViewManager
+			WindowBuilder>>menuEditBrowseWidgetClass
+			WBDevelopmentWindow
+		VirtualKeyConstants
+			WindowBuilder>>menuToolsInspectVirtualKeyConstants
+		WBAction
+		WBBitmap
+		WBBitmapManager
+			nil
+			WBBitmapManager>>convertBitmapsFromModuleToImage
+			nil
+		WBBitmapPool
+			WBBitmapPool>>fileOutHeaderOn:
+		WBBitmaps
+			WBAttributeEditor>>stringFromBitmap:
+		WBBitmapSubPool
+			WBBitmapSubPool>>convertBitmapsFromModuleToImage
+		WBComboBox
+			WBEventManagerWindow>>createViews
+		WBDisplayContext
+		WBEntryField
+		WBFontManager
+			WBManagedPFont>>pools
+			WBFontManager>>editorClass
+		WBFontPool
+			WBFontPool>>fileOutFooterOn:
+		WBFontSubPool
+			WBFontSubPool>>fileOutHeaderOn:
+		WBListBox
+		WBNLSDictionaryReader
+			nil
+		WBNLSManager
+			nil
+			WBNLSManager>>codeKeyClass
+		WBNLSPool
+			WBNLSPool>>fileOutHeaderOn:
+		WBNLSSubPool
+			WBNLSSubPool>>fileOutHeaderOn:
+		WBObject
+			WBDevelopmentObject
+		WBPool
+			WBPool>>fileOutCategoryFileNames:on:
+		WBPoolError
+		WBPoolManager
+			WBPoolManagerWindow>>defaultPoolManager
+			WBPoolManager>>defaultCodeGenerationStyle
+		WBStaticGraphic
+			WBSystemBitmapViewer>>createViews
+		WBSubPool
+			WBSubPool>>fileOutFooterOn:
+		WBTool
+			WBToolBarEditor>>insert
+		WBToolBar
+			nil
+		WBToolPalette
+			WindowBuilder>>createViews
+			WBMultiToolPalette
+			nil
+		WBWindowDialog
+			WBAbstractPrompter
+		WinCommonControlConstants
+			nil
+		WinDialogInfo
+			WBPrototype>>convertWidgetsToRes:
+			WinDialogInfo>>readFrom:
+		Window
+			nil
+			Window>>wbDuplicateTo:
+			nil
+		WindowDialog
+			WBPrototype>>convertWindow:inClass:
+			WBDevelopmentDialog
+		WindowPolicy
+			WindowPolicy>>addWindowBuilderMenu
+		WinRectangle
+			WBTreeListBox>>basicSelectionText:
+		WinToPMKeyMap
+			WBKeyAccel>>pmKeyCodeFor:
+		WinWindowClass
+			WBLayoutForm>>windowClass
+
+***********************************************************************
+
+    Imported library file names:
+        VBLB31W
+        vccc31w
+        vdev31w.sll
+        vgui31w.sll
+        VPROM31
+        VSPN31W
+        vstp31w
+        VSTW31W
+        vtlp31w
+        WB31RALW
+        WB31RBW
+        WB31RCPW
+        WB31REFW
+        WB31RMW
+        WB31RPMW
+        WB31RTBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31DMDI
+		Source separate
+	Description: WB31DMDI
+WB Dev MDI
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Dev MDI'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+
+	Added dynamic Classes
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		MDIChild class>>wbConstructPropertyManager
+		MDIFrame class>>wbConstructPropertyManager
+		StatusPane class>>wbConstructPropertyManager
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		MDIChild
+			nil
+		MDIFrame
+		StatusPane
+		WBEventDescription
+
+***********************************************************************
+
+    Imported library file names:
+        vmdi31w
+        vstp31w
+        WB31DEVW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31D95W
+		Source separate
+	Description: WB31D95W
+WB Dev Win95 Controls
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Dev Win95 Controls'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		PHeader
+		PListView
+		PProgressBar
+		PRichEdit
+		PSpinButton
+		PStatusWindow
+		PTabControl
+		PTrackBar
+		PTreeView
+		PUpDown
+		WBHeaderEditor
+		WBListViewEditor
+		WBProgressBarEditor
+		WBRichTextEditor
+		WBStatusWindowEditor
+		WBTabControlEditor
+		WBTrackBarEditor
+		WBTreeViewEditor
+		WBUpDownEditor
+		WBWindows95AddInModule
+
+	Added dynamic Classes
+		PHeader
+		PListView
+		PProgressBar
+		PRichEdit
+		PSpinButton
+		PStatusWindow
+		PTabControl
+		PTrackBar
+		PTreeView
+		PUpDown
+		WBHeaderEditor
+		WBListViewEditor
+		WBProgressBarEditor
+		WBRichTextEditor
+		WBStatusWindowEditor
+		WBTabControlEditor
+		WBTrackBarEditor
+		WBTreeViewEditor
+		WBUpDownEditor
+		WBWindows95AddInModule
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		Header class>>wbConstructPropertyManager
+		HeaderItem>>wbStoreOn:
+		ListView class>>wbConstructPropertyManager
+		RichEdit class>>wbConstructPropertyManager
+		RichEdit>>wbFormattedContents
+		RichEdit>>wrap
+		StatusField>>wbStoreOn:
+		StatusWindow>>wbContents
+		StatusWindow>>wbHeight
+		TabControl class>>wbConstructPropertyManager
+		TabControlPage>>pageClass
+		TabControlPage>>pageClass:
+		TabControlPage>>wbStoreOn:
+		Toolbar class>>wbConstructPropertyManager
+		TrackBar class>>wbConstructPropertyManager
+		TreeView class>>wbConstructPropertyManager
+		TreeView>>wbGetIndent
+		UpDown class>>wbConstructPropertyManager
+		VideoPane class>>wbConstructPropertyManager
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Button
+			WBStatusWindowEditor>>createViews
+		CheckBox
+			WBStatusWindowEditor>>createViews
+		Color
+			PProgressBar>>displayWith:clipRect:
+		CompositePane
+			WBTabControlEditor>>setPageClassList
+		EnhancedEntryField
+		EntryField
+			WBProgressBarEditor>>createViews
+		GroupBox
+			WBStatusWindowEditor>>createViews
+		Header
+		HeaderItem
+			WBHeaderEditor>>add
+			HeaderItem>>wbStoreOn:
+		LayoutFrame
+			WBStatusWindowEditor>>createViews
+		ListBox
+			WBStatusWindowEditor>>createViews
+		ListView
+		Menu
+			WBRichTextEditor>>createViews
+		MessageBox
+			WBStatusWindowEditor>>remove
+		OperatingSystemConstants
+			nil
+		PRealWidgetControl
+			PListView
+		RadioButton
+			WBUpDownEditor>>createViews
+		RichEdit
+			RichEdit>>wrap
+			WBRichTextEditor>>createViews
+		SelectorPropertyAccessor
+			nil
+		StaticText
+			WBStatusWindowEditor>>createViews
+		StatusField
+			WBStatusWindowEditor>>add
+			StatusField>>wbStoreOn:
+		StatusWindow
+		StylePropertyAccessor
+			nil
+		SubPane
+			WBTabControlEditor>>other
+		SysFont
+			WBStatusWindowEditor>>createViews
+		TabControl
+			nil
+		TabControlPage
+			WBTabControlEditor>>add
+		Toolbar
+		TrackBar
+		TreeView
+			TreeView>>wbGetIndent
+		UpDown
+		VideoPane
+		ViewManager
+		WBAbstractAddInModule
+			WBWindows95AddInModule
+		WBAttributeEditor
+			WBHeaderEditor
+		WBBitmaps
+			WBHeaderEditor>>setImage:
+		WBChoosePaneDialog
+			WBTabControlEditor>>other
+		WBComboBox
+		WBDevelopmentDialog
+		WBDevelopmentObject
+		WBEnhancedAttributeEditor
+		WBEntryField
+		WBEventDescription
+			nil
+		WBGraphicObject
+		WBInterfaceObject
+			PSpinButton
+		WBListEditor
+			WBTrackBarEditor>>setTicks
+		WBObject
+		WinCommonControlConstants
+			nil
+		WindowDialog
+
+***********************************************************************
+
+    Imported library file names:
+        vccc31w
+        vdev31w.sll
+        vgui31w.sll
+        vhdr31w
+        vlsv31w
+        vmci31w
+        VPROM31
+        VRED31W
+        VSPN31W
+        VSTW31W
+        vtab31w
+        VTLB31W
+        VTRK31W
+        vtrv31w
+        WB31DEVW
+        WB31RBW
+        WB31RCPW
+        WB31REFW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31DPSW
+		Source separate
+	Description: WB31DPSW
+WB Dev Parts Shared
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Dev Parts Shared'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+   imported: AssocExternal ( 'WBDefaultColors' ) ...
+
+	Added Classes
+
+	Added dynamic Classes
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+		WBDefaultColors
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		Color class>>wbClearDefaultColors
+		Color class>>wbConstructDefaultColors
+		Color class>>wbDefaultColors
+		Color>>wbColorSelector
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Color
+			nil
+			Color>>wbColorSelector
+		SystemColorConstants
+			nil
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31DOLW
+		Source separate
+	Description: WB31DOLW
+WB Dev OLE Win32
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Dev OLE Win32'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		POLEClientSitePane
+		WBOLEControlPartEditor
+		WBOLESupportAddInModule
+
+	Added dynamic Classes
+		POLEClientSitePane
+		WBOLEControlPartEditor
+		WBOLESupportAddInModule
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Button
+			WBOLEControlPartEditor>>createViews
+		Color
+			POLEClientSitePane>>displayWith:clipRect:
+		CursorManager
+			WBOLEControlPartEditor>>updateControlDescription
+		LayoutFrame
+			WBOLEControlPartEditor>>createViews
+		OLEContainerObject
+			WBOLEControlPartEditor>>createContainerNamed:
+		OLEControlChoiceDialog
+			WBOLEControlPartEditor>>changeControl
+		OLEError
+			WBOLEControlPartEditor>>changeControl
+		OLERegistryInterface
+			WBOLEControlPartEditor>>updateControlDescription
+		OLEVariant
+			WBOLEControlPartEditor>>typeCodeDescriptionOf:
+		PRealWidgetControl
+			POLEClientSitePane
+		StaticText
+			WBOLEControlPartEditor>>createViews
+		SysFont
+			WBOLEControlPartEditor>>createViews
+		TextWindow
+			WBOLEControlPartEditor>>showMethods
+		ViewManager
+		WBAbstractAddInModule
+			WBOLESupportAddInModule
+		WBAttributeEditor
+		WBDevelopmentDialog
+		WBDevelopmentObject
+		WBDisplayContext
+		WBGraphicObject
+		WBInterfaceObject
+		WBLookPolicy
+			POLEClientSitePane>>displayWith:clipRect:
+		WBObject
+		WindowDialog
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        volea31w
+        voleb31w
+        volec31w
+        volex31w
+        WB31DEVW
+        WB31RBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31EXMW
+		Source separate
+	Description: WB31EXMW
+WB Exm Base
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Exm Base'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		AddressEditorPane
+		AddressPane
+		AddressPaneTester
+		DictionaryEditorPane
+		ListEditorPane
+		ModelObjectTest
+		NamePane
+		OkCancelPane
+		PersonEditorPane
+		PersonPane
+		PersonPaneTester
+		WBAddress
+		WBCompositePaneExampleAddInModule
+		WBName
+		WBPerson
+
+	Added dynamic Classes
+		AddressEditorPane
+		AddressPane
+		AddressPaneTester
+		DictionaryEditorPane
+		ListEditorPane
+		ModelObjectTest
+		NamePane
+		OkCancelPane
+		PersonEditorPane
+		PersonPane
+		PersonPaneTester
+		WBAddress
+		WBCompositePaneExampleAddInModule
+		WBName
+		WBPerson
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Button
+			PersonPaneTester>>createViews
+		Color
+			NamePane>>addSubpanes
+		CompositePane
+			ListEditorPane
+		EntryField
+			ModelObjectTest>>createViews
+		GroupBox
+			NamePane>>addSubpanes
+		GroupPane
+		LayoutFrame
+			NamePane>>addSubpanes
+		ListBox
+			ListEditorPane>>addSubpanes
+		Notifier
+			ListEditorPane>>delete
+		SexPane
+			PersonPane>>addSubpanes
+		SharedValue
+			ModelObjectTest>>addSharedValueTo:
+		StaticText
+			NamePane>>addSubpanes
+		SubPane
+		SysFont
+			NamePane>>addSubpanes
+		TextEdit
+			DictionaryEditorPane>>addSubpanes
+		Timer
+			ModelObjectTest>>createViews
+		ViewManager
+			ModelObjectTest
+		WBAbstractAddInModule
+		WBComboBox
+			AddressPane>>addSubpanes
+		WBDevelopmentObject
+		WBEntryField
+		WBObject
+		Window
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31DEVW
+        WB31RBW
+        WB31RCPW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31EXPW
+		Source separate
+	Description: WB31EXPW
+WB Exm Parts
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Exm Parts'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBMiniBrowserExample
+
+	Added dynamic Classes
+		WBMiniBrowserExample
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		ListBox>>selectItemAndTriggerChanged:
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Color
+			WBMiniBrowserExample>>createViews
+		LayoutFrame
+			WBMiniBrowserExample>>createViews
+		ListBox
+			WBMiniBrowserExample>>createViews
+			ListBox>>selectItemAndTriggerChanged:
+		SysFont
+			WBMiniBrowserExample>>createViews
+		TextEdit
+			WBMiniBrowserExample>>createViews
+		ViewManager
+			WBMiniBrowserExample
+		WBPartEvent
+			WBMiniBrowserExample>>wbPartEvents
+		WBPartMessage
+			WBMiniBrowserExample>>wbPartMessages
+		WBPARTSEventList
+			WBMiniBrowserExample>>wbPartEvents
+		WBPARTSMessageList
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31RPW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31EXTW
+		Source separate
+	Description: WB31EXTW
+WB Exm Tutorial
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Exm Tutorial'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		Person
+		PersonEditor
+		SelectPersonDialog
+
+	Added dynamic Classes
+		Person
+		PersonEditor
+		SelectPersonDialog
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Button
+			PersonEditor>>createViews
+		Color
+			PersonEditor>>createViews
+		GroupBox
+			PersonEditor>>createViews
+		LayoutFrame
+			PersonEditor>>createViews
+		ListBox
+			SelectPersonDialog>>createViews
+		Menu
+			PersonEditor>>createMenus:
+		MessageBox
+			PersonEditor>>menuRevert
+		StaticText
+			PersonEditor>>createViews
+		SysFont
+			PersonEditor>>createViews
+		ViewManager
+			PersonEditor
+		WBEntryField
+		WindowDialog
+			SelectPersonDialog
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31RCPW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31INSW
+		Source separate
+	Description: WB31INSW
+WB Installer
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Installer'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		OSIInstallBindFile
+		OSIInstallChunkFile
+		OSIInstaller
+		OSIInstallError
+		OSIInstallFile
+		OSIInstallFileNotFound
+		OSIInstallFileWrongVersion
+		OSIInstallGroup
+		OSIInstallScriptStream
+		OSIInstallSourceFile
+		OSIInstallSupportFile
+		WBInstaller
+
+	Added dynamic Classes
+		OSIInstallBindFile
+		OSIInstallChunkFile
+		OSIInstaller
+		OSIInstallError
+		OSIInstallFile
+		OSIInstallFileNotFound
+		OSIInstallFileWrongVersion
+		OSIInstallGroup
+		OSIInstallScriptStream
+		OSIInstallSourceFile
+		OSIInstallSupportFile
+		WBInstaller
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+		Initializer: OSIInstaller smalltalkLibraryName isNil ifTrue: [OSIInstaller initBitmaps].
+		Initializer: WBInstaller smalltalkLibraryName notNil ifTrue: [WBInstaller openDeferred].
+
+set bindAction: Message(MethodExecutor class>>execute:for:)
+
+Building library
+	...
+done.
+	Imports: 
+		Bitmap
+			OSIInstaller>>bitmapFrom:info:
+		Button
+			OSIInstaller>>createViews
+		CheckBox
+			OSIInstaller>>createViews
+		Color
+			OSIInstaller>>createViews
+		CursorManager
+			OSIInstaller>>runtimeSelected
+		DrawnButton
+			OSIInstaller>>createViews
+		GroupBox
+			OSIInstaller>>createViews
+		IndexedColor
+			OSIInstaller>>preInitWindow
+		LayoutFrame
+			OSIInstaller>>createViews
+		MessageBox
+			OSIInstaller>>checkVersion
+		MultipleSelectListBox
+			OSIInstaller>>createViews
+		Notifier
+			OSIInstaller>>cancel
+		RadioButton
+			OSIInstaller>>createViews
+		SysFont
+			OSIInstaller>>preInitWindow
+		TextEdit
+			OSIInstaller>>createViews
+		ViewManager
+			OSIInstaller
+		WinBitmapInfo
+			OSIInstaller>>bitmapFrom:info:
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RBW
+		Source separate
+	Description: WB31RBW
+WB Run Base
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Base'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+   imported: AssocExternal ( 'PMToWinKeyMap' ) ...
+   imported: AssocExternal ( 'WBBitmapClass' ) ...
+   imported: AssocExternal ( 'WinToPMKeyMap' ) ...
+   imported: AssocExternal ( 'RGBColorChiseledGray' ) ...
+   imported: AssocExternal ( 'WBFontClass' ) ...
+   imported: AssocExternal ( 'WBMonthStrings' ) ...
+
+	Added Classes
+		WBComboBox
+		WBComboEntryField
+		WBDialogTopPane
+		WBDisplayContext
+		WBObject
+		WBWindowDialog
+
+	Added dynamic Classes
+		WBComboBox
+		WBComboEntryField
+		WBDialogTopPane
+		WBDisplayContext
+		WBObject
+		WBWindowDialog
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+		PMToWinKeyMap
+		RGBColorChiseledGray
+		WBBitmapClass
+		WBFontClass
+		WBMonthStrings
+		WinToPMKeyMap
+
+	Global Variable Initializations
+		PMToWinKeyMap
+		RGBColorChiseledGray
+		WBBitmapClass
+		WBFontClass
+		WBMonthStrings
+		WinToPMKeyMap
+
+	Added Pools
+		WBBitmaps
+		WBSystemBitmaps
+
+	Added Methods
+		ApplicationCoordinator class>>constructViewFor:
+		ApplicationCoordinator class>>open:
+		ApplicationCoordinator class>>preInitWindow:forModel:
+		ApplicationCoordinator class>>wbSpecialEvents
+		ApplicationCoordinator class>>windowId
+		ApplicationCoordinator>>canTriggerEvent:
+		ApplicationCoordinator>>isWBWindow
+		ApplicationCoordinator>>mainView
+		ApplicationCoordinator>>menuNamed:
+		ApplicationCoordinator>>open
+		ApplicationCoordinator>>paneNamed:
+		ApplicationCoordinator>>topPaneClass
+		ApplicationCoordinator>>views
+		ApplicationWindow>>frameStyleFromPStyle
+		ApplicationWindow>>topParent
+		ApplicationWindow>>validateShow
+		ApplicationWindow>>viewName:
+		Array>>convertBytesToString
+		Bitmap>>bitmapHandle
+		Bitmap>>wbDisplayContextPenFor:
+		Bitmap>>wbDisplayWith:
+		Button>>cancelPushButton
+		Button>>initialText
+		Button>>isCancelPushButton
+		Button>>setWindowText:
+		Button>>validate
+		Collection>>asByteArray
+		Color class>>chiseledGray
+		Color class>>paleGray
+		ComboBox>>notifySelectedPrim:
+		Context>>isWBFramingContext
+		ControlPane class>>constructSynchronousNotifications
+		ControlPane class>>synchronousNotifications
+		Date class>>dateArray:
+		Date class>>monthStrings
+		Date class>>nameOfMonthAbbreviated:
+		Date class>>validateDay:month:year:
+		Date class>>validateString:
+		Date>>monthNameAbbreviated
+		DialogTopPane>>buildWindow:
+		DrawnButton>>cpContents
+		DrawnButton>>cpContents:
+		DrawnButton>>invisible
+		DrawnButton>>invisible:
+		DrawnButton>>wmErasebkgnd:with:
+		EntryField>>removeTextChangedEvent
+		File class>>findOrPromptFileName:
+		File class>>findOrPromptFileName:filters:
+		File class>>findOrPromptFileName:filters:in:
+		File class>>findOrPromptFileName:in:
+		Font class>>wbClearAllStringWidthCaches
+		Font>>clearFontHandle
+		Font>>fromByteArray:
+		Font>>fromBytes:
+		Font>>stringExtent:
+		Font>>wbClearStringWidthCache
+		Font>>wbConstructStringWidthCache
+		Font>>wbStringExtent:
+		Font>>wbStringWidth:
+		Font>>wbStringWidthCache
+		GraphicsTool>>fill:bitmap:
+		GraphicsTool>>lineFrom:to:
+		GraphicsTool>>quickLineFrom:to:using:
+		GraphicsTool>>setBackgroundModeOpaque
+		GraphicsTool>>setBackgroundModeTransparent
+		GroupBox>>addClipsiblingsStyle
+		GroupBox>>basicStyle
+		GroupBox>>wbAddToBack
+		IndexedCollection>>beginsWith:
+		IndexedCollection>>endsWith:
+		Integer>>bitIsOn:
+		KeyboardInputEvent class>>keyDownFromWmKeydown:with:
+		KeyboardInputEvent class>>keyUpFromWmKeyup:with:
+		LargePositiveInteger>>highHalf
+		LargePositiveInteger>>lowHalf
+		LayoutFrame>>alignDialogCenter:
+		LayoutFrame>>alignDialogLeftTop:
+		LayoutFrame>>alignWindowCenter:
+		LayoutFrame>>alignWindowLeftTop:
+		LayoutFrame>>alignWindowLeftTop:boundingBox:
+		LayoutFrame>>valueForDialogTopPane:
+		ListBox>>dragTargetFormatsDefault
+		Menu>>allMenuItems
+		Menu>>appendItem:selector:acceleratorString:
+		Menu>>appendItemDynamically:selector:
+		Menu>>clearPopup
+		Menu>>insertItemDynamically:selector:atIndex:
+		Menu>>removeAllItemsDynamically
+		Menu>>removeItemDynamically:
+		Menu>>selectorOf:
+		Menu>>uncheckAll
+		MenuWindow>>wbMenuTitled:
+		MessageBox class>>messageNote:
+		MessageBox class>>yesNoCancelTitled:text:
+		NotificationManager>>activeWindow
+		NotificationManager>>removeFirstCurrentEvent:for:
+		NotificationManager>>removeFirstCurrentEventFor:using:
+		NotificationManager>>removeFirstEventsFor:in:using:
+		NotificationManager>>removeLastCurrentEvent:for:
+		NotificationManager>>removeLastCurrentEventFor:using:
+		NotificationManager>>removeLastEventsFor:in:using:
+		Number>>distanceDown:
+		Number>>distanceLeft:
+		Number>>distanceRight:
+		Number>>distanceUp:
+		Number>>wbDisplayWith:
+		Object class>>wbBasicVersion
+		Object class>>wbCreated
+		Object class>>wbVersion
+		Object>>=>
+		Object>>add:interestIn:
+		Object>>dialogTemplate
+		Object>>dialogTemplate:
+		Object>>ifNil:
+		Object>>initWindow
+		Object>>isCompositePane
+		Object>>isFramingParameters
+		Object>>isPARTSInstalled
+		Object>>isWBFramingContext
+		Object>>isWBWindow
+		Object>>maxWindowSize
+		Object>>minWindowSize
+		Object>>openWindow
+		Object>>preInitWindow
+		Object>>wbCreated
+		Object>>wbDisplayWith:
+		Object>>wbLinkPartEvents
+		Object>>wbOldVersionSupport
+		Object>>wbPreOldVersionSupport
+		Object>>wbUnlinkPartEvents
+		Object>>wbUnlinkPartMessages
+		Object>>when:send:to:withArgument:
+		OrderedCollection>>wbEventTable
+		OrderedCollection>>wbEventTable:
+		OrderedCollection>>wbPropertyAt:
+		OrderedCollection>>wbPropertyAt:ifAbsent:
+		OrderedCollection>>wbPropertyAt:put:
+		OrderedCollection>>wbReleaseEventTable
+		Pen>>draw3DButton:rect:font:
+		Pen>>draw3DButton:rect:font:foreColor:backColor:
+		Pen>>draw3DButtonRect:
+		Pen>>draw3DButtonRect:leftTopColor:rightBottomColor:
+		Pen>>draw3DButtonRectReversed:
+		Pen>>draw3DRect:
+		Pen>>draw3DRect:depth:style:
+		Pen>>draw3DRect:leftTopColor:rightBottomColor:
+		Pen>>draw3DRectReversed:
+		Pen>>drawBorder3DLight:
+		Pen>>drawFocusRect:
+		Pen>>drawRect3DLight:
+		Pen>>drawRectangle:
+		Point>>distanceLeftAndDown:
+		Point>>distanceLeftAndUp:
+		Point>>distanceRightAndDown:
+		Point>>distanceRightAndUp:
+		RadioButton>>notifyClicked:
+		Rectangle class>>leftRightUnit
+		Rectangle class>>topBottomUnit
+		Rectangle>>rightAndDown:
+		RGBColor class>>chiseledGray
+		StaticBox>>basicStyle
+		StaticBox>>wbAddToBack
+		String>>asProperNoun
+		String>>mnemonicChar
+		String>>stripMnemonic
+		String>>wbDisplayWith:
+		String>>withPlatformMnemonic
+		SubPane>>basicKeyboardInput:
+		SubPane>>closeDynamically
+		SubPane>>contents
+		SubPane>>definedIn
+		SubPane>>definedIn:
+		SubPane>>dragTargetFormats
+		SubPane>>dragTargetFormatsDefault
+		SubPane>>dragTargetOperations
+		SubPane>>dragTargetOperationsDefault
+		SubPane>>extraDialogItemData
+		SubPane>>getPopupMenu
+		SubPane>>horizontalScrollMaxRange
+		SubPane>>horizontalScrollMinRange
+		SubPane>>horizontalScrollPos
+		SubPane>>keyDownInput:
+		SubPane>>keyUpInput:
+		SubPane>>needsKeyDownInput
+		SubPane>>needsKeyUpInput
+		SubPane>>removeDynamically
+		SubPane>>setScrollRanges
+		SubPane>>tabGroupMembers
+		SubPane>>verticalScrollMaxRange
+		SubPane>>verticalScrollMinRange
+		SubPane>>verticalScrollPos
+		SubPane>>wmKeydown:with:
+		SubPane>>wmKeyup:with:
+		SubPane>>wmNchittest:with:
+		TextPane>>wmGetdlgcode:with:
+		TextTool>>centerWinText:at:
+		TextTool>>winDrawText:at:
+		TextTool>>winDrawText:in:format:
+		TextTool>>winDrawText:in:justification:
+		TopPane>>cancelPushButton
+		TopPane>>cancelPushButton:
+		TopPane>>setOwner:
+		TopPane>>wbOwner
+		UndefinedObject>>displayHelp:
+		UndefinedObject>>ifNil:
+		UserDLL>>drawText:text:length:rect:format:
+		ViewManager class>>open
+		ViewManager class>>openAsMDIParent
+		ViewManager class>>openCenteredOnMouse
+		ViewManager class>>openWithMDIParent:
+		ViewManager class>>openWithMyParent:
+		ViewManager class>>openWithParent:
+		ViewManager>>activate
+		ViewManager>>centeredOnMouse
+		ViewManager>>centeredOnScreen
+		ViewManager>>close
+		ViewManager>>createViews
+		ViewManager>>createViewsFor:owner:
+		ViewManager>>createViewsOnce
+		ViewManager>>eventTable
+		ViewManager>>eventTableForEdit
+		ViewManager>>execute:withTopPane:
+		ViewManager>>initializeAgain
+		ViewManager>>isModal
+		ViewManager>>isWBWindow
+		ViewManager>>maxWindowSize
+		ViewManager>>minWindowSize
+		ViewManager>>open
+		ViewManager>>openAsMDIParent
+		ViewManager>>openCenteredOnMouse
+		ViewManager>>openCenteredOnScreen
+		ViewManager>>openRelativeTo:offset:
+		ViewManager>>openViews
+		ViewManager>>openViewsOnce
+		ViewManager>>openViewsWithOwner:
+		ViewManager>>openWindow
+		ViewManager>>openWithMDIParent:
+		ViewManager>>openWithMyParent:
+		ViewManager>>openWithOwner:
+		ViewManager>>openWithOwnerParent:
+		ViewManager>>openWithParent:
+		ViewManager>>paneNamed:
+		ViewManager>>positionRelativeTo:offset:
+		ViewManager>>propertyAt:ifAbsent:
+		ViewManager>>releaseEventTable
+		ViewManager>>setOwner:
+		ViewManager>>viewNamed:
+		ViewManager>>views
+		WinDialogInfo class>>buildItemsFor:
+		WinDialogInfo class>>itemTemplateStyle:extendedStyle:x:y:cx:cy:id:className:text:extraData:
+		Window class>>wbRunBaseBind
+		Window class>>wbRunBaseUnbind
+		Window>>addSubpaneDynamically:
+		Window>>addTabInfoFor:
+		Window>>addTransparentStyle
+		Window>>childrenInBuildOrder
+		Window>>hasTransparentStyle
+		Window>>iconFile
+		Window>>iconFile:
+		Window>>paneName
+		Window>>paneName:
+		Window>>paneNamed:
+		Window>>redraw
+		Window>>removeSubpaneDynamically:
+		Window>>removeTransparentStyle
+		Window>>topParent
+		Window>>wbAddToBack
+		Window>>wbDisplayContext
+		Window>>wbDisplayContextClass
+		Window>>wbDisplayContextPenFor:
+		Window>>wbPaneNamed:
+		Window>>wmCommand:with:
+		Window>>wmGettext:with:
+		Window>>wmUser99:with:
+		WindowDialog>>isModal
+		WindowDialog>>openModeless
+		WindowDialog>>openViews
+		WindowDialog>>openWindow
+
+	Added Initialization Expressions
+		Initializer: Window wbRunBaseBind
+
+set bindAction: Message(MethodExecutor class>>execute:for:)
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationCoordinator
+			ApplicationCoordinator>>paneNamed:
+			nil
+		ApplicationWindow
+			ApplicationWindow>>validateShow
+		Bitmap
+			Bitmap>>bitmapHandle
+		Button
+			Button>>isCancelPushButton
+		Color
+			WBDisplayContext>>defaultForeColor
+			nil
+		ColorConstants
+			nil
+		ComboBox
+			WBComboBox
+		ComboEntryField
+			WBComboEntryField
+		ControlPane
+			nil
+		CurrentEvents
+			NotificationManager>>removeFirstCurrentEventFor:using:
+		Cursor
+			WBDialogTopPane>>openModal:
+		CursorManager
+			WBDialogTopPane>>openModal:
+		DialogProcInstance
+			DialogTopPane>>buildWindow:
+		DialogTopPane
+			DialogTopPane>>buildWindow:
+		Display
+			LayoutFrame>>alignWindowLeftTop:
+		DrawnButton
+			DrawnButton>>cpContents
+		DropDownList
+		EntryField
+			EntryField>>removeTextChangedEvent
+		FileDialog
+			nil
+		Font
+			Font>>fromByteArray:
+			nil
+		GDILibrary
+			GraphicsTool>>quickLineFrom:to:using:
+		GraphicsTool
+			GraphicsTool>>setBackgroundModeOpaque
+		GroupBox
+			GroupBox>>wbAddToBack
+		Icon
+			Window>>iconFile:
+		IndexedColor
+			nil
+		KeyboardInputEvent
+			SubPane>>wmKeyup:with:
+			nil
+		LayoutFrame
+			LayoutFrame>>alignWindowLeftTop:
+		ListBox
+			ListBox>>dragTargetFormatsDefault
+		Menu
+			ViewManager>>openAsMDIParent
+			Menu>>removeAllItemsDynamically
+		MenuWindow
+			MenuWindow>>wbMenuTitled:
+		MessageBox
+			nil
+			nil
+		NotificationManager
+			NotificationManager>>removeFirstCurrentEvent:for:
+			DialogTopPane>>buildWindow:
+		Notifier
+			WBDialogTopPane>>processInput
+		OperatingSystemConstants
+			WindowDialog>>isModal
+		Pen
+			Pen>>draw3DRect:leftTopColor:rightBottomColor:
+		Pool VirtualKeyConstants>AfAlt
+			Menu>>appendItem:selector:acceleratorString:
+		Pool VirtualKeyConstants>AfChar
+			Menu>>appendItem:selector:acceleratorString:
+		Pool VirtualKeyConstants>AfControl
+			Menu>>appendItem:selector:acceleratorString:
+		Pool VirtualKeyConstants>AfShift
+			Menu>>appendItem:selector:acceleratorString:
+		Pool VirtualKeyConstants>AfVirtualkey
+			Menu>>appendItem:selector:acceleratorString:
+		Pool VirtualKeyConstants>EscapeKey
+			SubPane>>basicKeyboardInput:
+		PoppedModelessWindows
+			DialogTopPane>>buildWindow:
+		RadioButton
+			RadioButton>>notifyClicked:
+		RGBColor
+			nil
+		StaticBox
+			StaticBox>>wbAddToBack
+		SubPane
+			SubPane>>wmKeyup:with:
+		SysFont
+			LayoutFrame>>alignDialogCenter:
+		TextPane
+			TextPane>>wmGetdlgcode:with:
+		TextTool
+			TextTool>>winDrawText:in:format:
+		TopPane
+			TopPane>>cancelPushButton:
+		ViewManager
+			ViewManager>>execute:withTopPane:
+		WinDialogInfo
+			nil
+			nil
+		Window
+			nil
+		WindowDialog
+			WBComboBox>>resizeWithoutDropDownList
+			WindowDialog>>openViews
+		WindowHandle
+			DialogTopPane>>buildWindow:
+		WinLogFont
+			Font>>fromByteArray:
+		WinRectangle
+			TextTool>>winDrawText:in:format:
+
+***********************************************************************
+
+    Imported library file names:
+        vdev31w.sll
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RMW
+		Source separate
+	Description: WB31RMW
+WB Run Miscellaneous
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Miscellaneous'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBListBox
+		WBStaticGraphic
+
+	Added dynamic Classes
+		WBListBox
+		WBStaticGraphic
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		EntryField>>alpha
+		EntryField>>currency
+		EntryField>>date
+		EntryField>>dollar
+		EntryField>>float
+		EntryField>>integer
+		EntryField>>phoneNumber
+		EntryField>>positiveInteger
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Button
+		ControlPane
+		DrawnButton
+			WBStaticGraphic
+		EntryField
+			EntryField>>currency
+		ListBox
+			WBListBox
+		Pool GraphicsConstants>BackgroundMixTransparent
+			WBStaticGraphic>>createBitmap:
+		SubPane
+		WBBitmap
+			WBStaticGraphic>>createBitmap:
+		Window
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RCPW
+		Source separate
+	Description: WB31RCPW
+WB Run CompositePane
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run CompositePane'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		CheckBoxGroup
+		CompositePane
+		EntryFieldGroup
+		RadioButtonGroup
+		SexPane
+		WBEntryField
+
+	Added dynamic Classes
+		CheckBoxGroup
+		CompositePane
+		EntryFieldGroup
+		RadioButtonGroup
+		SexPane
+		WBEntryField
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		GroupPane>>addSubpanesForWBParts
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		CheckBox
+			CheckBoxGroup>>buttonClass
+		Color
+			nil
+		ControlPane
+		Display
+			CompositePane>>framingBlock:
+		EntryField
+			WBEntryField
+		GroupBox
+			SexPane>>addSubpanes
+		GroupPane
+			CompositePane
+		LayoutFrame
+			RadioButtonGroup>>addSubpanes
+		MenuWindow
+			CompositePane>>menuWindow
+		RadioButton
+			SexPane>>addSubpanes
+		StaticText
+			EntryFieldGroup>>setLabelFont:
+		SubPane
+		SysFont
+			RadioButtonGroup>>addSubpanes
+		Window
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RTBW
+		Source separate
+	Description: WB31RTBW
+WB Run ToolBar
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run ToolBar'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBTool
+		WBToolBar
+		WBToolPalette
+
+	Added dynamic Classes
+		WBTool
+		WBToolBar
+		WBToolPalette
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Color
+			WBToolPalette>>defaultBackColor
+		Cursor
+			WBToolPalette>>currentIndex
+		Notifier
+			WBToolPalette>>button1Down:
+		SubPane
+			WBToolPalette
+		SysFont
+			WBToolPalette>>fontExtent:
+		WBBitmap
+			WBToolPalette>>buttonFrom:size:
+		WBObject
+		Window
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31RBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RSTW
+		Source separate
+	Description: WB31RSTW
+WB Run Status Pane Win32
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Status Pane Win32'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+
+	Added dynamic Classes
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		StatusBox>>storeOn:indentString:
+		StatusPane>>framingBlock:
+		StatusPane>>height:
+		StatusPane>>initSize:
+		StatusPane>>isWsGroup
+		StatusPane>>justified
+		StatusPane>>leftJustifiedFixed
+		StatusPane>>rightJustifiedFixed
+		StatusPane>>startGroup
+		StatusPane>>tabStop
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Font
+			StatusPane>>height:
+		StatusBox
+			StatusBox>>storeOn:indentString:
+		StatusPane
+		WindowDialog
+			StatusPane>>height:
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        vstp31w
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RALW
+		Source separate
+	Description: WB31RALW
+WB Run Obsolete Action and Link Buttons
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Obsolete Action and Link Buttons'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		ActionButton
+		LinkButton
+		WBAction
+
+	Added dynamic Classes
+		ActionButton
+		LinkButton
+		WBAction
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		Menu>>appendItem:action:acceleratorString:
+		Menu>>appendItem:link:type:
+		Menu>>appendItem:link:type:acceleratorString:
+		Menu>>wbAction
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Button
+		ControlPane
+		DrawnButton
+			ActionButton
+		Menu
+			Menu>>wbAction
+		MessageBox
+			LinkButton>>performAction
+		SubPane
+		WBObject
+		Window
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31RBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RPW
+		Source separate
+	Description: WB31RPW
+WB Run Parts
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Parts'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBMessage
+		WBPartEvent
+		WBPartMessage
+		WBPARTSEventList
+		WBPARTSInterfaceList
+		WBPARTSMessageList
+
+	Added dynamic Classes
+		WBMessage
+		WBPartEvent
+		WBPartMessage
+		WBPARTSEventList
+		WBPARTSInterfaceList
+		WBPARTSMessageList
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		ApplicationCoordinator class>>wbPartEventItems
+		ApplicationCoordinator>>wbPartEvents
+		ApplicationCoordinator>>wbPartMessages
+		CompositePane class>>eventsTriggered
+		CompositePane class>>wbPartEventItems
+		CompositePane>>addSubpanesForWBParts
+		CompositePane>>close
+		CompositePane>>doesNotUnderstand:
+		CompositePane>>fileName
+		CompositePane>>isLinked
+		CompositePane>>isPARTSNestedPart
+		CompositePane>>partEvents
+		CompositePane>>partHint
+		CompositePane>>partMessages
+		CompositePane>>partMirrorCopyChildren:to:
+		CompositePane>>partMirrorCopyPropertiesToExclude
+		CompositePane>>wbPartEvents
+		CompositePane>>wbPartMessages
+		Object class>>wbPartEventItems
+		Object>>wbPartEvents
+		Object>>wbPartMessages
+		ViewManager class>>eventsTriggered
+		ViewManager class>>wbPartEventItems
+		ViewManager>>doesNotUnderstand:
+		ViewManager>>partAddedTo:
+		ViewManager>>partAddUnder:wrapper:
+		ViewManager>>partEvents
+		ViewManager>>partHint
+		ViewManager>>partMessages
+		ViewManager>>partViews:
+		ViewManager>>partWrapper
+		ViewManager>>partWrapper:
+		ViewManager>>wbLinkPartEvents
+		ViewManager>>wbPartEvents
+		ViewManager>>wbPartMessages
+		ViewManager>>wbUnlinkPartEvents
+		ViewManager>>wbUnlinkPartMessages
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationCoordinator
+			ApplicationCoordinator>>wbPartEvents
+			nil
+		CompositePane
+			nil
+			nil
+		Icon
+			nil
+		PARTSInterfaceList
+			WBPARTSInterfaceList
+		ViewManager
+			nil
+
+***********************************************************************
+
+    Imported library file names:
+        PWCRBS31
+        vgui31w.sll
+        WB31RCPW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RMDI
+		Source separate
+	Description: WB31RMDI
+WB Run MDI
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run MDI'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBMDIChild
+
+	Added dynamic Classes
+		WBMDIChild
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		MDIChild>>autoCascadeTolerance
+		MDIChild>>buildWindow
+		MDIChild>>destroy
+		MDIChild>>initMdiWindowSize
+		StandardWindowPolicy>>addMDIChildMenus
+		ViewManager>>frame
+		ViewManager>>mdiArrange
+		ViewManager>>mdiCascade
+		ViewManager>>mdiCloseAll
+		ViewManager>>mdiTile
+		ViewManager>>topPaneClass
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationWindow
+		MDIChild
+		MDIFrame
+			MDIChild>>destroy
+		NotificationManager
+			MDIChild>>buildWindow
+		StandardWindowPolicy
+			StandardWindowPolicy>>addMDIChildMenus
+		TopPane
+		ViewManager
+			ViewManager>>mdiCloseAll
+		Window
+		WindowHandle
+			MDIChild>>buildWindow
+		WinMdiCreateStruct
+			MDIChild>>buildWindow
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        vmdi31w
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31REFW
+		Source separate
+	Description: WB31REFW
+WB Run EnhancedEntryField
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run EnhancedEntryField'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		EnhancedEntryField
+
+	Added dynamic Classes
+		EnhancedEntryField
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		ControlPane
+		EntryField
+			EnhancedEntryField
+		MessageBox
+			EnhancedEntryField>>errorMessage
+		Notifier
+			EnhancedEntryField>>gettingFocus
+		SubPane
+		Window
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31R20W
+		Source separate
+	Description: WB31R20W
+WB Run 2.0
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run 2.0'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		FramingParameters
+		WBOrderedCollection
+
+	Added dynamic Classes
+		FramingParameters
+		WBOrderedCollection
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		Bitmap class>>oldMemoryContext
+		ControlPane>>basicStyle
+		ControlPane>>getDefaultDragObjects
+		ControlPane>>isCompatible:
+		ControlPane>>renderAsObjects
+		ControlPane>>tabStop
+		DialogTopPane>>defaultStyle
+		DialogTopPane>>frameStyleFromPStyle
+		LayoutFrame>>asFramingParameters:
+		OrderedCollection>>wbPartEvents
+		OrderedCollection>>wbPartEvents:
+		OrderedCollection>>wbPartMessages
+		OrderedCollection>>wbPartMessages:
+		SubPane>>isATabStop
+		SubPane>>tabStop
+		TextEdit>>getTabStop
+		TopPane>>defaultStyle
+		TopPane>>frameStyleFromPStyle
+		TopPane>>pStyle
+		TopPane>>pStyle:
+		WBDialogTopPane>>pStyle
+		Window>>getContentsHandler
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Bitmap
+			nil
+		ControlPane
+		DialogTopPane
+			DialogTopPane>>defaultStyle
+		Display
+			FramingParameters>>alignWindowLeftTop:
+		LayoutFrame
+			FramingParameters>>asLayout
+			LayoutFrame>>asFramingParameters:
+		SubPane
+			SubPane>>isATabStop
+		SysFont
+			nil
+		TextEdit
+			TextEdit>>getTabStop
+		TopPane
+			TopPane>>defaultStyle
+		WBDialogTopPane
+			WBDialogTopPane>>pStyle
+		WBObject
+		Window
+			Window>>getContentsHandler
+		WindowDialog
+			nil
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31RBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RFXW
+		Source separate
+	Description: WB31RFXW
+WB Run Fixes
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Fixes'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+
+	Added dynamic Classes
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		ApplicationWindow>>closeInnerWindows
+		Button>>restoreDefaultPushButton
+		DialogTopPane>>mainWindow
+		EntryField>>selectAll
+		Object>>osError:
+		StaticPane>>subclassRecursively
+		String>>equalsIgnoreCase:
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationWindow
+			ApplicationWindow>>closeInnerWindows
+		Button
+			Button>>restoreDefaultPushButton
+		DialogTopPane
+			DialogTopPane>>mainWindow
+		EntryField
+		Notifier
+			ApplicationWindow>>closeInnerWindows
+		StaticPane
+			StaticPane>>subclassRecursively
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31RPMW
+		Source separate
+	Description: WB31RPMW
+WB Run Pool Mgr
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Pool Mgr'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBBitmapManager
+		WBBitmapPool
+		WBBitmapSubPool
+		WBFontManager
+		WBFontPool
+		WBFontSubPool
+		WBNLSDictionaryReader
+		WBNLSManager
+		WBNLSPool
+		WBNLSSubPool
+		WBPool
+		WBPoolError
+		WBPoolErrorAbsentKey
+		WBPoolErrorDuplicateKey
+		WBPoolErrorDuplicatePoolName
+		WBPoolErrorInvalidCategory
+		WBPoolErrorInvalidFile
+		WBPoolErrorInvalidKey
+		WBPoolErrorInvalidPool
+		WBPoolErrorInvalidPoolName
+		WBPoolErrorInvalidValue
+		WBPoolManager
+		WBSubPool
+
+	Added dynamic Classes
+		WBBitmapManager
+		WBBitmapPool
+		WBBitmapSubPool
+		WBFontManager
+		WBFontPool
+		WBFontSubPool
+		WBNLSDictionaryReader
+		WBNLSManager
+		WBNLSPool
+		WBNLSSubPool
+		WBPool
+		WBPoolError
+		WBPoolErrorAbsentKey
+		WBPoolErrorDuplicateKey
+		WBPoolErrorDuplicatePoolName
+		WBPoolErrorInvalidCategory
+		WBPoolErrorInvalidFile
+		WBPoolErrorInvalidKey
+		WBPoolErrorInvalidPool
+		WBPoolErrorInvalidPoolName
+		WBPoolErrorInvalidValue
+		WBPoolManager
+		WBSubPool
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		Association>>asExistingWBPoolIn:
+		Bitmap class>>fileInFrom:
+		Bitmap class>>fromStream:
+		Bitmap class>>named:
+		Bitmap class>>readFileHeader:
+		Bitmap>>storeOnStream:
+		Font class>>named:
+		Object>>asExistingWBPoolIn:
+		String class>>named:
+		String>>asExistingWBPoolIn:
+		Symbol>>asExistingWBPoolIn:
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Bitmap
+			Bitmap>>storeOnStream:
+		Font
+			nil
+		OperatingSystemConstants
+			WBBitmapSubPool>>fileInFrom:
+		Pen
+			nil
+		SysFont
+			WBFontManager>>defaultValueFor:
+		WBBitmap
+			WBBitmapManager>>addBitmapsFromModule:idMap:
+		WBObject
+		WinBitmapFileHeader
+			nil
+		WinBitmapInfo
+			nil
+
+***********************************************************************
+
+    Imported library file names:
+        vdev31w.sll
+        vgui31w.sll
+        WB31RBW
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31ROPW
+		Source separate
+	Description: WB31ROPW
+WB Run Optimization
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Optimization'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBBitmap
+
+	Added dynamic Classes
+		WBBitmap
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+		Initializer: WBBitmapClass := WBBitmap.
+
+set bindAction: Message(MethodExecutor class>>execute:for:)
+
+Building library
+	...
+done.
+	Imports: 
+		Bitmap
+			WBBitmap
+		GDILibrary
+			WBBitmap>>fromModule:id:
+		GraphicsMedium
+		Pen
+			WBBitmap>>fromModule:id:
+		WBBitmap
+		WinBitmapInfo
+			WBBitmap>>fromModule:id:
+		WinBitmapStruct
+			WBBitmap>>fromModule:id:
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31R95W
+		Source separate
+	Description: WB31R95W
+WB Run Win95 Fixes
+WindowBuilder Pro Runtime
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Run Win95 Fixes'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+
+	Added dynamic Classes
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+		HeaderItem>>asWinHdItem
+		TabControl>>setPages:
+		UpDown>>validate
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		Font
+			HeaderItem>>asWinHdItem
+		HeaderItem
+		TabControl
+		UpDown
+		WinHdItem
+			HeaderItem>>asWinHdItem
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        vhdr31w
+        VSPN31W
+        vtab31w
+
+***********************************************************************
+
+***********************************************************************
+	Library Name: WB31DTRW
+		Source separate
+	Description: WB31DTRW
+WB Translator
+Objectshare
+copyright Objectshare Systems Inc. 1995
+	Target Directory: '..\NewLib\'
+	Module: 'WB Translator'
+
+	Explicit Prerequisites: ()
+	Import Prerequisites: ()
+***********************************************************************
+
+	Added Classes
+		WBEventMap
+		WBEventTranslationEditor
+		WBEventTranslator
+		WBNLSExtractionTranslator
+		WBNLSReplacementTranslator
+		WBNLSTranslator
+		WBTranslationChooser
+		WBTranslator
+
+	Added dynamic Classes
+		WBEventMap
+		WBEventTranslationEditor
+		WBEventTranslator
+		WBNLSExtractionTranslator
+		WBNLSReplacementTranslator
+		WBNLSTranslator
+		WBTranslationChooser
+		WBTranslator
+
+	Added static Classes
+
+	Class Initializations
+
+	Added Global Variables
+
+	Global Variable Initializations
+
+	Added Pools
+
+	Added Methods
+
+	Added Initialization Expressions
+
+
+Building library
+	...
+done.
+	Imports: 
+		ApplicationCoordinator
+			WBTranslationChooser>>addDefaultFilters
+		Button
+			WBEventTranslationEditor>>createViews
+		CheckBox
+			WBTranslationChooser>>createViews
+		Color
+			WBEventTranslationEditor>>createViews
+		CompositePane
+		LayoutFrame
+			WBEventTranslationEditor>>createViews
+		ListBox
+			WBEventTranslationEditor>>createViews
+		MessageBox
+			WBEventTranslationEditor>>argumentMissMatchWarning
+		MultipleSelectListBox
+			WBTranslationChooser>>createViews
+		Notifier
+			WBTranslationChooser>>openOn:owner:
+		StaticText
+			WBTranslationChooser>>createViews
+		SubPane
+			nil
+		SysFont
+			WBEventTranslationEditor>>createViews
+		Transcript
+			WBTranslator>>message:
+		ViewManager
+			WBEventTranslationEditor
+			WBTranslationChooser>>addDefaultFilters
+		WBCodeStream
+		WBComboBox
+		WBPrototype
+			WBTranslator>>defaultPrototype
+		Window
+			nil
+		WindowBuilder
+			WBTranslator>>defaultPrototype
+
+***********************************************************************
+
+    Imported library file names:
+        vgui31w.sll
+        WB31DEVW
+        WB31RBW
+        WB31RCPW
+
+***********************************************************************

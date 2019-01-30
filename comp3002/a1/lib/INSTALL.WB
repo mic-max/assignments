@@ -1,0 +1,4 @@
+    "===== Load and run the WB Installer..." !
+
+SmalltalkLibraryBinder bindTo: 'WB31INSW' !
+
