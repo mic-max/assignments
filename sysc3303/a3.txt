@@ -1,0 +1,28 @@
+2. Raw Measurements
+
+## java.lang.management:
+{Agent=1095009, PeanutButter Chef=7465927, Reference Handler=0, Jam Chef=6305537, Common-Cleaner=0, main=365122, Signal Dispatcher=0, Finalizer=0, Bread Chef=11294756}
+{Agent=673622, PeanutButter Chef=8296932, Reference Handler=0, Jam Chef=6563933, Common-Cleaner=0, main=496784, Signal Dispatcher=0, Finalizer=0, Bread Chef=19537136}
+{Agent=882315, PeanutButter Chef=788625, Reference Handler=0, Jam Chef=19762708, Common-Cleaner=0, main=440916, Signal Dispatcher=0, Finalizer=0, Bread Chef=5161162}
+{Agent=847222, PeanutButter Chef=9132370, Reference Handler=0, Jam Chef=877859, Common-Cleaner=0, main=539433, Signal Dispatcher=0, Finalizer=0, Bread Chef=19208629}
+{Agent=662969, PeanutButter Chef=641538, Reference Handler=0, Jam Chef=19224083, Common-Cleaner=0, main=547204, Signal Dispatcher=0, Finalizer=0, Bread Chef=14940144}
+
+Average Nanoseconds:
+	main  :    477,891
+	Agent :    832,227
+	Bread : 14,028,365
+	Jam   : 10,546,824
+	Peanut:  5,265,078
+	------------------
+	Total : 30,150,385
+
+My measurement code slept for 20 milliseconds so an average runtime of 30 milliseconds seems reasonable enough.
+
+## System.nanoTime:
+
+
+
+3. Reasons for Inequality
+
+
+4. Best Estimate
