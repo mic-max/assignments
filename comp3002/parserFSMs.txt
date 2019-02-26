@@ -1,0 +1,43 @@
+
+parser
+   //This is a test of parser based FSMs. 
+
+   simple1 = a; //The attribute should be "RS".
+   simple2 = a [read read read read]; //The attribute should still be "RS".
+   simple3 = a [noStack keep]; //The attribute should be "RK".
+   simple4 = simple1 [noStack keep]; //The attribute for simple1 should still be "RS".
+   simple5 = ; //The empty string
+   simple6 = a?; //0 or 1 a
+   simple7 = a+; //1 or more a's
+   simple8 = a*; //0 or more a's
+   simple9 = a | b; //a | b
+   simple10 = a b c d; //a followed by b followed by c followed by d.
+
+   fsm1 = a [node];        //The attribute should be "RSN".
+   fsm2 = fsm1 [noNode]; //The attribute should be "RS" but fsm1 should still be node.
+   fsm3 = {fsm1}; //The attribute should be "LSN", "SN", or ""; i.e. NOT R.
+   fsm4 = (a* | b*); //Make sure the FSM corresponds...
+   fsm5 = fsm4 fsm4+; //fsm5 will be a mess to look at but fsm4 should NOT be buggered up...
+
+   fsm6 = (a*) - ((a a)*); //Should recognize only an odd number of a's.
+   fsm7 = (a*) & ((a a)*); //Should recognize only an even number of a's.
+
+   fsm8 = a* b; //Two simple tests
+   fsm9 = a b*; //of concatenate
+   complex = a? b* c+ d;
+
+   //The following FSMs should all be ROOT BUILDING semantic actions; i.e. TREE BUILDING.
+   fsm10 = a [node] => "list";   //This one should create semantic transition #buildTree: with parameters containing "list" (NOT A TOKEN).
+   fsm11 = b [node] => + 1;   //This one should create semantic transition #buildTreeFromIndex: with parameters containing integer 1.
+   fsm12 = c [node] => 1;   //This one should create semantic transition #buildTreeFromIndex: with parameters containing integer 1 TOO.
+   fsm13 = d [node] => -1;   //This one should create semantic transition #buildTreeFromIndex: with parameters containing integer -1.
+   fsm14 = e [node] => #buildRoutine:with: [1 2];  //This one should create semantic transition #buildRoutine: with parameters containing integers 1 and 2.
+   fsm15 = f [node] => #between:and: [10 20];  //This one should create semantic transition #between:and: with parameters containing integers 10 and 20.
+   fsm16 = g [node] => #testing;  //This one should create semantic transition #testing with parameters consisting of an empty collection.
+   fsm17 = h [node] => #myBuildTree ["list"];  //This one should look just like the a transition one except for my...
+
+   //The following FSMs should all be NON-ROOT BUILDING semantic actions
+   fsm18 = i [node] #normal1:and: [10 20];  //Like the above but NOT tree building...
+   fsm19 = j [node] #normal2;  //Like the above but NOT tree building...
+   fsm20 = k [node] #normal3: ["list"];  //Like the above but NOT tree building...
+			

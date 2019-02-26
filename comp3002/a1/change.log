@@ -48710,4 +48710,559 @@ run
 "*** Image started on: Tuesday, January 29, 2019 08:58:39 PM ***"!
 
 "evaluate"  
-"*** saved image on: Tuesday, January 29, 2019 08:58:56 PM ***"!
+"*** saved image on: Tuesday, January 29, 2019 08:58:56 PM ***"!  
+"*** Image started on: Monday, February 18, 2019 05:06:26 PM ***"!
+
+!ReadaheadTable methods !   
+table: anArray
+    "Record the data so you can later perform a fast lookup (or don't if you prefer to search)."
+
+    transitions := Dictionary new.
+    anArray do: [:x |
+        x first do: [:y | transitions at: y put: x rest].
+    ].!   ! 
+#('Monday, February 18, 2019' '05:09:23 PM' 1428220)!
+
+(CodeFiler organizerFor: ReadaheadTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+(CodeFiler organizerFor: ReadaheadTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+
+"evaluate"   
+"*** saved image on: Monday, February 18, 2019 05:10:22 PM ***"!  
+"*** Image started on: February 19, 2019 09:39:49 AM ***"!
+"*** Image started on: February 19, 2019 09:40:25 AM ***"!
+
+!ReadaheadTable methods !   
+table: anArray
+    "Record the data so you can later perform a fast lookup (or don't if you prefer to search)."
+    self halt: 'b'.
+    transitions := Dictionary new.
+    anArray do: [:x |
+        x first do: [:y | transitions at: y put: x rest].
+    ].!    ! 
+#('February 19, 2019' '09:44:39 AM' 1603556)!
+
+(CodeFiler organizerFor: ReadaheadTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+(CodeFiler organizerFor: ReadaheadTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+
+!ReadaheadTable methods !
+table: anArray
+    "Record the data so you can later perform a fast lookup (or don't if you prefer to search)."
+    self halt: 'b'.
+    transitions := Dictionary new.
+    anArray do: [:x | transitions at: x first put: x rest ].!    ! 
+#('February 19, 2019' '09:46:55 AM' 1604272)!
+
+(CodeFiler organizerFor: ReadaheadTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+
+!ReadaheadTable methods !   
+table: anArray
+    "Record the data so you can later perform a fast lookup (or don't if you prefer to search)."
+
+    transitions := Dictionary new.
+    anArray do: [:x | transitions at: x first put: x rest ].!   ! 
+#('February 19, 2019' '09:47:01 AM' 1604792)!
+
+(CodeFiler organizerFor: ReadaheadTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+
+
+'Array with: tokenLabel with: stateNum'!
+
+  
+'Array with: tokenLabel with: stateNum'!
+
+  
+'self keys.'!
+
+ 
+'transducer tableNumberStack last'!
+
+   
+'Array with: tokenLabel with: stateNum'!
+
+!ReadbackTable methods !  
+run
+    | tokenLabel stateNum pair |
+    tokenLabel := (transducer tokenStack at: (transducer left - 1)) label.
+    stateNum := transducer tableNumberStack at: (transducer left - 1).
+    "Readback considers the token label in the token stack and the state number in the table number at position 'left - 1'
+    and then finds the transition that matches it. When it finds it, it then uses the attribute $R for read, $L for look to
+    decide what to do. If it's read, it decrements 'left'. Finally it returns the goto state."
+    pair := transitions at: (Array with: tokenLabel with: stateNum) ifAbsent: [
+        self reportDesignError
+    ].
+    
+    pair includes: $R ifTrue: [ transducer left: transducer left - 1 ].
+    ^ pair second.
+    "self halt: 'TO DO: ReadbackTable run needs implementation'"!   ! 
+#('February 19, 2019' '09:52:55 AM' 1591744)!
+
+(CodeFiler organizerFor: ReadbackTable) reorganizeFrom: #(
+('running' run )) !
+
+
+!ReadbackTable methods !
+run
+    | tokenLabel stateNum pair |
+    tokenLabel := (transducer tokenStack at: (transducer left - 1)) label.
+    stateNum := transducer tableNumberStack at: (transducer left - 1).
+    "Readback considers the token label in the token stack and the state number in the table number at position 'left - 1'
+    and then finds the transition that matches it. When it finds it, it then uses the attribute $R for read, $L for look to
+    decide what to do. If it's read, it decrements 'left'. Finally it returns the goto state."
+    pair := transitions at: (Array with: tokenLabel with: stateNum) ifAbsent: [
+        self reportDesignError
+    ].
+    
+    (pair includes: $R) ifTrue: [ transducer left: transducer left - 1 ].
+    ^ pair second.
+    "self halt: 'TO DO: ReadbackTable run needs implementation'"! ! 
+#('February 19, 2019' '09:55:11 AM' 1605792)!
+
+(CodeFiler organizerFor: ReadbackTable) reorganizeFrom: #(
+('running' run )) !
+
+
+!Parser methods !   
+buildTree: rootLabel
+    | children |
+    children := OrderedCollection new.
+    self left to: self right do: [:index | children add: treeStack at: index].
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    self halt: 'TO DO: Parser buildTree: needs implementation'!   ! 
+#('February 19, 2019' '10:02:16 AM' 1386440)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+!Parser methods !   
+buildTree: rootLabel
+    | children |
+    children := OrderedCollection new.
+    self left to: self right do: [:index | children add: (treeStack at: index)].
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    self halt: 'TO DO: Parser buildTree: needs implementation'! ! 
+#('February 19, 2019' '10:03:28 AM' 1607756)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+
+'[]'!
+
+!Parser methods !
+buildTree: rootLabel
+    | children |
+    children := OrderedCollection new.
+    self left to: self right do: [:index | (treeStack at: index) isNil ifFalse: [children add: (treeStack at: index)]].
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    self halt: 'TO DO: Parser buildTree: needs implementation'!  ! 
+#('February 19, 2019' '10:05:54 AM' 1608372)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+!Parser methods !   
+buildTree: rootLabel
+    | children |
+    children := OrderedCollection new.
+    "children :=  collect: [:x | x+10] when: [:x | x odd] ? #(11 13) "
+    
+    self left to: self right do: [:index | (treeStack at: index) isNil ifFalse: [children add: (treeStack at: index)]].
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    self halt: 'TO DO: Parser buildTree: needs implementation'!    ! 
+#('February 19, 2019' '10:11:47 AM' 1608996)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+!Parser methods !   
+buildTree: rootLabel
+    | children |
+    children := OrderedCollection new.
+    "children :=  collect: [:x | x+10] when: [:x | x odd] ? #(11 13) "
+    
+    self left to: self right do: [:index | (treeStack at: index) isNil ifFalse: [children add: (treeStack at: index)]].
+    newTree := Tree new label: rootLabel; children: children.
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    self halt: 'TO DO: Parser buildTree: needs implementation'! ! 
+#('February 19, 2019' '10:15:37 AM' 1609652)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+!Parser methods !   
+buildTree: rootLabel
+    | children |
+    "children := OrderedCollection new."
+    "self left to: self right do: [:index | (treeStack at: index) isNil ifFalse: [children add: (treeStack at: index)]]."
+    
+    children := (self left to: self right) collect: [:x | treeStack at: x] when: [:x | (treeStack at: x) notNil].
+    newTree := Tree new label: rootLabel; children: children.
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    self halt: 'TO DO: Parser buildTree: needs implementation'!  ! 
+#('February 19, 2019' '10:18:48 AM' 1610388)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+!Token methods !
+printOn: aStream
+    "Make label #Identifier with symbol #hello look like Identifier: hello
+    whereas label #keyword with symbol #keyword looks like keyword."
+    self label = self symbol
+        ifTrue: [aStream << self label]
+        ifFalse: [aStream << self label; << ': '; << self symbol].!  ! 
+#('February 19, 2019' '10:25:50 AM' 1379188)!
+
+(CodeFiler organizerFor: Token) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Token) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!ShiftbackTable methods !
+table: aTable
+    "Record the data it needs."
+    self shift: aTable second.
+    self goto: aTable first.!   ! 
+#('February 19, 2019' '10:30:01 AM' 1484348)!
+
+(CodeFiler organizerFor: ShiftbackTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+(CodeFiler organizerFor: ShiftbackTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+
+!ShiftbackTable methods !
+table: aTable
+    "Record the data it needs."
+    self shift: aTable first.
+    self goto: aTable second.!   ! 
+#('February 19, 2019' '10:31:53 AM' 1612572)!
+
+(CodeFiler organizerFor: ShiftbackTable) reorganizeFrom: #(
+('get/set' table: )) !
+
+
+!Parser methods !   
+log
+    | table useTerseTree |
+    "true ifTrue: [^self].
+    scanner input position < 3700 ifTrue: [^self]."
+    useTerseTree := true. "Set to false if more details are wanted..."
+    table := tables at: tableNumber.
+
+    "Log a preliminary heading..."
+    Transcript cr; << self scannerPeek; << ' | left '; << left; << ' right '; << right; << ' |'; << ' Table '; << tableNumber; space; << table.
+
+    "Log state specific information..."
+    table class = ReadaheadTable ifTrue: [Transcript << ' SEARCHING FOR '; << self scannerPeek label].
+    table class = ReadbackTable ifTrue: [Transcript << ' SEARCHING FOR ';
+        << '['; << (tokenStack at: left - 1) label; << ' '; << (tableNumberStack at: left - 1); << ']'].
+    table class = ReduceTable ifTrue: [Transcript space; << table nonterminal; << ' SEARCHING FOR ';
+        << (tableNumberStack at: left - 1)].
+    table class = ShiftbackTable ifTrue: [Transcript << ' SHIFT '; << table shift; << ' GOTO '; << table goto].
+    (table class = SemanticTable) ifTrue: [
+        Transcript space; << table action. table parameters do: [:parameter | Transcript space; << parameter].
+        Transcript << ' GOTO '; << table goto].
+
+    "Log information in the stacks..."
+    self treeStack indexedDo: [:index :tree |
+        (index = left and: [left <= right]) ifTrue: [Transcript cr; << '       ---------------------------'].
+        Transcript cr; << '       '; << index; << ' ['; << (self tokenStack at: index); << ' '; << (self tableNumberStack at: index); << '] '.
+        tree isNil ifFalse:[useTerseTree ifTrue: [Transcript << ' Tree ('; << tree label; << ' ...)'] ifFalse: [tree printOn: Transcript tabs: 3]].
+        (index = right and: [left > right]) ifTrue: [Transcript cr; << '       ---------------------------'].
+        index = right ifTrue: [Transcript cr; << '       ---------------------------'].].!    ! 
+#('February 19, 2019' '10:33:38 AM' 1387012)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('debugging' log )) !
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('debugging' log )) !
+
+
+!Parser methods !  
+parse: text
+    | table result |
+    "To parse the text, you have to give it to the scanner (say via scan: text).
+    It in turn should have the first token set up for you. Next you need
+    to execute tables starting from table 1 until you reach an Accept table.
+    Once that happen, the tree that was built should be on top of the tree
+    stack. Just return it. If you look at the Accept table, you will see
+    that it of all the tables, it is the only one that returns nil. You can
+    use that information to stop your loop."
+    
+    self scanner scan: text.
+    result := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [result notNil] whileTrue: [
+        self log.
+        result := table run.
+        result notNil ifTrue: [table := self tables at: result].
+    ].
+    
+
+    self halt: 'TO DO: Parser parse: needs implementation (the code to parse text)'
+    "<CODE HERE. Note: If you place 'self log' at the top of your loop,
+    you will get debugging information, useful if something doesn't work.
+    For now, add the 'self log' code but comment it out"!   ! 
+#('February 19, 2019' '10:34:03 AM' 1533852)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+!Parser methods !
+parse: text
+    | table result |
+    "To parse the text, you have to give it to the scanner (say via scan: text).
+    It in turn should have the first token set up for you. Next you need
+    to execute tables starting from table 1 until you reach an Accept table.
+    Once that happen, the tree that was built should be on top of the tree
+    stack. Just return it. If you look at the Accept table, you will see
+    that it of all the tables, it is the only one that returns nil. You can
+    use that information to stop your loop."
+    
+    self scanner scan: text.
+    tableNumber := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [tableNumber notNil] whileTrue: [
+        self log.
+        tableNumber := table run.
+        tableNumber notNil ifTrue: [table := self tables at: tableNumber].
+    ].
+    
+
+    self halt: 'TO DO: Parser parse: needs implementation (the code to parse text)'
+    "<CODE HERE. Note: If you place 'self log' at the top of your loop,
+    you will get debugging information, useful if something doesn't work.
+    For now, add the 'self log' code but comment it out"!  ! 
+#('February 19, 2019' '10:35:29 AM' 1615348)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+!Parser methods !   
+parse: text
+    | table result |
+    "To parse the text, you have to give it to the scanner (say via scan: text).
+    It in turn should have the first token set up for you. Next you need
+    to execute tables starting from table 1 until you reach an Accept table.
+    Once that happen, the tree that was built should be on top of the tree
+    stack. Just return it. If you look at the Accept table, you will see
+    that it of all the tables, it is the only one that returns nil. You can
+    use that information to stop your loop."
+    
+    self scanner scan: text.
+    tableNumber := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [tableNumber notNil] whileTrue: [
+        "self log."
+        tableNumber = 21 ifTrue: [self halt: 'd'].
+        tableNumber := table run.
+        tableNumber notNil ifTrue: [table := self tables at: tableNumber].
+    ].
+    
+
+    self halt: 'TO DO: Parser parse: needs implementation (the code to parse text)'
+    "<CODE HERE. Note: If you place 'self log' at the top of your loop,
+    you will get debugging information, useful if something doesn't work.
+    For now, add the 'self log' code but comment it out"!    ! 
+#('February 19, 2019' '10:45:49 AM' 1616708)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+ 
+'(Array with: tokenLabel with: stateNum) '!
+
+   
+'(pair includes: $R) '!
+
+!ReadbackTable methods !   
+run
+    | tokenLabel stateNum pair |
+    tokenLabel := (transducer tokenStack at: (transducer left - 1)) label.
+    stateNum := transducer tableNumberStack at: (transducer left - 1).
+    "Readback considers the token label in the token stack and the state number in the table number at position 'left - 1'
+    and then finds the transition that matches it. When it finds it, it then uses the attribute $R for read, $L for look to
+    decide what to do. If it's read, it decrements 'left'. Finally it returns the goto state."
+    pair := transitions at: (Array with: tokenLabel with: stateNum) ifAbsent: [
+        self reportDesignError
+    ].
+    
+    (pair first includes: $R) ifTrue: [ transducer left: transducer left - 1 ].
+    ^ pair second.
+    "self halt: 'TO DO: ReadbackTable run needs implementation'"!   ! 
+#('February 19, 2019' '10:47:38 AM' 1606776)!
+
+(CodeFiler organizerFor: ReadbackTable) reorganizeFrom: #(
+('running' run )) !
+
+
+!Parser methods !   
+parse: text
+    | table result |
+    "To parse the text, you have to give it to the scanner (say via scan: text).
+    It in turn should have the first token set up for you. Next you need
+    to execute tables starting from table 1 until you reach an Accept table.
+    Once that happen, the tree that was built should be on top of the tree
+    stack. Just return it. If you look at the Accept table, you will see
+    that it of all the tables, it is the only one that returns nil. You can
+    use that information to stop your loop."
+    
+    self scanner scan: text.
+    tableNumber := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [tableNumber notNil] whileTrue: [
+        "self log."
+        tableNumber = 21 ifTrue: [self halt: 'd'].
+        tableNumber := table run.
+        tableNumber notNil ifTrue: [table := self tables at: tableNumber].
+    ].
+    
+    "self halt: 'TO DO: Parser parse: needs implementation (the code to parse text)'"
+    ^ treeStack last.
+    "<CODE HERE. Note: If you place 'self log' at the top of your loop,
+    you will get debugging information, useful if something doesn't work.
+    For now, add the 'self log' code but comment it out"! ! 
+#('February 19, 2019' '10:50:40 AM' 1618016)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+ 
+'SampleCompiler promptForEvaluation'!
+
+!Parser methods !
+parse: text
+    | table result |
+    "To parse the text, you have to give it to the scanner (say via scan: text).
+    It in turn should have the first token set up for you. Next you need
+    to execute tables starting from table 1 until you reach an Accept table.
+    Once that happen, the tree that was built should be on top of the tree
+    stack. Just return it. If you look at the Accept table, you will see
+    that it of all the tables, it is the only one that returns nil. You can
+    use that information to stop your loop."
+    
+    self scanner scan: text.
+    tableNumber := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [tableNumber notNil] whileTrue: [
+        "self log."
+        tableNumber := table run.
+        tableNumber notNil ifTrue: [table := self tables at: tableNumber].
+    ].
+    
+    "self halt: 'TO DO: Parser parse: needs implementation (the code to parse text)'"
+    ^ treeStack last.
+    "<CODE HERE. Note: If you place 'self log' at the top of your loop,
+    you will get debugging information, useful if something doesn't work.
+    For now, add the 'self log' code but comment it out"! ! 
+#('February 19, 2019' '10:52:22 AM' 1620536)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+!Parser methods !
+buildTree: rootLabel
+    | children |
+    "children := OrderedCollection new."
+    "self left to: self right do: [:index | (treeStack at: index) isNil ifFalse: [children add: (treeStack at: index)]]."
+    
+    children := (self left to: self right) collect: [:x | treeStack at: x] when: [:x | (treeStack at: x) notNil].
+    newTree := Tree new label: rootLabel; children: children.
+
+    "Pick up the children from the tree stack between left and right inclusive (provided they're not nil) and build a tree
+    with the given label. Store it in instance variable newTree so a reduce table can use it."
+    "self halt: 'TO DO: Parser buildTree: needs implementation'"!    ! 
+#('February 19, 2019' '10:52:50 AM' 1611184)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('semanticActions' buildTree: )) !
+
+
+
+'SampleCompiler compileExample1'!
+
+ 
+'SampleCompiler promptForCompilation'!
+
+
+'SampleCompiler promptForEvaluation'!
+
+ 
+'SampleCompiler promptForEvaluation'!
+
+ 
+'SampleCompiler promptForEvaluation'!
+
+!SampleCompiler class methods !  
+evaluateExample1
+    "SampleCompiler evaluateExample1"
+    ^SampleCompiler new evaluate: '1+ 2*3'!    ! 
+#('February 19, 2019' '10:55:55 AM' 1355508)!
+
+(CodeFiler organizerFor: SampleCompiler class) reorganizeFrom: #(
+('examples' evaluateExample1 )) !
+
+(CodeFiler organizerFor: SampleCompiler class) reorganizeFrom: #(
+('examples' evaluateExample1 )) !
+
+
+   
+'SampleCompiler promptForEvaluation'!
+
+"evaluate"   
+"*** saved image on: February 19, 2019 10:57:55 AM ***"!
+
+"evaluate"
+"*** saved image on: February 19, 2019 10:58:10 AM ***"!
