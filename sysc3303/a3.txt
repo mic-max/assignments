@@ -19,10 +19,12 @@ Average Nanoseconds:
 My measurement code slept for 20 milliseconds so an average runtime of 30 milliseconds seems reasonable enough.
 
 ## System.nanoTime:
-
-
+Bread Chef took: 992 ns
+PeanutButter Chef took: 753 ns
+Jam Chef took: 1081 ns
 
 3. Reasons for Inequality
-
+Java's management is probably a lot more precise in calculating CPU time and usage statistics per thread. This high degree of precision in its measurements will be adding some overhead to the processes. Which could explain the disparity in the computed times, a few System.nanoTime calls are negligible in comparison.
 
 4. Best Estimate
+I will be accepting the time measured by java's management system which includes a 5 millisecond sleep by the chef after eating the sandwich. Letting the program run for 20ms, an average of 56 sandwiches were made and eaten. So the best estimate I have would be 0.357ms.

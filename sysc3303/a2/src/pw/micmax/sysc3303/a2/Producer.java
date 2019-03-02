@@ -30,6 +30,7 @@ public class Producer implements Runnable {
 			System.out.println(" << " + items);
 			
 			nsTotal += System.nanoTime() - ns;
+			System.out.println("Iteration: " + i);
 		}
 	}
 }
