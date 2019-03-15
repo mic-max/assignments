@@ -10,7 +10,7 @@ parser
    simple6 = a?; //0 or 1 a
    simple7 = a+; //1 or more a's
    simple8 = a*; //0 or more a's
-   simple9 = a | b; //a | b
+   simple9 = a | b | c | d; //a | b
    simple10 = a b c d; //a followed by b followed by c followed by d.
 
    fsm1 = a [node];        //The attribute should be "RSN".

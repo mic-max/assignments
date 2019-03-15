@@ -52567,4 +52567,998 @@ copy
 "*** saved image on: February 19, 2019 05:02:39 PM ***"!
 
 "evaluate"
-"*** saved image on: February 19, 2019 05:02:42 PM ***"!
+"*** saved image on: February 19, 2019 05:02:42 PM ***"!  
+"*** Image started on: March 14, 2019 09:16:54 PM ***"!
+
+!FiniteStateMachineBuilder methods !   
+walkPoof: aTree
+    ^ FiniteStateMachine forE.!    ! 
+#('March 14, 2019' '09:21:40 PM' 1741528)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPoof: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPoof: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkPlus: aTree
+    ^ FiniteStateMachine forE.!    ! 
+#('March 14, 2019' '09:22:45 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    self halt: 'plus'.!    ! 
+#('March 14, 2019' '09:27:25 PM' 1748492)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachine methods ! 
+plus: fsm2
+    self halt: 'plusser'.!  ! 
+#('March 14, 2019' '09:35:35 PM' 1746344)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' plus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' plus: )) !
+
+
+!FiniteStateMachine methods ! 
+copy
+    self halt: 'copier'.
+"TODO"! ! 
+#('March 14, 2019' '09:36:48 PM' 1747740)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !   
+copy
+    "TODO: make states first, then copy the transitions"    
+    self halt: 'copier'.!   ! 
+#('March 14, 2019' '09:39:02 PM' 1749372)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+        
+        ].
+    ].
+
+    self halt: 'copier'.
+    ^ fsm.! ! 
+#('March 14, 2019' '10:04:26 PM' 1749668)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            stateMap at: state transitions add: trans deepCopy
+        ].
+    ].
+
+    self halt: 'copier'.
+    ^ fsm.!   ! 
+#('March 14, 2019' '10:08:18 PM' 1749932)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            stateMap at: state transitions add: trans deepCopy; goto: stateMap at: state number.
+        ].
+    ].
+
+    self halt: 'copier'.
+    ^ fsm.! ! 
+#('March 14, 2019' '10:11:18 PM' 1750672)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            stateMap at: state transitions add: (Transition new name: trans name deepCopy; goto: (stateMap at: state)).
+        ].
+    ].
+
+    self halt: 'copier'.
+    ^ fsm.!  ! 
+#('March 14, 2019' '10:14:40 PM' 1751468)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            (stateMap at: state) transitions add: (Transition new name: trans name deepCopy; goto: (stateMap at: state)).
+        ].
+    ].
+
+    self halt: 'copier'.
+    ^ fsm.!    ! 
+#('March 14, 2019' '10:17:19 PM' 1752296)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            (stateMap at: state) transitions add: (Transition new name: trans name deepCopy; goto: (stateMap at: state)).
+        ].
+    ].
+    
+    self halt: 'copier'.
+    ^ fsm renumber.!   ! 
+#('March 14, 2019' '10:18:21 PM' 1753148)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            (stateMap at: state) transitions add: (Transition new name: trans name deepCopy; goto: (stateMap at: state)).
+        ].
+    ].
+    
+    fsm renumber.
+    self halt: 'copier'.
+    ^ fsm renumber.!    ! 
+#('March 14, 2019' '10:19:03 PM' 1754004)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            (stateMap at: state) transitions add: (Transition new name: trans name deepCopy; goto: (stateMap at: trans goto)).
+        ].
+    ].
+    
+    fsm renumber.
+    self halt: 'copier'.
+    ^ fsm renumber.!   ! 
+#('March 14, 2019' '10:21:27 PM' 1754872)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachine methods !
+copy
+    | fsm stateMap |
+    fsm := FiniteStateMachine new.
+    stateMap := Dictionary new.
+    "TODO: make states first, then copy the transitions
+    deepCopy
+    "    
+    states do: [:state | 
+    
+        fsm states add: (FiniteStateMachineState new 
+            isInitial: state isInitial;
+            isFinal: state isFinal
+        ).
+        
+        stateMap at: state put: fsm states last.    
+    ].
+    
+    states do: [:state |
+        state transitions do: [:trans | 
+            (stateMap at: state) transitions add: (Transition new name: trans name deepCopy; goto: (stateMap at: trans goto)).
+        ].
+    ].
+    
+    ^ fsm renumber.!    ! 
+#('March 14, 2019' '10:21:46 PM' 1755760)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' copy )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkPlus: aTree
+    | allFinal allInitial |
+    allFinal := self states select: [:x | x isFinal].
+    allInitial := self states select: [:x | x isInitial].
+    
+    allFinal do: [:state | 
+        state transitions addAll: allInitial.
+    ].
+    
+    self halt: 'plus'.! ! 
+#('March 14, 2019' '10:28:25 PM' 1748736)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | allFinal allInitial |
+    "allFinal := states select: [:x | x isFinal]."
+    "allInitial := states select: [:x | x isInitial]."
+    
+    allFinal do: [:state | 
+        state transitions addAll: allInitial.
+    ].
+    
+    self halt: 'plus'.!   ! 
+#('March 14, 2019' '10:34:45 PM' 1757508)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal allInitial |
+    fsm := self walkTree: (aTree children first).
+    allFinal := fsm states select: [:x | x isFinal].
+    allInitial := fsm states select: [:x | x isInitial].
+    
+    allFinal do: [:state | 
+        state transitions addAll: allInitial.
+    ].
+    
+    self halt: 'plus'.
+    ^ fsm.!    ! 
+#('March 14, 2019' '10:37:35 PM' 1757984)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkQuestionMark: aTree
+    | fsm |
+    fsm := (self walkTree: (aTree children first)) questionMark.
+    ^ fsm.! ! 
+#('March 14, 2019' '10:39:02 PM' 1746008)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkQuestionMark: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkQuestionMark: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkPlus: aTree
+    | fsm allFinal allInitial |
+    fsm := self walkTree: (aTree children first).
+    allFinal := fsm states select: [:x | x isFinal].
+    allInitial := fsm states select: [:x | x isInitial].
+    
+    allFinal do: [:state | 
+        allInitial do: [:stateInit | 
+            state transitions add: Transition new goto: stateInit.
+        ].
+    ].
+    
+    self halt: 'plus'.
+    ^ fsm.!    ! 
+#('March 14, 2019' '10:42:21 PM' 1758456)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal allInitial |
+    fsm := self walkTree: (aTree children first).
+    allFinal := fsm states select: [:x | x isFinal].
+    allInitial := fsm states select: [:x | x isInitial].
+    
+    allFinal do: [:state | 
+        allInitial do: [:stateInit | 
+            state transitions add: (Transition new goto: stateInit).
+        ].
+    ].
+    
+    self halt: 'plus'.
+    ^ fsm.!  ! 
+#('March 14, 2019' '10:43:16 PM' 1759436)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal allInitial |
+    fsm := self walkTree: (aTree children first).
+    self halt: 'pre'.
+    allFinal := fsm states select: [:x | x isFinal].
+    allInitial := fsm states select: [:x | x isInitial].
+    
+    allFinal do: [:state | 
+        allInitial do: [:stateInit | 
+            state transitions add: (Transition new goto: stateInit).
+        ].
+    ].
+    
+    self halt: 'plus'.
+    ^ fsm.!   ! 
+#('March 14, 2019' '10:44:04 PM' 1760052)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+    self halt: 'pre'.
+    allFinal := fsm states select: [:x | x isFinal].
+    initialTransitions := (fsm states select: [:x | x isInitial ] transitions) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+    
+    self halt: 'plus'.
+    ^ fsm.! ! 
+#('March 14, 2019' '10:54:13 PM' 1760668)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+    self halt: 'pre'.
+    allFinal := fsm states select: [:x | x isFinal].
+    initialTransitions := (fsm states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+    
+    self halt: 'plus'.
+    ^ fsm.!  ! 
+#('March 14, 2019' '10:57:55 PM' 1761308)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+
+    allFinal := fsm states select: [:x | x isFinal].
+    initialTransitions := (fsm states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+
+    ^ fsm.!   ! 
+#('March 14, 2019' '10:58:56 PM' 1761912)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkStar: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+
+    allFinal := fsm states select: [:x | x isFinal].
+    initialTransitions := (fsm states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+
+    ^ fsm.!   ! 
+#('March 14, 2019' '10:59:45 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkPlus: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm plus.!   ! 
+#('March 14, 2019' '11:03:29 PM' 1762532)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkPlus: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm plus.!   ! 
+#('March 14, 2019' '11:03:35 PM' 1763672)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachine methods ! 
+plus
+    | allFinal initialTransitions |
+    allFinal := states select: [:x | x isFinal].
+    initialTransitions := (states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+    self halt: 'plusser'.
+    ^ self.! ! 
+#('March 14, 2019' '11:05:30 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' plus )) !
+
+
+"evaluate"   
+FiniteStateMachine removeSelector: #plus:!
+
+!FiniteStateMachineBuilder methods !
+walkStar: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+
+    allFinal := fsm states select: [:x | x isFinal].
+    initialTransitions := (fsm states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+
+    ^ fsm.!   ! 
+#('March 14, 2019' '11:06:38 PM' 1763104)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkStar: aTree
+    | fsm allFinal initialTransitions |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm star.!   ! 
+#('March 14, 2019' '11:07:48 PM' 1765056)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkStar: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm star.!   ! 
+#('March 14, 2019' '11:07:55 PM' 1765736)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+!FiniteStateMachine methods ! 
+star
+    ^ FiniteStateMachine forE or: self plus.! ! 
+#('March 14, 2019' '11:09:31 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' star )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkOr: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm or.!   ! 
+#('March 14, 2019' '11:09:53 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkOr: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    self halt: 'walkor'.
+    ^ fsm or.! ! 
+#('March 14, 2019' '11:10:33 PM' 1766788)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!FiniteStateMachine methods ! 
+plus
+    | allFinal initialTransitions |
+    allFinal := states select: [:x | x isFinal].
+    initialTransitions := (states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.
+    
+    allFinal do: [:state | state transitions addAllIfAbsent: initialTransitions].
+    ^ self.!    ! 
+#('March 14, 2019' '11:10:55 PM' 1764500)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' plus )) !
+
+
+"evaluate"   
+(CodeFiler organizerFor: 'FiniteStateMachine class')  addCategory: 'ops' before: 'instance creation'!
+
+!FiniteStateMachine class methods !  
+or: fsms!   ! 
+#('March 14, 2019' '11:14:33 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkOr: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine or: fsms.!  ! 
+#('March 14, 2019' '11:16:54 PM' 1767076)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!FiniteStateMachine class methods !   
+or: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm or: cfsm.
+    ].
+    ^ fsm.!  ! 
+#('March 14, 2019' '11:18:20 PM' 1768084)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!FiniteStateMachine class methods !   
+or: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm or: cfsm.
+    ].
+    ^ fsm renumber.! ! 
+#('March 14, 2019' '11:18:38 PM' 1768604)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!FiniteStateMachine methods ! 
+star
+    ^ FiniteStateMachine forE or: self plus renumber.!    ! 
+#('March 14, 2019' '11:19:24 PM' 1766564)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' star )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' star )) !
+
+
+!FiniteStateMachine methods !   
+star
+    ^ (FiniteStateMachine forE or: self plus) renumber.!  ! 
+#('March 14, 2019' '11:19:34 PM' 1769388)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' star )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' star )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkConcatenation: aTree
+    ^ FiniteStateMachine forE.!   ! 
+#('March 14, 2019' '11:20:18 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkConcatenation: aTree
+    self halt: 'cat'.
+    ^ FiniteStateMachine forE.!    ! 
+#('March 14, 2019' '11:20:30 PM' 1770032)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkConcatenation: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine concat: fsms.!   ! 
+#('March 14, 2019' '11:24:53 PM' 1770296)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+
+
+'
+	'!
+
+!FiniteStateMachine methods !
+concat: fsm2
+
+    states addAll: fsm2 states.
+    ^ self renumber.!  ! 
+#('March 14, 2019' '11:25:17 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine class methods !   
+concat: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm concat: cfsm.
+    ].
+    ^ fsm renumber.! ! 
+#('March 14, 2019' '11:26:12 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'FiniteStateMachine')  addCategory: 'query' before: 'ops'!
+
+!FiniteStateMachine methods !  
+recognizesE
+    states do: [:state | (state isInitial and: [state isFinal]) ifTrue: [^true]].
+    ^false.!    ! 
+#('March 14, 2019' '11:31:02 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('query' recognizesE )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE |
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    states addAll: fsm2 states.
+    ^ self renumber.! ! 
+#('March 14, 2019' '11:33:48 PM' 1771176)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods ! 
+plus
+    self allFinal do: [:state | state transitions addAllIfAbsent: self initialTransitions].
+    ^ self.! ! 
+#('March 14, 2019' '11:34:37 PM' 1767488)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' plus )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' plus )) !
+
+
+!FiniteStateMachine methods !   
+allFinal
+    ^states select: [:x | x isFinal].!    ! 
+#('March 14, 2019' '11:34:56 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allFinal )) !
+
+
+!FiniteStateMachine methods !
+allInitial
+    ^states select: [:x | x isInitial].!    ! 
+#('March 14, 2019' '11:35:12 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allInitial )) !
+
+
+!FiniteStateMachine methods !  
+initialTransitions
+    ^ (states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.!   ! 
+#('March 14, 2019' '11:35:48 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' initialTransitions )) !
+
+
+!FiniteStateMachine methods !  
+concat: fsm2
+    | fsm1RecE fsm2RecE f1 i2 transI |
+    f1 := self allFinal.
+    i2 := fsm2 allInitial.
+    transI := fsm2 initialTransitions.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    f1 do: [:state | 
+        state transitions addAllIfAbsent: transI.
+    ].
+    
+    fsm2RecE ifFalse: [ f1 do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ i2 do: [:state | state isInitial = false] ].
+    
+    ^ self renumber.!   ! 
+#('March 14, 2019' '11:42:02 PM' 1772124)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods ! 
+concat: fsm2
+    | fsm1RecE fsm2RecE f1 i2 transI |
+    f1 := self allFinal.
+    i2 := fsm2 allInitial.
+    transI := fsm2 initialTransitions.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    f1 do: [:state | 
+        state transitions addAllIfAbsent: transI.
+    ].
+    
+    fsm2RecE ifFalse: [ f1 do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ i2 do: [:state | state isInitial = false] ].
+    self renumber.
+    self halt: 'dd'.
+    ^ self renumber.!   ! 
+#('March 14, 2019' '11:42:31 PM' 1773656)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!NotificationManager methods !
+startUpApplication
+        "Start the runtime application."
+    | libs name index bound |
+    libs := self commandLine.
+    bound := false.
+    libs size > 1 ifTrue: [
+        index := 1.
+        [ index := index + 1.  index <= libs size ] whileTrue: [
+            ( ( name := libs at: index )  equalsIgnoreCase: '/lang' )
+                ifTrue: [ index := index + 1 ] "skip the vm message dll if present"
+                ifFalse: [
+                    ( #( $/ $- ) includes: name first )
+                         ifFalse: [ SmalltalkLibraryBinder bindTo: name. bound := true ] ] ] ].
+    ( bound not and: [ ( File findFileName: self exeName, '.bnd' ) isNil ] )
+        ifTrue: [ self startUpSampleApplication ].
+    self triggerEvent: #startUpApplication!    !
+
+"evaluate"   
+"*** saved image on: March 14, 2019 11:46:53 PM ***"!
+
+"evaluate"   
+"*** saved image on: March 14, 2019 11:46:56 PM ***"!
