@@ -55601,3 +55601,171 @@ walkCharacter: aTree
 
  
 '$0 isDigit'!
+
+!FiniteStateMachineBuilder methods ! 
+walkBuildTreeFromRightIndex: aTree
+    ^ parser buildTreeFromIndex: aTree children first symbol asInteger.!    ! 
+#('Monday, April 1, 2019' '10:09:51 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromRightIndex: )) !
+
+
+  
+'
+	| fsm |'!
+
+  
+'10 to: 20'!
+
+  
+'
+self asArray'!
+
+!FiniteStateMachine class methods !  
+fromScannerCollection: aCollection attributes: attributes
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    "
+    transition := Transition new.
+    transition goto: s2.
+    transition name: symbol.
+    s1 transitions add: transition.
+    "
+    
+    aCollection do: [:x | 
+        transition := Transition new.
+        transition goto: s2.
+        transition name: self convert x.
+        s1 transitions add: transition.
+    ].
+    fsm states add: s1.
+    fsm states add: s2.
+
+    ^ fsm renumber.! ! 
+#('Monday, April 1, 2019' '10:22:10 PM' 1835864)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+
+!FiniteStateMachine methods !  
+convert: x
+    ^x isDigit ifTrue: [x digitValue] ifFalse: [x asCharacter]! ! 
+#('Monday, April 1, 2019' '10:22:25 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' convert: )) !
+
+
+!FiniteStateMachine methods ! 
+convert: x
+    self halt: 'doesnt match character 0'.
+    ^x isDigit ifTrue: [x digitValue] ifFalse: [x asCharacter]! ! 
+#('Monday, April 1, 2019' '10:24:44 PM' 1838696)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' convert: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' convert: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkBuildTreeOrTokenFromName: aTree
+    | parameters aTransitionName fsm |
+    parameters := aTree children collect: [:x | self convert: x].
+    
+    aTransitionName := TransitionName new
+        action: #buildTree;
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    fsm := FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    
+    self halt: 'todo'.
+    isParser
+        ifTrue: [
+            
+        ]
+        ifFalse: [
+            self halt: 'using a scanner now!!'
+        ].
+        ^ self.!    ! 
+#('Monday, April 1, 2019' '10:30:18 PM' 1823684)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeOrTokenFromName: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkBuildTreeOrTokenFromName: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x].
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTree] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   ! 
+#('Monday, April 1, 2019' '10:32:32 PM' 1839344)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeOrTokenFromName: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x].
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTree] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    "parser buildTreeFromIndex:"!   ! 
+#('Monday, April 1, 2019' '10:37:55 PM' 1817476)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+"evaluate" 
+"*** saved image on: Monday, April 1, 2019 10:38:15 PM ***"!
+
+!NotificationManager methods !
+startUpApplication
+        "Start the runtime application."
+    | libs name index bound |
+    libs := self commandLine.
+    bound := false.
+    libs size > 1 ifTrue: [
+        index := 1.
+        [ index := index + 1.  index <= libs size ] whileTrue: [
+            ( ( name := libs at: index )  equalsIgnoreCase: '/lang' )
+                ifTrue: [ index := index + 1 ] "skip the vm message dll if present"
+                ifFalse: [
+                    ( #( $/ $- ) includes: name first )
+                         ifFalse: [ SmalltalkLibraryBinder bindTo: name. bound := true ] ] ] ].
+    ( bound not and: [ ( File findFileName: self exeName, '.bnd' ) isNil ] )
+        ifTrue: [ self startUpSampleApplication ].
+    self triggerEvent: #startUpApplication!    !
+
+"evaluate"   
+"*** saved image on: Monday, April 1, 2019 10:38:18 PM ***"!
