@@ -55768,4 +55768,1697 @@ startUpApplication
     self triggerEvent: #startUpApplication!    !
 
 "evaluate"   
-"*** saved image on: Monday, April 1, 2019 10:38:18 PM ***"!
+"*** saved image on: Monday, April 1, 2019 10:38:18 PM ***"!  
+"*** Image started on: Sunday, April 7, 2019 07:53:16 PM ***"!
+
+!FiniteStateMachineBuilder methods !
+convert: aTree
+    | type |
+    type := aTree label.
+    
+    type = #walkCharacter: ifTrue: [
+        ^aTree symbol first
+    ].
+    type = #walkString: ifTrue: [
+        ^aTree symbol asString
+    ].
+    type = #walkInteger: ifTrue: [
+        ^aTree symbol asInteger
+    ].
+    type = #walkSymbol: ifTrue: [
+        ^aTree symbol asSymbol
+    ].
+    type = #walkIdentifier: ifTrue: [
+        ^aTree symbol asSymbol
+    ].
+    
+    self halt "convert type not implemented.".!    ! 
+#('Sunday, April 7, 2019' '08:07:22 PM' 1821816)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('ops' convert: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x].
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    "parser buildTreeFromIndex:"!  ! 
+#('Sunday, April 7, 2019' '08:10:27 PM' 1840800)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeOrTokenFromName: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x].
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTree] ifFalse: [#buildToken]);
+        isRootBuilding: isParser;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   ! 
+#('Sunday, April 7, 2019' '08:11:36 PM' 1840148)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeOrTokenFromName: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeOrTokenFromName: )) !
+
+
+   
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | (self convert: x) negated]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    "parser buildTreeFromIndex:"!   ! 
+#('Sunday, April 7, 2019' '08:13:28 PM' 1843336)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | (self convert: x) negated]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    "parser buildTreeFromIndex:"!   ! 
+#('Sunday, April 7, 2019' '08:14:00 PM' 1845008)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeFromRightIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | (self convert: x) negated]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    "parser buildTreeFromIndex:"!  ! 
+#('Sunday, April 7, 2019' '08:14:11 PM' 1837260)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromRightIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromRightIndex: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.
+    "parser buildTreeFromIndex:"!    ! 
+#('Sunday, April 7, 2019' '08:14:22 PM' 1845836)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkTreeBuildingSemanticAction: aTree
+    self halt: 'h'!  ! 
+#('Sunday, April 7, 2019' '08:15:07 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkTreeBuildingSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkTreeBuildingSemanticAction: aTree
+    
+    self halt: 'h'!    ! 
+#('Sunday, April 7, 2019' '08:18:22 PM' 1848312)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkTreeBuildingSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkTreeBuildingSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkTreeBuildingSemanticAction: aTree
+    | fsm |
+    fsm := self walkTree: aTree children first.
+    "fsm override: "
+    
+    self halt: 'h'.
+    ^ fsm.!   ! 
+#('Sunday, April 7, 2019' '08:22:35 PM' 1848596)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkTreeBuildingSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkTreeBuildingSemanticAction: )) !
+
+
+"evaluate" 
+"*** saved image on: Sunday, April 7, 2019 08:37:19 PM ***"!
+
+!FiniteStateMachine methods ! 
+override: attributes
+| attrs |
+
+attributes do: [:symbol | 
+    self states do: [:state | 
+        state transitions do: [:transition | 
+            transition override: symbol.
+        ]
+    ]
+].
+^ self.!  ! 
+#('Sunday, April 7, 2019' '09:47:34 PM' 1740064)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('initializing' override: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('initializing' override: )) !
+
+
+"evaluate"   
+(CodeFiler organizerFor: 'Transition')  addCategory: 'ops' before: 'printing'!
+
+!Transition methods !   
+override: attribute
+   | finalAttributes |
+    
+    (attribute = #treeBuilding) ifTrue: [
+        ^self isRootBuilding: true
+    ]
+    ifFalse: [
+        (attribute = #notTreeBuilding) ifTrue: [
+            ^self isRootBuilding: false
+        ]
+    ].
+    
+    finalAttributes := ''.
+    (attribute printString = 'look') ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute printString = 'read') ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute printString = 'stack') ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute printString = 'noStack') ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute printString = 'node') ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute printString = 'noNode') ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute printString = 'keep') ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute printString = 'noKeep') ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].!    ! 
+#('Sunday, April 7, 2019' '09:47:59 PM' nil)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+!FiniteStateMachine methods !
+override: attributes
+| attrs |
+
+attributes do: [:symbol | 
+    self states do: [:state | 
+        state transitions do: [:transition | 
+        self halt: 'yeeeep'.
+            transition override: symbol.
+        ]
+    ]
+].
+^ self.!    ! 
+#('Sunday, April 7, 2019' '09:49:28 PM' 1849608)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('initializing' override: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('initializing' override: )) !
+
+
+!FiniteStateMachine methods !
+override: attributes
+| attrs |
+
+attributes do: [:symbol | 
+    self states do: [:state | 
+        state transitions do: [:transition |
+            transition override: symbol.
+        ].
+    ].
+].
+^ self.! ! 
+#('Sunday, April 7, 2019' '09:51:36 PM' 1852024)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('initializing' override: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('initializing' override: )) !
+
+
+!Transition methods !
+override: attribute
+   | finalAttributes |
+    
+    (attribute = #treeBuilding) ifTrue: [
+        ^self isRootBuilding: true
+    ]
+    ifFalse: [
+        (attribute = #notTreeBuilding) ifTrue: [
+            ^self isRootBuilding: false
+        ]
+    ].
+    
+    finalAttributes := ''.
+    (attribute printString = 'look') ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute printString = 'read') ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute printString = 'stack') ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute printString = 'noStack') ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute printString = 'node') ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute printString = 'noNode') ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute printString = 'keep') ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute printString = 'noKeep') ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].!    ! 
+#('Sunday, April 7, 2019' '09:51:44 PM' 1850204)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+   
+'
+   '!
+
+!Transition methods !  
+override: attribute
+   | finalAttributes |
+   
+    self halt: 'yeep'.
+    (attribute = #treeBuilding) ifTrue: [
+        ^self isRootBuilding: true
+    ]
+    ifFalse: [
+        (attribute = #notTreeBuilding) ifTrue: [
+            ^self isRootBuilding: false
+        ]
+    ].
+    
+    finalAttributes := ''.
+    (attribute printString = 'look') ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute printString = 'read') ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute printString = 'stack') ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute printString = 'noStack') ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute printString = 'node') ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute printString = 'noNode') ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute printString = 'keep') ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute printString = 'noKeep') ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].! ! 
+#('Sunday, April 7, 2019' '09:52:19 PM' 1853056)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+!Transition methods !  
+override: attribute
+   | finalAttributes |
+   
+    self halt: 'yeep'.
+    (attribute = #treeBuilding) ifTrue: [
+        ^self isRootBuilding: true
+    ]
+    ifFalse: [
+        (attribute = #notTreeBuilding) ifTrue: [
+            ^self isRootBuilding: false
+        ]
+    ].
+    
+    finalAttributes := ''.
+    (attribute printString = 'look') ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute printString = 'read') ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute printString = 'stack') ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute printString = 'noStack') ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute = #node) ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute printString = 'noNode') ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute printString = 'keep') ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute printString = 'noKeep') ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].!  ! 
+#('Sunday, April 7, 2019' '09:53:51 PM' 1854972)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+!Transition methods !  
+override: attribute
+   | finalAttributes |
+   
+    self halt: 'yeep'.
+    attribute = #treeBuilding ifTrue: [
+        ^self isRootBuilding: true
+    ]
+    
+    attribute = #notTreeBuilding ifTrue: [
+        ^self isRootBuilding: false
+    ].
+    
+    finalAttributes := ''.
+    (attribute = #look) ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute = #read) ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute = #stack) ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute = #noStack) ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute = #node) ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute = #noNode) ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute = #keep) ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute = #noKeep) ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].!  ! 
+#('Sunday, April 7, 2019' '09:55:59 PM' 1856892)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+"evaluate" 
+"*** saved image on: Sunday, April 7, 2019 09:56:14 PM ***"!
+
+!Transition methods ! 
+override: attribute
+   | finalAttributes |
+   
+    self halt: 'yeep'.
+    attribute = #treeBuilding ifTrue: [
+        ^self isRootBuilding: true
+    ].
+    
+    attribute = #notTreeBuilding ifTrue: [
+        ^self isRootBuilding: false
+    ].
+    
+    finalAttributes := ''.
+    (attribute = #look) ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute = #read) ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute = #stack) ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute = #noStack) ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute = #node) ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute = #noNode) ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute = #keep) ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute = #noKeep) ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].! ! 
+#('Sunday, April 7, 2019' '09:57:18 PM' 1858800)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+!Transition methods !
+attributes: newAttributes
+    self name attributes: newAttributes.!    ! 
+#('Sunday, April 7, 2019' '09:59:24 PM' nil)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('get/set' attributes: )) !
+
+
+!Transition methods !  
+attributes
+    ^ self name attributes.!    ! 
+#('Sunday, April 7, 2019' '10:00:35 PM' nil)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('get/set' attributes )) !
+
+
+!Transition methods !   
+override: attribute
+   | finalAttributes |
+   
+    attribute = #treeBuilding ifTrue: [
+        ^self isRootBuilding: true
+    ].
+    
+    attribute = #notTreeBuilding ifTrue: [
+        ^self isRootBuilding: false
+    ].
+    
+    finalAttributes := ''.
+    (attribute = #look) ifTrue: [
+        finalAttributes := 'L', self attributes without: $R
+    ].
+    (attribute = #read) ifTrue: [
+        finalAttributes := 'R', self attributes without: $L
+    ].
+    (attribute = #stack) ifTrue: [
+        finalAttributes := 'S', self attributes
+    ].
+    (attribute = #noStack) ifTrue: [
+        finalAttributes := self attributes without: $S
+    ].
+    (attribute = #node) ifTrue: [
+        finalAttributes := 'N', self attributes
+    ].
+    (attribute = #noNode) ifTrue: [
+        finalAttributes := self attributes without: $N
+    ].
+    (attribute = #keep) ifTrue: [
+        finalAttributes := 'K', self attributes
+    ].
+    (attribute = #noKeep) ifTrue: [
+        finalAttributes := self attributes without: $K
+    ].
+
+    
+    self attributes: ''.
+    (finalAttributes includes: $L) ifTrue: [self attributes: self attributes, 'L'].
+    (finalAttributes includes: $R) ifTrue: [self attributes: self attributes, 'R'].
+    (finalAttributes includes: $N) ifTrue: [self attributes: self attributes, 'N'].
+    (finalAttributes includes: $S) ifTrue: [self attributes: self attributes, 'S'].
+    (finalAttributes includes: $K) ifTrue: [self attributes: self attributes, 'K'].! ! 
+#('Sunday, April 7, 2019' '10:01:03 PM' 1860660)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' override: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkSemanticAction: aTree
+
+    self halt: 'd'.!   ! 
+#('Sunday, April 7, 2019' '10:02:00 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkSemanticAction: aTree
+    | action |
+    action := self convert: (aTree children first).! ! 
+#('Sunday, April 7, 2019' '10:18:40 PM' 1864504)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkSemanticAction: aTree
+    | action parameters aTransitionName |
+    action := self convert: (aTree children first).
+    
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!    ! 
+#('Sunday, April 7, 2019' '10:24:01 PM' 1864768)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!  ! 
+#('Sunday, April 7, 2019' '10:24:20 PM' 1847492)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkBuildTreeFromRightIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | (self convert: x) negated]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!    ! 
+#('Sunday, April 7, 2019' '10:24:25 PM' 1846664)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromRightIndex: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromRightIndex: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkQuestionMark: aTree
+    ^ (self walkTree: (aTree children first)) questionMark.!   ! 
+#('Sunday, April 7, 2019' '10:25:45 PM' 1759000)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkQuestionMark: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkQuestionMark: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkSemanticAction: aTree
+    | action parameters aTransitionName |
+    action := self convert: (aTree children first).
+    
+    parameters := aTree children rest collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   ! 
+#('Sunday, April 7, 2019' '10:27:00 PM' 1865080)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkSemanticAction: aTree
+    | action parameters aTransitionName |
+    action := self convert: (aTree children first).
+    
+    parameters := aTree children rest collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: action;
+        isRootBuilding: false;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   ! 
+#('Sunday, April 7, 2019' '10:29:42 PM' 1867904)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkSemanticAction: aTree
+    | action parameters aTransitionName |
+    action := self convert: (aTree children first).
+    
+    parameters := aTree children rest collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: action;
+        isRootBuilding: false;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   ! 
+#('Sunday, April 7, 2019' '10:38:16 PM' 1868736)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkTreeBuildingSemanticAction: aTree
+    ^ (self walkTree: aTree children first) override: #treeBuilding.!    ! 
+#('Sunday, April 7, 2019' '10:42:17 PM' 1849020)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkTreeBuildingSemanticAction: )) !
+
+
+   
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachineBuilder methods ! 
+walkNonTreeBuildingSemanticAction
+    ^self.!  ! 
+#('Sunday, April 7, 2019' '10:45:02 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkNonTreeBuildingSemanticAction: a
+    ^self.!   ! 
+#('Sunday, April 7, 2019' '10:45:43 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+
+"evaluate"  
+FiniteStateMachineBuilder removeSelector: #walkNonTreeBuildingSemanticAction!
+
+!FiniteStateMachineBuilder methods ! 
+walkNonTreeBuildingSemanticAction: aTree
+    ^self.!   ! 
+#('Sunday, April 7, 2019' '10:46:04 PM' 1870968)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+
+ 
+'
+	^self.'!
+
+!FiniteStateMachineBuilder methods !   
+walkNonTreeBuildingSemanticAction: aTree
+    ^self.!   ! 
+#('Sunday, April 7, 2019' '10:46:08 PM' 1871340)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkNonTreeBuildingSemanticAction: aTree
+    self halt: 'yeep'.
+    ^self.!   ! 
+#('Sunday, April 7, 2019' '10:46:21 PM' 1871776)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkNonTreeBuildingSemanticAction: aTree
+    ^ (self walkTree: aTree children first) override: #notTreeBuilding.!  ! 
+#('Sunday, April 7, 2019' '10:59:42 PM' 1872192)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkNonTreeBuildingSemanticAction: )) !
+
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachine class methods !
+fromScannerCollection: aCollection attributes: attributes
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    "
+    transition := Transition new.
+    transition goto: s2.
+    transition name: symbol.
+    s1 transitions add: transition.
+    "
+    
+    aCollection do: [:x | 
+        transition := Transition new.
+        transition goto: s2.
+        transition name: x.
+        s1 transitions add: transition.
+    ].
+    fsm states add: s1.
+    fsm states add: s2.
+
+    ^ fsm renumber.!  ! 
+#('Sunday, April 7, 2019' '11:09:21 PM' 1837656)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+
+!FiniteStateMachine class methods !
+fromScannerCollection: aCollection attributes: attributes
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    aCollection do: [:x | 
+        transition := Transition new.
+        transition goto: s2.
+        transition name: x.
+        s1 transitions add: transition.
+    ].
+    fsm states add: s1.
+    fsm states add: s2.
+
+    ^ fsm renumber.!  ! 
+#('Sunday, April 7, 2019' '11:10:02 PM' 1873176)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+
+!FiniteStateMachine class methods !
+fromScannerCollection: aCollection attributes: attributes
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    aCollection do: [:x | 
+        transition := Transition new.
+        transition goto: s2.
+        transition name: TransitionName new symbol: x; attributes: attributes.
+        s1 transitions add: transition.
+    ].
+    fsm states add: s1.
+    fsm states add: s2.
+
+    ^ fsm renumber.!   ! 
+#('Sunday, April 7, 2019' '11:18:08 PM' 1874208)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+
+!FiniteStateMachine class methods !
+fromScannerCollection: aCollection attributes: attributes
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    aCollection do: [:x | 
+        transition := Transition new.
+        transition goto: s2.
+        transition name: (TransitionName new symbol: x; attributes: attributes).
+        s1 transitions add: transition.
+    ].
+    fsm states add: s1.
+    fsm states add: s2.
+
+    ^ fsm renumber.! ! 
+#('Sunday, April 7, 2019' '11:18:49 PM' 1875092)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkStar: aTree
+    ^self walkTree: (aTree children first) star.!  ! 
+#('Sunday, April 7, 2019' '11:21:34 PM' 1766168)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkPlus: aTree
+    ^ self walkTree: (aTree children first) plus.! ! 
+#('Sunday, April 7, 2019' '11:21:57 PM' 1764104)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkOr: aTree
+    ^ FiniteStateMachine or: aTree children collect: [:child | self walkTree: child].!   ! 
+#('Sunday, April 7, 2019' '11:22:18 PM' 1768272)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    ^ self halt: 'die'.!   ! 
+#('Sunday, April 7, 2019' '11:25:20 PM' 1836824)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar to: endChar do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    ^ self halt: 'die'.!    ! 
+#('Sunday, April 7, 2019' '11:29:57 PM' 1878004)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    ^ self halt: 'die'.!  ! 
+#('Monday, April 8, 2019' '12:16:15 PM' 1878376)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value asInteger.
+    ].
+    
+    ^ self halt: 'die'.!    ! 
+#('Monday, April 8, 2019' '12:19:32 PM' 1878860)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value asciiInteger.
+    ].
+    
+    ^ self halt: 'die'.! ! 
+#('Monday, April 8, 2019' '12:23:52 PM' 1879356)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value first asciiInteger.
+    ].
+    
+    ^ self halt: 'die'.!   ! 
+#('Monday, April 8, 2019' '12:24:15 PM' 1879852)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value asciiInteger.
+    ].
+    
+    ^ self halt: 'die'.! ! 
+#('Monday, April 8, 2019' '12:24:28 PM' 1880348)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value asciiInteger.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!    ! 
+#('Monday, April 8, 2019' '12:25:14 PM' 1880852)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: value at: 1 asciiInteger.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!  ! 
+#('Monday, April 8, 2019' '12:25:53 PM' 1881348)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startChar endChar parameters |
+    
+    startChar := aTree children first.
+    endChar := aTree children second.
+    
+    startChar symbol to: endChar symbol do: [:value | 
+        parameters add: (value at: 1) asciiInteger.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!    ! 
+#('Monday, April 8, 2019' '12:26:25 PM' 1881932)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters |
+    
+    startVal := aTree children first asciiValue.
+    endVal := aTree children second asciiValue.
+    
+    startVal symbol to: endVal symbol do: [:value | 
+        parameters add: (value at: 1) asciiInteger.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!    ! 
+#('Monday, April 8, 2019' '12:28:31 PM' 1882520)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters |
+    
+    startVal := aTree children first symbol asciiValue.
+    endVal := aTree children second symbol asciiValue.
+    
+    startVal symbol to: endVal symbol do: [:value | 
+        parameters add: (value at: 1) asciiInteger.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!  ! 
+#('Monday, April 8, 2019' '12:29:18 PM' 1883112)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+   
+'$0 asciiValue'!
+
+!FiniteStateMachineBuilder methods !  
+walkDotDot: aTree
+    | startVal endVal parameters |
+    
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal symbol to: endVal symbol do: [:value | 
+        parameters add: (value at: 1) asciiInteger.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!  ! 
+#('Monday, April 8, 2019' '12:30:28 PM' 1883720)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters |
+    
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.! ! 
+#('Monday, April 8, 2019' '12:31:11 PM' 1884364)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    " FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree "
+    ^ self halt: 'die'.!   ! 
+#('Monday, April 8, 2019' '12:31:45 PM' 1884996)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: #buildTree.
+    ^ self halt: 'die'.!   ! 
+#('Monday, April 8, 2019' '12:32:10 PM' 1885604)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: parameters.
+    ^ self halt: 'die'.!   ! 
+#('Monday, April 8, 2019' '12:32:50 PM' 1886256)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: ''.
+    ^ self halt: 'die'.!   ! 
+#('Monday, April 8, 2019' '12:33:43 PM' 1886916)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: FiniteStateMachine scannerDefaults.
+    ^ self halt: 'die'.!   ! 
+#('Monday, April 8, 2019' '12:35:00 PM' 1887576)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: self scannerDefaults.
+    ^ self halt: 'die'.! ! 
+#('Monday, April 8, 2019' '12:35:36 PM' 1888228)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: self scannerDefaults.
+    ^ fsm.!  ! 
+#('Monday, April 8, 2019' '12:40:16 PM' 1888912)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkDotDot: )) !
+
+
+"evaluate" 
+"*** saved image on: Monday, April 8, 2019 12:44:01 PM ***"!
+
+!FiniteStateMachineBuilder methods !  
+walkInteger: aTree
+    ^ self halt: 'die'.!    ! 
+#('Monday, April 8, 2019' '12:46:38 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+"evaluate"
+(CodeFiler organizerFor: FiniteStateMachineBuilder) removeCategory: 'no category methods' ifAbsent: [nil]!
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkCharacter: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkCharacter: aTree
+    self halt: 'die'.
+    ^ FiniteStateMachine fromScannerCollection: aTree children first attributes: self scannerDefaults.!    ! 
+#('Monday, April 8, 2019' '12:55:55 PM' 1837072)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkCharacter: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkCharacter: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkInteger: aTree
+    ^ FiniteStateMachine fromScannerCollection: aTree children first attributes: self scannerDefaults.! ! 
+#('Monday, April 8, 2019' '12:59:22 PM' 1890312)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkInteger: aTree
+    ^ FiniteStateMachine fromScannerCollection: aTree symbol attributes: self scannerDefaults.! ! 
+#('Monday, April 8, 2019' '01:00:11 PM' 1891268)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkOr: aTree
+    ^ FiniteStateMachine or: (aTree children collect: [:child | self walkTree: child]).! ! 
+#('Monday, April 8, 2019' '01:00:56 PM' 1877592)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkPlus: aTree
+    ^ self walkTree: (aTree children first symbol) plus.!  ! 
+#('Monday, April 8, 2019' '01:03:35 PM' 1877212)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkPlus: aTree
+    ^ self walkTree: (aTree children first) plus.! ! 
+#('Monday, April 8, 2019' '01:03:54 PM' 1892340)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkPlus: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm plus.!   ! 
+#('Monday, April 8, 2019' '01:11:24 PM' 1892620)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkPlus: )) !
+
+
+!FiniteStateMachineBuilder methods ! 
+walkCharacter: aTree
+    ^ FiniteStateMachine fromScannerCollection: aTree symbol attributes: self scannerDefaults.!   ! 
+#('Monday, April 8, 2019' '01:12:22 PM' 1890796)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkCharacter: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkStar: aTree
+    ^(self walkTree: (aTree children first)) star.!    ! 
+#('Monday, April 8, 2019' '01:13:15 PM' 1876832)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+"evaluate"   
+"*** saved image on: Monday, April 8, 2019 01:14:56 PM ***"!
+
+!FiniteStateMachineBuilder methods !  
+walkInteger: aTree
+    ^ FiniteStateMachine fromScannerCollection: aTree symbol asInteger attributes: self scannerDefaults.!   ! 
+#('Monday, April 8, 2019' '01:17:01 PM' 1891708)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+ 
+'aTree symbol asInteger '!
+
+!FiniteStateMachineBuilder methods !
+walkInteger: aTree
+    ^ FiniteStateMachine fromScannerCollection: aTree symbol asInteger attributes: self scannerDefaults.!   ! 
+#('Monday, April 8, 2019' '01:18:06 PM' 1893948)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkInteger: aTree
+    | coll |
+    coll := OrderedCollection new.
+    coll add: aTree symbol asInteger.
+    
+    ^ FiniteStateMachine fromScannerCollection: coll attributes: self scannerDefaults.!  ! 
+#('Monday, April 8, 2019' '01:19:38 PM' 1894424)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachineBuilder methods !   
+walkInteger: aTree
+    | coll |
+    coll := OrderedCollection new.
+    coll add: aTree symbol asCharacter.
+    
+    ^ FiniteStateMachine fromScannerCollection: coll attributes: self scannerDefaults.!    ! 
+#('Monday, April 8, 2019' '01:28:52 PM' 1894760)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+ 
+'aTree symbol asInteger '!
+
+
+'aTree symbol asInteger asCharacter'!
+
+!FiniteStateMachineBuilder methods ! 
+walkInteger: aTree
+    | coll |
+    coll := OrderedCollection new.
+    coll add: aTree symbol asInteger asCharacter.
+    
+    ^ FiniteStateMachine fromScannerCollection: coll attributes: self scannerDefaults.!  ! 
+#('Monday, April 8, 2019' '01:29:44 PM' 1895244)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkInteger: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+"evaluate" 
+"*** saved image on: Monday, April 8, 2019 01:38:28 PM ***"!  
+"*** Image started on: Monday, April 8, 2019 01:38:35 PM ***"!
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
