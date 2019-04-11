@@ -57461,4 +57461,3764 @@ FiniteStateMachineBuilder promptForFiniteStateMachines
 '
 FiniteStateMachineBuilder promptForFiniteStateMachines
 
+'!   
+"*** Image started on: Thursday, April 11, 2019 08:29:05 AM ***"!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
 '!
+
+!TransitionName methods !
+printOn: aStream
+    self attributes notNil ifTrue: [
+        aStream << (symbol between: 32 and: 128) ifTrue: [symbol asInteger] ifFalse: [symbol]  storeString; << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.!    ! 
+#('Thursday, April 11, 2019' '08:36:02 AM' 1824516)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    self attributes notNil ifTrue: [
+        (symbol between: 32 and: 128)
+            ifTrue: [ aStream << symbol asInteger ]
+            ifFalse: [ aStream << symbol storeString ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '08:37:24 AM' 1896676)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    self attributes notNil ifTrue: [
+        (symbol between: 32 and: 128)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '08:38:35 AM' 1897516)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    self attributes notNil ifTrue: [
+        (symbol between: 32 and: 128)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '08:39:23 AM' 1898328)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    self halt: ''.
+    self attributes notNil ifTrue: [
+        (symbol between: 32 and: 128)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '08:40:11 AM' 1899232)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'$0 between: 32 and: 128'!
+
+
+'$0 asInteger'!
+
+   
+'$0 asCharacter'!
+
+ 
+'$0 asString'!
+
+
+'$0 storeString'!
+
+ 
+'$0 storeString'!
+
+!TransitionName methods !
+printOn: aStream
+    self attributes notNil ifTrue: [
+        (symbol between: 32 and: 128)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '08:42:13 AM' 1900152)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'$ asInteger'!
+
+!TransitionName methods !   
+printOn: aStream
+    self attributes notNil ifTrue: [
+        (symbol between: 33 and: 128)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '08:43:17 AM' 1901128)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    self attributes notNil ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '08:44:15 AM' 1901960)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'$0 asInteger'!
+
+!FiniteStateMachineBuilder methods !   
+walkList: aTree
+    "Note: Since none of the walk routines are there (except this one), running will stop as soon
+    as a new one that you must implement is reached."
+
+    | name fsm outputIndex |
+    "If there is too much output, just change the index. If it's 10, you start outputting at fsm 10."
+    outputIndex := 1. "self halt: 'Task 4: Take a look at the tree...'."
+
+    1 to: aTree children size by: 2 do: [:index |
+        "Child index must be a walkIdentifier: token and child index+1 must be a finite state machine tree."
+        name := (aTree child: index) symbol.
+        fsm := self walkTree: (aTree child: index+1).
+        (index+1)/2  >= outputIndex ifTrue: [
+            Transcript cr; << 'FSM for '; << name; << ' = '; cr; << fsm; cr].
+        map at: name put: fsm].!  ! 
+#('Thursday, April 11, 2019' '08:52:21 AM' 1680272)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkList: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkList: )) !
+
+
+!FiniteStateMachine methods !   
+printOn: aStream tabs: tabs
+    aStream tabs timesRepeat: [aStream << '   ']. aStream << 'FSM'.
+        states do: [:state | state printOn: aStream tabs: tabs + 1].
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'END'.!    ! 
+#('Thursday, April 11, 2019' '08:53:09 AM' 1716512)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!FiniteStateMachine methods ! 
+printOn: aStream tabs: tabs
+    tabs timesRepeat: [aStream << '   ']. aStream << 'FSM'.
+        states do: [:state | state printOn: aStream tabs: tabs + 1].
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'END'.!    ! 
+#('Thursday, April 11, 2019' '08:53:50 AM' 1904944)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!DualSetContainingState methods ! 
+= anObject
+    self class == anObject ifFalse: [^false].
+    self symbol == anObject symbol ifFalse: [^false].
+    self attributes == anObject attributes ifFalse: [^false].
+    self action class == anObject action ifFalse: [^false].
+    self parameters == anObject parameters ifFalse: [^false].
+    self isRootBuilding == anObject isRootBuilding ifFalse: [^false].
+    self name == anObject name ifFalse: [^false].
+    self state == anObject state ifFalse: [^false].
+    
+    ^ true.!    ! 
+#('Thursday, April 11, 2019' '09:18:52 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+
+!DualSetContainingState methods ! 
+= anObject
+    self class == anObject ifFalse: [^false].
+    self stateSet1 = anObject stateSet1 ifFalse: [^ false].
+    self stateSet2 = anObject stateSet2 ifFalse: [^ false].
+    
+    ^ self = anObject.!  ! 
+#('Thursday, April 11, 2019' '09:21:14 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+
+!DualSetContainingState methods !   
+= anObject
+    self class == anObject ifFalse: [^false].
+    self stateSet1 = anObject stateSet1 ifFalse: [^ false].
+    self stateSet2 = anObject stateSet2 ifFalse: [^ false].
+    
+    ^ true.! ! 
+#('Thursday, April 11, 2019' '09:23:59 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+
+!FiniteStateMachine methods !   
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            index = 0 
+                ifTrue: [
+                    dualStates add: newState.
+                    newState stateNumber: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!   ! 
+#('Thursday, April 11, 2019' '09:30:48 AM' 1801212)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!DualSetContainingState methods ! 
+= anObject
+    (self class == anObject class) ifFalse: [ ^false ].
+    
+    (self set1 includesAllIdentical: anObject set1) ifFalse: [ ^false ].
+    (anObject set1 includesAllIdentical: self set1) ifFalse: [ ^false ].
+    (self set2 includesAllIdentical: anObject set2) ifFalse: [ ^false ].
+    (anObject set2 includesAllIdentical: self set2) ifFalse: [ ^false ].
+    
+    ^true.!    ! 
+#('Thursday, April 11, 2019' '09:31:22 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+
+!FiniteStateMachine methods !   
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: self parallelBuild: fsm2.
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM.!   ! 
+#('Thursday, April 11, 2019' '09:33:50 AM' 1806480)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!TransitionName methods !
+printOn: aStream
+    self attributes notNil and: symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '09:36:18 AM' 1902880)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!FiniteStateMachine methods !   
+reduce
+    ^ true.!    ! 
+#('Thursday, April 11, 2019' '09:37:06 AM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' reduce )) !
+
+
+!FiniteStateMachine methods !
+reduce
+    | cameFromInitial canReachFinal changed |
+    self renumber.
+    
+    cameFromInitial := IdentityDictionary new.
+    canReachFinal := IdentityDictionary new.
+    
+    self states do: [:state |
+        cameFromInitial at: state put: state initialState.
+        canReachFinal at: state put: state finalState.
+    ].
+    
+    changed := true.
+    [ changed ] whileTrue: [
+        changed := false.
+        self states do: [:state |
+            state transitions do: [:transition |
+                (cameFromInitial at: state) ifTrue: [
+                    (cameFromInitial at: transition goto) ifFalse: [
+                        changed := true.
+                    ].
+                    cameFromInitial at: transition goto put: true.
+                ].
+                
+                (canReachFinal at: transition goto) ifTrue: [
+                    (canReachFinal at: state) ifFalse: [
+                        changed := true.
+                    ].
+                    canReachFinal at: state put: true.
+                ].
+            ].
+        ].
+    ].
+    
+    self states: (self states select: [:state |
+        (cameFromInitial at: state) and: [canReachFinal at: state].
+    ]).
+    self states do: [:state |
+        state transitions: (state transitions select: [:transition |
+            states includesIdentical: transition goto.
+        ]).
+    ].!    ! 
+#('Thursday, April 11, 2019' '09:38:43 AM' 1910744)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' reduce )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' reduce )) !
+
+
+!FiniteStateMachine methods ! 
+reduce
+    | cameFromInitial canReachFinal changed |
+    self renumber.
+    
+    cameFromInitial := IdentityDictionary new.
+    canReachFinal := IdentityDictionary new.
+    
+    self states do: [:state |
+        cameFromInitial at: state put: state initialState.
+        canReachFinal at: state put: state finalState.
+    ].
+    
+    changed := true.
+    [ changed ] whileTrue: [
+        changed := false.
+        self states do: [:state |
+            state transitions do: [:transition |
+                (cameFromInitial at: state) ifTrue: [
+                    (cameFromInitial at: transition goto) ifFalse: [
+                        changed := true.
+                    ].
+                    cameFromInitial at: transition goto put: true.
+                ].
+                
+                (canReachFinal at: transition goto) ifTrue: [
+                    (canReachFinal at: state) ifFalse: [
+                        changed := true.
+                    ].
+                    canReachFinal at: state put: true.
+                ].
+            ].
+        ].
+    ].
+    
+    self states: (self states select: [:state |
+        (cameFromInitial at: state) and: [canReachFinal at: state].
+    ]).
+    self states do: [:state |
+        state transitions: (state transitions select: [:transition |
+            states includesIdentical: transition goto.
+        ]).
+    ].
+    
+    
+    ^self renumber!    ! 
+#('Thursday, April 11, 2019' '09:39:26 AM' 1910944)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' reduce )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' reduce )) !
+
+
+!FiniteStateMachine methods ! 
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: self parallelBuild: fsm2.
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM reduce.!    ! 
+#('Thursday, April 11, 2019' '09:39:57 AM' 1909356)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods ! 
+and: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: self parallelBuild: fsm2.
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal])
+    ].
+    
+    ^dualFSM reduce.!  ! 
+#('Thursday, April 11, 2019' '09:41:13 AM' 1807224)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' and: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' and: )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    (self attributes notNil and: symbol isCharacter) ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '09:42:15 AM' 1909792)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    (self attributes notNil and symbol isCharacter) ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.!    ! 
+#('Thursday, April 11, 2019' '09:43:24 AM' 1915400)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    (self attributes notNil & symbol isCharacter) ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    self halt: ''.
+    aStream << name; << ' - '; << self state.!  ! 
+#('Thursday, April 11, 2019' '09:44:20 AM' 1916260)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!FiniteStateMachine methods ! 
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new; states: self parallelBuild: fsm2.
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM reduce.!   ! 
+#('Thursday, April 11, 2019' '09:44:59 AM' 1914344)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!TransitionName methods !
+printOn: aStream
+    (self attributes notNil & symbol isCharacter) ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!  ! 
+#('Thursday, April 11, 2019' '09:45:37 AM' 1917120)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!FiniteStateMachine methods ! 
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new; states: (self parallelBuild: fsm2).
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM reduce.! ! 
+#('Thursday, April 11, 2019' '09:46:32 AM' 1917980)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!DualSetContainingState methods !
+= anObject
+    (self class == anObject class) ifFalse: [ ^false ].
+    
+    (self stateSet1 includesAllIdentical: anObject stateSet1) ifFalse: [ ^false ].
+    (anObject stateSet1 includesAllIdentical: self stateSet1) ifFalse: [ ^false ].
+    (self stateSet2 includesAllIdentical: anObject stateSet2) ifFalse: [ ^false ].
+    (anObject stateSet2 includesAllIdentical: self stateSet2) ifFalse: [ ^false ].
+    
+    ^true.!    ! 
+#('Thursday, April 11, 2019' '09:48:30 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('ops' = )) !
+
+
+!FiniteStateMachine methods !   
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            index = 0 
+                ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '09:49:41 AM' 1907632)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: (self parallelBuild: fsm2).
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM reduce.!  ! 
+#('Thursday, April 11, 2019' '09:50:13 AM' 1919264)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !
+reduce
+    | cameFromInitial canReachFinal changed |
+    self renumber.
+    
+    cameFromInitial := IdentityDictionary new.
+    canReachFinal := IdentityDictionary new.
+    
+    self states do: [:state |
+        cameFromInitial at: state put: state isInitial.
+        canReachFinal at: state put: state isFinal.
+    ].
+    
+    changed := true.
+    [ changed ] whileTrue: [
+        changed := false.
+        self states do: [:state |
+            state transitions do: [:transition |
+                (cameFromInitial at: state) ifTrue: [
+                    (cameFromInitial at: transition goto) ifFalse: [
+                        changed := true.
+                    ].
+                    cameFromInitial at: transition goto put: true.
+                ].
+                
+                (canReachFinal at: transition goto) ifTrue: [
+                    (canReachFinal at: state) ifFalse: [
+                        changed := true.
+                    ].
+                    canReachFinal at: state put: true.
+                ].
+            ].
+        ].
+    ].
+    
+    self states: (self states select: [:state |
+        (cameFromInitial at: state) and: [canReachFinal at: state].
+    ]).
+    self states do: [:state |
+        state transitions: (state transitions select: [:transition |
+            states includesIdentical: transition goto.
+        ]).
+    ].
+    
+    
+    ^self renumber!  ! 
+#('Thursday, April 11, 2019' '09:55:24 AM' 1912628)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' reduce )) !
+
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!TransitionName methods !  
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '10:06:33 AM' 1918424)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!TransitionName methods !  
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ self halt: ''. aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!    ! 
+#('Thursday, April 11, 2019' '10:07:43 AM' 1923648)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '10:08:38 AM' 1924704)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '10:10:20 AM' 1925708)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!TransitionName methods !  
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ self halt: ''. aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!    ! 
+#('Thursday, April 11, 2019' '10:12:27 AM' 1926604)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    aStream << name; << ' - '; << self state.!   ! 
+#('Thursday, April 11, 2019' '10:13:15 AM' 1927660)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachineState methods !   
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   '].
+    aStream << 'State: '; << number; << ';'.
+    aStream << (isInitial ifTrue: [' initial;'] ifFalse: ['']).
+    aStream << (isFinal ifTrue: [' final;'] ifFalse: ['']).
+        transitions do: [:transition | transition printOn: aStream tabs: tabs + 1].!    ! 
+#('Thursday, April 11, 2019' '10:16:12 AM' 1721132)!
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << '"'; << self attributes; << '"'.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '10:19:24 AM' 1928664)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!TransitionName methods !  
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action asString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << action storeString; << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '10:35:12 AM' 1930372)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachineState methods ! 
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   '].
+    aStream << 'State '; << number; << ';'.
+    aStream << (isInitial ifTrue: [' initial;'] ifFalse: ['']).
+    aStream << (isFinal ifTrue: [' final;'] ifFalse: ['']).
+        transitions do: [:transition | transition printOn: aStream tabs: tabs + 1].! ! 
+#('Thursday, April 11, 2019' '10:37:31 AM' 1929728)!
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+"evaluate" 
+(CodeFiler organizerFor: 'DualSetContainingState')  addCategory: 'printing' before: nil!
+
+!DualSetContainingState methods ! 
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'DualState '; << number; << '; '.
+    isInitial ifTrue: [aStream << 'initial; '].
+    isFinal ifTrue: [aStream << 'final; '].
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << '('.
+    stateSet1 do: [:state | aStream << state number].
+    aStream << ') ('.
+    stateSet2 do: [:state | aStream << state number].
+    aStream << ') '.
+    transitions do: [:transition | transition printOn: aStream tabs: tabs + 1]!    ! 
+#('Thursday, April 11, 2019' '10:53:43 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!FiniteStateMachineState methods !   
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   '].
+    self class = FiniteStateMachine
+    ifTrue:[
+        aStream << 'State '; << number; << ';'.
+        aStream << (isInitial ifTrue: [' initial;'] ifFalse: ['']).
+        aStream << (isFinal ifTrue: [' final;'] ifFalse: ['']).
+    ]
+    ifFalse: [
+        self printOn: aStream
+    ].
+        transitions do: [:transition | transition printOn: aStream tabs: tabs + 1].!    ! 
+#('Thursday, April 11, 2019' '10:58:10 AM' 1932496)!
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!FiniteStateMachineState methods !  
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   '].
+    aStream << 'State '; << number; << ';'.
+    aStream << (isInitial ifTrue: [' initial;'] ifFalse: ['']).
+    aStream << (isFinal ifTrue: [' final;'] ifFalse: ['']).
+
+    transitions do: [:transition | transition printOn: aStream tabs: tabs + 1].!   ! 
+#('Thursday, April 11, 2019' '11:00:32 AM' 1934048)!
+
+(CodeFiler organizerFor: FiniteStateMachineState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!DualSetContainingState methods !   
+printOn: aStream
+    self printOn: aStream tabs: 0.!   ! 
+#('Thursday, April 11, 2019' '11:00:50 AM' nil)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+"evaluate"   
+DualSetContainingState removeSelector: #printOn:!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+   
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: (self parallelBuild: fsm2).
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM.! ! 
+#('Thursday, April 11, 2019' '11:08:07 AM' 1921376)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachine methods !  
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: (self parallelBuild: fsm2).
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    ^dualFSM renumber.!    ! 
+#('Thursday, April 11, 2019' '11:09:00 AM' 1935888)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachine class methods !
+minus: fsms
+    | finalFsm |
+    finalFsm := fsms first.
+    fsms rest do: [:fsm |
+        finalFsm := finalFsm minus: fsm.
+    ].
+    
+    ^finalFsm reduce!    ! 
+#('Thursday, April 11, 2019' '11:14:12 AM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachineBuilder methods !   
+walkConcatenation: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!    ! 
+#('Thursday, April 11, 2019' '11:16:06 AM' 1770700)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachine class methods !
+minus: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:x |
+        fsm := fsm minus: x.
+    ].
+    
+    ^fsm reduce! ! 
+#('Thursday, April 11, 2019' '11:18:10 AM' 1937104)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine class methods !   
+concat: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm concat: cfsm.
+    ].
+    ^ fsm reduce.!   ! 
+#('Thursday, April 11, 2019' '11:18:18 AM' 1771424)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine class methods ! 
+or: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm or: cfsm.
+    ].
+    ^ fsm reduce.!   ! 
+#('Thursday, April 11, 2019' '11:18:25 AM' 1768996)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!FiniteStateMachine methods !   
+or: fsm2
+    states addAll: fsm2 states.
+    ^ self reduce.!  ! 
+#('Thursday, April 11, 2019' '11:19:27 AM' 1745676)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkConcatenation: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine concat: fsms.!   ! 
+#('Thursday, April 11, 2019' '11:26:21 AM' 1937464)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkConcatenation: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkMinus: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!    ! 
+#('Thursday, April 11, 2019' '11:26:47 AM' 1778000)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!FiniteStateMachine class methods !   
+concat: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm concat: cfsm.
+    ].
+    ^ fsm renumber.! ! 
+#('Thursday, April 11, 2019' '11:27:20 AM' 1938440)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods ! 
+or: fsm2
+    states addAll: fsm2 states.
+    ^ self renumber.!    ! 
+#('Thursday, April 11, 2019' '11:27:51 AM' 1939268)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!FiniteStateMachine class methods ! 
+or: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm or: cfsm.
+    ].
+    ^ fsm renumber.! ! 
+#('Thursday, April 11, 2019' '11:28:09 AM' 1938864)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachineBuilder methods !   
+walkMinus: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    self halt: 'fuck'.
+    ^ FiniteStateMachine minus: fsms.!    ! 
+#('Thursday, April 11, 2019' '11:29:13 AM' 1940084)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkMinus: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!    ! 
+#('Thursday, April 11, 2019' '11:31:09 AM' 1941512)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachineBuilder methods !   
+walkMinus: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    self halt: 'ficl'.
+    ^ FiniteStateMachine minus: fsms.!    ! 
+#('Thursday, April 11, 2019' '11:31:40 AM' 1941996)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!FiniteStateMachineBuilder methods !  
+walkMinus: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!    ! 
+#('Thursday, April 11, 2019' '11:32:33 AM' 1942528)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: (self parallelBuild: fsm2).
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    self halt: 'fk'.
+    ^dualFSM renumber.!    ! 
+#('Thursday, April 11, 2019' '11:32:56 AM' 1936488)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine class methods !   
+minus: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:x |
+        fsm := fsm minus: x.
+    ].
+    
+    ^fsm renumber.!  ! 
+#('Thursday, April 11, 2019' '11:34:23 AM' 1938016)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !  
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+    
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+    fsm := fsm reduce.
+    
+    self halt: 'fk'.
+    ^fsm.! ! 
+#('Thursday, April 11, 2019' '11:42:22 AM' 1943356)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods ! 
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+    
+    "
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    "
+    
+    dualStates do: [:dualState |
+        (dualState set1HasFinal) ifTrue: [
+            (dualState set2HasFinal) ifFalse: [
+                dualState finalState: true
+            ].
+        ].
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+    fsm := fsm reduce.
+    
+    self halt: 'fk'.
+    ^fsm.!  ! 
+#('Thursday, April 11, 2019' '11:43:00 AM' 1944248)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+    
+    "
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    "
+    
+    dualStates do: [:dualState |
+        (dualState stateSet1HasFinal) ifTrue: [
+            (dualState stateSet2HasFinal) ifFalse: [
+                dualState isFinal: true
+            ].
+        ].
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+    fsm := fsm reduce.
+    
+    self halt: 'fk'.
+    ^fsm.!   ! 
+#('Thursday, April 11, 2019' '11:43:35 AM' 1944852)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+    
+    "
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    "
+    
+    dualStates do: [:dualState |
+        (dualState stateSet1HasFinal) ifTrue: [
+            (dualState stateSet2HasFinal) ifFalse: [
+                dualState isFinal: true
+            ].
+        ].
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+    self halt: 'fk'.
+    fsm := fsm reduce.
+    
+
+    ^fsm.! ! 
+#('Thursday, April 11, 2019' '11:44:11 AM' 1945596)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+    
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+    self halt: 'fk'.
+    fsm := fsm reduce.
+    
+
+    ^fsm.!   ! 
+#('Thursday, April 11, 2019' '11:45:16 AM' 1946348)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+    self halt: 'fk'.
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+
+    fsm := fsm reduce.
+    ^fsm.!   ! 
+#('Thursday, April 11, 2019' '11:48:23 AM' 1947100)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!FiniteStateMachine methods !
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds AllTransitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            index = 0 
+                ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!  ! 
+#('Thursday, April 11, 2019' '11:52:56 AM' 1920412)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            index = 0 
+                ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.! ! 
+#('Thursday, April 11, 2019' '11:53:17 AM' 1948128)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: 'd'.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            index = 0 
+                ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '11:53:34 AM' 1949200)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: 'd'.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0)
+                ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!   ! 
+#('Thursday, April 11, 2019' '11:54:00 AM' 1950268)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: 'd'.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '11:54:07 AM' 1951360)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: 'd'.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '11:54:56 AM' 1952452)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: 'd'.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '11:55:30 AM' 1953528)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+  
+'self allInitial'!
+
+!DualSetContainingState methods !   
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'DualState '; << number; << '; '.
+    isInitial ifTrue: [aStream << 'initial; '].
+    isFinal ifTrue: [aStream << 'final; '].
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << '('.
+    stateSet1 do: [:state | aStream << state number; << ', '].
+    aStream << ') ('.
+    stateSet2 do: [:state | aStream << state number; << ', '].
+    aStream << ') '.
+    transitions do: [:transition | transition printOn: aStream tabs: tabs + 1]!  ! 
+#('Thursday, April 11, 2019' '11:58:55 AM' 1933316)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            self halt: 'd'.
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!  ! 
+#('Thursday, April 11, 2019' '12:02:10 PM' 1954604)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            self halt: 'd'.            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '12:04:18 PM' 1956560)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+ 
+'ds getSuccessor: name'!
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            self halt: 'd'.            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '12:05:57 PM' 1957644)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+ 
+'ds getSuccessor: name'!
+
+  
+'ds getSuccessor: name'!
+
+!DualSetContainingState methods ! 
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    s1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfIdenticalAbsent: tran goto.
+    ]]].
+    
+    s2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfIdenticalAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    ^successor.!    ! 
+#('Thursday, April 11, 2019' '12:12:27 PM' 1793344)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+
+'
+	'!
+
+!DualSetContainingState methods !
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    s1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfIdenticalAbsent: tran goto.
+    ]]].
+    
+    s2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfIdenticalAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    ^successor.!    ! 
+#('Thursday, April 11, 2019' '12:12:37 PM' 1959720)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+!DualSetContainingState methods !   
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    s1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfAbsent: tran goto.
+    ]]].
+    
+    s2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    ^successor.!  ! 
+#('Thursday, April 11, 2019' '12:13:26 PM' 1960564)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+!FiniteStateMachine methods !   
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: ''.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            self halt: 'd'.            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!  ! 
+#('Thursday, April 11, 2019' '12:19:03 PM' 1958664)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+ 
+'self transitionNames'!
+
+   
+'self transitionNames'!
+
+   
+'
+SampleCompiler promptForEvaluation
+'!
+
+ 
+'
+SampleCompiler promptForEvaluation
+'!
+
+!FiniteStateMachine methods !
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: ''.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            self halt: ''.
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            self halt: 'd'.            
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!  ! 
+#('Thursday, April 11, 2019' '02:31:12 PM' 1962212)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods ! 
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    self halt: ''.
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            self halt: ''.
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            ds transitions add: (Transition new name: name; goto: newState).
+            self halt: ''.
+        ].
+    ].
+    
+    ^dualStates.!   ! 
+#('Thursday, April 11, 2019' '02:31:25 PM' 1963376)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+  
+'self transitionNames'!
+
+   
+'self transitionNames'!
+
+   
+'self transitionNames'!
+
+!DualSetContainingState methods !  
+transitionNames
+    | names |
+    names := OrderedCollection new.
+    stateSet1 do: [:state |
+        state transitions do: [:transition |
+            names addIfAbsent: transition name.
+        ].
+    ].
+    stateSet2 do: [:state |
+        state transitions do: [:transition |
+            names addIfAbsent: transition name.
+        ].
+    ].
+
+    ^names.! ! 
+#('Thursday, April 11, 2019' '02:52:11 PM' 1794572)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' transitionNames )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' transitionNames )) !
+
+
+!DualSetContainingState methods !   
+transitionNames
+    | names |
+    names := OrderedCollection new.
+    self stateSet1 do: [:state | state transitions do: [:tran | names addIfAbsent: tran name]].
+    self stateSet2 do: [:state | state transitions do: [:tran | names addIfAbsent: tran name]].
+    ^names.! ! 
+#('Thursday, April 11, 2019' '02:54:15 PM' 1965720)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' transitionNames )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' transitionNames )) !
+
+
+!FiniteStateMachine methods !   
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            ds transitions add: (Transition new name: name; goto: newState).
+
+        ].
+    ].
+    self halt: ''.
+    
+    ^dualStates.! ! 
+#('Thursday, April 11, 2019' '02:55:56 PM' 1964504)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods !
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            self halt: 'adding new transition'.
+            ds transitions add: (Transition new name: name; goto: newState).
+
+        ].
+    ].
+    self halt: ''.
+    
+    ^dualStates.!    ! 
+#('Thursday, April 11, 2019' '02:56:47 PM' 1966980)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!TransitionName methods !
+= anObject
+    self class = anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action class = anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.!    ! 
+#('Thursday, April 11, 2019' '03:01:02 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+!FiniteStateMachine methods !   
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            ds transitions add: (Transition new name: name; goto: newState).
+
+        ].
+    ].
+    self halt: ''.
+    
+    ^dualStates.! ! 
+#('Thursday, April 11, 2019' '03:01:37 PM' 1967944)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!TransitionName methods !
+= anObject
+    self class == anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action = anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.! ! 
+#('Thursday, April 11, 2019' '03:03:20 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+!TransitionName methods !   
+= anObject
+    self class == anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action == anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding == anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.!   ! 
+#('Thursday, April 11, 2019' '03:04:36 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+
+'true == true'!
+
+!TransitionName methods !  
+= anObject
+    self class == anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action == anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.!    ! 
+#('Thursday, April 11, 2019' '03:05:01 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+!TransitionName methods !   
+= anObject
+    self class == anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action = anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.! ! 
+#('Thursday, April 11, 2019' '03:05:12 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+"evaluate"  
+"*** saved image on: Thursday, April 11, 2019 03:05:37 PM ***"!
+
+   
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachine methods !
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            self halt: ''.
+            newState := ds getSuccessor: name.
+            self halt: ''.
+            index := dualStates indexOf: newState.
+            self halt: ''.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            self halt: ''.
+            ds transitions add: (Transition new name: name; goto: newState).
+            self halt: ''.
+        ].
+    ].
+    self halt: ''.
+    
+    ^dualStates.!   ! 
+#('Thursday, April 11, 2019' '03:16:41 PM' 1969700)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!DualSetContainingState methods !
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    stateSet1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfAbsent: tran goto.
+    ]]].
+    
+    stateSet2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    ^successor.!    ! 
+#('Thursday, April 11, 2019' '03:22:26 PM' 1961400)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+!DualSetContainingState methods !   
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    stateSet1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfAbsent: tran goto.
+    ]]].
+    
+    stateSet2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    ^successor.!    ! 
+#('Thursday, April 11, 2019' '03:24:35 PM' 1974876)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+!DualSetContainingState methods !   
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    stateSet1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfAbsent: tran goto.
+    ]]].
+    
+    stateSet2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    self halt: ''.
+    ^successor.!    ! 
+#('Thursday, April 11, 2019' '03:27:30 PM' 1975708)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+!TransitionName methods !   
+= anObject
+    self halt: ''.
+    self class == anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action = anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.! ! 
+#('Thursday, April 11, 2019' '03:31:42 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+"evaluate"  
+"*** saved image on: Thursday, April 11, 2019 03:33:20 PM ***"!
+
+"evaluate" 
+"*** saved image on: Thursday, April 11, 2019 03:33:25 PM ***"!   
+"*** Image started on: Thursday, April 11, 2019 03:33:44 PM ***"!
+
+!TransitionName methods !
+= anObject
+    self class == anObject ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action = anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^ true.! ! 
+#('Thursday, April 11, 2019' '03:35:56 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+!FiniteStateMachine methods !   
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    self halt: ''.
+    
+    ^dualStates.!   ! 
+#('Thursday, April 11, 2019' '03:37:39 PM' 1973768)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!TransitionName methods ! 
+= anObject
+    (self class == anObject class) ifFalse: [ ^false ].
+    (self symbol = anObject symbol) ifFalse: [ ^false ].
+    (self attributes = anObject attributes) ifFalse: [ ^false ].
+    (self action == anObject action) ifFalse: [ ^false ].
+    (self parameters = anObject parameters) ifFalse: [ ^false ].
+    (self isRootBuilding == anObject isRootBuilding) ifFalse: [ ^false ].
+    (self name = anObject name) ifFalse: [ ^false ].
+    (self state = anObject state) ifFalse: [ ^false ].
+    ^true.!  ! 
+#('Thursday, April 11, 2019' '03:55:59 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+!TransitionName methods !   
+= anObject
+    self class == anObject class ifFalse: [^false].
+    self symbol = anObject symbol ifFalse: [^false].
+    self attributes = anObject attributes ifFalse: [^false].
+    self action = anObject action ifFalse: [^false].
+    self parameters = anObject parameters ifFalse: [^false].
+    self isRootBuilding = anObject isRootBuilding ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    self state = anObject state ifFalse: [^false].
+    
+    ^true.!  ! 
+#('Thursday, April 11, 2019' '03:57:34 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' = )) !
+
+
+!DualSetContainingState methods !   
+getSuccessor: transitionName
+    | successor s1 s2 |
+    
+    s1 := OrderedCollection new.
+    s2 := OrderedCollection new.
+    
+    stateSet1 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s1 addIfAbsent: tran goto.
+    ]]].
+    
+    stateSet2 do: [:state | state transitions do: [:tran | tran name = transitionName ifTrue: [
+        s2 addIfAbsent: tran goto.
+    ]]].
+    
+    successor := DualSetContainingState new stateSet1: s1; stateSet2: s2.
+    ^successor.!    ! 
+#('Thursday, April 11, 2019' '03:58:42 PM' 1976540)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('get/set' getSuccessor: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!DualSetContainingState methods !
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'DualState '; << number; << '; '.
+    isInitial ifTrue: [aStream << 'initial; '].
+    isFinal ifTrue: [aStream << 'final; '].
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << '('.
+    stateSet1 do: [:state | aStream << state number. 
+    (state = stateSet1 last) ifFalse: [aStream << ', ']].
+    aStream << ') ('.
+    stateSet2 do: [:state | aStream << state number; << ', '].
+    aStream << ') '.
+    transitions do: [:transition | transition printOn: aStream tabs: tabs + 1]!    ! 
+#('Thursday, April 11, 2019' '04:04:56 PM' 1955712)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!DualSetContainingState methods !
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'DualState '; << number; << '; '.
+    isInitial ifTrue: [aStream << 'initial; '].
+    isFinal ifTrue: [aStream << 'final; '].
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << '('.
+    stateSet1 do: [ :state |
+        aStream << state number. 
+        (state = stateSet1 last) ifFalse: [aStream << ', ']
+    ].
+    aStream << ') ('.
+    stateSet2 do: [ :state |
+        aStream << state number. 
+        (state = stateSet2 last) ifFalse: [aStream << ', ']
+    ].
+    aStream << ') '.
+    transitions do: [:transition | transition printOn: aStream tabs: tabs + 1]!  ! 
+#('Thursday, April 11, 2019' '04:06:09 PM' 1982468)!
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: DualSetContainingState) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+"evaluate" 
+"*** saved image on: Thursday, April 11, 2019 04:06:43 PM ***"!
+
+!FiniteStateMachine methods !  
+parallelBuild: fsm2
+    | dualStates newState index |
+    
+    dualStates := OrderedCollection new.
+    dualStates add: (DualSetContainingState new stateSet1: self allInitial; stateSet2: fsm2 allInitial; number: 1; isInitial: true).
+    
+    dualStates do: [:ds | 
+        ds transitionNames do: [:name | 
+            newState := ds getSuccessor: name.
+            index := dualStates indexOf: newState.
+            (index = 0) ifTrue: [
+                    dualStates add: newState.
+                    newState number: dualStates size.
+                ]
+                ifFalse: [newState := dualStates at: index].
+            ds transitions add: (Transition new name: name; goto: newState).
+        ].
+    ].
+    
+    ^dualStates.!   ! 
+#('Thursday, April 11, 2019' '04:24:20 PM' 1979100)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' parallelBuild: )) !
+
+
+!FiniteStateMachine methods !
+minus: fsm2
+    | fsm dualStates |
+    dualStates := self parallelBuild: fsm2.
+
+    dualStates do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal not])
+    ].
+    
+    fsm := FiniteStateMachine new states: dualStates.
+
+    fsm := fsm reduce.
+    ^fsm.!   ! 
+#('Thursday, April 11, 2019' '04:24:37 PM' 1947620)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!TransitionName methods !
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '04:37:41 PM' 1931432)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachine methods !
+concat: fsm2
+    | fsm1RecE fsm2RecE f1 i2 transI |
+    f1 := self allFinal.
+    i2 := fsm2 allInitial.
+    transI := fsm2 initialTransitions.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    f1 do: [:state | 
+        state transitions addAllIfAbsent: transI.
+    ].
+    
+    fsm2RecE ifFalse: [ f1 do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ i2 do: [:state | state isInitial = false] ].
+
+    self states addAll: fsm2 states.
+
+    ^ self renumber.!   ! 
+#('Thursday, April 11, 2019' '04:55:07 PM' 1776216)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachine methods !
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial transI |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    transI := fsm2 initialTransitions.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: transI.
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self states addAll: fsm2 states.
+
+    ^ self renumber.!    ! 
+#('Thursday, April 11, 2019' '04:57:42 PM' 1987112)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: fsm2 initialTransitions.
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self states addAll: fsm2 states.
+
+    ^ self renumber.!  ! 
+#('Thursday, April 11, 2019' '04:59:48 PM' 1987964)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self states addAll: fsm2 states.
+
+    ^ self renumber.!    ! 
+#('Thursday, April 11, 2019' '04:59:56 PM' 1988808)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self states addAll: fsm2 states.
+
+    ^ self renumber.!    ! 
+#('Thursday, April 11, 2019' '05:01:41 PM' 1989620)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self states addAll: fsm2 states.
+    
+    self halt: 'dd'.
+
+    ^ self renumber.!    ! 
+#('Thursday, April 11, 2019' '05:11:02 PM' 1990436)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self halt: 'dd'.
+    self states addAll: fsm2 states.
+    
+    self halt: 'dd'.
+
+    ^ self renumber.!  ! 
+#('Thursday, April 11, 2019' '05:12:32 PM' 1991252)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    self halt: 'dd'.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal = false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial = false] ].
+
+    self halt: 'dd'.
+    self states addAll: fsm2 states.
+    
+    self halt: 'dd'.
+
+    ^ self renumber.!  ! 
+#('Thursday, April 11, 2019' '05:12:47 PM' 1992096)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    self halt: 'dd'.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal: false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial: false] ].
+
+    self halt: 'dd'.
+    self states addAll: fsm2 states.
+    
+    self halt: 'dd'.
+
+    ^ self renumber.!    ! 
+#('Thursday, April 11, 2019' '05:14:55 PM' 1992872)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!FiniteStateMachine methods !
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    self halt: 'dd'.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal: false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial: false] ].
+
+    self halt: 'dd'.
+    self states addAll: fsm2 states.
+    
+    self halt: 'dd'.
+
+    ^ self reduce.!  ! 
+#('Thursday, April 11, 2019' '05:18:12 PM' 1993676)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!TransitionName methods !
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '05:40:51 PM' 1986076)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '05:40:56 PM' 1995404)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!FiniteStateMachine methods !   
+concat: fsm2
+    | fsm1RecE fsm2RecE fsm1Final fsm2Initial |
+    fsm1Final := self allFinal.
+    fsm2Initial := fsm2 allInitial.
+    fsm1RecE := self recognizesE.
+    fsm2RecE := fsm2 recognizesE.
+    
+    fsm1Final do: [:state | 
+        state transitions addAllIfAbsent: (fsm2 initialTransitions).
+    ].
+    
+    fsm2RecE ifFalse: [ fsm1Final do: [:state | state isFinal: false] ].
+    fsm1RecE ifFalse: [ fsm2Initial do: [:state | state isInitial: false] ].
+
+    self states addAll: fsm2 states.
+
+    ^ self reduce.!    ! 
+#('Thursday, April 11, 2019' '05:41:11 PM' 1994544)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' concat: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!TransitionName methods !
+printOn: aStream
+    
+    (self parameters notNil) ifTrue: [
+    ].
+
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '05:52:59 PM' 1996396)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    
+    (self parameters notNil) ifTrue: [
+        self halt: ''.
+    ].
+
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].
+    
+    aStream << name; << ' - '; << self state.! ! 
+#('Thursday, April 11, 2019' '05:53:08 PM' 1998176)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    
+    (self parameters notNil) ifTrue: [
+        self halt: ''.
+    ].
+
+    (self attributes notNil) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].!  ! 
+#('Thursday, April 11, 2019' '05:53:18 PM' 1999224)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!Transition methods !  
+printOn: aStream tabs: tabs
+    aStream cr. tabs timesRepeat: [aStream << '   ']. aStream << 'for: '; << name.
+    aStream << ' goto: '; << goto number; << ';'.! ! 
+#('Thursday, April 11, 2019' '05:57:03 PM' 1721660)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('printing' printOn:tabs: )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    
+    (self parameters notNil) ifTrue: [
+        self halt: ''.
+    ].
+
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    self parameters notNil ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].!  ! 
+#('Thursday, April 11, 2019' '05:58:23 PM' 2000296)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    (self hasParameters) ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (self parameters asArray) printString.
+        ^self.
+    ].!    ! 
+#('Thursday, April 11, 2019' '05:59:59 PM' 2001816)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    (self hasParameters) ifTrue: [
+        self halt: ''.
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (parameters asArray) printString.
+        ^self.
+    ].! ! 
+#('Thursday, April 11, 2019' '06:03:05 PM' 2002832)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+hasParameters
+
+^ parameters notNil.!  ! 
+#('Thursday, April 11, 2019' '06:04:12 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' hasParameters )) !
+
+
+!TransitionName methods ! 
+printOn: aStream
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].
+    
+    (self hasParameters) ifTrue: [
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (parameters asArray) printString.
+        ^self.
+    ].! ! 
+#('Thursday, April 11, 2019' '06:04:30 PM' 2003768)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!TransitionName methods !
+printOn: aStream
+    (self hasParameters) ifTrue: [
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << 'isRootBuilding;' ].
+        aStream << ' parameters: '; << (parameters asArray) printString.
+        ^self.
+    ].
+
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].! ! 
+#('Thursday, April 11, 2019' '06:05:46 PM' 2004916)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+"evaluate"   
+"*** saved image on: Thursday, April 11, 2019 06:09:19 PM ***"!
+
+"evaluate" 
+"*** saved image on: Thursday, April 11, 2019 06:09:50 PM ***"!
+
+"evaluate" 
+"*** saved image on: Thursday, April 11, 2019 06:09:52 PM ***"!   
+"*** Image started on: Thursday, April 11, 2019 06:10:28 PM ***"!
+
+!FiniteStateMachine methods !
+and: fsm2
+    | dualFSM |
+    dualFSM := FiniteStateMachine new states: (self parallelBuild: fsm2).
+    
+    dualFSM states do: [:state | 
+        state isFinal: (state stateSet1HasFinal and: [state stateSet2HasFinal])
+    ].
+    
+    ^dualFSM reduce.!    ! 
+#('Thursday, April 11, 2019' '06:11:37 PM' 1914880)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' and: )) !
+
+
+   
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+
+'!
+
+!FiniteStateMachine methods !  
+or: fsm2
+    states addAll: fsm2 states.
+    ^ self reduce.!  ! 
+#('Thursday, April 11, 2019' '06:20:53 PM' 1940868)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' or: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+!TransitionName methods !
+printOn: aStream
+    (self hasParameters) ifTrue: [
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << ' isRootBuilding;' ].
+        aStream << ' parameters: '; << (parameters asArray) printString.
+        ^self.
+    ].
+
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].!    ! 
+#('Thursday, April 11, 2019' '06:29:51 PM' 2005796)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+ 
+'#b storeString'!
+
+ 
+'#b isCharacter'!
+
+ 
+'#b isCharacter'!
+
+!TransitionName methods !
+printOn: aStream
+    (self hasParameters) ifTrue: [
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << ' isRootBuilding;' ].
+        aStream << ' parameters: '; << (parameters asArray) printString.
+        ^self.
+    ].
+
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].!    ! 
+#('Thursday, April 11, 2019' '06:36:46 PM' 2008116)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!TransitionName methods !   
+printOn: aStream
+    (self hasParameters) ifTrue: [
+        aStream << action storeString.
+        isRootBuilding ifTrue: [ aStream << ' isRootBuilding;' ].
+        aStream << ' parameters: '; << (parameters asArray) printString.
+        ^self.
+    ].
+
+    (self hasAttributes) ifTrue: [
+        symbol isCharacter ifTrue: [ "#b is not a character but i still want to print as #b"
+        (symbol between: 33 and: 126)
+            ifTrue: [ aStream << symbol storeString ]
+            ifFalse: [ aStream << symbol asInteger ].
+        ]
+        ifFalse: [ aStream << symbol ].
+        aStream << ' attributes: '; << self attributes storeString.
+        ^self.
+    ].!    ! 
+#('Thursday, April 11, 2019' '06:37:03 PM' 2009156)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"  
+"*** saved image on: Thursday, April 11, 2019 06:38:04 PM ***"!
+
+   
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+ 
+'
+FiniteStateMachineBuilder promptForFiniteStateMachines
+'!
+
+"evaluate"   
+"*** saved image on: Thursday, April 11, 2019 06:38:16 PM ***"!
+
+"evaluate" 
+"*** saved image on: Thursday, April 11, 2019 06:38:36 PM ***"!   
+"*** Image started on: Thursday, April 11, 2019 06:43:48 PM ***"!

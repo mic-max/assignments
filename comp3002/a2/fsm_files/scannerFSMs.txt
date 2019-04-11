@@ -5,7 +5,7 @@ scanner
     space = 32 [noKeep]; //The attribute should be "R".
     lineEnd = 10 [noKeep];
     all = "0123abc;+-/" [read keep] | space | lineEnd; //Space and lineEnd should be "RK"; others "R".
-    nonDigit = {all - digits}; //The attributes should be "L" or "" or "K"; i.e., NOT CONTAINING R.
+    nonDigit = {all - digit}; //The attributes should be "L" or "" or "K"; i.e., NOT CONTAINING R.
     number = digit+ => Number; //
     Comment =
         ($/ [noKeep] {all - $/} #syntaxError: ["// is a comment, / alone is not valid"])
