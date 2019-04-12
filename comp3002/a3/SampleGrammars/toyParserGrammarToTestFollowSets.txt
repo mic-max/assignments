@@ -1,0 +1,37 @@
+parser
+
+    //This is grammar to test follow sets.
+
+   G {EndOfFile} -> A #indent D a | A b | C D d | D E | F. //A should have a in its follow set, C should have d
+   C -> B | B c .
+   B -> r | r B | s A .
+   A  -> s .
+   D -> .    //D is e-generating.
+   E -> a* D b .
+   F -> D+ #exdent (p | D q)*.
+
+   //Final results should be (I was not that careful, so I could be wrong).
+
+   //e-Generating(A) = {false}
+   //e-Generating(B) = {false}
+   //e-Generating(C) = {false}
+   //e-Generating(D) = {true}
+   //e-Generating(E) = {false}
+   //e-Generating(G) = {true}
+   //e-Generating(F) = {true}
+
+   //First(A) = {s}
+   //First(B) = {r,s}
+   //First(C) = {r,s}
+   //First(D) = {}
+   //First(E) = {a,b}
+   //First(G) = {r,s,a,b,p,q}
+   //First(F) = {p,q}
+
+   //Follow(A) = {a,b,c,d}
+   //Follow(B) = {c,d}
+   //Follow(C) = {d}
+   //Follow(D) = {a,b,d,p,q,EndOfFile}
+   //Follow(E) = {EndOfFile}
+   //Follow(G) = {EndOfFile}
+   //Follow(F) = {EndOfFile}

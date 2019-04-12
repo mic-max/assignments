@@ -1,0 +1,7 @@
+parser
+
+    //This is the ARITHMETIC EXPRESSION grammar. (Version 2).
+
+    E {EndOfFile}
+	-> E ( '+' | '-') Identifer [node] => + 2
+	-> Identifier [node].

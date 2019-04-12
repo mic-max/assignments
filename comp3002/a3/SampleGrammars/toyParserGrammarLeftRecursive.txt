@@ -1,0 +1,8 @@
+
+parser
+    //This is a left recursive toy grammar for the language describable in regular expressions as "a+".
+
+   S {EndOfFile}
+    -> S a [node] => "list"
+    -> a [node].
+

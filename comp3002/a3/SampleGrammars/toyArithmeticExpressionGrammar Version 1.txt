@@ -1,0 +1,12 @@
+parser
+ 
+    attribute defaults "stack" "read" "noNode".    
+    keywords "scanner" "parser".
+    output "All".
+
+    //This is the ARITHMETIC EXPRESSION grammar. (Version 1).
+
+    E {EndOfFile}
+	-> E '+' Identifer [node] => "+"
+	-> E '-' Identifer [node] => "-"
+	-> Identifier [node].

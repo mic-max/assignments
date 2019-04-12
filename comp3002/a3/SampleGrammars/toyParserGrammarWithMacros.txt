@@ -1,0 +1,8 @@
+parser
+
+    //This is the LISP grammar.
+   Identifier = a | b .
+   S {EndOfFile}
+	-> '(' S * ')' => "list"
+	-> Identifier [node].
+			

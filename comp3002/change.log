@@ -61222,3 +61222,2382 @@ FiniteStateMachineBuilder promptForFiniteStateMachines
 "evaluate" 
 "*** saved image on: Thursday, April 11, 2019 06:38:36 PM ***"!   
 "*** Image started on: Thursday, April 11, 2019 06:43:48 PM ***"!
+
+"define class"   
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: ''
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: ''
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Example Parser Users' )
+  comment: ''!
+
+
+!GrammarBuilder methods !   
+walkTree: aTree
+    ^self perform: aTree label with: aTree!    !
+
+"evaluate"   
+(CodeFiler organizerFor: GrammarBuilder) removeCategory: 'no category methods' ifAbsent: [nil]!
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' walkTree: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' walkTree: )) !
+
+
+
+!GrammarBuilder methods !  
+walkAnd: aTree
+     | fsm1 fsm2 |
+    fsm1 := self walkTree: (aTree child: 1).
+    fsm2 := self walkTree: (aTree child: 2).
+    ^fsm1 and: fsm2!    !
+
+!GrammarBuilder methods !
+walkAttributes: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    ^fsm override: (aTree children rest collect: [:token | token symbol ]).! !
+
+!GrammarBuilder methods !
+walkCharacter: aTree
+    ^ FiniteStateMachine fromScannerCollection: aTree symbol attributes: self scannerDefaults.!   !
+
+!GrammarBuilder methods !
+walkConcatenation: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine concat: fsms.!   !
+
+!GrammarBuilder methods !
+walkDotDot: aTree
+    | startVal endVal parameters fsm |
+    
+    parameters := OrderedCollection new.
+    startVal := aTree children first symbol first asciiValue.
+    endVal := aTree children second symbol first asciiValue.
+    
+    startVal to: endVal do: [:value | 
+        parameters add: value asCharacter.
+    ].
+    
+    fsm := FiniteStateMachine fromScannerCollection: parameters attributes: self scannerDefaults.
+    ^ fsm.!  !
+
+!GrammarBuilder methods !
+walkInteger: aTree
+    | coll |
+    coll := OrderedCollection new.
+    coll add: aTree symbol asInteger asCharacter.
+    
+    ^ FiniteStateMachine fromScannerCollection: coll attributes: self scannerDefaults.!  !
+
+!GrammarBuilder methods !
+walkLook: aTree
+    ^(self walkTree: (aTree child: 1)) override: #(#look).!    !
+
+!GrammarBuilder methods !
+walkMinus: aTree
+    | fsms |
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!    !
+
+!GrammarBuilder methods !
+walkNonTreeBuildingSemanticAction: aTree
+    ^ (self walkTree: aTree children first) override: #notTreeBuilding.!  !
+
+!GrammarBuilder methods !
+walkOr: aTree
+    ^ FiniteStateMachine or: (aTree children collect: [:child | self walkTree: child]).! !
+
+!GrammarBuilder methods !
+walkPlus: aTree
+    | fsm |
+    fsm := self walkTree: (aTree children first).
+    ^ fsm plus.!   !
+
+!GrammarBuilder methods !
+walkPoof: aTree
+    ^ FiniteStateMachine forE.!    !
+
+!GrammarBuilder methods !
+walkQuestionMark: aTree
+    ^ (self walkTree: (aTree children first)) questionMark.!   !
+
+!GrammarBuilder methods !
+walkSemanticAction: aTree
+    | action parameters aTransitionName |
+    action := self convert: (aTree children first).
+    
+    parameters := aTree children rest collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: action;
+        isRootBuilding: false;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   !
+
+!GrammarBuilder methods !
+walkStar: aTree
+    ^(self walkTree: (aTree children first)) star.!    !
+
+!GrammarBuilder methods !
+walkTreeBuildingSemanticAction: aTree
+    ^ (self walkTree: aTree children first) override: #treeBuilding.!    !
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkPoof: walkCharacter: walkAnd: walkAttributes: walkOr: walkQuestionMark: walkConcatenation: walkTreeBuildingSemanticAction: walkDotDot: walkMinus: walkLook: walkStar: walkNonTreeBuildingSemanticAction: walkPlus: walkInteger: walkSemanticAction: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkPoof: walkCharacter: walkAnd: walkAttributes: walkOr: walkQuestionMark: walkConcatenation: walkTreeBuildingSemanticAction: walkDotDot: walkMinus: walkLook: walkStar: walkNonTreeBuildingSemanticAction: walkPlus: walkInteger: walkSemanticAction: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkTree: )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: GrammarBuilder) removeCategory: 'processing' ifAbsent: [nil]!
+
+"evaluate"  
+(CodeFiler organizerFor: 'GrammarBuilder class')  addCategory: 'examples' before: nil!
+
+"evaluate"  
+(CodeFiler organizerFor: GrammarBuilder class) removeCategory: 'no category methods' ifAbsent: [nil]!
+
+!GrammarBuilder class methods !  
+promptForGrammar
+    | fileName file |
+    fileName :=  FileDialog promptTitle: 'File of grammars'.
+    fileName isNil ifTrue: [^self]. "User cancelled"
+    Transcript cr; cr; << 'Building grammars for file '; << fileName printString.
+    file := File pathNameReadOnly: fileName.
+    ^GrammarBuilder new process: file contents!   ! 
+#('Thursday, April 11, 2019' '06:56:56 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('examples' promptForGrammar )) !
+
+
+"evaluate"  
+CodeFiler systemOrganizer reorganize: #(GrammarBuilder) into: #('Grammar Constructor')!
+
+"define class" 
+
+Object subclass: #Grammar
+  instanceVariableNames: ''
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Grammar to: ''!
+
+
+"evaluate"   
+
+Object subclass: #Grammar
+  instanceVariableNames: ''
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"define class"
+
+Object subclass: #Production
+  instanceVariableNames: ''
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Production to: ''!
+
+
+"evaluate" 
+
+Object subclass: #Production
+  instanceVariableNames: ''
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"evaluate" 
+(CodeFiler organizerFor: 'GrammarBuilder')  addCategory: 'processing' before: 'tree walking'!
+
+"define class"   
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate"   
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: ' parser '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"define class" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser tree '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate"  
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser tree '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!GrammarBuilder methods !   
+process: text
+    tree := parser parse: text.
+    self walkGrammar: tree! ! 
+#('Thursday, April 11, 2019' '07:03:17 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' process: )) !
+
+
+!FiniteStateMachineBuilder methods !
+walkGrammar: aTree
+    ^ self halt: 'walk me and make a grammar object'!   ! 
+#('Thursday, April 11, 2019' '07:04:18 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"evaluate" 
+(CodeFiler organizerFor: 'GrammarBuilder')  addCategory: 'initializing' before: 'processing'!
+
+!GrammarBuilder methods !
+initialize
+    parser := Parser new.!  ! 
+#('Thursday, April 11, 2019' '07:10:16 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!GrammarBuilder methods !   
+setupSponsorAndTables
+    "The compiler needs a parser and a scanner for it's language to be set up."
+    | parsingTables |
+
+    "Set up the user (or sponsor) of the scanner and parser."
+    parser sponsor: self. parser scanner sponsor: self.
+
+    "Give the keywords to the screener and the remaining tables to the parser..."
+    parsingTables := self class rawParserTables.
+    parser screener keywords: parsingTables first rest.
+    parser tables: parsingTables rest.
+
+    "Give the entire set of scanner tables to the scanner..."
+    parser scanner tables: self class rawScannerTables.!  ! 
+#('Thursday, April 11, 2019' '07:15:49 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' setupSponsorAndTables )) !
+
+
+!GrammarBuilder methods !
+initialize
+    parser := Parser new.
+    
+    self setupSponsorAndTables.!   ! 
+#('Thursday, April 11, 2019' '07:16:02 PM' 2019328)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+
+'Parser new'!
+
+!GrammarBuilder methods !
+setupSponsorAndTables
+    | parsingTables |
+
+    parser sponsor: self.
+    parser scanner sponsor: self.
+
+    "Give the keywords to the screener and the remaining tables to the parser..."
+    parsingTables := self class rawParserTables.
+    parser screener keywords: parsingTables first rest.
+    parser tables: parsingTables rest.
+
+    "Give the entire set of scanner tables to the scanner..."
+    parser scanner tables: self class rawScannerTables.! ! 
+#('Thursday, April 11, 2019' '07:22:32 PM' 2019552)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' setupSponsorAndTables )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' setupSponsorAndTables )) !
+
+
+!GrammarBuilder methods ! 
+setupSponsorAndTables
+    | parsingTables |
+
+    parser sponsor: self.
+    parser scanner sponsor: self.
+
+    parsingTables := self class rawParserTables.
+    parser screener keywords: parsingTables first rest.
+    parser tables: parsingTables rest.
+
+    parser scanner tables: self class rawScannerTables.!   ! 
+#('Thursday, April 11, 2019' '07:24:21 PM' 2020728)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' setupSponsorAndTables )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' setupSponsorAndTables )) !
+
+
+"evaluate"
+(CodeFiler organizerFor: 'GrammarBuilder')  addCategory: 'raw tables' before: 'initializing'!
+
+!GrammarBuilder methods !
+rawParserTables
+
+^ #(
+   (keywords stack noStack read look node noNode keep noKeep parser scanner super superScanner attribute defaults keywords output optimize)
+   (ReadaheadTable 1 (scanner 'RS' 155) (superScanner 'RS' 156) (super 'RS' 3) (parser 'RS' 157))
+   (ReadaheadTable 2 (attribute 'RS' 6) (walkString: 'RSN' 61) (optimize 'RS' 7) (output 'RS' 8) (walkIdentifier: 'RSN' 61) (keywords 'RS' 9))
+   (ReadaheadTable 3 (scanner 'RS' 159))
+   (ReadaheadTable 4 (attribute 'RS' 6) (walkString: 'RSN' 61) (optimize 'RS' 7) (output 'RS' 8) (walkIdentifier: 'RSN' 61) (keywords 'RS' 9))
+   (ReadaheadTable 5 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61) (EndOfFile 'L' 64))
+   (ReadaheadTable 6 (defaults 'RS' 13))
+   (ReadaheadTable 7 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 8 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 9 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 10 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61) (EndOfFile 'L' 64))
+   (ReadaheadTable 11 ('->' 'RS' 17))
+   (ReadaheadTable 12 ('{' 'RS' 20) ('=' 'RS' 21) ('->' 'L' 65))
+   (ReadaheadTable 13 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 14 ('.' 'RS' 75) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 15 ('.' 'RS' 76))
+   (ReadaheadTable 16 ('.' 'RS' 77) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 17 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) ('(' 'RS' 27) (walkInteger: 'RSN' 70) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 18 ('->' 'RS' 17) ('.' 'L' 74))
+   (ReadaheadTable 19 ('.' 'RS' 80))
+   (ReadaheadTable 20 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 21 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 22 ('.' 'RS' 81) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 23 ('[' 'RS' 34) ('*' 'L' 67) ('?' 'L' 67) ('+' 'L' 67) ('&' 'L' 67) ('-' 'L' 67) (walkSymbol: 'L' 67) ('(' 'L' 67) ('{' 'L' 67) (walkIdentifier: 'L' 67) (walkString: 'L' 67) (walkCharacter: 'L' 67) (walkInteger: 'L' 67) ('|' 'L' 67) ('}' 'L' 67) ('.' 'L' 67) (')' 'L' 67) ('=>' 'L' 67) ('->' 'L' 67))
+   (ReadaheadTable 24 ('=>' 'RS' 35) ('->' 'L' 68) ('.' 'L' 68))
+   (ReadaheadTable 25 ('..' 'RS' 36) ('[' 'L' 69) ('*' 'L' 69) ('?' 'L' 69) ('+' 'L' 69) ('&' 'L' 69) ('-' 'L' 69) (walkSymbol: 'L' 69) ('(' 'L' 69) ('{' 'L' 69) (walkIdentifier: 'L' 69) (walkString: 'L' 69) (walkCharacter: 'L' 69) (walkInteger: 'L' 69) ('|' 'L' 69) ('}' 'L' 69) ('.' 'L' 69) (')' 'L' 69) ('=>' 'L' 69) ('->' 'L' 69))
+   (ReadaheadTable 26 ('[' 'RS' 37) ('*' 'L' 78) ('?' 'L' 78) ('+' 'L' 78) ('&' 'L' 78) ('-' 'L' 78) (walkSymbol: 'L' 78) ('(' 'L' 78) ('{' 'L' 78) (walkIdentifier: 'L' 78) (walkString: 'L' 78) (walkCharacter: 'L' 78) (walkInteger: 'L' 78) ('|' 'L' 78) ('}' 'L' 78) ('.' 'L' 78) (')' 'L' 78) ('->' 'L' 78) ('=>' 'L' 78))
+   (ReadaheadTable 27 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) ('(' 'RS' 27) (walkInteger: 'RSN' 70) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 28 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 29 ('*' 'RS' 85) ('?' 'RS' 86) ('+' 'RS' 87) ('&' 'RS' 40) ('-' 'RS' 41) (walkSymbol: 'L' 71) ('(' 'L' 71) ('{' 'L' 71) (walkIdentifier: 'L' 71) (walkString: 'L' 71) (walkCharacter: 'L' 71) (walkInteger: 'L' 71) ('|' 'L' 71) ('}' 'L' 71) ('.' 'L' 71) (')' 'L' 71) ('=>' 'L' 71) ('->' 'L' 71))
+   (ReadaheadTable 30 ('|' 'RS' 42) ('}' 'L' 72) ('.' 'L' 72) (')' 'L' 72) ('=>' 'L' 72) ('->' 'L' 72))
+   (ReadaheadTable 31 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('|' 'L' 73) ('}' 'L' 73) ('.' 'L' 73) (')' 'L' 73) ('=>' 'L' 73) ('->' 'L' 73))
+   (ReadaheadTable 32 ('}' 'RS' 89))
+   (ReadaheadTable 33 ('.' 'RS' 90))
+   (ReadaheadTable 34 (keep 'RSN' 82) (noNode 'RSN' 82) (noStack 'RSN' 82) (']' 'RS' 91) (read 'RSN' 82) (look 'RSN' 82) (stack 'RSN' 82) (node 'RSN' 82) (noKeep 'RSN' 82))
+   (ReadaheadTable 35 (walkString: 'RSN' 61) ('-' 'RS' 45) (walkSymbol: 'RSN' 26) (walkIdentifier: 'RSN' 61) ('+' 'RS' 46) (walkInteger: 'RSN' 94))
+   (ReadaheadTable 36 (walkInteger: 'RSN' 70) (walkCharacter: 'RSN' 70))
+   (ReadaheadTable 37 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 83) (walkIdentifier: 'RSN' 61) (walkCharacter: 'RSN' 70) (']' 'RS' 97) (walkInteger: 'RSN' 70))
+   (ReadaheadTable 38 (')' 'RS' 84))
+   (ReadaheadTable 39 ('}' 'RS' 98))
+   (ReadaheadTable 40 (walkSymbol: 'RSN' 26) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61) ('{' 'RS' 28) (walkCharacter: 'RSN' 70) (walkInteger: 'RSN' 70) ('(' 'RS' 27))
+   (ReadaheadTable 41 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkCharacter: 'RSN' 70) (walkIdentifier: 'RSN' 61) ('{' 'RS' 28) (walkInteger: 'RSN' 70) ('(' 'RS' 27))
+   (ReadaheadTable 42 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 43 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('|' 'L' 88) ('}' 'L' 88) ('.' 'L' 88) (')' 'L' 88) ('=>' 'L' 88) ('->' 'L' 88))
+   (ReadaheadTable 44 (keep 'RSN' 82) (noNode 'RSN' 82) (noStack 'RSN' 82) (']' 'RS' 91) (read 'RSN' 82) (look 'RSN' 82) (stack 'RSN' 82) (node 'RSN' 82) (noKeep 'RSN' 82))
+   (ReadaheadTable 45 (walkInteger: 'RSN' 102))
+   (ReadaheadTable 46 (walkInteger: 'RSN' 94))
+   (ReadaheadTable 47 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 83) (walkIdentifier: 'RSN' 61) (walkCharacter: 'RSN' 70) (']' 'RS' 97) (walkInteger: 'RSN' 70))
+   (ReadaheadTable 48 ('|' 'RS' 42) ('}' 'L' 101) ('.' 'L' 101) (')' 'L' 101) ('=>' 'L' 101) ('->' 'L' 101))
+   (ReadbackTable 49 ((GrammarType 2) 'RSN' 116) ((ProcessedDefault 4) 'RS' 49))
+   (ReadbackTable 50 ((Macro 10) 'RSN' 50) ((Production 5) 'RSN' 50) ((GrammarType 2) 'L' 127) ((ProcessedDefault 4) 'L' 127))
+   (ReadbackTable 51 ((RightPart 18) 'RSN' 51) ((LeftPart 11) 'L' 130))
+   (ReadbackTable 52 ((RepetitionOption 43) 'RSN' 52) ((RepetitionOption 31) 'RSN' 141))
+   (ReadbackTable 53 (('[' 34) 'RS' 104) ((Attribute 44) 'RSN' 53))
+   (ReadbackTable 54 (('+' 46) 'RS' 147) (('=>' 35) 'L' 147))
+   (ReadbackTable 55 (('[' 37) 'RS' 78) ((SemanticActionParameter 47) 'RSN' 55))
+   (ReadbackTable 56 ((optimize 7) 'RS' 131) ((Name 14) 'RSN' 56))
+   (ReadbackTable 57 ((Name 16) 'RSN' 57) ((keywords 9) 'RS' 133))
+   (ReadbackTable 58 ((defaults 13) 'RS' 105) ((Name 22) 'RSN' 58))
+   (ReadbackTable 59 ((Concatenation 48) 'RSN' 103) ((Concatenation 30) 'RSN' 153))
+   (ShiftbackTable 60 1 49)
+   (ShiftbackTable 61 1 113)
+   (ShiftbackTable 62 1 120)
+   (ShiftbackTable 63 1 110)
+   (ShiftbackTable 64 1 50)
+   (ShiftbackTable 65 1 128)
+   (ShiftbackTable 66 2 120)
+   (ShiftbackTable 67 1 111)
+   (ShiftbackTable 68 2 125)
+   (ShiftbackTable 69 1 122)
+   (ShiftbackTable 70 1 124)
+   (ShiftbackTable 71 1 112)
+   (ShiftbackTable 72 1 123)
+   (ShiftbackTable 73 1 108)
+   (ShiftbackTable 74 1 51)
+   (ShiftbackTable 75 2 56)
+   (ShiftbackTable 76 3 132)
+   (ShiftbackTable 77 2 57)
+   (ShiftbackTable 78 1 134)
+   (ShiftbackTable 79 1 135)
+   (ShiftbackTable 80 3 136)
+   (ShiftbackTable 81 2 58)
+   (ShiftbackTable 82 1 119)
+   (ShiftbackTable 83 1 115)
+   (ShiftbackTable 84 3 122)
+   (ShiftbackTable 85 2 138)
+   (ShiftbackTable 86 2 139)
+   (ShiftbackTable 87 2 140)
+   (ShiftbackTable 88 1 52)
+   (ShiftbackTable 89 4 142)
+   (ShiftbackTable 90 4 143)
+   (ShiftbackTable 91 1 53)
+   (ShiftbackTable 92 1 145)
+   (ShiftbackTable 93 4 146)
+   (ShiftbackTable 94 1 54)
+   (ShiftbackTable 95 1 148)
+   (ShiftbackTable 96 3 149)
+   (ShiftbackTable 97 1 55)
+   (ShiftbackTable 98 3 150)
+   (ShiftbackTable 99 3 151)
+   (ShiftbackTable 100 3 152)
+   (ShiftbackTable 101 2 59)
+   (ShiftbackTable 102 2 154)
+   (ShiftbackTable 103 1 59)
+   (ShiftbackTable 104 1 144)
+   (ShiftbackTable 105 1 137)
+   (ReduceTable 106 SemanticAction (17 'RSN' 79)(20 'RSN' 79)(21 'RSN' 79)(27 'RSN' 79)(28 'RSN' 79)(31 'RSN' 79)(35 'RSN' 95)(40 'RSN' 79)(41 'RSN' 79)(42 'RSN' 79)(43 'RSN' 79))
+   (ReduceTable 107 Macro (2 'RSN' 10)(4 'RSN' 10)(5 'RSN' 10)(10 'RSN' 10))
+   (ReduceTable 108 Concatenation (17 'RSN' 30)(20 'RSN' 30)(21 'RSN' 30)(27 'RSN' 30)(28 'RSN' 30)(42 'RSN' 48))
+   (ReduceTable 109 LeftPart (2 'RSN' 11)(4 'RSN' 11)(5 'RSN' 11)(10 'RSN' 11))
+   (ReduceTable 110 ProcessedDefault (2 'RS' 4)(4 'RS' 4))
+   (ReduceTable 111 Expression (17 'RSN' 29)(20 'RSN' 29)(21 'RSN' 29)(27 'RSN' 29)(28 'RSN' 29)(31 'RSN' 29)(40 'RSN' 99)(41 'RSN' 100)(42 'RSN' 29)(43 'RSN' 29))
+   (ReduceTable 112 RepetitionOption (17 'RSN' 31)(20 'RSN' 31)(21 'RSN' 31)(27 'RSN' 31)(28 'RSN' 31)(31 'RSN' 43)(42 'RSN' 31)(43 'RSN' 43))
+   (ReduceTable 113 Name (2 'RSN' 12)(4 'RSN' 12)(5 'RSN' 12)(7 'RSN' 14)(8 'RSN' 15)(9 'RSN' 16)(10 'RSN' 12)(13 'RSN' 22)(14 'RSN' 14)(16 'RSN' 16)(17 'RSN' 69)(20 'RSN' 69)(21 'RSN' 69)(22 'RSN' 22)(27 'RSN' 69)(28 'RSN' 69)(31 'RSN' 69)(35 'RSN' 92)(37 'RSN' 83)(40 'RSN' 69)(41 'RSN' 69)(42 'RSN' 69)(43 'RSN' 69)(47 'RSN' 83))
+   (ReduceTable 114 Default (2 'RSN' 158)(4 'RSN' 158))
+   (ReduceTable 115 SemanticActionParameter (37 'RSN' 47)(47 'RSN' 47))
+   (ReduceTable 116 Grammar (1 'RSN' 160))
+   (ReduceTable 117 TreeBuildingOptions (35 'RSN' 93))
+   (ReduceTable 118 Production (2 'RSN' 5)(4 'RSN' 5)(5 'RSN' 5)(10 'RSN' 5))
+   (ReduceTable 119 Attribute (34 'RSN' 44)(44 'RSN' 44))
+   (ReduceTable 120 GrammarType (1 'RSN' 2))
+   (ReduceTable 121 Rules (2 'RSN' 60)(4 'RSN' 60))
+   (ReduceTable 122 Primary (17 'RSN' 23)(20 'RSN' 23)(21 'RSN' 23)(27 'RSN' 23)(28 'RSN' 23)(31 'RSN' 23)(40 'RSN' 23)(41 'RSN' 23)(42 'RSN' 23)(43 'RSN' 23))
+   (ReduceTable 123 Alternation (17 'RSN' 24)(20 'RSN' 32)(21 'RSN' 33)(27 'RSN' 38)(28 'RSN' 39))
+   (ReduceTable 124 Byte (17 'RSN' 25)(20 'RSN' 25)(21 'RSN' 25)(27 'RSN' 25)(28 'RSN' 25)(31 'RSN' 25)(36 'RSN' 96)(37 'RSN' 83)(40 'RSN' 25)(41 'RSN' 25)(42 'RSN' 25)(43 'RSN' 25)(47 'RSN' 83))
+   (ReduceTable 125 RightPart (11 'RSN' 18)(18 'RSN' 18))
+   (ReduceTable 126 RightParts (11 'RSN' 19))
+   (SemanticTable 127 buildTree: walkGrammar: 121)
+   (SemanticTable 128 buildTree: walkLeftPart: 109)
+   (SemanticTable 129 buildTree: walkPoof: 123)
+   (SemanticTable 130 buildTree: walkOr: 126)
+   (SemanticTable 131 buildTree: walkOptimize: 114)
+   (SemanticTable 132 buildTree: walkOutput: 114)
+   (SemanticTable 133 buildTree: walkKeywords: 114)
+   (SemanticTable 134 buildTree: walkSemanticAction: 106)
+   (SemanticTable 135 buildTree: walkNonTreeBuildingSemanticAction: 111)
+   (SemanticTable 136 buildTree: walkProduction: 118)
+   (SemanticTable 137 buildTree: walkAttributeDefaults: 114)
+   (SemanticTable 138 buildTree: walkStar: 112)
+   (SemanticTable 139 buildTree: walkQuestionMark: 112)
+   (SemanticTable 140 buildTree: walkPlus: 112)
+   (SemanticTable 141 buildTree: walkConcatenation: 108)
+   (SemanticTable 142 buildTree: walkLeftPartWithLookahead: 109)
+   (SemanticTable 143 buildTree: walkMacro: 107)
+   (SemanticTable 144 buildTree: walkAttributes: 111)
+   (SemanticTable 145 buildTree: walkBuildTreeOrTokenFromName: 117)
+   (SemanticTable 146 buildTree: walkConcatenation: 125)
+   (SemanticTable 147 buildTree: walkBuildTreeFromLeftIndex: 117)
+   (SemanticTable 148 buildTree: walkTreeBuildingSemanticAction: 117)
+   (SemanticTable 149 buildTree: walkDotDot: 122)
+   (SemanticTable 150 buildTree: walkLook: 122)
+   (SemanticTable 151 buildTree: walkAnd: 112)
+   (SemanticTable 152 buildTree: walkMinus: 112)
+   (SemanticTable 153 buildTree: walkOr: 123)
+   (SemanticTable 154 buildTree: walkBuildTreeFromRightIndex: 117)
+   (SemanticTable 155 processTypeNow: scanner 62)
+   (SemanticTable 156 processTypeNow: superScanner 62)
+   (SemanticTable 157 processTypeNow: parser 62)
+   (SemanticTable 158 processDefaultNow 63)
+   (SemanticTable 159 processTypeNow: superScanner 66)
+   (AcceptTable 160))!  ! 
+#('Thursday, April 11, 2019' '07:27:13 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('raw tables' rawParserTables )) !
+
+
+!GrammarBuilder methods !
+rawScannerTables
+
+^ #(
+   (ScannerReadaheadTable 1 (']' 'RK' 35) ('/' 'R' 10) ('{' 'RK' 36) ('}' 'RK' 37) ('"' 'R' 11) ('$' 'R' 12) ((256) 'L' 21) ('ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 6) ('[' 'RK' 33) ('(' 'RK' 23) (')' 'RK' 24) ('*' 'RK' 25) ('+' 'RK' 26) ('-' 'RK' 2) ('&' 'RK' 22) ('.' 'RK' 3) ((9 10 12 13) 'R' 7) (' ' 'R' 7) ('0123456789' 'RK' 4) ('=' 'RK' 5) ('?' 'RK' 31) ('#' 'R' 8) ('|' 'RK' 34) ('''' 'R' 9))
+   (ScannerReadaheadTable 2 ((9 10 12 13 96 147 148 256) 'L' 27) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<[]{}()^;#:.$''" ' 'L' 27) ('>' 'RK' 38))
+   (ScannerReadaheadTable 3 ((9 10 12 13 96 147 148 256) 'L' 28) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:$''" ' 'L' 28) ('.' 'RK' 39))
+   (ScannerReadaheadTable 4 ((9 10 12 13 96 147 148 256) 'L' 29) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_!!,+-/\*~=@%&?|<>[]{}()^;#:.$''" ' 'L' 29) ('0123456789' 'RK' 4))
+   (ScannerReadaheadTable 5 ((9 10 12 13 96 147 148 256) 'L' 30) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<[]{}()^;#:.$''" ' 'L' 30) ('>' 'RK' 40))
+   (ScannerReadaheadTable 6 ((9 10 12 13 96 147 148 256) 'L' 32) ('!!,+-/\*~=@%&?|<>[]{}()^;#.$''" ' 'L' 32) ('0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 6))
+   (ScannerReadaheadTable 7 ((96 147 148 256) 'L' 1) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$''"' 'L' 1) ((9 10 12 13) 'R' 7) (' ' 'R' 7))
+   (ScannerReadaheadTable 8 ('"' 'R' 14) ('''' 'R' 15) ('ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 13))
+   (ScannerReadaheadTable 9 ((256) 'LK' 42) ('''' 'R' 16) ((9 10 12 13 96 147 148) 'RK' 9) (' !!"#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 9))
+   (ScannerReadaheadTable 10 ((9 10 12 13) 'L' 44) (' ' 'L' 44) ((96 147 148 256) 'LK' 44) ('=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_\abcdefghijklmnopqrstuvwxyz{|}~!!"#$%&''()*+,-.0123456789:;<' 'LK' 44) ('/' 'R' 17))
+   (ScannerReadaheadTable 11 ((256) 'LK' 45) ('"' 'R' 18) ((9 10 12 13 96 147 148) 'RK' 11) (' !!#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 11))
+   (ScannerReadaheadTable 12 ((9 10 12 13 96 147 148) 'RK' 46) (' !!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 46))
+   (ScannerReadaheadTable 13 ((9 10 12 13 96 147 148 256) 'L' 41) ('!!,+-/\*~=@%&?|<>[]{}()^;#.$''" ' 'L' 41) ('0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 13))
+   (ScannerReadaheadTable 14 ((256) 'LK' 47) ('"' 'R' 19) ((9 10 12 13 96 147 148) 'RK' 14) (' !!#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 14))
+   (ScannerReadaheadTable 15 ((256) 'LK' 48) ('''' 'R' 20) ((9 10 12 13 96 147 148) 'RK' 15) (' !!"#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 15))
+   (ScannerReadaheadTable 16 ((9 10 12 13 96 147 148 256) 'L' 43) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$" ' 'L' 43) ('''' 'RK' 9))
+   (ScannerReadaheadTable 17 ((9 96 147 148) 'R' 17) ('=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~ !!"#$%&''()*+,-./0123456789:;<' 'R' 17) ((256) 'LK' 1) ((10 12 13) 'R' 1))
+   (ScannerReadaheadTable 18 ((9 10 12 13 96 147 148 256) 'L' 43) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$'' ' 'L' 43) ('"' 'RK' 11))
+   (ScannerReadaheadTable 19 ((9 10 12 13 96 147 148 256) 'L' 41) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$'' ' 'L' 41) ('"' 'RK' 14))
+   (ScannerReadaheadTable 20 ((9 10 12 13 96 147 148 256) 'L' 41) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$" ' 'L' 41) ('''' 'RK' 15))
+   (SemanticTable 21 buildToken: EndOfFile 1)
+   (SemanticTable 22 buildToken: '&' 1)
+   (SemanticTable 23 buildToken: '(' 1)
+   (SemanticTable 24 buildToken: ')' 1)
+   (SemanticTable 25 buildToken: '*' 1)
+   (SemanticTable 26 buildToken: '+' 1)
+   (SemanticTable 27 buildToken: '-' 1)
+   (SemanticTable 28 buildToken: '.' 1)
+   (SemanticTable 29 buildToken: walkInteger: 1)
+   (SemanticTable 30 buildToken: '=' 1)
+   (SemanticTable 31 buildToken: '?' 1)
+   (SemanticTable 32 buildToken: walkIdentifier: 1)
+   (SemanticTable 33 buildToken: '[' 1)
+   (SemanticTable 34 buildToken: '|' 1)
+   (SemanticTable 35 buildToken: ']' 1)
+   (SemanticTable 36 buildToken: '{' 1)
+   (SemanticTable 37 buildToken: '}' 1)
+   (SemanticTable 38 buildToken: '->' 1)
+   (SemanticTable 39 buildToken: '..' 1)
+   (SemanticTable 40 buildToken: '=>' 1)
+   (SemanticTable 41 buildToken: walkSymbol: 1)
+   (SemanticTable 42 syntaxError: 'missing end quote for single quoted string' 43)
+   (SemanticTable 43 buildToken: walkString: 1)
+   (SemanticTable 44 syntaxError: '// is a comment, / alone is not valid' 1)
+   (SemanticTable 45 syntaxError: 'missing end quote for double quoted string' 43)
+   (SemanticTable 46 buildToken: walkCharacter: 1)
+   (SemanticTable 47 syntaxError: 'missing end quote for double quoted string' 41)
+   (SemanticTable 48 syntaxError: 'missing end quote for single quoted string' 41))!   ! 
+#('Thursday, April 11, 2019' '07:28:01 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('raw tables' rawScannerTables )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'GrammarBuilder class')  addCategory: 'instance creation' before: 'examples'!
+
+!GrammarBuilder class methods ! 
+new
+
+    ^super new initialize!   ! 
+#('Thursday, April 11, 2019' '07:29:31 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('instance creation' new )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'GrammarBuilder class')  addCategory: 'raw tables' before: nil!
+
+!GrammarBuilder class methods !   
+rawParserTables
+
+^ #(
+   (keywords stack noStack read look node noNode keep noKeep parser scanner super superScanner attribute defaults keywords output optimize)
+   (ReadaheadTable 1 (scanner 'RS' 155) (superScanner 'RS' 156) (super 'RS' 3) (parser 'RS' 157))
+   (ReadaheadTable 2 (attribute 'RS' 6) (walkString: 'RSN' 61) (optimize 'RS' 7) (output 'RS' 8) (walkIdentifier: 'RSN' 61) (keywords 'RS' 9))
+   (ReadaheadTable 3 (scanner 'RS' 159))
+   (ReadaheadTable 4 (attribute 'RS' 6) (walkString: 'RSN' 61) (optimize 'RS' 7) (output 'RS' 8) (walkIdentifier: 'RSN' 61) (keywords 'RS' 9))
+   (ReadaheadTable 5 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61) (EndOfFile 'L' 64))
+   (ReadaheadTable 6 (defaults 'RS' 13))
+   (ReadaheadTable 7 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 8 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 9 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 10 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61) (EndOfFile 'L' 64))
+   (ReadaheadTable 11 ('->' 'RS' 17))
+   (ReadaheadTable 12 ('{' 'RS' 20) ('=' 'RS' 21) ('->' 'L' 65))
+   (ReadaheadTable 13 (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 14 ('.' 'RS' 75) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 15 ('.' 'RS' 76))
+   (ReadaheadTable 16 ('.' 'RS' 77) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 17 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) ('(' 'RS' 27) (walkInteger: 'RSN' 70) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 18 ('->' 'RS' 17) ('.' 'L' 74))
+   (ReadaheadTable 19 ('.' 'RS' 80))
+   (ReadaheadTable 20 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 21 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 22 ('.' 'RS' 81) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 23 ('[' 'RS' 34) ('*' 'L' 67) ('?' 'L' 67) ('+' 'L' 67) ('&' 'L' 67) ('-' 'L' 67) (walkSymbol: 'L' 67) ('(' 'L' 67) ('{' 'L' 67) (walkIdentifier: 'L' 67) (walkString: 'L' 67) (walkCharacter: 'L' 67) (walkInteger: 'L' 67) ('|' 'L' 67) ('}' 'L' 67) ('.' 'L' 67) (')' 'L' 67) ('=>' 'L' 67) ('->' 'L' 67))
+   (ReadaheadTable 24 ('=>' 'RS' 35) ('->' 'L' 68) ('.' 'L' 68))
+   (ReadaheadTable 25 ('..' 'RS' 36) ('[' 'L' 69) ('*' 'L' 69) ('?' 'L' 69) ('+' 'L' 69) ('&' 'L' 69) ('-' 'L' 69) (walkSymbol: 'L' 69) ('(' 'L' 69) ('{' 'L' 69) (walkIdentifier: 'L' 69) (walkString: 'L' 69) (walkCharacter: 'L' 69) (walkInteger: 'L' 69) ('|' 'L' 69) ('}' 'L' 69) ('.' 'L' 69) (')' 'L' 69) ('=>' 'L' 69) ('->' 'L' 69))
+   (ReadaheadTable 26 ('[' 'RS' 37) ('*' 'L' 78) ('?' 'L' 78) ('+' 'L' 78) ('&' 'L' 78) ('-' 'L' 78) (walkSymbol: 'L' 78) ('(' 'L' 78) ('{' 'L' 78) (walkIdentifier: 'L' 78) (walkString: 'L' 78) (walkCharacter: 'L' 78) (walkInteger: 'L' 78) ('|' 'L' 78) ('}' 'L' 78) ('.' 'L' 78) (')' 'L' 78) ('->' 'L' 78) ('=>' 'L' 78))
+   (ReadaheadTable 27 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) ('(' 'RS' 27) (walkInteger: 'RSN' 70) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 28 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('}' 'L' 129) ('.' 'L' 129) (')' 'L' 129) ('=>' 'L' 129) ('->' 'L' 129))
+   (ReadaheadTable 29 ('*' 'RS' 85) ('?' 'RS' 86) ('+' 'RS' 87) ('&' 'RS' 40) ('-' 'RS' 41) (walkSymbol: 'L' 71) ('(' 'L' 71) ('{' 'L' 71) (walkIdentifier: 'L' 71) (walkString: 'L' 71) (walkCharacter: 'L' 71) (walkInteger: 'L' 71) ('|' 'L' 71) ('}' 'L' 71) ('.' 'L' 71) (')' 'L' 71) ('=>' 'L' 71) ('->' 'L' 71))
+   (ReadaheadTable 30 ('|' 'RS' 42) ('}' 'L' 72) ('.' 'L' 72) (')' 'L' 72) ('=>' 'L' 72) ('->' 'L' 72))
+   (ReadaheadTable 31 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('|' 'L' 73) ('}' 'L' 73) ('.' 'L' 73) (')' 'L' 73) ('=>' 'L' 73) ('->' 'L' 73))
+   (ReadaheadTable 32 ('}' 'RS' 89))
+   (ReadaheadTable 33 ('.' 'RS' 90))
+   (ReadaheadTable 34 (keep 'RSN' 82) (noNode 'RSN' 82) (noStack 'RSN' 82) (']' 'RS' 91) (read 'RSN' 82) (look 'RSN' 82) (stack 'RSN' 82) (node 'RSN' 82) (noKeep 'RSN' 82))
+   (ReadaheadTable 35 (walkString: 'RSN' 61) ('-' 'RS' 45) (walkSymbol: 'RSN' 26) (walkIdentifier: 'RSN' 61) ('+' 'RS' 46) (walkInteger: 'RSN' 94))
+   (ReadaheadTable 36 (walkInteger: 'RSN' 70) (walkCharacter: 'RSN' 70))
+   (ReadaheadTable 37 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 83) (walkIdentifier: 'RSN' 61) (walkCharacter: 'RSN' 70) (']' 'RS' 97) (walkInteger: 'RSN' 70))
+   (ReadaheadTable 38 (')' 'RS' 84))
+   (ReadaheadTable 39 ('}' 'RS' 98))
+   (ReadaheadTable 40 (walkSymbol: 'RSN' 26) (walkString: 'RSN' 61) (walkIdentifier: 'RSN' 61) ('{' 'RS' 28) (walkCharacter: 'RSN' 70) (walkInteger: 'RSN' 70) ('(' 'RS' 27))
+   (ReadaheadTable 41 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkCharacter: 'RSN' 70) (walkIdentifier: 'RSN' 61) ('{' 'RS' 28) (walkInteger: 'RSN' 70) ('(' 'RS' 27))
+   (ReadaheadTable 42 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61))
+   (ReadaheadTable 43 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 26) (walkInteger: 'RSN' 70) ('(' 'RS' 27) (walkCharacter: 'RSN' 70) ('{' 'RS' 28) (walkIdentifier: 'RSN' 61) ('|' 'L' 88) ('}' 'L' 88) ('.' 'L' 88) (')' 'L' 88) ('=>' 'L' 88) ('->' 'L' 88))
+   (ReadaheadTable 44 (keep 'RSN' 82) (noNode 'RSN' 82) (noStack 'RSN' 82) (']' 'RS' 91) (read 'RSN' 82) (look 'RSN' 82) (stack 'RSN' 82) (node 'RSN' 82) (noKeep 'RSN' 82))
+   (ReadaheadTable 45 (walkInteger: 'RSN' 102))
+   (ReadaheadTable 46 (walkInteger: 'RSN' 94))
+   (ReadaheadTable 47 (walkString: 'RSN' 61) (walkSymbol: 'RSN' 83) (walkIdentifier: 'RSN' 61) (walkCharacter: 'RSN' 70) (']' 'RS' 97) (walkInteger: 'RSN' 70))
+   (ReadaheadTable 48 ('|' 'RS' 42) ('}' 'L' 101) ('.' 'L' 101) (')' 'L' 101) ('=>' 'L' 101) ('->' 'L' 101))
+   (ReadbackTable 49 ((GrammarType 2) 'RSN' 116) ((ProcessedDefault 4) 'RS' 49))
+   (ReadbackTable 50 ((Macro 10) 'RSN' 50) ((Production 5) 'RSN' 50) ((GrammarType 2) 'L' 127) ((ProcessedDefault 4) 'L' 127))
+   (ReadbackTable 51 ((RightPart 18) 'RSN' 51) ((LeftPart 11) 'L' 130))
+   (ReadbackTable 52 ((RepetitionOption 43) 'RSN' 52) ((RepetitionOption 31) 'RSN' 141))
+   (ReadbackTable 53 (('[' 34) 'RS' 104) ((Attribute 44) 'RSN' 53))
+   (ReadbackTable 54 (('+' 46) 'RS' 147) (('=>' 35) 'L' 147))
+   (ReadbackTable 55 (('[' 37) 'RS' 78) ((SemanticActionParameter 47) 'RSN' 55))
+   (ReadbackTable 56 ((optimize 7) 'RS' 131) ((Name 14) 'RSN' 56))
+   (ReadbackTable 57 ((Name 16) 'RSN' 57) ((keywords 9) 'RS' 133))
+   (ReadbackTable 58 ((defaults 13) 'RS' 105) ((Name 22) 'RSN' 58))
+   (ReadbackTable 59 ((Concatenation 48) 'RSN' 103) ((Concatenation 30) 'RSN' 153))
+   (ShiftbackTable 60 1 49)
+   (ShiftbackTable 61 1 113)
+   (ShiftbackTable 62 1 120)
+   (ShiftbackTable 63 1 110)
+   (ShiftbackTable 64 1 50)
+   (ShiftbackTable 65 1 128)
+   (ShiftbackTable 66 2 120)
+   (ShiftbackTable 67 1 111)
+   (ShiftbackTable 68 2 125)
+   (ShiftbackTable 69 1 122)
+   (ShiftbackTable 70 1 124)
+   (ShiftbackTable 71 1 112)
+   (ShiftbackTable 72 1 123)
+   (ShiftbackTable 73 1 108)
+   (ShiftbackTable 74 1 51)
+   (ShiftbackTable 75 2 56)
+   (ShiftbackTable 76 3 132)
+   (ShiftbackTable 77 2 57)
+   (ShiftbackTable 78 1 134)
+   (ShiftbackTable 79 1 135)
+   (ShiftbackTable 80 3 136)
+   (ShiftbackTable 81 2 58)
+   (ShiftbackTable 82 1 119)
+   (ShiftbackTable 83 1 115)
+   (ShiftbackTable 84 3 122)
+   (ShiftbackTable 85 2 138)
+   (ShiftbackTable 86 2 139)
+   (ShiftbackTable 87 2 140)
+   (ShiftbackTable 88 1 52)
+   (ShiftbackTable 89 4 142)
+   (ShiftbackTable 90 4 143)
+   (ShiftbackTable 91 1 53)
+   (ShiftbackTable 92 1 145)
+   (ShiftbackTable 93 4 146)
+   (ShiftbackTable 94 1 54)
+   (ShiftbackTable 95 1 148)
+   (ShiftbackTable 96 3 149)
+   (ShiftbackTable 97 1 55)
+   (ShiftbackTable 98 3 150)
+   (ShiftbackTable 99 3 151)
+   (ShiftbackTable 100 3 152)
+   (ShiftbackTable 101 2 59)
+   (ShiftbackTable 102 2 154)
+   (ShiftbackTable 103 1 59)
+   (ShiftbackTable 104 1 144)
+   (ShiftbackTable 105 1 137)
+   (ReduceTable 106 SemanticAction (17 'RSN' 79)(20 'RSN' 79)(21 'RSN' 79)(27 'RSN' 79)(28 'RSN' 79)(31 'RSN' 79)(35 'RSN' 95)(40 'RSN' 79)(41 'RSN' 79)(42 'RSN' 79)(43 'RSN' 79))
+   (ReduceTable 107 Macro (2 'RSN' 10)(4 'RSN' 10)(5 'RSN' 10)(10 'RSN' 10))
+   (ReduceTable 108 Concatenation (17 'RSN' 30)(20 'RSN' 30)(21 'RSN' 30)(27 'RSN' 30)(28 'RSN' 30)(42 'RSN' 48))
+   (ReduceTable 109 LeftPart (2 'RSN' 11)(4 'RSN' 11)(5 'RSN' 11)(10 'RSN' 11))
+   (ReduceTable 110 ProcessedDefault (2 'RS' 4)(4 'RS' 4))
+   (ReduceTable 111 Expression (17 'RSN' 29)(20 'RSN' 29)(21 'RSN' 29)(27 'RSN' 29)(28 'RSN' 29)(31 'RSN' 29)(40 'RSN' 99)(41 'RSN' 100)(42 'RSN' 29)(43 'RSN' 29))
+   (ReduceTable 112 RepetitionOption (17 'RSN' 31)(20 'RSN' 31)(21 'RSN' 31)(27 'RSN' 31)(28 'RSN' 31)(31 'RSN' 43)(42 'RSN' 31)(43 'RSN' 43))
+   (ReduceTable 113 Name (2 'RSN' 12)(4 'RSN' 12)(5 'RSN' 12)(7 'RSN' 14)(8 'RSN' 15)(9 'RSN' 16)(10 'RSN' 12)(13 'RSN' 22)(14 'RSN' 14)(16 'RSN' 16)(17 'RSN' 69)(20 'RSN' 69)(21 'RSN' 69)(22 'RSN' 22)(27 'RSN' 69)(28 'RSN' 69)(31 'RSN' 69)(35 'RSN' 92)(37 'RSN' 83)(40 'RSN' 69)(41 'RSN' 69)(42 'RSN' 69)(43 'RSN' 69)(47 'RSN' 83))
+   (ReduceTable 114 Default (2 'RSN' 158)(4 'RSN' 158))
+   (ReduceTable 115 SemanticActionParameter (37 'RSN' 47)(47 'RSN' 47))
+   (ReduceTable 116 Grammar (1 'RSN' 160))
+   (ReduceTable 117 TreeBuildingOptions (35 'RSN' 93))
+   (ReduceTable 118 Production (2 'RSN' 5)(4 'RSN' 5)(5 'RSN' 5)(10 'RSN' 5))
+   (ReduceTable 119 Attribute (34 'RSN' 44)(44 'RSN' 44))
+   (ReduceTable 120 GrammarType (1 'RSN' 2))
+   (ReduceTable 121 Rules (2 'RSN' 60)(4 'RSN' 60))
+   (ReduceTable 122 Primary (17 'RSN' 23)(20 'RSN' 23)(21 'RSN' 23)(27 'RSN' 23)(28 'RSN' 23)(31 'RSN' 23)(40 'RSN' 23)(41 'RSN' 23)(42 'RSN' 23)(43 'RSN' 23))
+   (ReduceTable 123 Alternation (17 'RSN' 24)(20 'RSN' 32)(21 'RSN' 33)(27 'RSN' 38)(28 'RSN' 39))
+   (ReduceTable 124 Byte (17 'RSN' 25)(20 'RSN' 25)(21 'RSN' 25)(27 'RSN' 25)(28 'RSN' 25)(31 'RSN' 25)(36 'RSN' 96)(37 'RSN' 83)(40 'RSN' 25)(41 'RSN' 25)(42 'RSN' 25)(43 'RSN' 25)(47 'RSN' 83))
+   (ReduceTable 125 RightPart (11 'RSN' 18)(18 'RSN' 18))
+   (ReduceTable 126 RightParts (11 'RSN' 19))
+   (SemanticTable 127 buildTree: walkGrammar: 121)
+   (SemanticTable 128 buildTree: walkLeftPart: 109)
+   (SemanticTable 129 buildTree: walkPoof: 123)
+   (SemanticTable 130 buildTree: walkOr: 126)
+   (SemanticTable 131 buildTree: walkOptimize: 114)
+   (SemanticTable 132 buildTree: walkOutput: 114)
+   (SemanticTable 133 buildTree: walkKeywords: 114)
+   (SemanticTable 134 buildTree: walkSemanticAction: 106)
+   (SemanticTable 135 buildTree: walkNonTreeBuildingSemanticAction: 111)
+   (SemanticTable 136 buildTree: walkProduction: 118)
+   (SemanticTable 137 buildTree: walkAttributeDefaults: 114)
+   (SemanticTable 138 buildTree: walkStar: 112)
+   (SemanticTable 139 buildTree: walkQuestionMark: 112)
+   (SemanticTable 140 buildTree: walkPlus: 112)
+   (SemanticTable 141 buildTree: walkConcatenation: 108)
+   (SemanticTable 142 buildTree: walkLeftPartWithLookahead: 109)
+   (SemanticTable 143 buildTree: walkMacro: 107)
+   (SemanticTable 144 buildTree: walkAttributes: 111)
+   (SemanticTable 145 buildTree: walkBuildTreeOrTokenFromName: 117)
+   (SemanticTable 146 buildTree: walkConcatenation: 125)
+   (SemanticTable 147 buildTree: walkBuildTreeFromLeftIndex: 117)
+   (SemanticTable 148 buildTree: walkTreeBuildingSemanticAction: 117)
+   (SemanticTable 149 buildTree: walkDotDot: 122)
+   (SemanticTable 150 buildTree: walkLook: 122)
+   (SemanticTable 151 buildTree: walkAnd: 112)
+   (SemanticTable 152 buildTree: walkMinus: 112)
+   (SemanticTable 153 buildTree: walkOr: 123)
+   (SemanticTable 154 buildTree: walkBuildTreeFromRightIndex: 117)
+   (SemanticTable 155 processTypeNow: scanner 62)
+   (SemanticTable 156 processTypeNow: superScanner 62)
+   (SemanticTable 157 processTypeNow: parser 62)
+   (SemanticTable 158 processDefaultNow 63)
+   (SemanticTable 159 processTypeNow: superScanner 66)
+   (AcceptTable 160))!  ! 
+#('Thursday, April 11, 2019' '07:30:17 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('raw tables' rawParserTables )) !
+
+
+!GrammarBuilder class methods !
+rawScannerTables
+
+^ #(
+   (ScannerReadaheadTable 1 (']' 'RK' 35) ('/' 'R' 10) ('{' 'RK' 36) ('}' 'RK' 37) ('"' 'R' 11) ('$' 'R' 12) ((256) 'L' 21) ('ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 6) ('[' 'RK' 33) ('(' 'RK' 23) (')' 'RK' 24) ('*' 'RK' 25) ('+' 'RK' 26) ('-' 'RK' 2) ('&' 'RK' 22) ('.' 'RK' 3) ((9 10 12 13) 'R' 7) (' ' 'R' 7) ('0123456789' 'RK' 4) ('=' 'RK' 5) ('?' 'RK' 31) ('#' 'R' 8) ('|' 'RK' 34) ('''' 'R' 9))
+   (ScannerReadaheadTable 2 ((9 10 12 13 96 147 148 256) 'L' 27) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<[]{}()^;#:.$''" ' 'L' 27) ('>' 'RK' 38))
+   (ScannerReadaheadTable 3 ((9 10 12 13 96 147 148 256) 'L' 28) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:$''" ' 'L' 28) ('.' 'RK' 39))
+   (ScannerReadaheadTable 4 ((9 10 12 13 96 147 148 256) 'L' 29) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_!!,+-/\*~=@%&?|<>[]{}()^;#:.$''" ' 'L' 29) ('0123456789' 'RK' 4))
+   (ScannerReadaheadTable 5 ((9 10 12 13 96 147 148 256) 'L' 30) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<[]{}()^;#:.$''" ' 'L' 30) ('>' 'RK' 40))
+   (ScannerReadaheadTable 6 ((9 10 12 13 96 147 148 256) 'L' 32) ('!!,+-/\*~=@%&?|<>[]{}()^;#.$''" ' 'L' 32) ('0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 6))
+   (ScannerReadaheadTable 7 ((96 147 148 256) 'L' 1) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$''"' 'L' 1) ((9 10 12 13) 'R' 7) (' ' 'R' 7))
+   (ScannerReadaheadTable 8 ('"' 'R' 14) ('''' 'R' 15) ('ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 13))
+   (ScannerReadaheadTable 9 ((256) 'LK' 42) ('''' 'R' 16) ((9 10 12 13 96 147 148) 'RK' 9) (' !!"#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 9))
+   (ScannerReadaheadTable 10 ((9 10 12 13) 'L' 44) (' ' 'L' 44) ((96 147 148 256) 'LK' 44) ('=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_\abcdefghijklmnopqrstuvwxyz{|}~!!"#$%&''()*+,-.0123456789:;<' 'LK' 44) ('/' 'R' 17))
+   (ScannerReadaheadTable 11 ((256) 'LK' 45) ('"' 'R' 18) ((9 10 12 13 96 147 148) 'RK' 11) (' !!#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 11))
+   (ScannerReadaheadTable 12 ((9 10 12 13 96 147 148) 'RK' 46) (' !!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 46))
+   (ScannerReadaheadTable 13 ((9 10 12 13 96 147 148 256) 'L' 41) ('!!,+-/\*~=@%&?|<>[]{}()^;#.$''" ' 'L' 41) ('0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 13))
+   (ScannerReadaheadTable 14 ((256) 'LK' 47) ('"' 'R' 19) ((9 10 12 13 96 147 148) 'RK' 14) (' !!#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 14))
+   (ScannerReadaheadTable 15 ((256) 'LK' 48) ('''' 'R' 20) ((9 10 12 13 96 147 148) 'RK' 15) (' !!"#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~' 'RK' 15))
+   (ScannerReadaheadTable 16 ((9 10 12 13 96 147 148 256) 'L' 43) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$" ' 'L' 43) ('''' 'RK' 9))
+   (ScannerReadaheadTable 17 ((9 96 147 148) 'R' 17) ('=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_abcdefghijklmnopqrstuvwxyz{|}~ !!"#$%&''()*+,-./0123456789:;<' 'R' 17) ((256) 'LK' 1) ((10 12 13) 'R' 1))
+   (ScannerReadaheadTable 18 ((9 10 12 13 96 147 148 256) 'L' 43) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$'' ' 'L' 43) ('"' 'RK' 11))
+   (ScannerReadaheadTable 19 ((9 10 12 13 96 147 148 256) 'L' 41) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$'' ' 'L' 41) ('"' 'RK' 14))
+   (ScannerReadaheadTable 20 ((9 10 12 13 96 147 148 256) 'L' 41) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789!!,+-/\*~=@%&?|<>[]{}()^;#:.$" ' 'L' 41) ('''' 'RK' 15))
+   (SemanticTable 21 buildToken: EndOfFile 1)
+   (SemanticTable 22 buildToken: '&' 1)
+   (SemanticTable 23 buildToken: '(' 1)
+   (SemanticTable 24 buildToken: ')' 1)
+   (SemanticTable 25 buildToken: '*' 1)
+   (SemanticTable 26 buildToken: '+' 1)
+   (SemanticTable 27 buildToken: '-' 1)
+   (SemanticTable 28 buildToken: '.' 1)
+   (SemanticTable 29 buildToken: walkInteger: 1)
+   (SemanticTable 30 buildToken: '=' 1)
+   (SemanticTable 31 buildToken: '?' 1)
+   (SemanticTable 32 buildToken: walkIdentifier: 1)
+   (SemanticTable 33 buildToken: '[' 1)
+   (SemanticTable 34 buildToken: '|' 1)
+   (SemanticTable 35 buildToken: ']' 1)
+   (SemanticTable 36 buildToken: '{' 1)
+   (SemanticTable 37 buildToken: '}' 1)
+   (SemanticTable 38 buildToken: '->' 1)
+   (SemanticTable 39 buildToken: '..' 1)
+   (SemanticTable 40 buildToken: '=>' 1)
+   (SemanticTable 41 buildToken: walkSymbol: 1)
+   (SemanticTable 42 syntaxError: 'missing end quote for single quoted string' 43)
+   (SemanticTable 43 buildToken: walkString: 1)
+   (SemanticTable 44 syntaxError: '// is a comment, / alone is not valid' 1)
+   (SemanticTable 45 syntaxError: 'missing end quote for double quoted string' 43)
+   (SemanticTable 46 buildToken: walkCharacter: 1)
+   (SemanticTable 47 syntaxError: 'missing end quote for double quoted string' 41)
+   (SemanticTable 48 syntaxError: 'missing end quote for single quoted string' 41))!   ! 
+#('Thursday, April 11, 2019' '07:30:29 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('raw tables' rawScannerTables )) !
+
+
+"evaluate"
+(CodeFiler organizerFor: GrammarBuilder) removeCategory: 'raw tables' ifAbsent: [nil]!
+
+"evaluate"  
+(CodeFiler organizerFor: 'GrammarBuilder')  addCategory: 'semantic actions' before: 'processing'!
+
+"define class"   
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser tree isParser '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser tree isParser '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!GrammarBuilder methods !  
+processTypeNow: parserOrScanner
+    isParser := parserOrScanner = #parser.!    ! 
+#('Thursday, April 11, 2019' '07:33:33 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('semantic actions' processTypeNow: )) !
+
+
+!GrammarBuilder methods !  
+walkGrammar: aTree
+    self halt: 'hello'.!    ! 
+#('Thursday, April 11, 2019' '07:34:19 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"evaluate"
+FiniteStateMachineBuilder removeSelector: #walkGrammar:!
+
+!GrammarBuilder methods ! 
+walkIdentifier: aTree
+    self halt: 'todo'.!  ! 
+#('Thursday, April 11, 2019' '07:52:23 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods !  
+initialize
+    parser := Parser new.
+
+    
+    self setupSponsorAndTables.! ! 
+#('Thursday, April 11, 2019' '07:53:35 PM' 2020348)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+"define class"  
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser map tree isParser '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser map tree isParser '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!GrammarBuilder methods !  
+initialize
+    parser := Parser new.
+    map := Dictionary new.
+    
+    self setupSponsorAndTables.!   ! 
+#('Thursday, April 11, 2019' '07:53:57 PM' 2061172)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!GrammarBuilder methods !   
+walkIdentifier: aTree
+    | fsm |
+    self halt: 'todo'.
+    fsm := map at: aTree symbol ifAbsent: [ nil ].
+    fsm isNil ifFalse: [^fsm copy].
+    fsm := FiniteStateMachine forIdentifier: aTree symbol attributes: (isParser ifTrue: [self parserDefaults] ifFalse: ['RK']).
+    ^ fsm.!   ! 
+#('Thursday, April 11, 2019' '07:54:02 PM' 2060936)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods ! 
+walkTree: aTree
+    self halt: 'check the label'.
+    ^self perform: aTree label with: aTree! ! 
+#('Thursday, April 11, 2019' '07:55:49 PM' 2011848)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkTree: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkTree: )) !
+
+
+!GrammarBuilder methods ! 
+walkTree: aTree
+    self halt: 'check the label'.
+    ^self perform: aTree label with: aTree! ! 
+#('Thursday, April 11, 2019' '07:59:18 PM' 2062948)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkTree: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkTree: )) !
+
+
+!GrammarBuilder methods ! 
+walkStar: aTree
+    | fsm |
+    fsm := self walkTree: (aTree child: 1).
+    ^fsm star!   ! 
+#('Thursday, April 11, 2019' '07:59:42 PM' 2015076)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkStar: )) !
+
+
+!GrammarBuilder methods ! 
+walkMinus: aTree
+    | fsms |
+    self halt: 'ppt 8 slide 21 has a different implementation'.
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!   ! 
+#('Thursday, April 11, 2019' '08:03:13 PM' 2013804)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!GrammarBuilder methods !   
+walkMinus: aTree
+    | fsms |
+    "
+    walkMinus: aTree
+     | fsm1 fsm2 |
+    fsm1 := self walkTree: (aTree child: 1).
+    fsm2 := self walkTree: (aTree child: 2).
+    ^fsm1 minus: fsm2
+
+    "
+    self halt: 'ppt 8 slide 21 has a different implementation'.
+    fsms := aTree children collect: [:child | self walkTree: child].
+    ^ FiniteStateMachine minus: fsms.!  ! 
+#('Thursday, April 11, 2019' '08:04:28 PM' 2064072)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!GrammarBuilder methods !   
+walkMinus: aTree
+    | fsm1 fsm2 |
+    fsm1 := self walkTree: (aTree child: 1).
+    fsm2 := self walkTree: (aTree child: 2).
+    ^fsm1 minus: fsm2! ! 
+#('Thursday, April 11, 2019' '08:04:56 PM' 2064564)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!GrammarBuilder methods !   
+walkMinus: aTree
+    | fsm1 fsm2 |
+    fsm1 := self walkTree: (aTree child: 1).
+    fsm2 := self walkTree: (aTree child: 2).
+    ^fsm1 minus: fsm2! ! 
+#('Thursday, April 11, 2019' '08:06:38 PM' 2065228)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'GrammarBuilder class')  addCategory: 'ops' before: nil!
+
+!GrammarBuilder class methods !  
+minus: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:x |
+        fsm := fsm minus: x.
+    ].
+    
+    ^ fsm renumber!  ! 
+#('Thursday, April 11, 2019' '08:17:14 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!GrammarBuilder class methods !
+or: fsms
+    | fsm |
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm or: cfsm.
+    ].
+    ^ fsm renumber!  ! 
+#('Thursday, April 11, 2019' '08:20:45 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!GrammarBuilder class methods !   
+or: fsms
+    | fsm |
+    
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm or: cfsm.
+    ].
+    
+    ^ fsm renumber!  ! 
+#('Thursday, April 11, 2019' '08:20:50 PM' 2066524)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!GrammarBuilder class methods ! 
+minus: fsms
+    | fsm |
+    
+    fsm := fsms first.
+    fsms rest do: [:x |
+        fsm := fsm minus: x.
+    ].
+    
+    ^ fsm renumber!    ! 
+#('Thursday, April 11, 2019' '08:20:55 PM' 2066204)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' minus: )) !
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' minus: )) !
+
+
+!GrammarBuilder methods ! 
+walkOr: aTree
+     | fsms |
+    fsms := aTree children collect: [:child |
+        self walkTree: child]. 
+    ^FiniteStateMachine or: fsms! ! 
+#('Thursday, April 11, 2019' '08:23:39 PM' 2014128)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods ! 
+walkOr: aTree
+     | fsms |
+     
+    fsms := aTree children collect: [:child |
+        self walkTree: child]. 
+        
+    ^ FiniteStateMachine or: fsms!   ! 
+#('Thursday, April 11, 2019' '08:23:45 PM' 2067656)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods ! 
+walkOr: aTree
+     | fsms |
+     
+    fsms := aTree children collect: [:child |
+        self walkTree: child
+    ]. 
+        
+    ^ FiniteStateMachine or: fsms! ! 
+#('Thursday, April 11, 2019' '08:23:51 PM' 2068076)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods ! 
+walkOr: aTree
+    | fsms |
+    self halt: 'is this right?'.
+    fsms := aTree children collect: [:child |
+        self walkTree: child
+    ].
+        
+    ^ FiniteStateMachine or: fsms!    ! 
+#('Thursday, April 11, 2019' '08:24:36 PM' 2068516)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods ! 
+walkMinus: aTree
+    | fsm1 fsm2 |
+    self halt: 'from slides'.
+    
+    fsm1 := self walkTree: (aTree child: 1).
+    fsm2 := self walkTree: (aTree child: 2).
+    
+    ^ fsm1 minus: fsm2! ! 
+#('Thursday, April 11, 2019' '08:24:57 PM' 2065664)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!GrammarBuilder class methods ! 
+or: fsms
+    | fsm |
+    
+    fsm := fsms first.
+    fsms rest do: [:cfsm | 
+        fsm := fsm or: cfsm.
+    ].
+    
+    ^ fsm renumber!   ! 
+#('Thursday, April 11, 2019' '08:25:32 PM' 2066832)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+!GrammarBuilder class methods ! 
+or: fsms
+    | fsm |
+    
+    fsm := fsms first.
+    fsms rest do: [:x | 
+        fsm := fsm or: x.
+    ].
+    
+    ^ fsm renumber! ! 
+#('Thursday, April 11, 2019' '08:25:46 PM' 2069916)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('ops' or: )) !
+
+
+"define class"  
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser map tree isParser '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser map tree isParser '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"define class" 
+
+Object subclass: #Production
+  instanceVariableNames: 
+    ' leftPart lookahead rightPart '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Production to: ''!
+
+
+"evaluate" 
+
+Object subclass: #Production
+  instanceVariableNames: ' leftPart lookahead rightPart '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"evaluate"   
+(CodeFiler organizerFor: 'Production')  addCategory: 'initializing' before: nil!
+
+"evaluate"
+(CodeFiler organizerFor: Production) removeCategory: 'no category methods' ifAbsent: [nil]!
+
+!Production methods !  
+initialize
+
+    self halt: 'TODO'!    ! 
+#('Thursday, April 11, 2019' '08:32:06 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'Production class')  addCategory: 'instance creation' before: nil!
+
+"evaluate" 
+(CodeFiler organizerFor: Production class) removeCategory: 'no category methods' ifAbsent: [nil]!
+
+!Production class methods !  
+new
+
+    ^super new initialize!   ! 
+#('Thursday, April 11, 2019' '08:32:29 PM' nil)!
+
+(CodeFiler organizerFor: Production class) reorganizeFrom: #(
+('instance creation' new )) !
+
+
+!Production class methods ! 
+new
+
+    ^ super new initialize!  ! 
+#('Thursday, April 11, 2019' '08:32:31 PM' 2072244)!
+
+(CodeFiler organizerFor: Production class) reorganizeFrom: #(
+('instance creation' new )) !
+
+(CodeFiler organizerFor: Production class) reorganizeFrom: #(
+('instance creation' new )) !
+
+
+!GrammarBuilder class methods ! 
+new
+
+    ^ super new initialize!  ! 
+#('Thursday, April 11, 2019' '08:32:36 PM' 2040856)!
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('instance creation' new )) !
+
+(CodeFiler organizerFor: GrammarBuilder class) reorganizeFrom: #(
+('instance creation' new )) !
+
+
+!GrammarBuilder methods !   
+walkProduction: aTree
+    | leftPartArray rightPartFSM |
+
+    leftPartArray := self walkTree: (aTree child: 1).
+    rightPartFSM := self walkTree: (aTree child: 2). 
+
+    ^ Production new
+        leftPart: leftPartArray first;
+        lookahead: leftPartArray second;
+        rightPart: rightPartFSM!   ! 
+#('Thursday, April 11, 2019' '08:33:51 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkProduction: )) !
+
+
+!GrammarBuilder methods !  
+walkMacro: aTree
+    self halt: 'TODO'!    ! 
+#('Thursday, April 11, 2019' '08:34:11 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMacro: )) !
+
+
+!GrammarBuilder methods !   
+walkRightPart: aTree
+
+    ^ self walkTree: (aTree child: 1)!  ! 
+#('Thursday, April 11, 2019' '08:35:01 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkRightPart: )) !
+
+
+!GrammarBuilder methods !   
+walkLeftPart: aTree
+    | token |
+    
+    token := aTree child: 1.
+    
+    ^ Array with: token symbol with: nil! ! 
+#('Thursday, April 11, 2019' '08:35:23 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkLeftPart: )) !
+
+
+!GrammarBuilder methods !
+walkLeftPartWithLookahead: aTree
+    | token fsm |
+    
+    token := aTree child: 1.
+    fsm := self walkTree: (aTree child: 1).
+    
+    ^ Array with: token symbol with: fsm allInitialStateTransitionSymbol!   ! 
+#('Thursday, April 11, 2019' '08:35:44 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkLeftPartWithLookahead: )) !
+
+
+!GrammarBuilder methods !   
+walkString: aTree
+    | string name | " the tree must be a token "
+    
+    string := aTree symbol.
+    
+    ^ self isParser
+        ifTrue: [
+            name := TransitionName new
+                symbol: string;
+                attributes: self parserDefaults.
+            ^ self class fromParserTransitionLabel: name
+        ]
+        ifFalse: [
+            ^ self class fromScannerCollection: string attributes: self scannerDefaults
+        ]!   ! 
+#('Thursday, April 11, 2019' '08:37:41 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkString: )) !
+
+
+!GrammarBuilder methods !  
+walkAttributes: aTree
+    | expression attributeTokens attributeSymbols fsm | 
+    
+    expression := aTree child: 1. 
+    attributeTokens := aTree children rest.
+    attributeSymbols := attributeTokens collect: [:token | token symbol].
+    fsm := self walkTree: expression.
+
+    ^ fsm override: attributeSymbols!   ! 
+#('Thursday, April 11, 2019' '08:40:10 PM' 2012432)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkAttributes: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkAttributes: )) !
+
+
+!GrammarBuilder methods ! 
+walkLook: aTree
+
+    ^ (self walkTree: (aTree child: 1)) override: #(#look).! ! 
+#('Thursday, April 11, 2019' '08:41:36 PM' 2013692)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkLook: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkLook: )) !
+
+
+"evaluate"
+"*** saved image on: Thursday, April 11, 2019 08:42:47 PM ***"!
+
+!Transition methods !  
+= anObject
+
+    self class == anObject class ifFalse: [^false].
+    self name = anObject name ifFalse: [^false].
+    
+    ^ self goto == anObject goto!    ! 
+#('Thursday, April 11, 2019' '08:54:38 PM' nil)!
+
+(CodeFiler organizerFor: Transition) reorganizeFrom: #(
+('ops' = )) !
+
+
+!FiniteStateMachineBuilder methods !  
+parserDefaultsNonTerminal
+    ^ 'RNK'.!    ! 
+#('Thursday, April 11, 2019' '08:57:16 PM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('ops' parserDefaultsNonTerminal )) !
+
+
+!FiniteStateMachineBuilder methods !   
+parserDefaults
+    ^ 'RK'.!    ! 
+#('Thursday, April 11, 2019' '08:57:39 PM' 1810852)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' parserDefaults )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' parserDefaults )) !
+
+
+!FiniteStateMachineBuilder methods !  
+parserDefaultsNonTerminal
+    ^ self parserDefaults + 'K'.!    ! 
+#('Thursday, April 11, 2019' '08:58:15 PM' 2076848)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('ops' parserDefaultsNonTerminal )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('ops' parserDefaultsNonTerminal )) !
+
+
+!FiniteStateMachineBuilder methods !  
+parserDefaultsNonTerminal
+
+    ^ 'RNK'!   ! 
+#('Thursday, April 11, 2019' '08:58:38 PM' 2077460)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('ops' parserDefaultsNonTerminal )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('ops' parserDefaultsNonTerminal )) !
+
+
+!FiniteStateMachineBuilder methods !  
+parserDefaults
+
+    ^ 'RK'!   ! 
+#('Thursday, April 11, 2019' '08:58:47 PM' 2077104)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' parserDefaults )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' parserDefaults )) !
+
+
+!FiniteStateMachineBuilder methods !  
+scannerDefaults
+
+    ^ 'RK'!  ! 
+#('Thursday, April 11, 2019' '08:59:01 PM' 1825532)!
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' scannerDefaults )) !
+
+(CodeFiler organizerFor: FiniteStateMachineBuilder) reorganizeFrom: #(
+('tree walking' scannerDefaults )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'GrammarBuilder')  addCategory: 'get/set' before: 'tree walking'!
+
+!GrammarBuilder methods !   
+scannerDefaults
+
+    ^ 'RK'!  ! 
+#('Thursday, April 11, 2019' '09:01:41 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' scannerDefaults )) !
+
+
+!GrammarBuilder methods !   
+parserDefaults
+
+    ^ 'RK'!   ! 
+#('Thursday, April 11, 2019' '09:01:47 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' parserDefaults )) !
+
+
+!GrammarBuilder methods !
+parserDefaultsNonTerminal
+
+    ^ 'RNK'!   ! 
+#('Thursday, April 11, 2019' '09:01:54 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' parserDefaultsNonTerminal )) !
+
+
+"evaluate"
+(CodeFiler organizerFor: 'Grammar')  addCategory: 'query' before: 'no category methods'!
+
+"evaluate"
+(CodeFiler organizerFor: Grammar) removeCategory: 'no category methods' ifAbsent: [nil]!
+
+!Grammar methods !
+isEGeneratingNonterminal: nonterminal
+    | production |
+    
+    production := self productionFor: nonterminal.
+    
+    ^ production isEGenerating!  ! 
+#('Thursday, April 11, 2019' '09:25:36 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' isEGeneratingNonterminal: )) !
+
+
+!Grammar methods ! 
+isEGeneratingName: name
+    
+    name isSemanticAction ifTrue: [ ^ true ].
+    
+    (self isNonterminal: name symbol) ifFalse: [ ^ false ].
+
+    ^ self isEGeneratingNonterminal: name symbol.!   ! 
+#('Thursday, April 11, 2019' '09:26:58 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' isEGeneratingName: )) !
+
+
+!Grammar methods !
+slowlyComputedIsEGenerating: nonterminal
+
+    | fsm |
+    
+    fsm := self rightPartFor: nonterminal.
+    
+    ^ self thereExistsAFinalESucessorOf: fsm initialStates!    ! 
+#('Thursday, April 11, 2019' '09:40:56 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' slowlyComputedIsEGenerating: )) !
+
+
+!Grammar methods !  
+thereExistsAFinalESucessorOf: states
+
+    (self eSucessorsOf: states) do: [:state | 
+        state isFinal ifTrue: [ ^ true ]
+    ].
+    
+    ^ false.!   ! 
+#('Thursday, April 11, 2019' '09:42:04 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' thereExistsAFinalESucessorOf: )) !
+
+
+!Grammar methods ! 
+eSucessorsOf: states
+
+    | all |
+    
+    (all := OrderedCollection new) addAll: states.
+    
+    all do: [:state | 
+        state transitionsDo: [:name :goto |
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].
+    
+    ^ all!  ! 
+#('Thursday, April 11, 2019' '09:44:13 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf: )) !
+
+
+!Grammar methods ! 
+thereExistsAFinalESucessorOf: states
+
+    self eSucessorsOf: states do: [:state | 
+        state isFinal ifTrue: [ ^ true ]
+    ].
+    
+    ^ false.! ! 
+#('Thursday, April 11, 2019' '09:45:45 PM' 2080956)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' thereExistsAFinalESucessorOf: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' thereExistsAFinalESucessorOf: )) !
+
+
+!Grammar methods !
+eSucessorsOf: states do: aBlock
+
+    | all |
+    
+    all := OrderedCollection new addAll: states.
+    
+    all do: [:state |
+        aBlock value: state.
+        state transitionsDo: [:name :goto |
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].! ! 
+#('Thursday, April 11, 2019' '09:50:49 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+
+!Grammar methods !  
+eSucessorsOf: states do: aBlock
+
+    | all |
+    
+    all := OrderedCollection new addAll: states.
+    
+    all do: [:state |
+        aBlock value: state.
+        state transitionsDo: [:name :goto |
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].! ! 
+#('Thursday, April 11, 2019' '09:53:00 PM' 2082224)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+
+!Grammar methods !  
+eSucessorsOf: states do: aBlock
+
+    | all |
+    
+    all := OrderedCollection new addAll: states.
+    
+    all do: [:state |
+        aBlock value: state.
+        state transitionsDo: [:name :goto |
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].! ! 
+#('Thursday, April 11, 2019' '10:21:08 PM' 2082736)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+
+!GrammarBuilder methods !   
+process: text
+    tree := parser parse: text.
+    self walkTree: tree!    ! 
+#('Thursday, April 11, 2019' '11:11:13 PM' 2018684)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' process: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' process: )) !
+
+
+!GrammarBuilder methods !   
+walkTree: aTree
+
+    ^self perform: aTree label with: aTree!  ! 
+#('Thursday, April 11, 2019' '11:11:36 PM' 2063324)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkTree: )) !
+
+
+"evaluate"   
+(CodeFiler organizerFor: 'Grammar class')  addCategory: 'instance creation' before: nil!
+
+"evaluate"
+(CodeFiler organizerFor: Grammar class) removeCategory: 'no category methods' ifAbsent: [nil]!
+
+!Grammar class methods !
+new
+
+    ^ super new initialize!  ! 
+#('Thursday, April 11, 2019' '11:17:35 PM' nil)!
+
+(CodeFiler organizerFor: Grammar class) reorganizeFrom: #(
+('instance creation' new )) !
+
+
+!GrammarBuilder methods !  
+initialize
+    parser := Parser new.
+    map := Dictionary new.
+    
+    self setupSponsorAndTables.!   ! 
+#('Thursday, April 11, 2019' '11:17:43 PM' 2061972)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'Grammar')  addCategory: 'initializing' before: nil!
+
+!Grammar methods !   
+new
+
+    ^ self!  ! 
+#('Thursday, April 11, 2019' '11:18:00 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' new )) !
+
+
+!GrammarBuilder methods ! 
+walkGrammar: aTree
+
+    | grammar |
+    
+    grammar := Grammar new.
+
+    self halt: 'hello'.!    ! 
+#('Thursday, April 11, 2019' '11:18:45 PM' 2060632)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"define class"  
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Grammar to: ''!
+
+
+"evaluate" 
+
+Object subclass: #Grammar
+  instanceVariableNames: ' productions macros '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!Grammar methods !
+new
+
+    productions := OrderedCollection new.
+    macros := OrderedCollection new.! ! 
+#('Thursday, April 11, 2019' '11:22:09 PM' 2085464)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' new )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' new )) !
+
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    | grammar |
+    
+    grammar := Grammar new productions: (self walkTree: aTree children first).
+
+    self halt: 'hello'.! ! 
+#('Thursday, April 11, 2019' '11:23:02 PM' 2085652)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"define class"  
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros grammar '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Grammar to: ''!
+
+
+"evaluate" 
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros grammar '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"define class"  
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Grammar to: ''!
+
+
+"evaluate" 
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+"define class"  
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser map tree isParser grammar '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser map tree isParser grammar '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!GrammarBuilder methods !  
+initialize
+    parser := Parser new.
+    map := Dictionary new.
+    
+    grammar := Grammar new.
+    
+    self setupSponsorAndTables.!    ! 
+#('Thursday, April 11, 2019' '11:37:26 PM' 2084984)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!GrammarBuilder methods !   
+walkIdentifier: aTree
+    | name |
+    name := TransitionName name symbol: aTree symbol.
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+    
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonterminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ]
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name! ! 
+#('Thursday, April 11, 2019' '11:37:43 PM' 2062364)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods ! 
+walkIdentifier: aTree
+    | name |
+    name := TransitionName name symbol: aTree symbol.
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+    
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonterminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ]
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name!   ! 
+#('Thursday, April 11, 2019' '11:37:50 PM' 2088920)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods ! 
+walkGrammar: aTree
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Thursday, April 11, 2019' '11:40:23 PM' 2086776)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'Grammar')  addCategory: 'ops' before: nil!
+
+!Grammar methods !
+computeSets
+
+    ^ self halt.!    ! 
+#('Thursday, April 11, 2019' '11:41:19 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+
+"define class" 
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros nonTerminals '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Grammar to: ''!
+
+
+"evaluate"
+
+Object subclass: #Grammar
+  instanceVariableNames: 
+    ' productions macros nonTerminals '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!Grammar methods ! 
+new
+
+    productions := OrderedCollection new.
+    macros := OrderedCollection new.
+    nonTerminals := OrderedCollection new.! ! 
+#('Thursday, April 11, 2019' '11:42:24 PM' 2086432)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' new )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' new )) !
+
+
+!GrammarBuilder methods !   
+process: text
+
+    tree := parser parse: text.
+    self walkTree: tree!  ! 
+#('Thursday, April 11, 2019' '11:42:49 PM' 2083952)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' process: )) !
+
+
+!Parser methods !   
+parse: text
+    | table result |
+    "To parse the text, you have to give it to the scanner (say via scan: text).
+    It in turn should have the first token set up for you. Next you need
+    to execute tables starting from table 1 until you reach an Accept table.
+    Once that happen, the tree that was built should be on top of the tree
+    stack. Just return it. If you look at the Accept table, you will see
+    that it of all the tables, it is the only one that returns nil. You can
+    use that information to stop your loop."
+    
+    self scanner scan: text.
+    tableNumber := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [tableNumber notNil] whileTrue: [
+        tableNumber := table run.
+        tableNumber notNil ifTrue: [table := self tables at: tableNumber].
+    ].
+    
+    ^ treeStack last!    ! 
+#('Thursday, April 11, 2019' '11:44:07 PM' 1622040)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+!Parser methods !
+parse: text
+    | table result |
+
+    self scanner scan: text.
+    tableNumber := 1. "to pass the first while loop condition"
+    table := self tables first.
+    [tableNumber notNil] whileTrue: [
+        tableNumber := table run.
+        tableNumber notNil ifTrue: [table := self tables at: tableNumber].
+    ].
+    
+    ^ treeStack last!   ! 
+#('Thursday, April 11, 2019' '11:44:41 PM' 2092968)!
+
+(CodeFiler organizerFor: Parser) reorganizeFrom: #(
+('parsing' parse: )) !
+
+
+"evaluate"   
+(CodeFiler organizerFor: 'Grammar')  addCategory: 'get/set' before: nil!
+
+!Grammar methods !
+nonTerminals
+    
+    ^ nonTerminals! ! 
+#('Thursday, April 11, 2019' '11:46:22 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('get/set' nonTerminals )) !
+
+
+!GrammarBuilder methods ! 
+parserNonTerminalDefaults
+
+    ^ 'RNK'!   ! 
+#('Thursday, April 11, 2019' '11:47:22 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' parserNonTerminalDefaults )) !
+
+
+"evaluate"
+GrammarBuilder removeSelector: #parserDefaultsNonTerminal!
+
+!GrammarBuilder methods !   
+parserTerminalDefaults
+
+    ^ 'RK'!   ! 
+#('Thursday, April 11, 2019' '11:47:37 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' parserTerminalDefaults )) !
+
+
+"evaluate"   
+GrammarBuilder removeSelector: #parserDefaults!
+
+!GrammarBuilder methods !  
+walkIdentifier: aTree
+    | name |
+    name := TransitionName name symbol: aTree symbol.
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+    
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ]
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name!   ! 
+#('Thursday, April 11, 2019' '11:48:11 PM' 2089940)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+"evaluate"
+(CodeFiler organizerFor: 'GrammarBuilder')  addCategory: 'ops' before: 'tree walking'!
+
+!GrammarBuilder methods !   
+lookForToken: token
+
+    self halt.!  ! 
+#('Thursday, April 11, 2019' '11:49:32 PM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods ! 
+lookForToken: aTree
+
+    self halt.!  ! 
+#('Thursday, April 11, 2019' '11:50:29 PM' 2096548)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!Grammar methods !  
+rightPartFor: a
+    
+    self halt.!  ! 
+#('Thursday, April 11, 2019' '11:51:51 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('get/set' rightPartFor: )) !
+
+
+"evaluate"   
+Grammar removeSelector: #rightPartFor:!
+
+!GrammarBuilder methods !  
+processTypeNow: parserOrScanner
+
+    isParser := parserOrScanner = #parser.!  ! 
+#('Thursday, April 11, 2019' '11:58:04 PM' 2060360)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('semantic actions' processTypeNow: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('semantic actions' processTypeNow: )) !
+
+
+!GrammarBuilder methods ! 
+processTypeNow: parserOrScanner
+
+    self halt.
+    isParser := parserOrScanner = #parser.!  ! 
+#('Thursday, April 11, 2019' '11:58:24 PM' 2097340)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('semantic actions' processTypeNow: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('semantic actions' processTypeNow: )) !
+
+
+!GrammarBuilder methods ! 
+processTypeNow: parserOrScanner
+
+    isParser := parserOrScanner = #parser.!  ! 
+#('Thursday, April 11, 2019' '11:58:44 PM' 2097720)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('semantic actions' processTypeNow: )) !
+
+
+!GrammarBuilder methods !  
+walkGrammar: aTree
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: 'd' "(self lookForToken: child)".
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self!   ! 
+#('Friday, April 12, 2019' '12:00:41 AM' 2090968)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Friday, April 12, 2019' '12:01:19 AM' 2098392)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    self halt.!  ! 
+#('Friday, April 12, 2019' '12:01:43 AM' 2096764)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+"evaluate"
+"*** saved image on: Friday, April 12, 2019 12:35:01 AM ***"!

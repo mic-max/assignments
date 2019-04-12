@@ -1,0 +1,28 @@
+scanner
+    digit = "0123456789".
+    space = 32 [noKeep].
+
+    printable = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!,+-/\*~=@%&?|<>[]{}()^;#:.$_' ".
+    endOfFileCharacter = 256.
+    lineEnd = 10 [noKeep].
+    all = printable | endOfFileCharacter.
+
+    test = $0 .. $9.
+
+    EndOfFile {endOfFileCharacter}
+        -> => EndOfFile.
+
+    WhiteSpace {all - space}
+       -> space+.
+
+    Integer {all - digit}
+        -> digit+ => Integer.
+
+    Comment {all}
+        -> $/ [noKeep] {all - $/} #syntaxError: ["// is a comment, / alone is not valid"]
+        -> $/ [noKeep] $/ [noKeep]
+                (printable [noKeep] - lineEnd [noKeep])*
+            (
+                lineEnd [noKeep] |
+                {endOfFileCharacter}
+            ).
