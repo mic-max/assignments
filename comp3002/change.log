@@ -63987,4 +63987,1664 @@ walkGrammar: aTree
 "*** saved image on: Saturday, April 13, 2019 05:50:53 AM ***"!
 
 "evaluate" 
-"*** saved image on: Saturday, April 13, 2019 06:17:21 AM ***"!
+"*** saved image on: Saturday, April 13, 2019 06:17:21 AM ***"!   
+"*** Image started on: Saturday, April 13, 2019 09:48:36 PM ***"!
+
+!GrammarBuilder methods !
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            name := (child child: 1) label. "walkLeftPartWithLookahead:"
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+        "
+        (child label = #walkMacro:) ifTrue: [
+            grammar addMacro: (self lookForToken: child). grammar addMacro: name fsm: nil
+        ]."
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Saturday, April 13, 2019' '10:14:32 PM' 2108264)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods ! 
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            name := (child child: 1) label.
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+        "
+        (child label = #walkMacro:) ifTrue: [
+            grammar addMacro: (self lookForToken: child). grammar addMacro: name fsm: nil
+        ]."
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self!  ! 
+#('Saturday, April 13, 2019' '10:14:43 PM' 2109276)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods ! 
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            name := (child child: 1) label.
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+        
+        (child label = #walkMacro:) ifTrue: [
+            grammar addMacro: (self lookForToken: child). grammar addMacro: name fsm: nil
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self!    ! 
+#('Saturday, April 13, 2019' '11:39:34 PM' 2110088)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods ! 
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Saturday, April 13, 2019' '11:48:53 PM' 2110872)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    (aTree first class) = Token ifTrue: [
+        self halt.
+    ].
+
+    self halt.! ! 
+#('Sunday, April 14, 2019' '12:10:59 AM' 2099520)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    (aTree child: 1 class) = Token ifTrue: [
+        self halt.
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '12:11:54 AM' 2112332)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+
+'aTree child: 1'!
+
+ 
+'aTree child: 1'!
+
+!GrammarBuilder methods !
+lookForToken: aTree
+
+    (aTree child: 1 class) = Token ifTrue: [
+        ^ aTree child: 1
+    ].
+    
+    ^ self lookForToken: aTree child: 1!   ! 
+#('Sunday, April 14, 2019' '12:13:48 AM' 2112624)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+
+'aTree child: 1 '!
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ aTree child: 1
+    ].
+    
+    ^ self lookForToken: aTree child: 1! ! 
+#('Sunday, April 14, 2019' '12:16:43 AM' 2112964)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+
+'(aTree child: 1)'!
+
+!GrammarBuilder methods !  
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ aTree child: 1
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)!   ! 
+#('Sunday, April 14, 2019' '12:17:39 AM' 2113320)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!Grammar methods !  
+initialize
+
+    productions := Dictionary new.
+    macros := Dictionary new.
+    nonTerminals := OrderedCollection new.!    ! 
+#('Sunday, April 14, 2019' '12:21:27 AM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+"evaluate"   
+Grammar removeSelector: #new!
+
+!Grammar methods !   
+initialize
+
+    productions := OrderedCollection new.
+    macros := Dictionary new.
+    nonTerminals := OrderedCollection new.! ! 
+#('Sunday, April 14, 2019' '12:26:03 AM' 2114004)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!GrammarBuilder methods !   
+walkProduction: aTree
+    | leftPartArray rightPartFSM production |
+
+    leftPartArray := self walkTree: (aTree child: 1).
+    rightPartFSM := self walkTree: (aTree child: 2). 
+
+    production := Production new
+        leftPart: leftPartArray first;
+        lookahead: leftPartArray second;
+        rightPart: rightPartFSM.
+        
+    self grammar addProduction: production.
+    
+    ^ nil!   ! 
+#('Sunday, April 14, 2019' '12:32:09 AM' 2105612)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkProduction: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkProduction: )) !
+
+
+!GrammarBuilder methods !   
+isParser
+
+    ^ true! ! 
+#('Sunday, April 14, 2019' '12:36:36 AM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' isParser )) !
+
+
+!GrammarBuilder methods !
+walkString: aTree
+    | string name | " the tree must be a token "
+    
+    string := aTree symbol.
+    
+    ^ isParser
+        ifTrue: [
+            name := TransitionName new
+                symbol: string;
+                attributes: self parserDefaults.
+            ^ self class fromParserTransitionLabel: name
+        ]
+        ifFalse: [
+            ^ self class fromScannerCollection: string attributes: self scannerDefaults
+        ]!    ! 
+#('Sunday, April 14, 2019' '12:37:17 AM' 2074816)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkString: )) !
+
+
+!GrammarBuilder methods !
+walkString: aTree
+    | string name | " the tree must be a token "
+    
+    string := aTree symbol.
+    
+    ^ isParser
+        ifTrue: [
+            name := TransitionName new
+                symbol: string;
+                attributes: self parserDefaults.
+            ^ self class fromParserTransitionLabel: name
+        ]
+        ifFalse: [
+            ^ Grammar fromScannerCollection: string attributes: self scannerDefaults
+        ]!   ! 
+#('Sunday, April 14, 2019' '12:38:43 AM' 2115644)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkString: )) !
+
+
+!Grammar class methods ! 
+fromScannerCollection: aCollection attributes: attributes
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    aCollection do: [:x | 
+        transition := Transition new.
+        transition goto: s2.
+        transition name: (TransitionName new symbol: x; attributes: attributes).
+        s1 transitions add: transition.
+    ].
+    fsm states add: s1.
+    fsm states add: s2.
+
+    ^ fsm renumber.! ! 
+#('Sunday, April 14, 2019' '12:40:03 AM' nil)!
+
+(CodeFiler organizerFor: Grammar class) reorganizeFrom: #(
+('instance creation' fromScannerCollection:attributes: )) !
+
+
+!Grammar methods ! 
+addMacro: name fsm: anFsmOrNil
+
+    macros at: name put: anFsmOrNil.
+    
+    ^ nil!    ! 
+#('Sunday, April 14, 2019' '12:41:07 AM' 2105248)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' addMacro:fsm: )) !
+
+
+!GrammarBuilder methods !  
+walkMacro: aTree
+
+    | name fsm |
+    
+    name := (aTree child: 1) label.
+    fsm := self walkTree: (aTree child: 2).
+    
+    grammar addMacro: name fsm: fsm.
+
+    ^ nil!  ! 
+#('Sunday, April 14, 2019' '12:41:37 AM' 2102140)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMacro: )) !
+
+
+!GrammarBuilder methods ! 
+walkOr: aTree
+    | fsms |
+
+    fsms := aTree children collect: [:child |
+        self walkTree: child
+    ].
+            self halt: 'is this right?'.
+    ^ FiniteStateMachine or: fsms!    ! 
+#('Sunday, April 14, 2019' '12:45:41 AM' 2068960)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods !
+walkOr: aTree
+    | fsms |
+
+    fsms := aTree children collect: [:child |
+        self walkTree: child
+    ].
+    self halt: 'is this right?'.
+    
+    ^ FiniteStateMachine or: fsms!  ! 
+#('Sunday, April 14, 2019' '12:46:20 AM' 2118332)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods !
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName name symbol: aTree symbol.
+
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ]
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name! ! 
+#('Sunday, April 14, 2019' '12:49:25 AM' 2095416)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!Grammar methods !   
+macros
+
+    ^ macros! ! 
+#('Sunday, April 14, 2019' '12:50:03 AM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('get/set' macros )) !
+
+
+!GrammarBuilder methods ! 
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new name symbol: aTree symbol.
+
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ]
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name! ! 
+#('Sunday, April 14, 2019' '12:52:25 AM' 2119080)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods !
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ]
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name!  ! 
+#('Sunday, April 14, 2019' '12:52:43 AM' 2120184)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods !
+walkMacro: aTree
+
+    | name fsm |
+    
+    name := (aTree child: 1) label.
+    fsm := self walkTree: (aTree child: 2).
+    
+    grammar addMacro: name fsm: fsm.
+    
+    self halt.
+
+    ^ nil!    ! 
+#('Sunday, April 14, 2019' '12:53:45 AM' 2117964)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMacro: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMacro: )) !
+
+
+!GrammarBuilder methods ! 
+walkMacro: aTree
+
+    | name fsm |
+    
+    name := (aTree child: 1) symbol.
+    fsm := self walkTree: (aTree child: 2).
+    
+    grammar addMacro: name fsm: fsm.
+
+    ^ nil! ! 
+#('Sunday, April 14, 2019' '12:54:25 AM' 2122028)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMacro: )) !
+
+
+!GrammarBuilder methods ! 
+walkOr: aTree
+    | fsms |
+
+    fsms := aTree children collect: [:child |
+        self walkTree: child
+    ].
+    
+    ^ FiniteStateMachine or: fsms!    ! 
+#('Sunday, April 14, 2019' '12:56:06 AM' 2118708)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkOr: )) !
+
+
+!GrammarBuilder methods !
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    (isParser) ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ].
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name! ! 
+#('Sunday, April 14, 2019' '12:56:59 AM' 2121108)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods !
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    isParser ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ].
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name!   ! 
+#('Sunday, April 14, 2019' '12:59:07 AM' 2123224)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+ 
+'isParser'!
+
+!GrammarBuilder methods !  
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    isParser ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ].
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name!   ! 
+#('Sunday, April 14, 2019' '01:15:11 AM' 2124144)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods !
+isParser
+
+    ^ isParser! ! 
+#('Sunday, April 14, 2019' '01:46:54 AM' 2115448)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' isParser )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('get/set' isParser )) !
+
+
+
+'isParser'!
+
+!GrammarBuilder methods !  
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    isParser ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ].
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromScannerTransitionSymbol: name!   ! 
+#('Sunday, April 14, 2019' '01:50:06 AM' 2125084)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+"evaluate"   
+(CodeFiler organizerFor: 'FiniteStateMachine class')  addCategory: 'get/set' before: 'instance creation'!
+
+!FiniteStateMachine class methods !  
+allInitialStateTransitionSymbol
+
+    ^ nil!   ! 
+#('Sunday, April 14, 2019' '01:53:04 AM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('get/set' allInitialStateTransitionSymbol )) !
+
+
+!FiniteStateMachine class methods ! 
+allInitialStateTransitionSymbol
+
+    
+
+    ^ nil!   ! 
+#('Sunday, April 14, 2019' '01:53:22 AM' 2127372)!
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('get/set' allInitialStateTransitionSymbol )) !
+
+(CodeFiler organizerFor: FiniteStateMachine class) reorganizeFrom: #(
+('get/set' allInitialStateTransitionSymbol )) !
+
+
+!FiniteStateMachine methods ! 
+initialTransitions
+
+    self halt.
+    ^ (states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.! ! 
+#('Sunday, April 14, 2019' '01:55:21 AM' 1773372)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' initialTransitions )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' initialTransitions )) !
+
+
+!GrammarBuilder methods !   
+walkLeftPartWithLookahead: aTree
+    | token fsm |
+    
+    token := aTree child: 1.
+    fsm := self walkTree: (aTree child: 1).
+    
+    ^ Array with: token symbol with: fsm initialTransitions!    ! 
+#('Sunday, April 14, 2019' '01:55:35 AM' 2074400)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkLeftPartWithLookahead: )) !
+
+
+  
+'(states collect: [:x | x transitions] when: [:x | x isInitial]) flattened'!
+
+!FiniteStateMachine methods ! 
+initialTransitions
+    ^ (states collect: [:x | x transitions] when: [:x | x isInitial]) flattened.!   ! 
+#('Sunday, April 14, 2019' '01:56:59 AM' 2128028)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' initialTransitions )) !
+
+
+!GrammarBuilder methods !  
+walkLeftPartWithLookahead: aTree
+    | token fsm |
+    
+    token := aTree child: 1.
+    fsm := self walkTree: (aTree child: 1).
+    
+    ^ Array with: token symbol with: fsm allInitialStateTransitionSymbol!   ! 
+#('Sunday, April 14, 2019' '01:57:12 AM' 2128436)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkLeftPartWithLookahead: )) !
+
+
+!FiniteStateMachine methods ! 
+allInitialStateTransitionSymbol
+
+    | symbols |
+    
+    self states do: [:state |
+        (state isInitial) ifTrue: [
+            state transitions do: [:transition | 
+                symbols add: transition name symbol.
+            ].
+        ].
+    ].
+    
+    
+    ^ symbols!   ! 
+#('Sunday, April 14, 2019' '01:59:15 AM' nil)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allInitialStateTransitionSymbol )) !
+
+
+!FiniteStateMachine methods ! 
+allInitialStateTransitionSymbol
+
+    | symbols |
+    
+    self states do: [:state |
+        (state isInitial) ifTrue: [
+            state transitions do: [:transition | 
+                symbols add: transition name symbol.
+            ].
+        ].
+    ].
+    
+    self halt.
+    
+    ^ symbols!   ! 
+#('Sunday, April 14, 2019' '01:59:27 AM' 2129640)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allInitialStateTransitionSymbol )) !
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allInitialStateTransitionSymbol )) !
+
+
+!FiniteStateMachine methods ! 
+allInitialStateTransitionSymbol
+
+    | symbols |
+    
+    symbols := OrderedCollection new.
+    
+    self states do: [:state |
+        (state isInitial) ifTrue: [
+            state transitions do: [:transition | 
+                symbols add: transition name symbol.
+            ].
+        ].
+    ].
+    
+    self halt.
+    
+    ^ symbols!  ! 
+#('Sunday, April 14, 2019' '02:00:21 AM' 2130136)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allInitialStateTransitionSymbol )) !
+
+
+!GrammarBuilder methods ! 
+walkString: aTree
+    | string name | " the tree must be a token "
+    
+    string := aTree symbol.
+    
+    ^ isParser
+        ifTrue: [
+            name := TransitionName new
+                symbol: string;
+                attributes: self parserNonTerminalDefaults.
+            ^ self class fromParserTransitionLabel: name
+        ]
+        ifFalse: [
+            ^ Grammar fromScannerCollection: string attributes: self scannerDefaults
+        ]!    ! 
+#('Sunday, April 14, 2019' '02:01:46 AM' 2116288)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkString: )) !
+
+
+!GrammarBuilder methods !
+walkString: aTree
+    | string name | " the tree must be a token "
+    
+    string := aTree symbol.
+    
+    ^ isParser
+        ifTrue: [
+            name := TransitionName new
+                symbol: string;
+                attributes: self parserNonTerminalDefaults.
+            ^ self class fromParserTransitionSymbol: name
+        ]
+        ifFalse: [
+            ^ Grammar fromScannerCollection: string attributes: self scannerDefaults
+        ]!   ! 
+#('Sunday, April 14, 2019' '02:04:01 AM' 2131320)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkString: )) !
+
+
+!GrammarBuilder methods !
+walkString: aTree
+    | string name | " the tree must be a token "
+    
+    string := aTree symbol.
+    
+    ^ isParser
+        ifTrue: [
+            name := TransitionName new
+                symbol: string;
+                attributes: self parserNonTerminalDefaults.
+            ^ Grammar fromParserTransitionSymbol: name
+        ]
+        ifFalse: [
+            ^ Grammar fromScannerCollection: string attributes: self scannerDefaults
+        ]!  ! 
+#('Sunday, April 14, 2019' '02:04:09 AM' 2131972)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkString: )) !
+
+
+!Grammar class methods ! 
+fromParserTransitionSymbol: symbol
+    | fsm s1 s2 transition |
+    fsm := FiniteStateMachine new.
+    
+    s1 := FiniteStateMachineState new.
+    s1 isInitial: true.
+    
+    s2 := FiniteStateMachineState new.
+    s2 isFinal: true.
+    
+    transition := Transition new.
+    transition goto: s2.
+    transition name: symbol.
+    s1 transitions add: transition.
+    
+    fsm states add: s1.
+    fsm states add: s2.
+    
+    ^ fsm renumber.!  ! 
+#('Sunday, April 14, 2019' '02:07:45 AM' nil)!
+
+(CodeFiler organizerFor: Grammar class) reorganizeFrom: #(
+('instance creation' fromParserTransitionSymbol: )) !
+
+
+!GrammarBuilder methods !
+walkBuildTreeOrTokenFromName: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x].
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTree] ifFalse: [#buildToken]);
+        isRootBuilding: isParser;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!   ! 
+#('Sunday, April 14, 2019' '02:10:40 AM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeOrTokenFromName: )) !
+
+
+!GrammarBuilder methods !  
+convert: aTree
+    | type |
+    type := aTree label.
+    
+    type = #walkCharacter: ifTrue: [
+        ^aTree symbol first
+    ].
+    type = #walkString: ifTrue: [
+        ^aTree symbol asString
+    ].
+    type = #walkInteger: ifTrue: [
+        ^aTree symbol asInteger
+    ].
+    type = #walkSymbol: ifTrue: [
+        ^aTree symbol asSymbol
+    ].
+    type = #walkIdentifier: ifTrue: [
+        ^aTree symbol asSymbol
+    ].
+    
+    self halt "convert type not implemented.".!    ! 
+#('Sunday, April 14, 2019' '02:11:31 AM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' convert: )) !
+
+
+!Production methods !
+initialize! ! 
+#('Sunday, April 14, 2019' '02:12:46 AM' 2071800)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!GrammarBuilder methods ! 
+walkProduction: aTree
+    | leftPartArray rightPartFSM production |
+
+    leftPartArray := self walkTree: (aTree child: 1).
+    rightPartFSM := self walkTree: (aTree child: 2). 
+
+    production := Production new
+        name: leftPartArray first;
+        lookahead: leftPartArray second;
+        fsm: rightPartFSM.
+        
+    self grammar addProduction: production.
+    
+    ^ nil! ! 
+#('Sunday, April 14, 2019' '02:13:48 AM' 2114748)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkProduction: )) !
+
+
+"evaluate"   
+(CodeFiler organizerFor: 'Production')  addCategory: 'get/set' before: nil!
+
+!Production methods !  
+name: aName
+
+    name := aName.!  ! 
+#('Sunday, April 14, 2019' '02:14:42 AM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' name: )) !
+
+
+!Production methods !   
+lookahead: aLookahead
+
+    lookahead := aLookahead.!  ! 
+#('Sunday, April 14, 2019' '02:15:35 AM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' lookahead: )) !
+
+
+!Production methods !  
+fsm: aFsm
+
+    fsm := aFsm.!  ! 
+#('Sunday, April 14, 2019' '02:15:49 AM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' fsm: )) !
+
+
+!GrammarBuilder methods !
+walkProduction: aTree
+    | leftPartArray rightPartFSM production |
+
+    leftPartArray := self walkTree: (aTree child: 1).
+    rightPartFSM := self walkTree: (aTree child: 2). 
+
+    production := Production new
+        name: leftPartArray first;
+        lookahead: leftPartArray second;
+        fsm: rightPartFSM.
+        
+    grammar addProduction: production.
+    
+    ^ nil!  ! 
+#('Sunday, April 14, 2019' '02:16:13 AM' 2135420)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkProduction: )) !
+
+
+!Grammar methods !   
+addProduction: aProduction
+
+    productions add: aProduction.
+
+    ^ nil!   ! 
+#('Sunday, April 14, 2019' '02:16:57 AM' 2104852)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' addProduction: )) !
+
+
+!Grammar methods !
+computeSets
+
+    ^ self halt: 'first set and follow set'.!    ! 
+#('Sunday, April 14, 2019' '02:22:44 AM' 2091704)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    ^ self!   ! 
+#('Sunday, April 14, 2019' '02:28:31 AM' 2111656)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Sunday, April 14, 2019' '02:28:41 AM' 2137940)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+!GrammarBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^FiniteStateMachine fromParserTransitionSymbol: aTransitionName.!  ! 
+#('Sunday, April 14, 2019' '02:31:14 AM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!GrammarBuilder methods !
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^ FiniteStateMachine fromParserTransitionSymbol: aTransitionName!  ! 
+#('Sunday, April 14, 2019' '02:31:19 AM' 2139292)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!GrammarBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+    ^ FiniteStateMachine fromParserTransitionSymbol: aTransitionName!    ! 
+#('Sunday, April 14, 2019' '02:31:22 AM' 2139924)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!GrammarBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    
+    parameters := aTree children collect: [:x | self convert: x ]. 
+    
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+
+    ^ FiniteStateMachine fromParserTransitionSymbol: aTransitionName!  ! 
+#('Sunday, April 14, 2019' '02:31:26 AM' 2140676)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+!GrammarBuilder methods !   
+walkBuildTreeFromLeftIndex: aTree
+    | parameters aTransitionName |
+    
+    parameters := aTree children collect: [:x | self convert: x ]. 
+
+    aTransitionName := TransitionName new
+        action: (isParser ifTrue: [#buildTreeFromIndex] ifFalse: [#buildToken]);
+        isRootBuilding: true;
+        parameters: parameters;
+        symbol: aTree label.
+
+    ^ FiniteStateMachine fromParserTransitionSymbol: aTransitionName!  ! 
+#('Sunday, April 14, 2019' '02:31:29 AM' 2141436)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkBuildTreeFromLeftIndex: )) !
+
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+!GrammarBuilder methods !   
+processDefaultNow
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '02:39:45 AM' nil)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' processDefaultNow )) !
+
+
+ 
+'
+GrammarBuilder promptForGrammar
+'!
+
+"evaluate"  
+Grammar removeSelector: #eSucessorsOf:!
+
+   
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+followSets
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '02:48:49 AM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+firstSets
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '02:48:58 AM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods ! 
+eGeneratingNonterminals
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '02:49:52 AM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+
+!Grammar methods ! 
+printOn: aStream
+
+    aStream << 'Grammer'.
+    
+    aStream cr; << 'End'.! ! 
+#('Sunday, April 14, 2019' '03:02:07 AM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods ! 
+printOn: aStream
+
+    aStream << 'Grammer'; cr.
+    ""
+    
+    aStream << 'Productions:'; cr.
+    "productions do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Macros:'; cr.
+    "macros do: [:x |
+        x printOn aStream
+    ]."
+    
+    ""
+    aStream cr; << 'End'.!   ! 
+#('Sunday, April 14, 2019' '03:05:22 AM' 2143956)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream << 'Grammer'; cr.
+    ""
+    
+    aStream << 'Productions:'; cr.
+    "productions do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Macros:'; cr.
+    "macros do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    ""
+    aStream cr; << 'End'.!    ! 
+#('Sunday, April 14, 2019' '03:06:14 AM' 2144196)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream << 'Grammer'; cr.
+    ""
+    
+    aStream << 'Productions:'; cr.
+    "productions do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Macros:'; cr.
+    "macros do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'First Set:'; cr.
+    
+    aStream << 'Follow Set:'; cr.
+    
+    ""
+    aStream cr; << 'End'.!   ! 
+#('Sunday, April 14, 2019' '03:06:51 AM' 2144748)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream << 'Grammer'.
+    
+    
+    
+    ""
+    
+    aStream << 'Productions:'; cr.
+    "productions do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Macros:'; cr.
+    "macros do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'First Set:'; cr.
+    
+    aStream << 'Follow Set:'; cr.
+    
+    ""
+    aStream cr; << 'End'.! ! 
+#('Sunday, April 14, 2019' '03:07:15 AM' 2145408)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream << 'Grammer'; cr.
+    
+    
+    
+    ""
+    
+    aStream << 'Productions:'; cr.
+    "productions do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Macros:'; cr.
+    "macros do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'First Set:'; cr.
+    
+    aStream << 'Follow Set:'; cr.
+    
+    ""
+    aStream cr; << 'End'.! ! 
+#('Sunday, April 14, 2019' '03:07:48 AM' 2146148)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    "productions do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Macros:'; cr.
+    "macros do: [:x |
+        x printOn aStream
+    ]."
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'First Set:'; cr.
+    
+    aStream << 'Follow Set:'; cr.
+    
+    " "
+    aStream cr; << 'End'.! ! 
+#('Sunday, April 14, 2019' '03:08:07 AM' 2146900)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        "x printOn aStream"
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        "x printOn aStream"
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        "x printOn aStream"
+    ].
+    
+    aStream << 'First Set:'; cr.
+    
+    aStream << 'Follow Set:'; cr.
+    
+    " "
+    aStream cr; << 'End'.!   ! 
+#('Sunday, April 14, 2019' '03:09:00 AM' 2147656)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"  
+(CodeFiler setAndInitializeOrganizerFor: Production to: (MethodBasedOrganizer fromArray: #(('initializing' initialize)
+('get/set' fsm: lookahead: name:)))).!
+
+!Production methods !   
+printOn: aStream!   ! 
+#('Sunday, April 14, 2019' '03:27:34 AM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' printOn: )) !
+
+
+"evaluate"   
+Production removeSelector: #printOn:!
+
+"evaluate"   
+(CodeFiler organizerFor: 'Production')  addCategory: 'printing' before: nil!
+
+!Production methods ! 
+printOn: aStream!   ! 
+#('Sunday, April 14, 2019' '03:28:21 AM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '.! ! 
+#('Sunday, April 14, 2019' '03:28:44 AM' 2149656)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"
+"*** saved image on: Sunday, April 14, 2019 03:41:32 AM ***"!
