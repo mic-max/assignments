@@ -65648,3 +65648,4063 @@ printOn: aStream
 
 "evaluate"
 "*** saved image on: Sunday, April 14, 2019 03:41:32 AM ***"!
+
+!Grammar methods !   
+eGeneratingNonterminals
+    | eGens |
+
+    eGens := OrderedCollection new.
+    
+    nonTerminals do: [:x |
+        (self isEGeneratingNonterminal: x) ifTrue: [
+            eGens add: x.
+        ].
+    ].
+
+    self halt.
+    
+    ^ eGens!  ! 
+#('Sunday, April 14, 2019' '04:02:16 PM' 2143740)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    | name |
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    grammar printOn: Transcript.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Sunday, April 14, 2019' '04:19:42 PM' 2138496)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!Grammar methods !
+firstSets
+    |  |
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '04:30:48 PM' 2143552)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+productionFor: aNonterminal
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '06:08:09 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' productionFor: )) !
+
+
+"define class"  
+
+Object subclass: #Production
+  instanceVariableNames: 
+    ' name lookahead fsm isEGenerating '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Production to: ''!
+
+
+"evaluate" 
+
+Object subclass: #Production
+  instanceVariableNames: 
+    ' name lookahead fsm isEGenerating '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!Production methods !  
+initialize
+
+    isEGenerating := false.!  ! 
+#('Sunday, April 14, 2019' '06:14:19 PM' 2135228)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!TransitionName methods ! 
+isSemanticAction
+
+    ^ false!    ! 
+#('Sunday, April 14, 2019' '06:15:41 PM' nil)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+
+!TransitionName methods !
+isSemanticAction
+
+    self halt.
+
+    ^ false!  ! 
+#('Sunday, April 14, 2019' '06:15:56 PM' 2152716)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+
+!TransitionName methods !   
+isSemanticAction
+
+    self halt.
+
+    ^ self hasAttributes! ! 
+#('Sunday, April 14, 2019' '06:18:15 PM' 2152932)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+
+!TransitionName methods !   
+hasAttributes
+
+    ^ attributes notNil.!  ! 
+#('Sunday, April 14, 2019' '06:18:26 PM' 1736460)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' hasAttributes )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' hasAttributes )) !
+
+
+!Grammar methods !
+isNonterminal: symbol
+    
+    self halt.
+    ^ nonTerminals includes: symbol!   ! 
+#('Sunday, April 14, 2019' '06:19:12 PM' 2103848)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' isNonterminal: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' isNonterminal: )) !
+
+
+!Grammar methods !
+eGeneratingNonterminals
+    | changed |
+
+    changed := true.
+    
+    nonTerminals do: [:x |
+        x isEGenerating: false.
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '06:25:36 PM' 2150228)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+
+!Grammar methods !  
+eGeneratingNonterminals
+    | changed |
+
+    changed := true.
+    
+    " for each nonterminal or production "
+    nonTerminals do: [:x |
+        x isEGenerating: false.
+    ].
+    productions do: [:x |
+        x isEGenerating: false.
+    ].
+    
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '06:26:12 PM' 2154260)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+
+!Grammar methods !  
+eGeneratingNonterminals
+    | changed |
+
+    changed := true.
+    
+    " for each nonterminal or production "
+    nonTerminals do: [:x |
+        x isEGenerating: false.
+    ].
+    productions do: [:x |
+        x isEGenerating: false.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            (x isEGenerating) ifFalse: [
+                (self slowlyComputedIsEGenerating: x) ifTrue: [
+                    x isEGenerating: true.
+                    changed := true.
+                ].
+            ].
+        ].
+    ].
+    
+    self halt.! ! 
+#('Sunday, April 14, 2019' '06:29:31 PM' 2154692)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eGeneratingNonterminals )) !
+
+
+!Production methods !   
+firstSet
+    | firstSet |
+    
+    firstSet := OrderedCollection new.
+    
+    self halt.! ! 
+#('Sunday, April 14, 2019' '06:35:32 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' firstSet )) !
+
+
+!Production methods !
+firstSet
+    | firstSet |
+    
+    firstSet := OrderedCollection new.
+    
+    self halt.
+    
+    ^ firstSet!   ! 
+#('Sunday, April 14, 2019' '06:35:39 PM' 2156144)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' firstSet )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' firstSet )) !
+
+
+!Production methods !   
+firstSet
+    | firstSet |
+    
+    firstSet := OrderedCollection new.
+    
+    self halt.
+    " dont include e "
+    ^ firstSet! ! 
+#('Sunday, April 14, 2019' '06:35:55 PM' 2156404)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' firstSet )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' firstSet )) !
+
+
+"evaluate"  
+(CodeFiler organizerFor: 'Production')  addCategory: 'ops' before: 'get/set'!
+
+"evaluate"   
+Production removeSelector: #firstSet!
+
+!Production methods !
+firstSet
+    | firstSet |
+    
+    firstSet := OrderedCollection new.
+    
+    self halt.
+    " dont include e "
+    ^ firstSet! ! 
+#('Sunday, April 14, 2019' '06:36:37 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('ops' firstSet )) !
+
+
+!Production methods !
+followSet
+    | followSet |
+    
+    followSet := OrderedCollection new.
+    
+    self halt.
+    " dont include e "
+    ^ followSet! ! 
+#('Sunday, April 14, 2019' '06:37:07 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('ops' followSet )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '06:40:20 PM' 2151464)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '06:42:03 PM' 2157916)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '06:46:39 PM' 2158316)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            self eSuccessorsOf: (x fsm states) do: [:y |
+                self halt.
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '06:46:59 PM' 2158856)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            self eSuccessorsOf: (x fsm states) do: [:y |
+                (true) ifTrue: [
+                    x firstSet addIfAbsent: y.
+                    changed := true.
+                ].
+                
+                (true) ifTrue: [
+                    (false) ifFalse: [
+                        x firstSet addIfAbsent: y.
+                        changed := true.
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '06:52:00 PM' 2159396)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            self eSuccessorsOf: (x fsm states) do: [:y |
+                (true) ifTrue: [
+                    x firstSet addIfAbsent: y.
+                    changed := true.
+                ].
+                
+                (self isNonterminal: y) ifTrue: [
+                    (false) ifFalse: [
+                        x firstSet addIfAbsent: y.
+                        changed := true.
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.! ! 
+#('Sunday, April 14, 2019' '06:54:30 PM' 2160024)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed originalSize |
+    
+    changed := true.
+    
+    productions do: [:x |
+        x firstSet: OrderedCollection new.
+    ].
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            self eSuccessorsOf: (x fsm states) do: [:y |
+                (self isNonterminal: x) ifFalse: [
+                    x firstSet addIfAbsent: y.
+                    changed := true.
+                ]
+                ifTrue: [
+                    originalSize := x firstSet size.
+                    x firstSet addAllIfAbsent: y firstSet.
+                    (x firstSet size > originalSize) ifTrue: [
+                        changed := true.
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '07:00:05 PM' 2160992)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+followSets
+    | changed |
+
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '07:01:33 PM' 2143364)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '07:02:10 PM' 2163036)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '07:03:10 PM' 2163328)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            " todo slide 37"
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '07:10:45 PM' 2163716)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+"define class"
+
+Object subclass: #Production
+  instanceVariableNames: 
+    ' name lookahead fsm isEGenerating firstSet followSet '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: Production to: ''!
+
+
+"evaluate"  
+
+Object subclass: #Production
+  instanceVariableNames: 
+    ' name lookahead fsm isEGenerating firstSet followSet '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!Grammar methods !  
+computeSets
+
+    productions do: [:x |
+        x firstSet.
+        x followSet.
+    ].
+    
+    ^ self halt: 'first set and follow set'.!    ! 
+#('Sunday, April 14, 2019' '07:15:34 PM' 2137536)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+
+!GrammarBuilder methods !   
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    isParser ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ].
+    
+    " else "
+    self halt: 'TODO implement: scanner walkIdentifier'.
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromParserTransitionSymbol: name!    ! 
+#('Sunday, April 14, 2019' '07:22:32 PM' 2126316)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!GrammarBuilder methods !
+walkMinus: aTree
+    | fsm1 fsm2 |
+    
+    fsm1 := self walkTree: (aTree child: 1).
+    fsm2 := self walkTree: (aTree child: 2).
+    
+    ^ fsm1 minus: fsm2!    ! 
+#('Sunday, April 14, 2019' '07:23:54 PM' 2069432)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkMinus: )) !
+
+
+!Production methods ! 
+firstSet
+    
+    ^ firstSet! ! 
+#('Sunday, April 14, 2019' '07:24:31 PM' 2157320)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('ops' firstSet )) !
+
+
+!Production methods !
+followSet
+    
+    ^ followSet!   ! 
+#('Sunday, April 14, 2019' '07:24:54 PM' 2157616)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('ops' followSet )) !
+
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar computeSets.
+    
+    grammar printOn: Transcript.
+    
+    self halt.
+    
+    ^ self! ! 
+#('Sunday, April 14, 2019' '07:26:00 PM' 2150760)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"define class"  
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser tree isParser grammar '
+  classVariableNames: ''
+  poolDictionaries: ''!CodeFiler setCommentFor: GrammarBuilder to: ''!
+
+
+"evaluate" 
+
+Object subclass: #GrammarBuilder
+  instanceVariableNames: 
+    ' parser tree isParser grammar '
+  classVariableNames: ''
+  poolDictionaries: ''
+  categories: #( 'Grammar Constructor' )
+  comment: ''!
+
+!GrammarBuilder methods !  
+initialize
+    parser := Parser new.
+
+    grammar := Grammar new.
+    
+    self setupSponsorAndTables.!    ! 
+#('Sunday, April 14, 2019' '07:27:17 PM' 2088492)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!Production methods ! 
+initialize
+
+    isEGenerating := false.
+    firstSet := OrderedCollection new.
+    followSet := OrderedCollection new.! ! 
+#('Sunday, April 14, 2019' '07:32:50 PM' 2152400)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('initializing' initialize )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('initializing' initialize )) !
+
+
+!Grammar methods !
+firstSets
+    | changed originalSize |
+    
+    changed := true.
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:x |
+            self eSuccessorsOf: (x fsm states) do: [:y |
+                (self isNonterminal: x) ifFalse: [
+                    x firstSet addIfAbsent: y.
+                    changed := true.
+                ]
+                ifTrue: [
+                    originalSize := x firstSet size.
+                    x firstSet addAllIfAbsent: y firstSet.
+                    (x firstSet size > originalSize) ifTrue: [
+                        changed := true.
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '07:36:18 PM' 2161976)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed originalSize |
+    
+    changed := true.
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            self eSuccessorsOf: (production fsm allInitial) do: [:state |
+                state transitions do: [:transition |
+                    (transition name isSemanticAction) ifFalse: [
+                        (self isNonterminal: transition name symbol) ifFalse: [
+                            (production firstSet includesIdentical: transition name symbol) ifFalse: [
+                                production firstSet add: transition name symbol.
+                                changed := true.
+                            ].
+                        ]
+                        ifTrue: [
+                            (self productionFor: transition name symbol) firstSet do: [:b |
+                                 (production firstSet includesIdentical: b) ifFalse: [
+                                    production firstSet add: b.
+                                    changed := true.
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '07:46:30 PM' 2169152)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            self eSuccessorsOf: (production fsm allInitial) do: [:state |
+                state transitions do: [:transition |
+                    (transition name isSemanticAction) ifFalse: [
+                        (self isNonterminal: transition name symbol) ifFalse: [
+                            (production firstSet includesIdentical: transition name symbol) ifFalse: [
+                                production firstSet add: transition name symbol.
+                                changed := true.
+                            ].
+                        ]
+                        ifTrue: [
+                            (self productionFor: transition name symbol) firstSet do: [:b |
+                                 (production firstSet includesIdentical: b) ifFalse: [
+                                    production firstSet add: b.
+                                    changed := true.
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '07:46:36 PM' 2170128)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+
+'
+GrammarBuilder promptForGrammar
+
+'!
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '08:23:04 PM' 2164240)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "if transition goto q"
+                    self eSuccessorsOf: (transition goto) do: [:esucc |
+                        
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '08:33:09 PM' 2173208)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "if transition goto q"
+                    self eSuccessorsOf: (transition goto) do: [:esucc |
+                        (true && false) ifTrue: [
+                            
+                        ].
+                        
+                        (true && false) ifTrue: [
+                        
+                        ].
+                        
+                        (esucc isFinal && false) ifTrue: [
+                            
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.! ! 
+#('Sunday, April 14, 2019' '08:39:42 PM' 2173740)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+  
+'(true & false)'!
+
+!Grammar methods !   
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "if transition goto q"
+                    self eSuccessorsOf: (transition goto) do: [:esucc |
+                        (true & false) ifTrue: [
+                            
+                        ].
+                        
+                        (true & false) ifTrue: [
+                        
+                        ].
+                        
+                        (esucc isFinal & false) ifTrue: [
+                            
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '08:42:00 PM' 2174568)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "if transition goto q"
+                    self eSuccessorsOf: (transition goto) do: [:esucc |
+                        (true & false) ifTrue: [
+                            
+                        ].
+                        
+                        (true & false) ifTrue: [
+                        
+                        ].
+                        
+                        (esucc isFinal & false) ifTrue: [
+                            
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '08:44:51 PM' 2175780)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "if transition goto q"
+                    self eSuccessorsOf: (transition goto) do: [:esucc |
+                        (true & false) ifTrue: [
+                            
+                        ].
+                        
+                        (true & false) ifTrue: [
+                        
+                        ].
+                        
+                        (esucc isFinal & false) ifTrue: [
+                            
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '08:45:38 PM' 2176964)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            self eSuccessorsOf: (production fsm allInitial) do: [:state |
+                state transitions do: [:transition |
+                    (transition name isSemanticAction) ifFalse: [
+                        (self isNonterminal: transition name symbol) ifFalse: [
+                            (production firstSet includesIdentical: transition name symbol) ifFalse: [
+                                production firstSet add: transition name symbol.
+                                changed := true.
+                            ].
+                        ]
+                        ifTrue: [
+                            (self productionFor: transition name symbol) firstSet do: [:b |
+                                 (production firstSet includesIdentical: b) ifFalse: [
+                                    production firstSet add: b.
+                                    changed := true.
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '08:47:32 PM' 2171652)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Grammar methods !  
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "b := ."
+                    q := transition goto.
+                    
+                    self eSuccessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ]
+                        ifFalse: [
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    (et name symbol & true) ifTrue: [    
+                                        (b followSet includes: a) ifFalse: [
+                                            b followSet add: a.
+                                            changed := true.
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        self isNonterminal: (transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            b followSet includesAll: c firstSet ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '09:39:38 PM' 2178148)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "b := ."
+                    q := transition goto.
+                    
+                    self eSuccessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (et name symbol & true) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '09:40:38 PM' 2180844)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    "b := ."
+                    q := transition goto.
+                    
+                    self eSuccessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (et name symbol & true) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '09:40:54 PM' 2183160)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition.
+                    q := transition goto.
+                    
+                    self eSuccessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (et name symbol & true) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!  ! 
+#('Sunday, April 14, 2019' '09:43:03 PM' 2185332)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!GrammarBuilder methods ! 
+walkIdentifier: aTree
+    | name |
+    
+    (grammar macros includesKey: aTree symbol) ifTrue: [
+        ^ (grammar macros at: aTree symbol) copy
+    ].
+
+    name := TransitionName new symbol: aTree symbol.
+
+    isParser ifTrue: [
+        (grammar nonTerminals includes: aTree) ifTrue: [
+            name attributes: self parserNonTerminalDefaults
+        ]
+        ifFalse: [
+            name attributes: self parserTerminalDefaults
+        ].
+        
+        ^ FiniteStateMachine fromParserTransitionSymbol: name
+    ].
+    
+    name attributes: self scannerDefaults.
+    
+    ^ FiniteStateMachine fromParserTransitionSymbol: name!    ! 
+#('Sunday, April 14, 2019' '09:44:31 PM' 2165660)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkIdentifier: )) !
+
+
+!FiniteStateMachine methods !
+allInitialStateTransitionSymbol
+
+    | symbols |
+    
+    symbols := OrderedCollection new.
+    
+    self states do: [:state |
+        (state isInitial) ifTrue: [
+            state transitions do: [:transition | 
+                symbols add: transition name symbol.
+            ].
+        ].
+    ].
+
+    ^ symbols!    ! 
+#('Sunday, April 14, 2019' '09:44:54 PM' 2130764)!
+
+(CodeFiler organizerFor: FiniteStateMachine) reorganizeFrom: #(
+('ops' allInitialStateTransitionSymbol )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+!GrammarBuilder methods !   
+processDefaultNow
+
+    " TODO "!  ! 
+#('Sunday, April 14, 2019' '09:57:21 PM' 2142996)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' processDefaultNow )) !
+
+
+!GrammarBuilder methods !
+processDefaultNow
+
+    ^ self!    ! 
+#('Sunday, April 14, 2019' '09:58:30 PM' 2191396)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' processDefaultNow )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('processing' processDefaultNow )) !
+
+
+!Grammar methods !  
+computeSets
+
+    self firstSets.
+    self followSets.
+    
+    ^ self halt: 'first set and follow set'.!   ! 
+#('Sunday, April 14, 2019' '10:02:30 PM' 2165260)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+
+!ReduceTable methods !  
+run
+    "This is a 'Reduce to A' table where A is the nonterminal to reduce to (self nonterminal). Pick up the new tree
+    and simulate a readahead of A where the new tree is associated with A"
+    | tree stack children token pair |
+
+    "Pick up the new tree if there is one OR bubble up the one tree in the stack between
+    'left' and 'right' or nil if there isn't one. There better not be 2 or more."
+    transducer newTree notNil
+        ifTrue: [
+        tree := transducer newTree. transducer newTree: nil]
+            ifFalse: [
+               "Just capture the one subtree (if any) and have it ready for stacking."
+               stack := transducer treeStack.
+               children := (transducer left to: transducer right)
+                  collect: [:index | stack at: index] when: [:index | (stack at: index) notNil].
+               children size = 0 ifTrue: [tree := nil] ifFalse: [
+               children size = 1 ifTrue: [tree := children first] ifFalse: [
+               children size > 1 ifTrue: [self halt: 'Design error: more than 1 child in ReduceTable'. tree := children last]]]].
+
+    "Clear the stacks between left and right (inclusive)."
+    self transducer left to: self transducer right do: [:x |
+        self transducer tableNumberStack removeLast.
+        self transducer tokenStack removeLast.
+        self transducer treeStack removeLast.
+    ].
+
+    token := Token new label: nonterminal; symbol: nonterminal.
+    pair := transitions at: transducer tableNumberStack last ifAbsent: [ self reportDesignError ].
+    
+    (pair first includes: $S) ifTrue: [
+        self transducer treeStack add: tree.
+        self transducer tokenStack add: token.
+        self transducer tableNumberStack add: pair second.
+    ].
+    self transducer right: self transducer treeStack size.
+    self transducer left: self transducer right + 1.
+    ^ pair second.! ! 
+#('Sunday, April 14, 2019' '10:04:01 PM' 1600504)!
+
+(CodeFiler organizerFor: ReduceTable) reorganizeFrom: #(
+('running' run )) !
+
+
+!ReduceTable methods !   
+run
+    "This is a 'Reduce to A' table where A is the nonterminal to reduce to (self nonterminal). Pick up the new tree
+    and simulate a readahead of A where the new tree is associated with A"
+    | tree stack children token pair |
+
+    "Pick up the new tree if there is one OR bubble up the one tree in the stack between
+    'left' and 'right' or nil if there isn't one. There better not be 2 or more."
+    transducer newTree notNil
+        ifTrue: [
+        tree := transducer newTree. transducer newTree: nil]
+            ifFalse: [
+               "Just capture the one subtree (if any) and have it ready for stacking."
+               stack := transducer treeStack.
+               children := (transducer left to: transducer right)
+                  collect: [:index | stack at: index] when: [:index | (stack at: index) notNil].
+               children size = 0 ifTrue: [tree := nil] ifFalse: [
+               children size = 1 ifTrue: [tree := children first] ifFalse: [
+               children size > 1 ifTrue: [self halt: 'Design error: more than 1 child in ReduceTable'. tree := children last]]]].
+
+    "Clear the stacks between left and right (inclusive)."
+    self transducer left to: self transducer right do: [:x |
+        self transducer tableNumberStack removeLast.
+        self transducer tokenStack removeLast.
+        self transducer treeStack removeLast.
+    ].
+
+    token := Token new label: nonterminal; symbol: nonterminal.
+    pair := transitions at: transducer tableNumberStack last ifAbsent: [ self reportDesignError ].
+    
+    (pair first includes: $S) ifTrue: [
+        (pair first includes: $N) ifTrue: [
+            self transducer treeStack add: tree.
+        ]
+        ifFalse: [
+            self transducer treeStack add: nil.
+        ].
+        self transducer tokenStack add: token.
+        self transducer tableNumberStack add: pair second.
+        self transducer right: self transducer treeStack size.
+        self transducer left: self transducer right + 1.
+    ].
+
+    ^ pair second!   ! 
+#('Sunday, April 14, 2019' '10:06:16 PM' 2192300)!
+
+(CodeFiler organizerFor: ReduceTable) reorganizeFrom: #(
+('running' run )) !
+
+
+!Production methods !
+fsm
+
+    ^ fsm!   ! 
+#('Sunday, April 14, 2019' '10:07:18 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' fsm )) !
+
+
+!Grammar methods !
+eSuccessorsOf: states do: aBlock
+
+    | all |
+    
+    all := OrderedCollection new addAll: states.
+    
+    all do: [:state |
+        aBlock value: state.
+        state transitionsDo: [:name :goto |
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].!    ! 
+#('Sunday, April 14, 2019' '10:07:45 PM' nil)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('no category methods' eSuccessorsOf:do: )) !
+
+
+!Grammar methods ! 
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            self eSucessorsOf: (production fsm allInitial) do: [:state |
+                state transitions do: [:transition |
+                    (transition name isSemanticAction) ifFalse: [
+                        (self isNonterminal: transition name symbol) ifFalse: [
+                            (production firstSet includesIdentical: transition name symbol) ifFalse: [
+                                production firstSet add: transition name symbol.
+                                changed := true.
+                            ].
+                        ]
+                        ifTrue: [
+                            (self productionFor: transition name symbol) firstSet do: [:b |
+                                 (production firstSet includesIdentical: b) ifFalse: [
+                                    production firstSet add: b.
+                                    changed := true.
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '10:08:05 PM' 2179332)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!TransitionName methods !  
+isSemanticAction
+
+    ^ self hasAttributes!   ! 
+#('Sunday, April 14, 2019' '10:08:29 PM' 2153268)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+
+!Grammar methods !   
+eSucessorsOf: states do: aBlock
+
+    | all name goto |
+    
+    all := OrderedCollection new addAll: states.
+    
+    all do: [:state |
+        aBlock value: state.
+        state transitions do: [:transition |
+            name := transition name.
+            goto := transition goto.
+            
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].!    ! 
+#('Sunday, April 14, 2019' '10:11:25 PM' 2083340)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+
+!Grammar methods !
+isNonterminal: symbol
+
+    ^ nonTerminals includes: symbol!   ! 
+#('Sunday, April 14, 2019' '10:12:00 PM' 2153928)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' isNonterminal: )) !
+
+
+!Grammar methods !
+firstSets
+    | changed |
+    
+    changed := true.
+    
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            self eSucessorsOf: (production fsm allInitial) do: [:state |
+                state transitions do: [:transition |
+                    (transition name isSemanticAction) ifFalse: [
+                        (self isNonterminal: transition name symbol) ifFalse: [
+                            (production firstSet includesIdentical: transition name symbol) ifFalse: [
+                                production firstSet add: transition name symbol.
+                                changed := true.
+                            ].
+                        ]
+                        ifTrue: [
+                            (self productionFor: transition name symbol) firstSet do: [:b |
+                                 (production firstSet includesIdentical: b) ifFalse: [
+                                    production firstSet add: b.
+                                    changed := true.
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].!  ! 
+#('Sunday, April 14, 2019' '10:12:17 PM' 2197320)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' firstSets )) !
+
+
+!Production methods !  
+lookahead
+
+    ^ lookahead!   ! 
+#('Sunday, April 14, 2019' '10:12:58 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' lookahead )) !
+
+
+!Production methods !   
+followSet: aFollowSet
+
+    followSet := aFollowSet.!  ! 
+#('Sunday, April 14, 2019' '10:14:18 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' followSet: )) !
+
+
+!Production methods !  
+printOn: aStream
+
+ lookahead fsm
+    aStream << 'Production: '; << name.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'First Set: '; cr; << '    '; << firstSet storeString; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.!  ! 
+#('Sunday, April 14, 2019' '10:22:15 PM' 2149844)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'First Set: '; cr; << '    '; << firstSet storeString; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.!    ! 
+#('Sunday, April 14, 2019' '10:22:51 PM' 2201672)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"
+Grammar removeSelector: #eSuccessorsOf:do:!
+
+"evaluate" 
+(CodeFiler organizerFor: Grammar) removeCategory: 'no category methods' ifAbsent: [nil]!
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (et name symbol & true) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '10:26:28 PM' 2187504)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+  
+'states class = OrderedCollection'!
+
+   
+'states class'!
+
+!Grammar methods ! 
+eSucessorsOf: states do: aBlock
+    | all name goto |
+    
+    all := OrderedCollection new.
+    
+    (states class = OrderedCollection) ifTrue: [
+        all addAll: states.
+    ]
+    ifFalse: [
+        all add: states.
+    ].
+    
+    all do: [:state |
+        aBlock value: state.
+        state transitions do: [:transition |
+            name := transition name.
+            goto := transition goto.
+            
+            (self isEGeneratingName: name) ifTrue: [
+                all addIfIdenticalAbsent: goto
+            ]
+        ]
+    ].!   ! 
+#('Sunday, April 14, 2019' '10:35:04 PM' 2198988)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' eSucessorsOf:do: )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (self isNonterminal: a not & true) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '10:37:47 PM' 2203104)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (self isNonterminal: a not & a attributes includes: $R) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '10:43:09 PM' 2206284)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition name symbol.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                (self isNonterminal: a not & a attributes includes: $R) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!   ! 
+#('Sunday, April 14, 2019' '10:50:09 PM' 2208668)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+productionFor: aNonterminal
+
+    productions do: [:production |
+        (aNonterminal = production name) ifTrue: [ ^ production ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '10:51:43 PM' 2151744)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('query' productionFor: )) !
+
+
+!Production methods !   
+name
+
+    ^ name! ! 
+#('Sunday, April 14, 2019' '10:52:13 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' name )) !
+
+
+!Grammar methods !   
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition name symbol.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                ((self isNonterminal: a) not & a attributes includes: $R) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.! ! 
+#('Sunday, April 14, 2019' '10:52:41 PM' 2211072)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition name symbol.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                            " if not B followSet contains all of A follow set add absent A follow set to B follow followSet changed = true"
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                ((self isNonterminal: a) not & et attributes includes: $R) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.!    ! 
+#('Sunday, April 14, 2019' '10:53:09 PM' 2214004)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    b := self productionFor: transition name symbol.
+                    q := transition goto.
+                    
+                    self eSucessorsOf: q do: [:esucc |
+                        esucc isFinal ifTrue: [
+                            (b followSet includesAll: production followSet) ifFalse: [
+                                b followSet addAllIfAbsent: production followSet.
+                                changed := true.
+                            ].
+                        ].
+                        q transitions do: [:et |
+                            false ifFalse: [
+                                a := et name symbol.
+                                ((self isNonterminal: a) not & et attributes includes: $R) ifTrue: [    
+                                    (b followSet includes: a) ifFalse: [
+                                        b followSet add: a.
+                                        changed := true.
+                                    ].
+                                ]
+                                ifFalse: [
+                                    self isNonterminal: (transition name symbol) ifTrue: [
+                                        c := self productionFor: a.
+                                        b followSet includesAll: c firstSet ifFalse: [
+                                            b followSet addAllIfAbsent: c firstSet.
+                                            changed := true.
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.! ! 
+#('Sunday, April 14, 2019' '10:53:51 PM' 2216420)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    (self isNonterminal: transition name symbol) ifTrue: [
+                        b := self productionFor: transition name symbol.
+                        q := transition goto.
+                        
+                        self eSucessorsOf: q do: [:esucc |
+                            esucc isFinal ifTrue: [
+                                (b followSet includesAll: production followSet) ifFalse: [
+                                    b followSet addAllIfAbsent: production followSet.
+                                    changed := true.
+                                ].
+                            ].
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    ((self isNonterminal: a) not & et attributes includes: $R) ifTrue: [    
+                                        (b followSet includes: a) ifFalse: [
+                                            b followSet add: a.
+                                            changed := true.
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        self isNonterminal: (transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            b followSet includesAll: c firstSet ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].
+
+    self halt.! ! 
+#('Sunday, April 14, 2019' '10:57:33 PM' 2218840)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    (self isNonterminal: transition name symbol) ifTrue: [
+                        b := self productionFor: transition name symbol.
+                        q := transition goto.
+                        
+                        self eSucessorsOf: q do: [:esucc |
+                            esucc isFinal ifTrue: [
+                                (b followSet includesAll: production followSet) ifFalse: [
+                                    b followSet addAllIfAbsent: production followSet.
+                                    changed := true.
+                                ].
+                            ].
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    ((self isNonterminal: a) not & et attributes includes: $R) ifTrue: [    
+                                        (b followSet includes: a) ifFalse: [
+                                            b followSet add: a.
+                                            changed := true.
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        self isNonterminal: (transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            b followSet includesAll: c firstSet ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].!   ! 
+#('Sunday, April 14, 2019' '10:57:48 PM' 2221116)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+computeSets
+
+    self firstSets.
+    self followSets.!   ! 
+#('Sunday, April 14, 2019' '10:59:14 PM' 2191940)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' computeSets )) !
+
+
+!GrammarBuilder methods !
+walkGrammar: aTree
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar firstSets.
+    grammar followSets.
+    
+    grammar printOn: Transcript.
+    
+    self halt.
+    
+    ^ self!  ! 
+#('Sunday, April 14, 2019' '10:59:46 PM' 2167332)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+"evaluate"  
+Grammar removeSelector: #computeSets!
+
+ 
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        "x printOn aStream"
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        "x printOn aStream"
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        "x printOn aStream"
+    ].
+    
+    aStream << 'First Set:'; cr.
+    
+    aStream << 'Follow Set:'; cr.
+    
+    " "
+    aStream cr; << 'End'.!   ! 
+#('Sunday, April 14, 2019' '11:00:44 PM' 2148396)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'First Set: '; cr.
+    aStream << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.!  ! 
+#('Sunday, April 14, 2019' '11:02:41 PM' 2202300)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    "
+    aStream cr; << 'First Set: '; cr.
+    aStream << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.
+    "!    ! 
+#('Sunday, April 14, 2019' '11:03:35 PM' 2227844)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm; cr.
+    "
+    aStream cr; << 'First Set: '; cr.
+    aStream << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.
+    "!    ! 
+#('Sunday, April 14, 2019' '11:05:04 PM' 2228476)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    " "
+    aStream cr; << 'End'.!  ! 
+#('Sunday, April 14, 2019' '11:05:49 PM' 2227092)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    " "
+    aStream cr; << 'End'.!  ! 
+#('Sunday, April 14, 2019' '11:06:21 PM' 2229824)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        x printOn aStream
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        x printOn aStream
+    ].
+    
+    " "
+    aStream cr; << 'End'.!   ! 
+#('Sunday, April 14, 2019' '11:06:43 PM' 2230484)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods ! 
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << x
+    ].
+    
+    " "
+    aStream cr; << 'End'.! ! 
+#('Sunday, April 14, 2019' '11:06:52 PM' 2231144)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+   
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead storeString; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm; cr.
+    "
+    aStream cr; << 'First Set: '; cr.
+    aStream << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.
+    "!    ! 
+#('Sunday, April 14, 2019' '11:08:51 PM' 2229124)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead asString; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm; cr.
+    "
+    aStream cr; << 'First Set: '; cr.
+    aStream << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.
+    "!   ! 
+#('Sunday, April 14, 2019' '11:09:15 PM' 2232328)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' '; << x; cr.
+    ].
+    
+    " "
+    aStream cr; << 'End'.!    ! 
+#('Sunday, April 14, 2019' '11:10:20 PM' 2231716)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' '; << x; cr.
+    ].
+    
+    " "
+    aStream cr; << 'End'.!    ! 
+#('Sunday, April 14, 2019' '11:10:55 PM' 2233848)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Begin Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].
+    
+    " "
+    aStream cr; << 'End Grammar'.!    ! 
+#('Sunday, April 14, 2019' '11:11:53 PM' 2234508)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Begin Grammer'; cr.
+    " "
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].
+    
+    " "
+    aStream cr; << 'End Grammar'.!    ! 
+#('Sunday, April 14, 2019' '11:12:05 PM' 2235168)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printOn: aStream
+
+    aStream << ' - Production: '; << name; << '{'; << lookahead asString; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm; cr.
+    "
+    aStream cr; << 'First Set: '; cr.
+    aStream << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm storeString; cr.
+    "!    ! 
+#('Sunday, April 14, 2019' '11:14:38 PM' 2233092)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << ' - Production: '; << name; << '{'; << lookahead asString; << '}'.
+    isEGenerating ifTrue: [
+        aStream << 'e-gen'.
+    ].
+    
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm; cr.
+    aStream cr; << 'First Set: '; cr; << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.! ! 
+#('Sunday, April 14, 2019' '11:17:22 PM' 2236532)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"
+"*** saved image on: Sunday, April 14, 2019 11:32:18 PM ***"!
+
+ 
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].! ! 
+#('Sunday, April 14, 2019' '11:34:41 PM' 2235848)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].! ! 
+#('Sunday, April 14, 2019' '11:34:50 PM' 2237992)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead asString; << '}'.
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream cr; << 'FSM: '; cr; << '    '; << fsm; cr.
+    aStream cr; << 'First Set: '; cr; << firstSet; cr.
+    aStream cr; << 'Follow Set: '; cr; << '    '; << followSet storeString; cr.!   ! 
+#('Sunday, April 14, 2019' '11:37:02 PM' 2237248)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name; << '{'; << lookahead asString; << '}'; cr.
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    aStream << '    firstSet: '; cr; << firstSet; cr.
+    aStream << '    followSet: '; cr; << '    '; << followSet storeString; cr.!   ! 
+#('Sunday, April 14, 2019' '11:38:13 PM' 2239184)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    aStream << 'Macros:'; cr.
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].! ! 
+#('Sunday, April 14, 2019' '11:38:39 PM' 2238604)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    (macros size > 0) ifTrue:[
+        aStream << 'Macros:'; cr.
+        macros do: [:x |
+            aStream << x
+        ].
+    ]
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].!  ! 
+#('Sunday, April 14, 2019' '11:39:06 PM' 2240352)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    macros do: [:x |
+        aStream << x
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].!    ! 
+#('Sunday, April 14, 2019' '11:39:24 PM' 2240928)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    macros do: [:x |
+        aStream << 'Macro'; cr.
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].! ! 
+#('Sunday, April 14, 2019' '11:40:08 PM' 2241560)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    macros keysAndValuesDo: [:key :value |
+        aStream cr. aStream << 'Macro: '; << key asArray.
+        aStream << value.
+    ].
+    
+    aStream cr; << 'Non Terminals:'; cr.
+    nonTerminals do: [:x |
+        aStream << ' - '; << x; cr.
+    ].!  ! 
+#('Sunday, April 14, 2019' '11:43:58 PM' 2242108)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    aStream << '    firstSet: '; cr; << firstSet; cr.
+    aStream << '    followSet: '; cr; << '    '; << followSet storeString; cr.!    ! 
+#('Sunday, April 14, 2019' '11:45:05 PM' 2239800)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    aStream << '    firstSet: '; cr; << firstSet; cr.
+    aStream << '    followSet: '; cr; << '    '; << followSet storeString; cr.!    ! 
+#('Sunday, April 14, 2019' '11:45:07 PM' 2243300)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ('.
+        lookahead do: [:x |
+            aStream << self lookaheaPrintValue: x; << ' '.
+        ].
+        aStream << ') '.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    aStream << '    firstSet: '; cr; << firstSet; cr.
+    aStream << '    followSet: '; cr; << '    '; << followSet storeString; cr.! ! 
+#('Sunday, April 14, 2019' '11:48:36 PM' 2243820)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ('.
+        lookahead do: [:x |
+            aStream << self lookaheadPrintValue: x; << ' '.
+        ].
+        aStream << ') '.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    aStream << '    firstSet: '; cr; << firstSet; cr.
+    aStream << '    followSet: '; cr; << '    '; << followSet storeString; cr.!    ! 
+#('Sunday, April 14, 2019' '11:48:40 PM' 2244340)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ('.
+        lookahead do: [:x |
+            aStream << self printValue: x; << ' '.
+        ].
+        aStream << ') '.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream << '    firstSet ('.
+    firstSet do: [:x |
+        aStream << self printValue: x; << ' '.
+    ].
+    aStream << ') '.
+
+    aStream << '    followSet ('.
+    followSet do: [:x |
+        aStream << self printValue: x; << ' '.
+    ].
+    aStream << ') '.
+    
+    aStream cr.!   ! 
+#('Sunday, April 14, 2019' '11:51:07 PM' 2245060)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printValue: x
+
+    (x class = Character & (x between: 33 and: 126) not) ifTrue: [
+        ^ x asciiValue
+    ].
+    
+    ^ x! ! 
+#('Sunday, April 14, 2019' '11:54:30 PM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printValue: )) !
+ 
+"*** Image started on: Sunday, April 14, 2019 11:54:58 PM ***"!
+
+   
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    
+    aStream << 'Productions:'; cr.
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    macros keysAndValuesDo: [:key :value |
+        aStream cr. aStream << 'Macro: '; << key asArray.
+        aStream << value.
+    ].!   ! 
+#('Sunday, April 14, 2019' '11:59:54 PM' 2235848)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"  
+"*** saved image on: Sunday, April 14, 2019 11:59:59 PM ***"!
+
+!Production methods !
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        self lookhead do: [:x | 
+            aStream printableValue: x
+        ].
+        aStream << ' ) '.
+    ].
+    
+    aStream << '    e-gen: '; << isEGenerating; cr.!    ! 
+#('Monday, April 15, 2019' '12:05:26 AM' 2237248)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"
+"*** saved image on: Monday, April 15, 2019 12:05:36 AM ***"!
+
+!Production methods !
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream printableValue: x
+        ].
+        aStream << ' ) '.
+    ].
+    
+    aStream << '    e-gen: '; << isEGenerating; cr.!    ! 
+#('Monday, April 15, 2019' '12:06:00 AM' 2247708)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '.
+    ].
+    
+    aStream << '    e-gen: '; << isEGenerating; cr.!  ! 
+#('Monday, April 15, 2019' '12:06:55 AM' 2248352)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printableValue: x
+
+    (x class = Character & (x between: 33 and: 126) not) ifTrue: [
+        ^ x asciiValue
+    ].
+
+    ^ x! ! 
+#('Monday, April 15, 2019' '12:09:10 AM' nil)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printableValue: )) !
+
+
+"evaluate"   
+"*** saved image on: Monday, April 15, 2019 12:09:25 AM ***"!
+
+!Production methods !
+printableValue: x
+
+    (x class = Character) ifTrue: [
+        (x between: 33 and: 126) ifFalse: [
+            ^ x asciiValue
+        ].
+    ].
+
+    ^ x!   ! 
+#('Monday, April 15, 2019' '12:11:33 AM' 2249404)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printableValue: )) !
+
+
+ 
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Grammar methods !  
+printOn: aStream
+
+    aStream cr; << 'Grammer'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    macros keysAndValuesDo: [:key :value |
+        aStream cr. aStream << 'Macro: '; << key asArray.
+        aStream << value.
+    ].!   ! 
+#('Monday, April 15, 2019' '12:12:39 AM' 2247080)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.!    ! 
+#('Monday, April 15, 2019' '12:14:05 AM' 2248916)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream << '    firstSet: ( '.
+    firstSet do: [:x | 
+        aStream << (self printableValue: x)
+    ].
+    aStream << ' ) '.
+        
+    aStream << '    followSet: ( '.
+    followSet do: [:x | 
+        aStream << (self printableValue: x)
+    ].
+    aStream << ' ) '.!    ! 
+#('Monday, April 15, 2019' '12:15:00 AM' 2250688)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '; cr.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream << '    firstSet: ( '.
+    firstSet do: [:x | 
+        aStream << (self printableValue: x)
+    ].
+    aStream << ' ) '; cr.
+        
+    aStream << '    followSet: ( '.
+    followSet do: [:x | 
+        aStream << (self printableValue: x)
+    ].
+    aStream << ' ) '; cr.!    ! 
+#('Monday, April 15, 2019' '12:15:29 AM' 2251268)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+"evaluate"
+"*** saved image on: Monday, April 15, 2019 12:15:35 AM ***"!
+
+ 
+'
+GrammarBuilder promptForGrammar
+'!
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+    self halt.
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ aTree child: 1
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)! ! 
+#('Monday, April 15, 2019' '01:58:14 AM' 2113676)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods ! 
+lookForToken: aTree
+    ((aTree child: 1) class) = Token ifTrue: [
+        self halt.
+        ^ aTree child: 1
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)! ! 
+#('Monday, April 15, 2019' '01:58:41 AM' 2253152)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ aTree child: 1 symbol
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)!  ! 
+#('Monday, April 15, 2019' '01:59:44 AM' 2253588)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ aTree child: 1 symbol
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)!    ! 
+#('Monday, April 15, 2019' '01:59:46 AM' 2253940)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ (aTree child: 1) symbol
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)!  ! 
+#('Monday, April 15, 2019' '02:00:21 AM' 2254280)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!Grammar methods !  
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    (self isNonterminal: transition name symbol) ifTrue: [
+                        b := self productionFor: transition name symbol.
+                        q := transition goto.
+                        
+                        self eSucessorsOf: q do: [:esucc |
+                            esucc isFinal ifTrue: [
+                                (b followSet includesAll: production followSet) ifFalse: [
+                                    b followSet addAllIfAbsent: production followSet.
+                                    changed := true.
+                                ].
+                            ].
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    (self isNonterminal: a) ifTrue: [
+                                        self isNonterminal: (transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            b followSet includesAll: c firstSet ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        (et attributes includes: $R) ifTrue: [
+                                            (b followSet includes: a) ifFalse: [
+                                                b followSet add: a.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].!  ! 
+#('Monday, April 15, 2019' '02:04:00 AM' 2223616)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    (self isNonterminal: transition name symbol) ifTrue: [
+                        b := self productionFor: transition name symbol.
+                        q := transition goto.
+                        
+                        self eSucessorsOf: q do: [:esucc |
+                            esucc isFinal ifTrue: [
+                                (b followSet includesAll: production followSet) ifFalse: [
+                                    b followSet addAllIfAbsent: production followSet.
+                                    changed := true.
+                                ].
+                            ].
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    (self isNonterminal: a) ifTrue: [
+                                        (self isNonterminal: transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            b followSet includesAll: c firstSet ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        (et attributes includes: $R) ifTrue: [
+                                            (b followSet includes: a) ifFalse: [
+                                                b followSet add: a.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].!  ! 
+#('Monday, April 15, 2019' '02:04:36 AM' 2254960)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Grammar methods !
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        x followSet: x lookahead.
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    (self isNonterminal: transition name symbol) ifTrue: [
+                        b := self productionFor: transition name symbol.
+                        q := transition goto.
+                        
+                        self eSucessorsOf: q do: [:esucc |
+                            esucc isFinal ifTrue: [
+                                (b followSet includesAll: production followSet) ifFalse: [
+                                    b followSet addAllIfAbsent: production followSet.
+                                    changed := true.
+                                ].
+                            ].
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    (self isNonterminal: a) ifTrue: [
+                                        (self isNonterminal: transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            (b followSet includesAll: c firstSet) ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        (et attributes includes: $R) ifTrue: [
+                                            (b followSet includes: a) ifFalse: [
+                                                b followSet add: a.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].!    ! 
+#('Monday, April 15, 2019' '02:05:38 AM' 2257544)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+
+'!
+
+!Grammar methods !
+printOn: aStream
+
+    aStream cr; << 'Grammar'; cr.
+    
+    productions do: [:x |
+        aStream << x
+    ].
+    
+    macros keysAndValuesDo: [:key :value |
+        aStream cr. aStream << 'Macro: '; << key asArray.
+        aStream << value.
+    ].!   ! 
+#('Monday, April 15, 2019' '02:07:16 AM' 2250172)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!GrammarBuilder methods !   
+walkGrammar: aTree
+
+    grammar := Grammar new.
+
+    aTree children do: [:child |
+        (child label = #walkProduction:) ifTrue: [
+            grammar nonTerminals add: (self lookForToken: child).
+        ].
+    ].
+
+    aTree children do: [:child |
+        self walkTree: child
+    ].
+    
+    grammar firstSets.
+    grammar followSets.
+    
+    grammar printOn: Transcript.
+    
+    self halt.!    ! 
+#('Monday, April 15, 2019' '02:39:26 AM' 2226376)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('tree walking' walkGrammar: )) !
+
+
+!GrammarBuilder methods !   
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ (aTree child: 1) symbol
+    ].
+    
+    ^ self lookForToken: (aTree child: 1)!  ! 
+#('Monday, April 15, 2019' '02:43:20 AM' 2254624)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods ! 
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ (aTree child: 1) symbol
+    ].
+    
+    ^ self walkTree: (aTree child: 1)!  ! 
+#('Monday, April 15, 2019' '02:46:42 AM' 2263936)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods ! 
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ (aTree child: 1) symbol
+    ].
+    
+    ^ self walkTree: (aTree child: 1)!  ! 
+#('Monday, April 15, 2019' '02:47:20 AM' 2264368)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods ! 
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ (aTree child: 1) symbol
+    ].
+    self halt.
+    ^ self walkTree: (aTree child: 1)!    ! 
+#('Monday, April 15, 2019' '02:53:00 AM' 2264796)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+!GrammarBuilder methods ! 
+lookForToken: aTree
+
+    ((aTree child: 1) class) = Token ifTrue: [
+        ^ (aTree child: 1) symbol
+    ].
+    
+    self halt.
+    self walkTree: (aTree child: 1).
+    
+    ^ self lookForToken: (aTree child: 1)!  ! 
+#('Monday, April 15, 2019' '02:56:14 AM' 2265224)!
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+(CodeFiler organizerFor: GrammarBuilder) reorganizeFrom: #(
+('ops' lookForToken: )) !
+
+
+"evaluate"
+"*** saved image on: Monday, April 15, 2019 06:03:15 AM ***"!
+
+ 
+'self walkTree: (aTree child: 1)'!
+
+"evaluate"  
+"*** saved image on: Monday, April 15, 2019 06:12:12 AM ***"!
