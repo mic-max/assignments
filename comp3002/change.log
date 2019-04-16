@@ -70308,4 +70308,259 @@ printOn: aStream
 "*** saved image on: Monday, April 15, 2019 06:39:55 PM ***"!
 
 "evaluate"   
-"*** saved image on: Monday, April 15, 2019 06:41:54 PM ***"!
+"*** saved image on: Monday, April 15, 2019 06:41:54 PM ***"! 
+"*** Image started on: Monday, April 15, 2019 07:00:40 PM ***"!
+
+   
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Production methods !   
+lookahead: aLookahead
+    self halt.
+    lookahead := aLookahead.!    ! 
+#('Monday, April 15, 2019' '07:04:53 PM' 2273784)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' lookahead: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' lookahead: )) !
+
+
+!Grammar methods !  
+followSets
+    | changed a b c q |
+
+    changed := true.
+    
+    productions do: [:x |
+        (x lookahead notNil) ifTrue: [
+            x followSet: x lookahead.
+        ]
+    ].
+
+    [ changed ] whileTrue: [
+        changed := false.
+        
+        productions do: [:production |
+            (production fsm states) do: [:state |
+                (state transitions) do: [:transition |
+                    (self isNonterminal: transition name symbol) ifTrue: [
+                        b := self productionFor: transition name symbol.
+                        q := transition goto.
+                        
+                        self eSucessorsOf: q do: [:esucc |
+                            esucc isFinal ifTrue: [
+                                (b followSet includesAll: production followSet) ifFalse: [
+                                    b followSet addAllIfAbsent: production followSet.
+                                    changed := true.
+                                ].
+                            ].
+                            q transitions do: [:et |
+                                false ifFalse: [
+                                    a := et name symbol.
+                                    (self isNonterminal: a) ifTrue: [
+                                        (self isNonterminal: transition name symbol) ifTrue: [
+                                            c := self productionFor: a.
+                                            (b followSet includesAll: c firstSet) ifFalse: [
+                                                b followSet addAllIfAbsent: c firstSet.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ]
+                                    ifFalse: [
+                                        (et attributes includes: $R) ifTrue: [
+                                            (b followSet includes: a) ifFalse: [
+                                                b followSet add: a.
+                                                changed := true.
+                                            ].
+                                        ].
+                                    ].
+                                ].
+                            ].
+                        ].
+                    ].
+                ].
+            ].
+        ].
+    ].! ! 
+#('Monday, April 15, 2019' '07:08:03 PM' 2260128)!
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+(CodeFiler organizerFor: Grammar) reorganizeFrom: #(
+('ops' followSets )) !
+
+
+!Production methods ! 
+lookahead: aLookahead
+
+    lookahead := aLookahead.!  ! 
+#('Monday, April 15, 2019' '07:09:03 PM' 2281844)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('get/set' lookahead: )) !
+
+
+   
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+
+'!
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+"evaluate"  
+"*** saved image on: Monday, April 15, 2019 07:14:00 PM ***"!
+
+!TransitionName methods !
+isSemanticAction
+
+    ^ action notNil or: [parameters notNil or: [isRootBuilding notNil]]!    ! 
+#('Monday, April 15, 2019' '07:28:20 PM' 2198760)!
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+(CodeFiler organizerFor: TransitionName) reorganizeFrom: #(
+('get/set' isSemanticAction )) !
+
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '; cr.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream << '    firstSet: ('.
+    firstSet do: [:x | 
+        aStream << ' '; << (self printableValue: x)
+    ].
+    aStream << ' ) '; cr.
+        
+    aStream << '    followSet: ( '.
+    followSet do: [:x | 
+        aStream << (self printableValue: x)
+    ].
+    aStream << ' ) '; cr.! ! 
+#('Monday, April 15, 2019' '07:31:13 PM' 2252140)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+!Production methods ! 
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '; cr.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream << '    firstSet: ('.
+    firstSet do: [:x | 
+        aStream << ' '; << (self printableValue: x)
+    ].
+    aStream << ') '; cr.
+        
+    aStream << '    followSet: ( '.
+    followSet do: [:x | 
+        aStream << (self printableValue: x)
+    ].
+    aStream << ' ) '; cr.!  ! 
+#('Monday, April 15, 2019' '07:31:18 PM' 2285808)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+!Production methods !   
+printOn: aStream
+
+    aStream << 'Production: '; << name.
+    
+    (lookahead size > 0) ifTrue: [
+        aStream << ' ( '.
+        lookahead do: [:x | 
+            aStream << (self printableValue: x)
+        ].
+        aStream << ' ) '; cr.
+    ].
+    
+    aStream << '    eGenerating: '; << isEGenerating; cr.
+    
+    aStream << '    firstSet: {'.
+    firstSet do: [:x | 
+        aStream << ' '; << (self printableValue: x)
+    ].
+    aStream << '}'; cr.
+        
+    aStream << '    followSet: {'.
+    followSet do: [:x | 
+        aStream << ' '; << (self printableValue: x)
+    ].
+    aStream << ' }'; cr.! ! 
+#('Monday, April 15, 2019' '07:32:12 PM' 2286696)!
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+(CodeFiler organizerFor: Production) reorganizeFrom: #(
+('printing' printOn: )) !
+
+
+  
+'
+GrammarBuilder promptForGrammar
+'!
+
+"evaluate"  
+"*** saved image on: Monday, April 15, 2019 08:59:57 PM ***"!
